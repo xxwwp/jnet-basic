@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
+      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <title>JNet Basic</title>
+  <meta name="generator" content="Hexo 5.2.0"></head>
+
+  <body>
+    <div class="sidebar">
+  <aside class="sidebar-toc-page"><!--  -->
+
+
+<div class="toc-page">
+  <div class="toc-page-hd">
+    <a href="/"> JNet Basic </a>
+  </div>
+  <ul>
+    
+<li>
+  <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
+</li>
+
+<li>
+  <span class="label">html_</span>
+</li>
+<ul>
+  
+<li>
+  <a href="/jnet-basic/html_/%E6%95%99%E7%BA%B2/" class="">教纲</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA/" class="">基础理论</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%A4%B4%E9%83%A8%E5%AD%A6%E4%B9%A0/" class="">头部学习</a>
+</li>
+
+<li>
+  <span class="label">元素学习</span>
+</li>
+<ul>
+  
+<li>
+  <a href="/jnet-basic/html_/%E5%85%83%E7%B4%A0%E5%AD%A6%E4%B9%A0/%E6%96%87%E7%AB%A0%E7%9B%B8%E5%85%B3%E7%9A%84%E5%85%83%E7%B4%A0/" class="">文章相关的元素</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%85%83%E7%B4%A0%E5%AD%A6%E4%B9%A0/%E8%B6%85%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%9B%BE%E7%89%87/" class="">超链接与图片</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%85%83%E7%B4%A0%E5%AD%A6%E4%B9%A0/%E6%97%A0%E8%AF%AD%E4%B9%89%E5%85%83%E7%B4%A0/" class="">无语义元素</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%85%83%E7%B4%A0%E5%AD%A6%E4%B9%A0/%E8%A1%A8%E6%A0%BC/" class="">表格</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%85%83%E7%B4%A0%E5%AD%A6%E4%B9%A0/%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0/" class="current">表单元素</a>
+</li>
+
+</ul>
+
+<li>
+  <a href="/jnet-basic/html_/%E5%B1%9E%E6%80%A7/" class="">属性</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/html_/%E8%A1%A5%E5%85%85%E4%B8%8E%E7%BB%93%E6%9D%9F/" class="">补充与结束</a>
+</li>
+
+</ul>
+
+<li>
+  <span class="label">css_</span>
+</li>
+<ul>
+  
+<li>
+  <a href="/jnet-basic/css_/%E6%95%99%E7%BA%B2/" class="">教纲</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E9%80%89%E6%8B%A9%E5%99%A8/" class="">选择器</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5-%E5%B1%82%E5%8F%A0%EF%BC%8C%E7%BB%A7%E6%89%BF%EF%BC%8C%E4%BC%98%E5%85%88%E7%BA%A7/" class="">核心概念-层叠，继承，优先级</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E7%9B%92%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%96%87%E6%A1%A3%E6%B5%81/" class="">盒模型与文档流</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" class="">文本处理</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E8%A1%A8%E6%A0%BC%E5%A4%84%E7%90%86/" class="">表格处理</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E8%83%8C%E6%99%AF%E5%A4%84%E7%90%86/" class="">背景处理</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E5%9F%BA%E7%A1%80%E5%B8%83%E5%B1%80/" class="">基础布局</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/" class="">布局进阶</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80%E7%BB%83%E4%B9%A0/" class="">常见布局练习</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/css_/%E8%A1%A5%E5%85%85%E4%B8%8E%E7%BB%93%E6%9D%9F/" class="">补充与结束</a>
+</li>
+
+</ul>
+
+<li>
+  <span class="label">js_</span>
+</li>
+<ul>
+  
+<li>
+  <a href="/jnet-basic/js_/%E7%9B%AE%E5%BD%95/" class="">目录</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E7%A8%8B%E5%BA%8F%E5%BC%95%E5%AF%BC%E8%AF%BE/" class="">程序引导课</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%9F%BA%E7%A1%80/" class="">基础</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E6%95%B0%E6%8D%AE%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="">数据、运算符和表达式</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%87%BD%E6%95%B0%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="">函数和作用域</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" class="">引用类型</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" class="">流程控制</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="">类型判断与类型转换</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%87%BD%E6%95%B0%E6%B7%B1%E5%85%A5/" class="">函数深入</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%B8%B8%E7%94%A8_API/" class="">常用_API</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" class="">异步编程</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E6%8F%90%E5%8D%87/" class="">提升</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E9%97%AD%E5%8C%85/" class="">闭包</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/this_%E5%85%B3%E9%94%AE%E5%AD%97/" class="">this_关键字</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B/" class="">对象原型</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="">面向对象</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%8A%A0%E8%BD%BD/" class="">渲染与加载</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/" class="">严格模式</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="">正则字符串</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
+</li>
+
+</ul>
+
+<li>
+  <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/%E7%B4%A0%E6%9D%90/" class="">素材</a>
+</li>
+
+  </ul>
+</div>
+</aside>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-%E4%BB%8B%E7%BB%8D"><span class="toc-text">form 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-text">input</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#name-amp-value"><span class="toc-text">name &amp; value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#disabled-amp-readonly"><span class="toc-text">disabled &amp; readonly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checked"><span class="toc-text">checked</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#size"><span class="toc-text">size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#maxlength"><span class="toc-text">maxlength</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#placeholder"><span class="toc-text">placeholder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#autofocus"><span class="toc-text">autofocus</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A1%86-amp-%E5%AF%86%E7%A0%81%E6%A1%86"><span class="toc-text">输入框 &amp; 密码框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86"><span class="toc-text">复选框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86%E7%BB%84"><span class="toc-text">复选框组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%A1%86"><span class="toc-text">单选框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E6%A1%86%E7%BB%84"><span class="toc-text">单选框组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BD%AE%E6%8C%89%E9%92%AE%E5%92%8C%E6%8F%90%E4%BA%A4%E6%8C%89%E9%92%AE"><span class="toc-text">重置按钮和提交按钮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E8%BE%93%E5%85%A5%E6%A1%86"><span class="toc-text">隐藏输入框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%A1%86"><span class="toc-text">文件框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-%E5%85%83%E7%B4%A0%E5%B0%8F%E7%BB%93"><span class="toc-text">input 元素小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E6%8B%89%E6%A1%86"><span class="toc-text">下拉框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E6%8B%89%E6%A1%86%E7%A6%81%E7%94%A8%E4%B8%8E%E5%8F%AA%E8%AF%BB"><span class="toc-text">下拉框禁用与只读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E6%8B%89%E6%A1%86%E7%9A%84%E5%80%BC"><span class="toc-text">下拉框的值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A1%86"><span class="toc-text">文本框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#label"><span class="toc-text">label</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fieldset-amp-legend"><span class="toc-text">fieldset &amp; legend</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#button"><span class="toc-text">button</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4"><span class="toc-text">表单提交</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#method"><span class="toc-text">method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#action"><span class="toc-text">action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enctype"><span class="toc-text">enctype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E5%B0%8F%E7%BB%93"><span class="toc-text">表单提交小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div>
+</aside>
+</div>
+<script>
+  $(document).ready(function () {
+    var elTocPage = $('.sidebar .sidebar-toc-page').get(0);
+    $(elTocPage).on('click', function (elToc) {
+      $(this).addClass('show')
+    })
+    $(document).on('click', function (el) {
+      elTocPage.contains(el.target) || $(elTocPage).removeClass('show');
+    })
+  })
+</script>
+    <main><article>
+  <h1>表单元素</h1>
+  <hr />
+  <div class="article-bd"><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>表单元素用于获取用户的输入，表单元素并不多，但是所表现的形式比较多，其中常见的是各种输入框，还有按钮或者下拉框等。用户的大部分输入，都是使用表单元素完成。</p>
+<p><strong>声明：表单元素的学习过程中，会涉及到网络相关的知识，我会尽可能简化这部分知识理解的门槛，如果我说的不够明白，你不能完全理解也不用担心，我会在网络系列的课程中再次介绍表单提交。</strong></p>
+<h2 id="form-介绍"><a href="#form-介绍" class="headerlink" title="form 介绍"></a>form 介绍</h2><p><code>form</code> 元素用来描述一个表的框架，它用来确定一个表单主体，包裹表单中的输入控件，比如输入框、选择框等。</p>
+<p><code>form</code> 元素有三个常用的属性：</p>
+<ul>
+<li>method：用于设置表单提交时数据的传输方法</li>
+<li>action：用于设置表单提交的地址</li>
+<li>enctype：用于设置表单提交时数据的格式</li>
+</ul>
+<p>目前你只需要知道这几个属性的大致作用即可，最后我会详细介绍这三个属性的各种值。</p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p><code>input</code> 元素一般用来描述一个输入控件，可能是文本框，可能是复选框，也可能是一个文件上传控件，它所表示的控件，由它的 <code>type</code> 属性决定：</p>
+<table>
+<thead>
+<tr>
+<th>type 属性的常用值</th>
+<th>表示的控件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>text</td>
+<td>文本输入框</td>
+</tr>
+<tr>
+<td>password</td>
+<td>密码框</td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td>复选框</td>
+</tr>
+<tr>
+<td>radio</td>
+<td>单选框</td>
+</tr>
+<tr>
+<td>file</td>
+<td>文件上传</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>重置表单按钮</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>提交表单按钮</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>隐藏表单数据</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>文本框<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>密码框<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>复选框<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>单选框<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>文件上传<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>重置按钮<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>提交按钮<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>隐藏表单数据<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>input</code> 元素因为显示控件的不同，展现的形态也不一样，以下是 <code>input</code> 的其他属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td>描述了该输入控件的名称，会在发送表单时，当做数据的名称，没有 <code>name</code> 属性的控件数据不会被发送</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>表示当前 <code>input</code> 元素的默认值</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td>布尔属性，表示当前 <code>input</code> 元素是否可用，不可用的元素在发送表单的时候会被忽略</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td>布尔属性，类似于 <code>disabled</code> 属性，不过在发送表单时数据可被发送</td>
+</tr>
+<tr>
+<td><code>checked</code></td>
+<td>布尔属性，表示当前复选框或单选框是否被选中</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>设置当前 <code>input</code> 元素是输入框情况下的输入宽度</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td>限制当前 <code>input</code> 元素值的长度上限</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>设置参考文本</td>
+</tr>
+</tbody></table>
+<h3 id="name-amp-value"><a href="#name-amp-value" class="headerlink" title="name &amp; value"></a>name &amp; value</h3><p><code>name</code> 属性设置了表带提交时所携带的数据项。</p>
+<p>观察以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在输入框中输入任意数据，当我们点击提交的时候，数据会被提交到 URL 上，可以通过 URL 观察到提交的数据。</p>
+<p>提交时，数据的名称会由 <code>name</code> 属性决定，其值是输入元素被提交时的数据。</p>
+<p>我们可以通过 <code>value</code> 属性为输入元素提供默认值：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;12345@abc.com&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="disabled-amp-readonly"><a href="#disabled-amp-readonly" class="headerlink" title="disabled &amp; readonly"></a>disabled &amp; readonly</h3><p>通过设置输入元素的布尔属性 <code>disabled</code>，可以禁用输入元素，这些输入元素会无法获得焦点，同时，它们也不会参与表单的提交。</p>
+<p>布尔属性 <code>readonly</code> 会设置输入元素只读，只读的元素无法进行修改，但是提交的时候，会参与表单的提交。</p>
+<p>例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;123&quot;</span> <span class="hljs-attr">disabled</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;zxc&quot;</span> <span class="hljs-attr">readonly</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上述代码中，用户名和密码输入框都无法修改数据，当提交表单的时候，只会提交密码框内的数据。</p>
+<h3 id="checked"><a href="#checked" class="headerlink" title="checked"></a>checked</h3><p>复选框或者单选框类型的输入元素，可以使用 <code>checked</code> 属性来设置其默认选中，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>复选框1<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">checked</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>复选框2<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>单选框1<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">checked</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>单选框2<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上述代码中，设置 <code>checked</code> 属性的复选框或单选框会被默认选中。</p>
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p>size 属性用来设置文本框类型的输入元素显示字符的宽度，这个属性很少使用，一般情况下，我们都会只用 CSS 来修改元素的样式，而不是依赖元素的属性。</p>
+<h3 id="maxlength"><a href="#maxlength" class="headerlink" title="maxlength"></a>maxlength</h3><p>maxlength 可以设置文本框类型的输入元素能填入的最大字符数，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">验证码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;4&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的输入框只能填入最多 4 个字符。</p>
+<h3 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h3><p><code>placeholder</code> 属性可以设置输入框的参考文本。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请输入&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是，<code>placeholder</code> 在 IE10 以下都不支持，需要使用 JS 来支持 IE10 以下的浏览器。</p>
+<h3 id="autofocus"><a href="#autofocus" class="headerlink" title="autofocus"></a>autofocus</h3><p><code>autofocus</code> 属性不是表单元素独有的，每个可以获得焦点的元素，都可以使用 <code>autofocus</code>。</p>
+<p>在输入框密码框等控件中，可以使用 <code>autofocus</code> 属性来使其在页面第一次显示的时候，自动获取焦点，减少用户的步骤。</p>
+<h2 id="输入框-amp-密码框"><a href="#输入框-amp-密码框" class="headerlink" title="输入框 &amp; 密码框"></a>输入框 &amp; 密码框</h2><p>默认情况下，<code>input</code> 元素的就是一个输入框。当输入框获取焦点的时候，可以填入文本，如果是在手机上，输入框获取焦点后会弹出小键盘。</p>
+<p>密码框和输入框类似，但是密码框看不到输入数据是什么，全部会被 <code>*</code> 号代替。</p>
+<p>它们真实的值，一般就是当前输入的字符。</p>
+<h2 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h2><p>复选框是用来支持多选操作的，有时候会单独使用一个复选框当做开关使用。</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>被当做开关的时候<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>是否签署 xx 协议<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>被当做多选框<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>请选择你的兴趣爱好<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>体育<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>艺术<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>文学<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>其他<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>复选框的值默认情况下是字符串 <code>on</code>，可以通过给复选框设置 <code>name</code> 属性，然后勾选复选框后提交，其值可以通过 URL 查看。</p>
+<p>也可以通过设置 <code>value</code> ，来改变表单提交时复选框的值。</p>
+<p><strong>注意：复选框只有在设置了 <code>name</code> 属性，并且勾选的情况下，提交表单的时候才会提交数据。</strong>，其他情况下，复选框的数据不会被发送。</p>
+<h2 id="复选框组"><a href="#复选框组" class="headerlink" title="复选框组"></a>复选框组</h2><p>如果复选框被当做多选框模拟，它表示的应该是一组数据。同一组数据的情况下，这些的 <code>name</code> 属性其值存在一定规律。</p>
+<p>其规律需要视后端语言决定，比如后端为 Java 开发，那么同一组复选框的 <code>name</code> 都设置为相同的字符串，如果是 PHP 开发，就需要在相同字符串的基础上，再添加 <code>[]</code>。这个不是我们前端人员去决定的，我们只负责把数据传给后端，然后互相配合即可。</p>
+<p>比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>被当做多选框<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>请选择你的兴趣爱好<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>体育<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobby&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;体育&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>艺术<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobby&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;艺术&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>文学<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobby&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;文学&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>其他<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobby&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;其他&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>勾选上面某几个复选框，然后在提交表单，会发现数据都提交成功了。</p>
+<p>复选框的默认选择状态，可以通过布尔属性 <code>checked</code> 设置。</p>
+<h2 id="单选框"><a href="#单选框" class="headerlink" title="单选框"></a>单选框</h2><p>单选框一般成组出现，它用来从多个选项中单独选择一项作为表单数据提交。</p>
+<p>独立的一个单选框如果被选中，那么无法取消勾选。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>单选框<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>单选框的默认值和复选框一样，如果被选中，默认值是字符串 <code>on</code>。通过设置 <code>name</code> 属性勾选后提交，在 URL 上可以看到。</p>
+<h2 id="单选框组"><a href="#单选框组" class="headerlink" title="单选框组"></a>单选框组</h2><p>单选框组的写法和复选框组类似，唯一不同的是，单选框组的每个单选框 <code>name</code> 属性必须相同，而复选框组每个复选框的 <code>name</code> 名字是和后端人员协商设置的。</p>
+<p>一个单选框组如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>俄罗斯属于那个州？<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>亚洲<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;continent&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;亚洲&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>欧洲<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;continent&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;欧洲&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>两个洲都属于<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;continent&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;both&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当多个单选框的 <code>name</code> 属性都相同的时候，用户只能被选中其中一个，表单提交时被选中的单选框会被发送。</p>
+<p>同复选框，单选框也可以用布尔属性 <code>checked</code> 来设置默认选择，如果一个单选框组有多个单选框设置了 <code>checked</code> 属性，那么只有一个会生效。</p>
+<h2 id="重置按钮和提交按钮"><a href="#重置按钮和提交按钮" class="headerlink" title="重置按钮和提交按钮"></a>重置按钮和提交按钮</h2><p>设置 <code>input</code> 元素的 <code>type</code> 属性为 <code>reset</code> 或 <code>submit</code>，输入元素会表现会重置按钮和提交按钮。</p>
+<p>重置按钮会把表单重置到默认状态，并不一定会清空，取决于表单内的数据是否设置了默认值。</p>
+<p>提交按钮会提交当前表单，关于表单提交的基本信息和格式由 <code>form</code> 元素决定，默认情况下，表单会被提交到当前页，表单数据会被传输到地址栏上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>重置和提交按钮的文本可以通过 <code>value</code> 属性设置。</p>
+<p>比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;user&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;清空&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;登录&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="隐藏输入框"><a href="#隐藏输入框" class="headerlink" title="隐藏输入框"></a>隐藏输入框</h2><p>有的时候，基于用户体验，部分数据我们会将其隐藏，比如用来标记数据的标识，大部分情况下，用户不需要理会这部分数据，我们不用让其展示到表单当中。</p>
+<p>例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;312J3HZL&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;超炸天&quot;</span> <span class="hljs-attr">readonly</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>修改手机号<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tel&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;修改&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的表单中，用户标识和修改的手机号会被提交，后端人员可以通过用户标识，决定修改那个用户的手机号。</p>
+<p>隐藏输入框用得并不是，大部分情况下，它一般被用来隐藏不必要的数据提供用户体验，或者提供一些安全访问。</p>
+<h2 id="文件框"><a href="#文件框" class="headerlink" title="文件框"></a>文件框</h2><p>当 <code>input</code> 元素的 <code>type</code> 属性是 <code>file</code> 时，<code>input</code> 元素会表现为一个文件框，通过文件框可以在网络中传输文件。</p>
+<p>默认表单并不能发送文件，默认表单只会发送文件名，我们需要给 <code>form</code> 元素设置两个属性来支持文件上传：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;image&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;上传&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>form</code> 元素的 <code>method</code> 属性设置了表单上传的方式，文件上传需要使用 <code>POST</code> 方式提交表单。<code>enctype</code> 属性设置表单上传的格式，在 HTML 中上传文件时，我们必须使用 <code>multipart/form-data</code> 格式上传。稍后我会详细介绍 <code>form</code> 元素的相关属性。</p>
+<p>使用文件上传的时候，我们可以点击文件框，或者把文件拖拽到文件框内。当表单提交的时候，浏览器会自动把文件上传到某个服务器。</p>
+<p>表单提交需要服务器，你可以到 <a target="_blank" rel="noopener" href="https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html">这个沙箱</a> 来测试表单提交。注意，这个沙箱需要登录。</p>
+<p>文件需要上传成功，必须有以下条件：</p>
+<ul>
+<li>表单提交方法为 <code>POST</code> 方法</li>
+<li>表单数据格式为 <code>multipart/form-data</code></li>
+</ul>
+<p><strong>文件框的数据必须用户修改，无法设置默认值，设置文件框的 <code>value</code> 值无效。</strong></p>
+<h2 id="input-元素小结"><a href="#input-元素小结" class="headerlink" title="input 元素小结"></a>input 元素小结</h2><p><code>input</code> 元素的 <code>type</code> 属性决定了其表现的控件，不同的控件有些许不同。</p>
+<ul>
+<li><p>输入框和密码框类似，只是密码框不可见</p>
+</li>
+<li><p>复选框用于多项选择或者设置开关，复选框组的 <code>name</code> 属性需要与后端人员协调</p>
+</li>
+<li><p>单选框用于单项选择，一般不会单个出现，单选框组的 <code>name</code> 属性相同</p>
+</li>
+<li><p>单选框和复选框可以通过布尔属性 <code>checked</code> 设置默认选中</p>
+</li>
+<li><p>文件框可以上传文件，不过需要设置提交方法和表单数据格式</p>
+</li>
+<li><p>不同控件的 <code>value</code> 属性表达意义不同：</p>
+<ul>
+<li>输入框、密码框和隐藏输入框中，使用 <code>value</code> 属性设置默认值</li>
+<li>复选框和单选框中，使用 <code>value</code> 属性设置选中的值</li>
+<li>文件框中，<code>value</code> 一般不使用。</li>
+<li>重置和提交按钮中，使用 <code>value</code> 属性设置内容文本</li>
+<li>隐藏框中，<code>value</code> 属性为默认值</li>
+</ul>
+</li>
+<li><p>重置按钮会把表单重置到最初的状态</p>
+</li>
+<li><p>提交按钮会提交表单</p>
+</li>
+</ul>
+<h2 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h2><p>还有一种特殊的输入控件是下拉框，它由多个元素组成：</p>
+<ul>
+<li><code>select</code> 元素，定义一个下拉框</li>
+<li><code>option</code> 元素，定义下拉框中的数据项</li>
+<li><code>optgroup</code> 元素，对数据项进行分组</li>
+</ul>
+<p>一个普通的下拉框如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>孩子送命题，你最喜欢哪个长辈<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>父亲<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>母亲<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果下拉框有多组数据，可以使用 <code>optgroup</code> 进行分组：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>乐器<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">optgroup</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;民乐&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>扬琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>二胡<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">optgroup</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">optgroup</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;西洋乐&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>钢琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>小提琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">optgroup</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以修改 <code>optgroup</code> 元素的 <code>label</code> 属性来设置组名。</p>
+<h3 id="下拉框禁用与只读"><a href="#下拉框禁用与只读" class="headerlink" title="下拉框禁用与只读"></a>下拉框禁用与只读</h3><p>下拉框中的三种元素都可以设置布尔属性 <code>disabled</code>，根据设置的位置，可以实现不同层次的禁用。</p>
+<p>下拉框不支持只读的布尔属性。</p>
+<h3 id="下拉框的值"><a href="#下拉框的值" class="headerlink" title="下拉框的值"></a>下拉框的值</h3><p>下拉框的值也可以通过表单提交，在 <code>select</code> 元素上设置 <code>name</code> 属性来定义提交数据的名字，然后设置 <code>option</code> 属性的 <code>value</code> 属性来设置每项的值。</p>
+<p>同 <code>input</code> 框不同的是，下拉框的数据名和数据值没有设置到同一个元素上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>乐器<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;ins&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">optgroup</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;民乐&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;yang&quot;</span>&gt;</span>扬琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;er&quot;</span>&gt;</span>二胡<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">optgroup</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">optgroup</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;西洋乐&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;gang&quot;</span>&gt;</span>钢琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;xiao&quot;</span>&gt;</span>小提琴<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">optgroup</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>默认情况下，下拉框的值为第一个数据，比如上述例子中，下拉框的值是 <code>yang</code>。通过给 <code>option</code> 元素设置布尔属性 <code>selected</code> 可以主动设置下拉框的默认值。</p>
+<p>HTML 的下拉框并不能嵌套，你看网上看到的酷炫的嵌套的下拉框都是使用其他方式实现的。</p>
+<h2 id="文本框"><a href="#文本框" class="headerlink" title="文本框"></a>文本框</h2><p><code>textarea</code> 元素表现会一个多行文本框，它与普通 <code>input</code> 输入框最大的区别就是多行文本框支持换行。</p>
+<p>一个普通的 <code>textarea</code> 元素如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;10&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>通过设置属性 <code>cols</code> 和 <code>rows</code> 可以设置多行文本框默认显示的列数和行数，这两个属性的表现仅仅是视觉上多行文本框的大小。</p>
+<p>多行文本框的换行有两种方式，一种是超出一行的部分自动换行，一种是用户摁下回车主动换行。</p>
+<p>除此之外，多行文本框的大小是可以自由伸缩的，拉动多行文本框的右下角，可以设置其大小。</p>
+<p>多行文本框同普通输入框一样，支持 <code>name</code>、<code>placeholder</code>、<code>disabled</code>、<code>readonly</code> 等属性，但需要注意的是，<code>textarea</code> 不支持 <code>value</code> 属性。</p>
+<p><code>textarea</code> 元素不是双标签元素，它的默认值可以通过元素内容来设置。比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;10&quot;</span>&gt;</span>默认值<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>备注：<code>textarea</code> 元素的收缩功能可以使用 CSS 来禁用，在 CSS3 的教程中会介绍。</p>
+<h2 id="label"><a href="#label" class="headerlink" title="label"></a>label</h2><p>不知道你是否有过这样的体验，使用某款软件的时候，常常需要签署协议，然后签署协议的复选框又非常的小，很难点到，搞得心里很狂躁。</p>
+<p>如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/send&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>xx 软件协议<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>点击签署协议。<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这用户体验是很差的，如果是多选的情况，体验更差，这是因为各种输入控件并没有和它们的标签产生关联。</p>
+<p>一般来说，用来描述某个表单元素的文本内容，被称作它们的标签，使用 <code>label</code> 元素包裹。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>点击签署协议。<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>要使 <code>label</code> 和表单元素产生关联，我们需要为表单元素设置 <code>id</code> 属性，然后为 <code>label</code> 元素设置 <code>for</code> 属性指定关联的 <code>id</code>。</p>
+<p>如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sign&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;sign&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>点击签署协议。<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>id</code> 属性的值是任意填写的，它表示一个元素标识，一个页面中，不能有 <code>id</code> 相同的元素。</p>
+<p><code>label</code> 元素通过设置 <code>for</code> 属性指定了某个元素的 <code>id</code> 来与与其做绑定。</p>
+<p>现在刷新页面，会发现，在点击 <code>点击签署协议</code> 的文本时，复选框被选中了，用户不用再去点击那个小小的复选框。</p>
+<p><code>label</code> 元素可以绑定任何输入控件，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/send&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>账号申请<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;uname&quot;</span>&gt;</span>昵称：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;uname&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;uname&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span>密码：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>性别：<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-male&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;sex-male&quot;</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-female&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;sex-female&quot;</span>&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在使用上，上面代码中，我们点击 <code>昵称：</code> 或者 <code>密码：</code> 文本，输入框会自动获取到焦点，</p>
+<p>这种写法有些许复杂，实际上，<code>label</code> 元素也可用通过包裹各种表单输入元素来实现绑定。上述代码中，不使用 <code>id</code> 与 <code>for</code> 属性来绑定的方式如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/send&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>账号申请<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>昵称：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;uname&quot;</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>性别：<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-male&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-female&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>两种方式都比较常用，某些情况下，后端开发中会占用 <code>id</code> 属性，那个时候就可以使用第二种写法。</p>
+<h2 id="fieldset-amp-legend"><a href="#fieldset-amp-legend" class="headerlink" title="fieldset &amp; legend"></a>fieldset &amp; legend</h2><p>对于成组的数据，可以使用 <code>fieldset</code> 与 <code>legend</code> 元素来划分，比如在上一小节的表单中，<code>性别：</code> 的数据项就有两个，此时就可以使用 <code>fieldset</code> 与 <code>legend</code> 元素来把它们包裹起来：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>性别：<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-male&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sex-female&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> /&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>fieldset</code> 与 <code>legend</code> 元素使用并不多，因为它们的样式比较特殊。</p>
+<h2 id="button"><a href="#button" class="headerlink" title="button"></a>button</h2><p><code>button</code> 元素是一个普通按钮，它是一个双标签元素。</p>
+<p>一个普通的按钮如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果一个按钮在一个表单中，那么它等价于一个提交按钮，也就是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>普通按钮提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面两个按钮都可以提交表单。</p>
+<p>同时一个普通按钮也可以携带数据提交表单：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;bt&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;something&quot;</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的按钮会在表单提交的时候，发送数据 <code>bt</code>，同时它的值为 <code>something</code>。</p>
+<p>普通按钮的使用场景非常多，它不是为表单提交而生，如果你想提交表单，应该使用一个 <code>submit</code> 类型的 <code>input</code> 元素，如果不是，那就使用 <code>button</code> 元素。</p>
+<p><code>button</code> 元素的功能比重置按钮或提交按钮更强大，<code>button</code> 元素的内容是可以任意设置的，比如设置为一张图片，或者多行文本等等，但是重置按钮或提交按钮就无法实现。</p>
+<h2 id="表单提交"><a href="#表单提交" class="headerlink" title="表单提交"></a>表单提交</h2><p>表单提交时，数据会在网络中传输，表单提交的时候，会整理当前表单的数据，然后通过某种传输方式把数据提交到某个地址。</p>
+<p><code>form</code> 元素的以下属性决定了表单是如何被提交的：</p>
+<ul>
+<li>method：表单传输数据的方法</li>
+<li>action：表单数据提交的地址</li>
+<li>enctype：数据的格式</li>
+</ul>
+<h3 id="method"><a href="#method" class="headerlink" title="method"></a>method</h3><p><code>method</code> 属性决定了表单传输数据的方法，即数据如何传输，它有两个可选值：</p>
+<table>
+<thead>
+<tr>
+<th>method 值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>默认值，表单数据会被放到地址上传输</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>表单数据会放在网络数据包中传输</td>
+</tr>
+</tbody></table>
+<p>GET 方法传输数据是默认情况，在前面的演示中，大家都可以看到，数据被放到了地址栏。</p>
+<p>GET 方法传输的数据会以 <code>?</code> 号作为开头，后面紧跟各个数据项，我们把每项数据叫做字段，字段之间使用 <code>&amp;</code> 符连接，字段名与字段值使用 <code>=</code> 连接，其中没有空隙。</p>
+<p>例如下列表单：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;GET&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;pass&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的表单被提交的时候，数据格式类似于 <code>?username=...&amp;password=...</code>。它会被拼接到提交的地址后面，然后页面会跳转到此地址。</p>
+<p>这段数据被称作 <strong>GET 参数</strong>。</p>
+<p>POST 方法提交表单时，数据会被放到网络数据包中传输，你可以是用控制台查看这些网络数据包。【F12】打开控制台并切换到 <strong>网络模块</strong>，然后设置 <code>method</code> 为 <code>POST</code>，点击提交：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- ... --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>点击数据包，可以发现被提交的数据。需要记住的是，不要试图通过控制台查看 POST 提交时数据的格式，那是被浏览器整理后的格式。</p>
+<p>可以打开 <a target="_blank" rel="noopener" href="https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html">这个沙箱</a>，来测试 POST 提交时数据的格式，就是之前演示文件上传的时所用到的。</p>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p><code>action</code> 属性决定了数据提交的地址，不设置 <code>action</code> 值或者设置为空时，它会把数据提交到当前页。</p>
+<p>这就是为什么我之前演示时，GET 提交表单时数据都放在当前地址上。</p>
+<p>你可以把数据提交到百度的搜索页面上，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 百度搜索数据的地址是 https://www.baidu.com/s --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;GET&quot;</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;https://www.baidu.com/s&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 百度搜索的关键字字段名是 wd --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;wd&quot;</span> /&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面表单会把数据发送到百度的服务器上，提交表单你会收到一个搜索结果。</p>
+<h3 id="enctype"><a href="#enctype" class="headerlink" title="enctype"></a>enctype</h3><p><code>enctype</code> 属性决定了数据提交的格式，它有三个可选值：</p>
+<table>
+<thead>
+<tr>
+<th><code>enctype</code> 属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>application/x-www-form-urlencoded</code></td>
+<td>默认值，数据会被压缩为一行文本</td>
+</tr>
+<tr>
+<td><code>multipart/form-data</code></td>
+<td>用于文件上传，数据格式可读性差，但是数据信息更丰富</td>
+</tr>
+<tr>
+<td><code>text/plain</code></td>
+<td>用于程序调试，不可上传文件，数据直接可读</td>
+</tr>
+</tbody></table>
+<p>其中，<strong>GET 方法只支持第一种数据格式，后面的无效。而 POST 方法支持所有格式。</strong></p>
+<p>同样，这部分例子也是在 <a target="_blank" rel="noopener" href="https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html">这个沙箱</a> 中演示。</p>
+<p>一般情况下，我们不会使用 <code>text/plain</code> 数据格式提交数据，它仅用于调试。</p>
+<h3 id="表单提交小结"><a href="#表单提交小结" class="headerlink" title="表单提交小结"></a>表单提交小结</h3><ul>
+<li><p>表单提交的方式有两种，GET 方式与 POST 方式，其中：</p>
+<ul>
+<li>GET 方式提交表单，数据会被拼接到传输地址上。</li>
+<li>POST 方式提交表单，数据会被放到网络数据包中。</li>
+</ul>
+</li>
+<li><p>表单提交时，数据会被传输到某个地址。</p>
+<ul>
+<li>前端人员无法处理 POST 传输的数据</li>
+<li>GET 数据因为是放到网址上，前后端都可以处理</li>
+</ul>
+</li>
+<li><p>表单提交时，数据格式有三种，其中：</p>
+<ul>
+<li>GET 方式提交表单，数据格式只有 <code>application/x-www-form-urlencoded</code>。</li>
+<li>文件传输只能使用 POST 方式，并且数据格式必须是 <code>multipart/form-data</code>。</li>
+<li><code>text/plain</code> 数据格式仅作为调试使用，不要在正式项目中使用，此格式几乎不会被使用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在未来的开发中，我们可能很少会使用到这些原始的表单元素，表单提交也会由 JS 处理，让页面在不刷新的情况下，发送数据。但是不论如何开发，都离不开这些基础知识，希望你能熟知表单的基础知识，才能在后续学习中游刃有余。</p>
+<p>表单提交时的 <code>method</code> 和 <code>enctype</code> 属性较难，因为它是网络相关的知识，如果你难以理解，并不用担心，我会在 web 网络课程中详细介绍它们。</p>
+<p>eg：表单元素不存在严格的嵌套关系，比如 <code>button</code> 按钮就可能出现各种不是表单的地方。表单元素内也可以嵌套其他各种元素，比如表格、文章、超链接等。</p>
+</div>
+  <div class="article-ft">
+    <p>
+      <span class="last-update">最后更新时间：2020/11/25</span>
+    </p>
+  </div>
+</article>
+</main>
+    <script>
+      $(document).ready(function () {
+        $("article table:not(.highlight table)").addClass("table table-hover");
+        $("article blockquote").addClass("blockquote");
+      });
+    </script>
+  </body>
+</html>
