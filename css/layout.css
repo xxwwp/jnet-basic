@@ -1,0 +1,172 @@
+body {
+  color: #303133;
+}
+.index {
+  text-align: center;
+  padding-top: 150px;
+}
+.index .site-title {
+  font-size: 40px;
+  letter-spacing: 10px;
+}
+.index .site-desc {
+  color: #c0c0c0;
+}
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+article em,
+article strong {
+  color: #000;
+  margin: 20px 0;
+}
+article img {
+  max-width: 100%;
+  margin: 20px 0;
+}
+figure.highlight {
+  margin: 10px -10px;
+  overflow-x: auto;
+}
+figure.highlight table {
+  width: 100%;
+}
+.highlight .gutter {
+  display: none;
+}
+.hljs {
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1em;
+}
+article {
+  position: relative;
+  margin: auto;
+  padding: 50px 10px;
+}
+article .toc-article-container {
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+article .article-ft {
+  text-align: right;
+}
+article .article-ft .last-update {
+  color: #c0c0c0;
+  font-size: 0.8em;
+}
+article th {
+  white-space: nowrap;
+}
+.toc-page {
+  min-height: 100%;
+  padding: 10px;
+  padding-bottom: 50px;
+  border-width: 4px;
+  border-color: rgba(0,0,0,0.1);
+  border-style: none double none none;
+  box-sizing: border-box;
+  width: 200px;
+}
+.toc-page ul {
+  list-style: none;
+  padding-left: 10px;
+}
+.toc-page ul li {
+  line-height: 30px;
+}
+.toc-page ul li .label {
+  color: #000;
+  cursor: default;
+}
+.toc-page ul li a {
+  color: #555;
+  text-decoration: none;
+}
+.toc-page ul li a:hover {
+  color: #999;
+}
+.toc-page ul li a.current {
+  color: #999;
+}
+.toc-page-hd {
+  text-align: center;
+}
+.toc-page-hd a {
+  line-height: 40px;
+  color: #c0c0c0;
+  font-size: 20px;
+  text-decoration: none;
+}
+.toc-page-hd a:hover {
+  color: #999;
+}
+.toc-article {
+  margin: 40px 30px;
+}
+.toc-article ol {
+  padding-left: 10px;
+  list-style: none;
+}
+.toc-article ol li {
+  line-height: 30px;
+  white-space: nowrap;
+}
+.toc-article ol li a {
+  color: #555;
+  text-decoration: none;
+}
+.toc-article ol li a:hover {
+  color: #999;
+}
+.sidebar .sidebar-toc-page {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: transform 0.3s;
+  background-color: #fff;
+  z-index: 10;
+  box-shadow: 0 0 3px 0 #eee;
+  overflow: hidden;
+}
+.sidebar .sidebar-toc-page:hover {
+  overflow: auto;
+}
+.sidebar .sidebar-toc-article {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 80%;
+  left: calc(max(100vw, 1200px) - (max(100vw, 1200px) - 760px) / 2);
+  overflow: hidden;
+}
+.sidebar .sidebar-toc-article:hover {
+  overflow: auto;
+}
+@media screen and (max-width: 1200px) {
+  .sidebar .sidebar-toc-page {
+    transform: translateX(-90%);
+  }
+  .sidebar .sidebar-toc-page.show {
+    transform: translateX(0);
+  }
+  .sidebar .sidebar-toc-article {
+    display: none;
+  }
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+main {
+  width: 90%;
+  max-width: 760px;
+  margin: auto;
+}

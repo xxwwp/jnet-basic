@@ -1,0 +1,11 @@
+.index {
+  text-align: center;
+  padding-top: 150px;
+}
+.index .site-title {
+  font-size: 40px;
+  letter-spacing: 10px;
+}
+.index .site-desc {
+  color: #c0c0c0;
+}
