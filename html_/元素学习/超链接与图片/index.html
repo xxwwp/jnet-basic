@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -314,8 +314,8 @@
 <td><code>a</code></td>
 <td>内联</td>
 <td>标记一个超链接</td>
-<td>href,title,target,downlaod</td>
-<td>download 只在同源（一种网络状态）下生效，在网络课程中演示</td>
+<td><code>href, title, target, downlaod</code></td>
+<td><code>download</code> 只在同源（一种网络状态）下生效，在网络课程中无法演示</td>
 </tr>
 </tbody></table>
 <p><code>a</code> 元素的属性：</p>
@@ -352,9 +352,9 @@
 </tr>
 </tbody></table>
 <p>例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.bilibili.com/&quot;</span>&gt;</span>哔哩哔哩<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:2830289202@qq.com&quot;</span>&gt;</span>发送邮件<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;tel:10086&quot;</span>&gt;</span>移动客服<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 如果在手机上，会直接跳转到 --&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.bilibili.com/&quot;</span>&gt;</span>哔哩哔哩<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:2830289202@qq.com&quot;</span>&gt;</span>发送邮件<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;tel:10086&quot;</span>&gt;</span>移动客服<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="认识-URL-与路径"><a href="#认识-URL-与路径" class="headerlink" title="认识 URL 与路径"></a>认识 URL 与路径</h2><p>URL（统一资源定位器；uniform resource locator），用来 web 上用来指定信息的地址，最初只是用来指定网址的，但是随着 web 技术发展，URL 被用来指定各种资源类型的地址，比如文件，邮箱，流媒体（音视频等），下载链接等。</p>
+<h2 id="认识-URL-与路径"><a href="#认识-URL-与路径" class="headerlink" title="认识 URL 与路径"></a>认识 URL 与路径</h2><p>URL（统一资源定位器；uniform resource locator），用来 web 上用来指定信息的地址，最初只是用来指定网址的，但是随着 web 技术发展，URL 被用来指定各种资源类型的地址，比如文件，邮箱，音视频等等。</p>
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL 由 4 部分组成，以下 4 部分都是非必须的：</p>
 <ul>
 <li>协议</li>
@@ -364,7 +364,7 @@
 </ul>
 <p>分析哔哩哔哩的网站链接：</p>
 <p><img src="../../../assets/URL%E5%89%96%E6%9E%90%E5%9B%BE.png"></p>
-<p><code>80</code> 端口是网站协议的默认端口，一般情况下，浏览器会在 URL 上隐藏 <code>80</code> 端口的显示。</p>
+<p><code>80</code> 端口是网站协议的默认端口，一般情况下，浏览器会隐藏 <code>80</code> 端口的显示来简化地址。</p>
 <p>比如哔哩哔哩也可以通过 <code>https://www.bilibili.com:80/</code> 来访问。</p>
 <h2 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h2><p>双击打开一个本地的 HTML 文件，在浏览器的地址栏上，就显示了文件在本地环境的 URL：</p>
 <p><img src="../../../assets/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%BC%94%E7%A4%BA.png"></p>
@@ -406,9 +406,11 @@
 <td>可省略</td>
 </tr>
 </tbody></table>
-<p>根路径是指当前协议解析的根路径，和计算机硬盘的根路径没有直接关系。</p>
-<h2 id="title-属性"><a href="#title-属性" class="headerlink" title="title 属性"></a>title 属性</h2><p>在 <code>a</code> 元素中，常常会使用 <code>title</code> 属性来为超链接设置提示，<code>title</code> 属性是一个全局属性，任何元素都可以设置。</p>
-<p>【title 属性演示】</p>
+<p><strong>根路径是指当前协议解析的根路径，和计算机硬盘的根路径没有直接关系。</strong></p>
+<h2 id="title-属性"><a href="#title-属性" class="headerlink" title="title 属性"></a>title 属性</h2><p>在 <code>a</code> 元素中，常常会使用 <code>title</code> 属性来为超链接设置提示，<code>title</code> 属性是一个全局属性，任何元素都可以设置。比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;这段文字的中心思想是.....&quot;</span> &gt;</span>一段文本<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.douban.com&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;书籍电影点评网站&quot;</span> &gt;</span>豆瓣<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>尝试把鼠标移动元素上，浏览器会根据 <code>title</code> 属性给出提示。</p>
 <h2 id="target-属性"><a href="#target-属性" class="headerlink" title="target 属性"></a>target 属性</h2><p>属性值：</p>
 <ul>
 <li><code>_self</code>：当前网站加载（默认）</li>
@@ -435,7 +437,7 @@
 <td>内联</td>
 <td>标记一张图片</td>
 <td><code>src,alt</code></td>
-<td></td>
+<td>空元素</td>
 </tr>
 </tbody></table>
 <p><code>a</code> 元素的属性：</p>
@@ -458,12 +460,14 @@
 <td></td>
 </tr>
 </tbody></table>
-<p>【图片载入演示】</p>
+<p>例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./img.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;图片无法加载时显示的文字&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="综合练习"><a href="#综合练习" class="headerlink" title="综合练习"></a>综合练习</h2><p>编写一个三个页面分别是 <code>主页</code>、<code>社交页</code>、<code>我的信息页</code>，它们都有相同的导航栏，其余内容随意补充，要求可以通过导航栏在三个页面中互相跳转。</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/06</span>
+      <span class="last-update">最后更新时间：2020/12/09</span>
     </p>
   </div>
 </article>

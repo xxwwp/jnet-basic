@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -298,12 +298,11 @@
     <main><article>
   <h1>数据、运算符和表达式</h1>
   <hr />
-  <div class="article-bd"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>程序中的用来存储数据的变量一般由字母数字下划线组成，确切的数据有相应的格式，比如数字就直接编写，文本信息就使用单引号或双引号包裹。</p>
-<p>尝试在运算两个数据的和并打印：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span>;<br>b = <span class="hljs-number">3</span> + a;<br><br><span class="hljs-built_in">console</span>.log(b);<br></code></pre></td></tr></table></figure>
+  <div class="article-bd"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>变量用来在程序中储存数据，变量类似于一个容器，变量一般由字母、数字、下划线 <code>_</code> 或美元符 <code>$</code> 组合而成。尝试在编写两个变量并参与计算：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span>;<br>b = <span class="hljs-number">3</span> + a;<br><br><span class="hljs-built_in">console</span>.log(a, b);<br></code></pre></td></tr></table></figure>
 
-<p>【代码解释】</p>
-<p>上面代码中：</p>
+<p>上面的代码中，我们定义两个变量 <code>a</code> 和 <code>b</code>，其中 <code>a</code> 储存了数字 <code>1</code>，<code>b</code> 储存了数字 <code>3</code> 与变量 <code>a</code> 的和。<code>console.log</code> 是用来在控制台打印数据的代码，它不会想 <code>alert</code> 一样弹框，它可以方便我们调试，<code>console.log(a, b)</code> 会在控制台打印出变量 <code>a</code> 与 <code>b</code> 存储的数据。</p>
+<p>在上面代码中：</p>
 <ul>
 <li><p><code>1</code> 和 <code>3</code> 都被称作 <strong>字面量</strong>，它们是不变的；</p>
 </li>
@@ -317,8 +316,8 @@
 </li>
 </ul>
 <p>程序就是通过这样的一个个语句组合而成。</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>字面量并不是只有数字，也可能文本，真假值或无意义的值，或者是一组复杂的数据。</p>
-<p>在 JS 中，数据被分为两类，原始类型和引用类型：</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>字面量并不是只有数字，也可能文本、真假值、空值或者是更加复杂的数据。</p>
+<p>在 JS 中，数据被分为两类，<strong>原始类型</strong> 和 <strong>引用类型</strong>：</p>
 <ul>
 <li><p>原始类型：简单的数据，数字，文本，空值等。</p>
 <table>
@@ -350,7 +349,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>引用类型：各种数据的组合，可以存储有关联的信息，比如表格的数据或者列表等等。</p>
+<li><p>引用类型：各种数据的组合，用来表示复杂的数据，比如表格、列表等等。</p>
 </li>
 </ul>
 <p>尝试创建各种类型的字面量：</p>
@@ -381,9 +380,9 @@
 </tr>
 </tbody></table>
 <p><code>NaN</code> 常常出现在错误的计算当中，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span> / <span class="hljs-string">&quot;哈哈哈&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a);<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span> / <span class="hljs-string">&quot;哈哈哈&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// NaN</span><br></code></pre></td></tr></table></figure>
 
-<p>上面代码中， <code>/</code> 表示除以，其意思是把 1 除以文本 ‘<code>哈哈哈</code>‘ 的值存到变量 <code>a</code> 中。这是一个数学运算，JS 程序不会出错，只是计算结果是字面量 <code>NaN</code>。</p>
+<p>上面代码中， <code>/</code> 表示做除法，其意思是把 1 除以文本 ‘<code>哈哈哈</code>‘ 的值存到变量 <code>a</code> 中。这是一个数学运算，程序无法计算数字和文本的触发，所以结果会是字面量 <code>NaN</code>。</p>
 <p>无穷大的只会在数字除以 0 时出现，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span> / <span class="hljs-number">0</span>;<br><span class="hljs-built_in">console</span>.log(a);<br></code></pre></td></tr></table></figure>
 
@@ -391,19 +390,20 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = -<span class="hljs-number">1</span> / <span class="hljs-number">0</span>;<br><span class="hljs-built_in">console</span>.log(a);<br></code></pre></td></tr></table></figure>
 
 <p>上面会打印出 <code>-Infinity</code>。</p>
-<p>这两个特殊字面量可以直接存到变量中，不是只能通过计算得到上：</p>
+<p>任何字面量可以直接存到变量中，不是只能通过计算得到，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-literal">NaN</span>;<br>b = <span class="hljs-literal">Infinity</span>;<br><span class="hljs-built_in">console</span>.log(a, b);<br></code></pre></td></tr></table></figure>
 
-<h4 id="数字范围"><a href="#数字范围" class="headerlink" title="数字范围"></a>数字范围</h4><p>数字字面量是有范围限制的，JS 一个数字是用一个 64 位的二进制数来储存的，你可以理解为数字是由 64 个字符 <code>0</code> 或者 <code>1</code> 来表示，它可能是这样的：</p>
+<h4 id="数字范围"><a href="#数字范围" class="headerlink" title="数字范围"></a>数字范围</h4><p>JS 一个数字是用一个 64 位的二进制数来储存的，你可以理解为数字是由 64 个字符 <code>0</code> 或者 <code>1</code> 来表示，它可能是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">0111011000000100101010011001110001001101110010001100100101110110<br></code></pre></td></tr></table></figure>
 
-<p>这些符号中，有的决定这个数是否是含有小数，有的决定正负数，各有各的功能。这串字符的表示范围是有限的，并不能表示所有的数字。在整数中，你可以在以下范围安全的计算和编写字面量而不会产生错误：</p>
+<p>这些符号中，有的决定这个数是否是含有小数，有的决定正负数，各有各的功能。<strong>这串字符的表示范围是有限的，并不能表示所有的数字。</strong> 在整数中，你可以在以下范围计算和编写字面量而不会产生错误：</p>
 <p>-(2<sup>53</sup> - 1) 到 2<sup>53</sup> - 1；</p>
-<p>其中，2 的 53 次方是 9007199254740992，你可以尝试编写 <code>9007199254740992 + 1</code>，你会得到一个错误的结果，它超出了 JS 数字表示的范围。</p>
+<p>其中，2 的 53 次方是 9007199254740992，你可以尝试编写 <code>9007199254740992 + 1</code>，你会得到一个错误的结果，因为它超出了 JS 数字表示的范围。</p>
 <p>小数同理，也只能表示一定范围的精度，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;<br><span class="hljs-built_in">console</span>.log(a);<br></code></pre></td></tr></table></figure>
 
-<p>因为精度的丢失，甚至引起一些精度上的错误计算，你可以尝试编写 <code>0.1+0.2</code>，在 JS 中我们不会得到 <code>0.3</code>。当然这种情况只是特例，JS 中的数据并不是都那么不可靠，后面我们也有方法解决这些问题。</p>
+<p><code>2 / 3</code> 会在计算到一定程度后就停止，然后进行四舍五入，并不会获得一个无限小数。</p>
+<p>因为精度的丢失，甚至引起一些精度上的错误计算，你可以尝试编写 <code>0.1+0.2</code>，在 JS 中我们不会得到 <code>0.3</code>。当然这种情况只是特例，JS 中的数字并不是都那么不可靠，后面我们也有方法解决这些问题。</p>
 <h4 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h4><p>生活中我们所用到的数字是十进制的，就是满十进一。但是当我们需要处理一些特殊数据时，可能是使用到其他进制的数字，比较明显的就是 CSS 中我们对颜色的设置，通过 16 进制的方式可以用更少的字符来表示颜色。在 JS 中，也有其他进制的数字字面量：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">n2 = <span class="hljs-number">0b110</span>; <span class="hljs-comment">// 二进制</span><br>n8 = <span class="hljs-number">0110</span>; <span class="hljs-comment">// 八进制</span><br>n16 = <span class="hljs-number">0x110</span>; <span class="hljs-comment">// 十六进制</span><br><br><span class="hljs-built_in">console</span>.log(n2, n8, n16); <span class="hljs-comment">// 6 72 272</span><br></code></pre></td></tr></table></figure>
 
@@ -418,11 +418,11 @@
 
 <p>它们之间的加减并不会有任何影响，进制只是数字的表示方式而已。</p>
 <h4 id="指数"><a href="#指数" class="headerlink" title="指数"></a>指数</h4><p>JS 中还有一种类似科学计数法的数字字面量，被叫做指数形式：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1.23e3</span>); <span class="hljs-comment">// 1230</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1.23e3</span>;<br><span class="hljs-built_in">console</span>.log(foo, foo * <span class="hljs-number">10</span>); <span class="hljs-comment">// 1230 12300</span><br></code></pre></td></tr></table></figure>
 
 <p>上述代码中，<code>1.23e3</code> 相当于 1.23 乘以 10 的 3 次方。其中 <code>e</code> 也可以写成大写字母 <code>E</code>。</p>
 <h3 id="String-类型"><a href="#String-类型" class="headerlink" title="String 类型"></a>String 类型</h3><p>String 类型就是文本类型，在程序中常被成为 <strong>字符串类型</strong>。它用来表示一段文本数据，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-string">&quot;一言九鼎，驷马难追&quot;</span>;<br>b = <span class="hljs-string">&quot;String type&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a, b);<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-string">&quot;一言既出驷马难追&quot;</span>;<br>b = <span class="hljs-string">&quot;String type&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a, b);<br></code></pre></td></tr></table></figure>
 
 <p>字符串类型需要是引号包裹，单引号或者双引号都可以。需要注意的是，单双引号包裹字符串时，不能换行，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-string">&quot;长歌行</span><br><span class="hljs-string">xxx&quot;</span>;<br></code></pre></td></tr></table></figure>
@@ -431,7 +431,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">a &#x3D; &quot;长歌行&quot; +<br>    &quot;xxx&quot;;<br></code></pre></td></tr></table></figure>
 
 <p>这个意义并不大，只是为了增加代码的可读性，因为变量 <code>a</code> 的最终结果实际是 <code>&quot;长歌行xxx&quot;</code>，字符串内部并不会真正换行。如果需要让字符串内存在换行，可以使用 <strong>转义字符</strong>，在下一段。</p>
-<h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><p>在字符类型字面中，我们必须使用英文的单引号或者双引号包裹字符串，但是可能会出现一些意外的情况，比如我的字符串中含有单引号和双引号，此时怎么办？</p>
+<h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><p>在字符类型字面中，我们必须使用英文的单引号或者双引号包裹字符串，但是可能会出现一些意外的情况，比如我的字符串中含有单引号和双引号，此时怎么办？比如一个字符串长下面这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">I&#39;m &quot;iron man&quot;!<br></code></pre></td></tr></table></figure>
 
 <p>如果使用单引号：</p>
@@ -441,7 +441,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">&quot;I&#39;m &quot;iron man&quot;!&quot;<br></code></pre></td></tr></table></figure>
 
 <p>这两种方式都会给代码带来解析错误，因为单引号和双引号成对就会形成字符串字面量。</p>
-<p>此时需要使用到 <strong>转义</strong>，转义会消去字符在语法中的作用，变成一个普通的字符，想转义一个字符，就在它的前面添加正斜杠 <code>\</code>，我们可以把字符串内的单引号转义：</p>
+<p>此时需要使用到 <strong>转义</strong>，转义会改变字符在语法中的作用，变成另一个的字符，想转义一个字符，就在它的前面添加正斜杠 <code>\</code>，我们可以把字符串内的单引号转义：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">I\&#39;m &quot;iron man&quot;!<br></code></pre></td></tr></table></figure>
 
 <p>此时这个单引号失去了在 JS 语法中包裹字符串的意义，是一个单纯的单引号字符，我们可以使用单双引号包裹不受其影响：</p>
@@ -452,7 +452,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">s = <span class="hljs-string">&quot;foo:Ohhhhhhh! \nbar: Haaaaaaaa!&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s);<br></code></pre></td></tr></table></figure>
 
 <p>它会在打印的时候换行。</p>
-<p>转义字符不止这些，但其他都很少使用，可以搜索 <code>js 转义字符</code> 到网上查询。</p>
+<p>转义字符不止这些，其他转义字符很少使用，不再介绍，使用时 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#Parameters">查表</a> 即可。</p>
 <h4 id="字符意义"><a href="#字符意义" class="headerlink" title="字符意义"></a>字符意义</h4><p>我们可以在字符串中编写任何字符，比如字符 <code>&#39;1&#39;</code>，它和数字类型的 <code>1</code> 并不是一个意思。</p>
 <p>数字类型的 <code>1</code> 具有它的数学意义，但是字符 <code>&#39;1&#39;</code> 代表的只是一个符号，比较直观的例子是：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span> + <span class="hljs-number">1</span>; <span class="hljs-comment">// 2</span><br>b = <span class="hljs-string">&quot;1&quot;</span> + <span class="hljs-string">&quot;1&quot;</span>; <span class="hljs-comment">// &#x27;11&#x27;</span><br><span class="hljs-built_in">console</span>.log(a, b);<br></code></pre></td></tr></table></figure>
@@ -461,12 +461,12 @@
 <h3 id="Null-类型"><a href="#Null-类型" class="headerlink" title="Null 类型"></a>Null 类型</h3><p>Null 类型 <strong>有且仅有一个</strong> 字面量 <code>null</code>，它表示无效的数据或空值：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-literal">null</span>;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
 
-<p><code>null</code> 类型常常用来做程序开发时的交互，比如后端人员查询某段数据发现没有时，他就很可能返回一个 <code>null</code> 来表示数据为空。</p>
+<p><code>null</code> 类型常常用来做程序开发时的交互，比如后端人员查询一个表格，发现表格为空时，他就很可能返回一个 <code>null</code> 来表示数据为空。</p>
 <h3 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h3><p>Undefinded 类型也是 <strong>有且仅有一个</strong> 字面量 <code>undefined</code> ，它表示数据未定义。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-literal">undefined</span>;<br><span class="hljs-built_in">console</span>.log(a);<br></code></pre></td></tr></table></figure>
 
-<p><code>undefined</code> 和 <code>null</code> 类似，但是它们表示的意义不一样。比如一个小孩子手里的棒棒糖吃光了，棒棒糖的状态应该是 <code>null</code>，而如果一个小孩子手里根本就没有棒棒糖，就应该使用 <code>undefined</code> 来表示。</p>
-<h3 id="Boolean-类型"><a href="#Boolean-类型" class="headerlink" title="Boolean 类型"></a>Boolean 类型</h3><p>Boolean 类型 <strong>有且仅有两个</strong> 字面量 <code>true</code> 和 <code>false</code>，它们分别表示 <code>真</code> 和<code>假</code> ，也可以理解成 <code>确定</code> 和 <code>否定</code> 或者 <code>对</code> 和 <code>错</code>，它们被用来表示完全相对的值。Boolean 类型一般被音译为 <strong>布尔类型</strong>，<code>true</code> 和 <code>false</code> 字面量常被称作 <strong>布尔值</strong>。</p>
+<p><code>undefined</code> 和 <code>null</code> 类似，但是它们表示的意义不一样。比如一个小孩子手里的棒棒糖吃光了，棒棒糖的状态应该是 <code>null</code>，而如果一个小孩子手里根本就没有棒棒糖，就应该使用 <code>undefined</code> 来表示。一个表示空值，一个表示没有。</p>
+<h3 id="Boolean-类型"><a href="#Boolean-类型" class="headerlink" title="Boolean 类型"></a>Boolean 类型</h3><p>Boolean 类型 <strong>有且仅有两个</strong> 字面量 <code>true</code> 和 <code>false</code>，它们分别表示 <code>真</code> 和 <code>假</code> ，也可以理解成 <code>确定</code> 和 <code>否定</code> 或者 <code>对</code> 和 <code>错</code>，它们被用来表示完全相对的值。Boolean 类型一般被音译为 <strong>布尔类型</strong>，<code>true</code> 和 <code>false</code> 字面量常被称作 <strong>布尔值</strong>。</p>
 <p>布尔类型一般是逻辑运算的结果，比如大于，小于，等于等等：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span>;<br>b = a &gt; <span class="hljs-number">10</span>;<br><span class="hljs-built_in">console</span>.log(b);<br></code></pre></td></tr></table></figure>
 
@@ -476,10 +476,10 @@
 <h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>引用类型又被称作 <strong>对象类型</strong>，它有三种类型的字面量：</p>
 <ul>
 <li>函数：用来存储一段代码。</li>
-<li>对象：用来存储一组有关联的数据，比如一个人的身高体重肺活量，应该存储到一起，对象就可以把它们一起存储。</li>
+<li>对象：用来存储一组有关联的数据，比如一个人的身高体重肺活量，它们可以通过对象存储到一起。</li>
 <li>数组：用来存储多组数据，比如一张表格。</li>
 </ul>
-<p>这里不演示引用类型的字面量，因为它们比较复杂，后面会注意介绍。</p>
+<p>引用类型的数据比较复杂，后面我会单独介绍。</p>
 <h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><p>目前为止，我们的变量都好像凭空出现一般，想写什么变量，就写什么变量，但实际上，程序中首次出现变量的时候，我们需要对变量进行声明。</p>
 <p>变量声明类似于数学上的列方程时需要预设代数一样，比如鸡兔同笼的问题，50 个头，130 只脚，问有多少鸡，多少兔。使用二元一次方程解题应如下：</p>
 <p>解：</p>
@@ -489,7 +489,7 @@
 <p>解得：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">x &#x3D; 35<br>y &#x3D; 15<br></code></pre></td></tr></table></figure>
 
-<p>上述解法中，我们就预先声明了两个代数 x 与 y，方便后文列方程组。同理，在程序中，使用变量之前，也需要对变量进行声明，浏览器才能更轻易的读懂我们的程序，减少错误。</p>
+<p>上述解法中，我们就预先声明了两个代数 x 与 y，方便后文列方程组。同理，在程序中，使用变量之前，也需要对变量进行声明，浏览器才能更轻易的读懂我们的程序，减少代码运行时的错误。</p>
 <p>在 JS 中，声明变量使用 <code>var</code> 关键字：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a;<br><span class="hljs-keyword">var</span> b;<br><br>a = <span class="hljs-number">1</span>;<br>b = a + <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
 
@@ -497,20 +497,20 @@
 <p>变量声明并不用作为单独的语句，你可以在变量声明的时候，给变量一个初始值，这通常是使用一个赋值表达式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">var</span> b = a + <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
 
-<p>以后的变量出现的时候，我们几乎都会使用变量声明，我会在介绍作用域的时候，讲解为什么我们需要变量声明。</p>
+<p>以后的变量出现的时候，几乎都会使用变量声明，我会在介绍作用域的时候，讲解声明变量的好处。</p>
 <h3 id="默认值与未声明"><a href="#默认值与未声明" class="headerlink" title="默认值与未声明"></a>默认值与未声明</h3><p>看下列代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a;<br><span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// undefined</span><br><span class="hljs-built_in">console</span>.log(b); <span class="hljs-comment">// ReferenceError: b is not defined</span><br></code></pre></td></tr></table></figure>
 
 <p>上面的代码并不能正确执行，打印一个已声明变量 <code>a</code> 和未声明变量 <code>b</code>，<code>a</code> 没有初始值的时候，视作 <code>undefined</code>，但是打印 <code>b</code> 直接发送程序错误，因为这是一个未声明的变量。</p>
 <p>你可能会疑问，为什么上面的程序也没有声明变量，但是却一直没有报错？你可以思考一下，我们在使用变量的时候，是以什么样的方式访问它。</p>
 <p>对变量的访问分为两种情况，<strong>赋值或取值</strong>，当我们给一个未声明的变量赋值时，JS 会 <strong>隐式声明</strong> 这个变量，然后进行赋值。然而当我们对一个变量进行取值的时候，它必须先被声明，不然我们无法找到这个变量，程序就会抛出错误。比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span>; <span class="hljs-comment">// a 被赋值，因为没有声明 a，计算机自动声明了 a</span><br><br><span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// 找到 a 的声明，拿出 a 的值</span><br><br><span class="hljs-built_in">console</span>.log(b); <span class="hljs-comment">// 无法找到 b 的声明，拿不出 b 的值，程序报错</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">1</span>; <span class="hljs-comment">// a 被赋值为 1，因为没有声明 a，程序自动声明了 a</span><br><br><span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// 可以找到 a 的声明，拿出 a 的值</span><br><br><span class="hljs-built_in">console</span>.log(b); <span class="hljs-comment">// 无法找到 b 的声明，拿不出 b 的值，程序报错</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="声明语法"><a href="#声明语法" class="headerlink" title="声明语法"></a>声明语法</h3><p>变量声明必须是语句的开头，它不是表达式，不能把声明写到表达式中：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">var</span> b = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
 
 <p>这样的程序完全不能运行。</p>
-<p>同时，你也可以使用 <code>,</code> 来声明多个变量：</p>
+<p>同时，你也可以使用逗号 <code>,</code> 来声明多个变量：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>,<br>  b = <span class="hljs-string">&quot;变量声明的内容真是又长又臭&quot;</span>;<br></code></pre></td></tr></table></figure>
 
 <h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>在 JS 中，变量的名称有一定限制，它们必须是合法标识符。</p>
@@ -519,21 +519,25 @@
 <li>大小写英文字母</li>
 <li>数字</li>
 <li><code>_</code> 和 <code>$</code> 符号</li>
-<li>汉字、俄文、日文也可以</li>
+<li>汉字、俄文、日文也可以，但是不被推荐使用</li>
 </ul>
-<p>标识符有一个规则：</p>
+<p>变量标识符有相应的规则：</p>
 <ul>
+<li>不能使用其他特殊字符作为标识符，比如 <code>@#%^&amp;! </code> 等等。</li>
 <li>不能以数字开头</li>
 </ul>
 <p>跟随上述的字符和规则，可以列举一些合法变量名：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 以下变量名都合法</span><br><span class="hljs-keyword">var</span> a;<br><span class="hljs-keyword">var</span> abc123;<br><span class="hljs-keyword">var</span> abc_123$_123;<br><span class="hljs-keyword">var</span> __$$;<br><span class="hljs-keyword">var</span> _1_$<span class="hljs-number">2</span>;<br><span class="hljs-keyword">var</span> $0__;<br><br><span class="hljs-comment">// 以下变量名不合法</span><br><br><span class="hljs-keyword">var</span> 99_$zxc;<br><span class="hljs-keyword">var</span> @<span class="hljs-number">1</span>;<br><span class="hljs-keyword">var</span> abc_%;<br></code></pre></td></tr></table></figure>
 
 <p><strong>在 JS 中，标识符是区分大小写的</strong><br><strong>在 JS 中，标识符是区分大小写的</strong><br><strong>在 JS 中，标识符是区分大小写的</strong></p>
+<p>如果你声明了一个变量 <code>foo</code>，不能使用 <code>Foo</code>、<code>FOO</code> 等方式访问它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;bar&quot;</span>;<br><span class="hljs-built_in">console</span>.log(Foo); <span class="hljs-comment">// error</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="重复声明无效"><a href="#重复声明无效" class="headerlink" title="重复声明无效"></a>重复声明无效</h3><p>查看一下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">var</span> foo = <span class="hljs-number">2</span>;<br><span class="hljs-built_in">console</span>.log(foo);<br></code></pre></td></tr></table></figure>
 
 <p>我们声明了两次 <code>foo</code> 变量，程序并不会报错，打印的值是 <code>2</code>。</p>
-<p>重复的声明是无效的，所以上述代码等同于：</p>
+<p><strong>变量的重复的声明是无效的</strong>，所以上述代码等同于：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1</span>;<br>foo = <span class="hljs-number">2</span>;<br><span class="hljs-built_in">console</span>.log(foo);<br></code></pre></td></tr></table></figure>
 
 <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>程序中有各式各项的运算符，有处理计算的，有处理逻辑的。现在我们简单介绍下常用运算符。</p>
@@ -569,7 +573,7 @@
 <h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>查看下列代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span> + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">var</span> b = <span class="hljs-number">20</span> - <span class="hljs-number">2</span>;<br><span class="hljs-keyword">var</span> c = <span class="hljs-number">10</span> * a * a;<br><span class="hljs-keyword">var</span> d = b / <span class="hljs-number">2</span> / <span class="hljs-number">3</span>;<br><span class="hljs-keyword">var</span> e = b % <span class="hljs-number">5</span>;<br><br><span class="hljs-built_in">console</span>.log(a, b, c, d, e); <span class="hljs-comment">// 2 18 40 3 3</span><br></code></pre></td></tr></table></figure>
 
-<p>前四项就是常规的四则运算，这里说一下 <code>var e = b % 5</code>，这在实际上是数学上的取余数，<code>b % 5</code> 计算的就是 <code>b</code> 除以 <code>5</code> 得到的余数。</p>
+<p>前四项就是常规的四则运算，这里说一下 <code>var e = b % 5</code>，这在实际上是数学上的取余数，<code>b % 5</code> 计算的结果就是 <code>b</code> 除以 <code>5</code> 得到的余数。</p>
 <h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a>小数</h4><p>在程序中小数的计算，会有一些限制：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">7</span> + <span class="hljs-number">0.5</span>;<br><span class="hljs-keyword">var</span> b = a / <span class="hljs-number">7</span>;<br><span class="hljs-keyword">var</span> c = a % <span class="hljs-number">4</span>;<br><br><span class="hljs-built_in">console</span>.log(a, b, c);<br></code></pre></td></tr></table></figure>
 
@@ -583,10 +587,10 @@
 <p>同样，如果计算结果超出了数字的表示范围，就会产生溢出，溢出的结果就是字面量 <code>infinity</code> 的正负值：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1e300</span> * <span class="hljs-number">1e300</span>);<br></code></pre></td></tr></table></figure>
 
-<h4 id="正负值"><a href="#正负值" class="headerlink" title="正负值"></a>正负值</h4><p>通过 <code>-</code> 号还可以设置一个字面量或者变量的正负值：</p>
+<h4 id="正负值"><a href="#正负值" class="headerlink" title="正负值"></a>正负值</h4><p>通过 <code>-</code> 号还可以设置一个数字的正负值：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">100</span>;<br><span class="hljs-built_in">console</span>.log(-a); <span class="hljs-comment">// -100</span><br><span class="hljs-built_in">console</span>.log(-<span class="hljs-number">1</span>); <span class="hljs-comment">// -1</span><br></code></pre></td></tr></table></figure>
 
-<p>需要注意的是，数字 0 在 JS 中也有正负值，尽管 <code>0</code> 和 <code>-0</code> 在 JS 中是恒等的，但是当他们用来计算的时候，是具有正负值的：</p>
+<p>需要注意的是，数字 0 在 JS 中也有正负值，尽管 <code>0</code> 和 <code>-0</code> 在 JS 中是恒等的，但是当他们用来计算的时候，是具有正负性的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span> / <span class="hljs-number">0</span>); <span class="hljs-comment">// Infinity</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span> / -<span class="hljs-number">0</span>); <span class="hljs-comment">// -Infinity</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="字符运算"><a href="#字符运算" class="headerlink" title="字符运算"></a>字符运算</h4><p>并不是只有数字类型的数据才能被计算，字符可以通过 <code>+</code> 号来拼接：</p>
@@ -598,7 +602,6 @@
 <p>不要使用字符进行其他算术运算符的计算，这样可能会导致一个错误的计算。比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span> / <span class="hljs-string">&quot;one&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// NaN</span><br></code></pre></td></tr></table></figure>
 
-<p>如果确实需要使用字符串进行计算，需要把字符转化为数字来处理，我会在后面的章节介绍相关类型的转化。</p>
 <h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>赋值运算符可以把表达式的计算结果存到一个变量之中，最简单的赋值运算符就是一个 <code>=</code> 号，在之前的代码中我们已经大量使用，常用的赋值运算符如下如下：</p>
 <table>
 <thead>
@@ -663,11 +666,11 @@
 </thead>
 <tbody><tr>
 <td><code>--</code></td>
-<td>自减赋值</td>
+<td>自减赋值，变量自身增加 1</td>
 </tr>
 <tr>
 <td><code>++</code></td>
-<td>自增赋值</td>
+<td>自增赋值，变量自身减少 1</td>
 </tr>
 </tbody></table>
 <p>举个例子，一个人需要统计某条街道的人流量，实验人员可以手持一个计数器，每当有一个人进入街道，就进行一次计数，程序可能会是这样的：</p>
@@ -690,11 +693,15 @@
 <p>查看下列代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">var</span> bar = foo++;<br><span class="hljs-keyword">var</span> baz = ++foo;<br><br><span class="hljs-built_in">console</span>.log(bar, baz);<br></code></pre></td></tr></table></figure>
 
-<p>上述代码中，会打印 <code>0 2</code>。基于刚才的规则，分析得出，<code>bar</code> 是被赋值 <code>foo</code> 后，<code>foo++</code> 才执行，而 <code>baz</code> 是在 <code>++foo</code> 后，获取到 <code>foo</code> 的值。</p>
+<p>上述代码中，会打印 <code>0 2</code>。基于刚才的规则，分析得出：</p>
+<ul>
+<li><code>bar</code> 是被赋值 <code>foo</code> 后，<code>foo++</code> 才执行，<code>foo</code> 的值开始是 0，所以 <code>bar</code> 的值为 0，对 <code>foo++</code> 取值后开始计算，<code>foo</code> 递增为 1。</li>
+<li>而 <code>baz</code> 是在 <code>++foo</code> 后，获取到 <code>foo</code> 的值，所以 <code>baz</code> 为 2。</li>
+</ul>
 <p>现在来做一个练习，写出下列程序打印的值：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">2</span>;<br><span class="hljs-keyword">var</span> bar = foo++ + ++foo + --foo + foo--;<br><br><span class="hljs-built_in">console</span>.log(foo, bar);<br></code></pre></td></tr></table></figure>
 
-<p>如果你没有深刻理解自增自减运算符的规则，那么这个练习你会束手无策。它的答案是 <code>2 12</code>，<code>foo</code> 的值最终是 <code>2</code>，很容易理解，但是 <code>bar</code> 的值竟然是 <code>12</code>。</p>
+<p>如果你没有深刻理解自增自减运算符的规则，那么这个练习你会束手无策。它的答案是 <code>2 12</code>，<code>foo</code> 的值最终是 <code>2</code>，很容易理解，因为它分别自增自减了两次。但是 <code>bar</code> 的值竟然是 <code>12</code>。</p>
 <p>现在我们分析下 <code>foo++ + ++foo + --foo + foo--</code> 的计算过程，在此过程中，你需要牢记自增自减的规则：</p>
 <ol>
 <li><p><code>foo</code> 一开始的值是 <code>2</code>；</p>
@@ -726,7 +733,7 @@
 <li><p>最后计算 f1 + f2 + f3 + f4 得到 2 + 4 + 3 + 3 等于 12</p>
 </li>
 </ol>
-<p>实际开发一般不会出现上述情况，如果使用自增自减运算符没有提升代码的可读性反而降低了，那么就应该放弃使用，除非是为了压榨代码的性能，这种情况一般是在高度封装的算法中。</p>
+<p>实际开发一般不会出现上述情况，自增自减是为了提高代码的可读性，如果使用自增自减可读性反而降低了，那么就应该放弃使用，这是本末倒置。但是也有程序为了压榨代码的性能，频繁的使用自增自减，因为自增自减运算比赋值运算快得多，这种情况一般是在高度封装的算法中。</p>
 <h2 id="提高运算符的优先级"><a href="#提高运算符的优先级" class="headerlink" title="提高运算符的优先级"></a>提高运算符的优先级</h2><p>运算符之间是有优先级的，比如乘法肯定会比加法优先计算，所以乘法运算符的优先级更高，它符合数学上的规则。类似于数学中一样，你可以是用圆括号来改变运算的优先级：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">3</span> + <span class="hljs-number">2</span> - <span class="hljs-number">5</span> * <span class="hljs-number">0</span>); <span class="hljs-comment">// 5</span><br><span class="hljs-built_in">console</span>.log((<span class="hljs-number">3</span> + <span class="hljs-number">2</span> - <span class="hljs-number">5</span>) * <span class="hljs-number">0</span>); <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
 
@@ -736,8 +743,8 @@
 <p>使用语法记忆，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span> + <span class="hljs-number">2</span> * <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure>
 
-<p>根据语法，赋值运算符一般都是最后执行，乘法在数学上比加法优先，所以不用背都可以知道上面计算的优先级。</p>
-<p>某些特殊的运算符优先级，我会在未来讲解对应应算符时介绍。</p>
+<p>根据语法，赋值运算符一般都是最后执行，乘法在数学上比加法优先，所以不用背都可以知道上面表达式的计算顺序。</p>
+<p>你不用担心，某些特殊的运算符优先级，我都会在未来讲解时一同介绍。</p>
 <h3 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h3><p>还有一个特殊的运算符叫做 <strong>逗号运算符</strong>，我们之前在声明变量的时候预见过它，它当时被用来分割语句赋值表达式。</p>
 <p>使用逗号运算符可以把语句分割成多个表达式，它们被统称为 <strong>逗号表达式，其值是最后一个表达式的值</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo;<br>foo = (<span class="hljs-number">1</span> * <span class="hljs-number">2</span>, <span class="hljs-string">&quot;123&quot;</span>, <span class="hljs-number">100</span> + <span class="hljs-number">11</span>);<br><span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// 111</span><br></code></pre></td></tr></table></figure>
@@ -751,11 +758,11 @@
 <p>上面四个变量的值都是 <code>undefined</code>，因为 <code>void</code> 运算符的计算结果总是 <code>undefined</code>。需要注意的是，<code>void</code> 运算符并不是让它右边的表达式值变为 <code>undefined</code>，而是让整个 <code>void</code> 表达式的为 <code>undefined</code>。比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">void</span> (<span class="hljs-number">1</span> + <span class="hljs-number">100</span>);<br></code></pre></td></tr></table></figure>
 
-<p><code>void</code> 对所有表达式的计算结果都是 <code>undefined</code>，所以整个表达式的值是 <code>undefined</code>。<code>(1 + 100)</code> 是一个加法算术表达式，它的值是 <code>101</code>。<code>void</code> 运算符并不是让 <code>1 + 100</code> 变为 <code>undefined</code>，而是让整个表达式 <code>void (1 + 100)</code> 的结果为 <code>undefined</code>。</p>
+<p><code>void</code> 运算符并不是让 <code>(1 + 100)</code> 变为 <code>undefined</code>，而是整个表达式 <code>void (1 + 100)</code> 的计算结果为 <code>undefined</code>，其中 <code>(1 + 100)</code> 的值还是 <code>101</code>。</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/11/28</span>
+      <span class="last-update">最后更新时间：2020/12/13</span>
     </p>
   </div>
 </article>

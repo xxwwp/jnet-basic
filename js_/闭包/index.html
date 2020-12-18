@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -281,7 +281,7 @@
   </ul>
 </div>
 </aside>
-  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E9%97%AD%E5%8C%85"><span class="toc-text">理解闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-text">循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-text">模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%9D%8F%E5%A4%84"><span class="toc-text">闭包的坏处</span></a></li></ol></div>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E9%97%AD%E5%8C%85"><span class="toc-text">理解闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-text">循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E6%A8%A1%E5%9D%97"><span class="toc-text">闭包与模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-text">性能</span></a></li></ol></div>
 </aside>
 </div>
 <script>
@@ -301,57 +301,64 @@
   <div class="article-bd"><h2 id="理解闭包"><a href="#理解闭包" class="headerlink" title="理解闭包"></a>理解闭包</h2><p>我曾经遇到一个面试题大致是这样的：</p>
 <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs md">设 a1 和 a2 表示任意两个数字，编写一个函数 foo，使 foo(a1)(a2) 的返回值是 a1 和 a2 的和。<br></code></pre></td></tr></table></figure>
 
-<p>分析得出，<code>foo</code> 返回的是一个函数，返回的函数再次执行返回两次传入参数的和。于是可以有以下代码：</p>
+<p>分析得出，<code>foo</code> 返回的是一个函数，所以可以连续执行，返回的函数再次执行返回两次传入参数的和。于是可以有以下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params">y</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> x + y;<br>  &#125;;<br>&#125;<br>foo(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
 
 <p>这个题目并不难，我想说的是，<code>foo</code> 还可以照下列方式调用：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> sum = foo(<span class="hljs-number">1</span>);<br>sum(<span class="hljs-number">1</span>); <span class="hljs-comment">// 2</span><br>sum(<span class="hljs-number">10</span>); <span class="hljs-comment">// 11</span><br></code></pre></td></tr></table></figure>
 
-<p>你会发现，传入 <code>foo</code> 的参数 <code>1</code> 被 <code>foo</code> 返回的函数保存下来了，并且可以无限次使用，除非你把 <code>sum</code> 弄丢了。</p>
-<p>上面代码中，<code>bar</code> <strong>对原来的作用域的绑定，就是一个闭包</strong>。</p>
+<p>你会发现，传入 <code>foo</code> 的参数 <code>1</code> 被 <code>foo</code> 返回的函数保存下来了，并且可以无限次使用。</p>
+<p><strong>这种函数执行结束后，外层作用域被绑定到内部函数的情况被称作闭包。</strong> 上面代码中，<code>bar</code> 对原来的作用域的绑定，就是一个闭包。</p>
+<p>在《你不知道的 JavaScript》一书中，闭包的定义如下：</p>
 <blockquote>
 <p>当一个函数绑定了它所在的词法作用域时，就产生了闭包。<br>— KYLE SIMPSON《你不知道的 JavaScript》</p>
 </blockquote>
-<p>闭包可以用来保存上一级作用域的变量，类似上面的情况，它能存储的变量不止上一级函数的参数，常见的闭包结构如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-string">&quot;something&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a);<br>  &#125;;<br>&#125;<br><br><span class="hljs-keyword">var</span> bar1 = foo(); <span class="hljs-comment">// 形成一个闭包，bar1 保存了 foo 执行时的数据</span><br><br><span class="hljs-comment">// 或者是一个立即执行表达式，直接形成一个闭包</span><br><br><span class="hljs-keyword">var</span> bar2 = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-string">&quot;something&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a);<br>  &#125;;<br>&#125;)();<br><br><span class="hljs-comment">// 也可能是回调函数</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span>(<span class="hljs-params">x</span>) </span>&#123;<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// 这个回调函数保存了上一级作用域的变量 x，形成了闭包</span><br>  &#125;, <span class="hljs-number">5000</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>闭包可以用来保存外层作用域的变量，类似上面的情况，一个常见的闭包结构如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-string">&quot;something&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a);<br>  &#125;;<br>&#125;<br><br><span class="hljs-keyword">var</span> bar1 = foo(); <span class="hljs-comment">// 形成一个闭包，bar1 保存了 foo 作用域的数据</span><br><br><span class="hljs-comment">// 把上面代码简写为立即执行表达式，可以直接形成一个闭包</span><br><br><span class="hljs-keyword">var</span> bar2 = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-string">&quot;something&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a);<br>  &#125;;<br>&#125;)();<br><br><span class="hljs-comment">// 闭包也可能是在回调函数中实现</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span>(<span class="hljs-params">x</span>) </span>&#123;<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// 这个回调函数保存了上一级作用域的变量 x，形成了闭包</span><br>  &#125;, <span class="hljs-number">5000</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>如果你不是非常了解闭包，那么在循环的时候使用闭包会得到你意料之外的结果。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>  &#125;, i * <span class="hljs-number">1000</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>上面的代码也形成了闭包，每一个回调函数都保存外层作用域的变量 <code>i</code>，当回调函数开始执行时，<code>i</code> 早已经因为循环被递加到 <code>10</code>。所以打印出来的值就都是 <code>10</code>。如果需要上述程序按照预期的结果执行，需要再嵌套一层闭包：</p>
+<p>上面的代码形成了闭包，每一个回调函数都保存外层作用域的变量 <code>i</code>，当回调函数开始执行时，<code>i</code> 早已经因为循环被递加到 <code>10</code>。所以打印出来的值就都是 <code>10</code>。如果需要上述程序按照预期的结果执行，需要再嵌套一层闭包：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">j</span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>      <span class="hljs-built_in">console</span>.log(j);<br>    &#125;, j * <span class="hljs-number">1000</span>);<br>  &#125;<br>  foo(i);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，我们定义了辅助函数 <code>foo</code>，然后按循环执行了：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">foo(<span class="hljs-number">0</span>);<br>foo(<span class="hljs-number">1</span>);<br>foo(<span class="hljs-number">2</span>);<br>foo(<span class="hljs-number">3</span>);<br>foo(<span class="hljs-number">4</span>);<br></code></pre></td></tr></table></figure>
 
-<p>从而 <code>setTimeout</code> 的回调函数就会形成 5 个闭包，保存了 5 次传入的 <code>i</code> 值，程序的执行也会达到预期效果。观察可知，<code>foo</code> 函数可以被简化为一个立即执行表达式：</p>
+<p>从而 <code>setTimeout</code> 的回调函数就会形成 5 个闭包，保存了每次 <code>foo</code> 函数执行的参数 <code>i</code>，程序的执行也会达到预期效果。观察可知，<code>foo</code> 函数可以被简化为一个立即执行表达式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>  (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">j</span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>      <span class="hljs-built_in">console</span>.log(j);<br>    &#125;, j * <span class="hljs-number">1000</span>);<br>  &#125;)(i);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>闭包是把双刃剑，上一小节就是在处理闭包发生的问题。不过闭包也有好的使用场景，比如使用闭包包装我们的代码。</p>
+<h2 id="闭包与模块"><a href="#闭包与模块" class="headerlink" title="闭包与模块"></a>闭包与模块</h2><p>闭包是把双刃剑，上一小节就是在处理闭包发生的问题。不过闭包也有好的使用场景，比如使用闭包包装我们的代码。</p>
 <p>使用闭包封装一个数据类型判断的模块：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 生成判断函数</span><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_judge</span>(<span class="hljs-params">type</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.toString.call(val) === type;<br>    &#125;;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> &#123;<br>    isNull: _judge(<span class="hljs-string">&quot;[object Null]&quot;</span>),<br>    isUndefined: _judge(<span class="hljs-string">&quot;[object Undefined]&quot;</span>),<br>    isNumber: _judge(<span class="hljs-string">&quot;[object Number]&quot;</span>),<br>    isString: _judge(<span class="hljs-string">&quot;[object String]&quot;</span>),<br>    isObject: _judge(<span class="hljs-string">&quot;[object Object]&quot;</span>),<br>    isArray: _judge(<span class="hljs-string">&quot;[object Array]&quot;</span>),<br>    isFunction: _judge(<span class="hljs-string">&quot;[object Function]&quot;</span>),<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在上述代码中，我们编写了一个判断 JS 数据类型的模块，这个模块暴露了判断各种数据类型的方法，同时也隐藏了内部实现，各个类型的字符串都被保存到了闭包中。</p>
-<p>其中每个判断函数都产生了一个闭包，绑定了它们的词法作用域。</p>
+<p>在上述代码中，我们编写了一个判断 JS 数据类型的模块，这个模块暴露了判断各种数据类型的方法，各个类型的字符串都被保存到了闭包中。</p>
+<p>其中每个判断函数都产生了一个闭包。</p>
 <p>尝试调用：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = JSType();<br><br><span class="hljs-built_in">console</span>.log(foo.isNumber(<span class="hljs-number">1</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(foo.isNull(<span class="hljs-literal">null</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(foo.isUndefined(<span class="hljs-literal">null</span>)); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
 
 <p>目前我们每次需要使用 <code>JSType</code> 的时候，都会执行一遍 <code>JSType</code>，实际上这行代码用处不大，并且重复使用会消耗计算和内存成本，所以我们可以让这个模块一次生成，永久使用。尝试使用一个 IIFE 来包装它：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> jsType = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code ...</span><br>&#125;)();<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> jsType = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code ...</span><br>&#125;)();<br><br><span class="hljs-built_in">console</span>.log(jsType.isNumber(<span class="hljs-number">1</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(jsType.isNull(<span class="hljs-literal">null</span>)); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
 
-<p>上述方式中，我们直接把 <code>JSType</code> 模块放到了全局变量 <code>jsType</code> 上，至少在浏览器中，我们的模块可以随意使用了。</p>
+<p>上述方式中，我们直接把 <code>JSType</code> 模块挂载到了全局变量 <code>jsType</code> 上，至少在浏览器中，我们的验证模块可以随意使用了。</p>
 <p>但是它依旧不够完美，有当一日，你也许会在其他模块环境中运行 JavaScript，那个时候，这种包装方式也许并不适用，比如 AMD，CMD，CommonJS 等模块环境。</p>
-<p>我们应该对模块的挂载单独处理，尝试再把挂载模块的部分分离出来：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-built_in">global</span>, factory</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是对模块的挂载部分</span><br>  <span class="hljs-comment">// 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性</span><br>  <span class="hljs-built_in">global</span>.jsType = factory();<br>&#125;)(<span class="hljs-built_in">window</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code...</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>我们应该对模块的挂载部分单独处理，尝试再把挂载模块的部分分离出来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code ...</span><br>&#125;<br><br><span class="hljs-comment">// 挂载模块代码</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mountJSType</span>(<span class="hljs-params"><span class="hljs-built_in">global</span>, factory</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是对模块的挂载部分</span><br>  <span class="hljs-comment">// 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性</span><br><br>  <span class="hljs-comment">// 挂载到全局对象上</span><br>  <span class="hljs-built_in">global</span>.jsType = factory();<br>&#125;<br><br><span class="hljs-comment">// 立即挂载模块</span><br>mountJSType(<span class="hljs-built_in">window</span>, JSType);<br></code></pre></td></tr></table></figure>
+
+<p>好像可以使用 IIFE 简化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code ...</span><br>&#125;<br><br><span class="hljs-comment">// 挂载模块代码</span><br>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mountJSType</span>(<span class="hljs-params"><span class="hljs-built_in">global</span>, factory</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是对模块的挂载部分</span><br>  <span class="hljs-comment">// 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性</span><br><br>  <span class="hljs-comment">// 挂载到全局对象上</span><br>  <span class="hljs-built_in">global</span>.jsType = factory();<br>&#125;)(<span class="hljs-built_in">window</span>, JSType);<br></code></pre></td></tr></table></figure>
+
+<p>再把 <code>JSType</code> 直接写成函数表达式当做参数传入 IIFE：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-built_in">global</span>, factory</span>) </span>&#123;<br>  <span class="hljs-comment">// 这里是对模块的挂载部分</span><br>  <span class="hljs-comment">// 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性</span><br><br>  <span class="hljs-comment">// 挂载到全局对象上</span><br>  <span class="hljs-built_in">global</span>.jsType = factory();<br>&#125;)(<span class="hljs-built_in">window</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">JSType</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// code...</span><br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>上述代码中，<code>JSType</code> 只执行了一次，暴露出来的一个个函数都绑定了它们的词法作用域，形成了闭包，外部代码无法对其内部做出访问和修改，可见闭包在处理模块化封装时的强大之处。</p>
 <p>未来你会在大部分优质的源码中看到类似上述代风格的代码包，因为现在常见的模块化打包工具，打包后的代码风格像上面一样，这种对模块的封装方式叫 UMD（Universal Module Definition，通用模块定义）。</p>
 <p>介于目前我们并没有学过其他模块环境，所以挂载部分的代码少得可怜，只是把模块挂载到全局上。</p>
-<h2 id="闭包的坏处"><a href="#闭包的坏处" class="headerlink" title="闭包的坏处"></a>闭包的坏处</h2><p>理性使用造成内存消耗，滥用造成内存泄露。</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>闭包会保留函数外部作用域的数据，让函数执行结束后无法释放内存，这会给内存造成一定程度的负担，如果点开浏览器的进程，你会发现一些很复杂的页面，打开后浏览器占用的内存会飙升，这就是闭包给计算机带来的压力。</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/01</span>
+      <span class="last-update">最后更新时间：2020/12/14</span>
     </p>
   </div>
 </article>

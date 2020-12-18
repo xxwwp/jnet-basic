@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -301,8 +301,8 @@
   <div class="article-bd"><h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>在 JS 中，我们可能会需要延迟执行某些逻辑，或者定时执行某些逻辑。JS 中内置了两个定时器函数，用来处理这种情况：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;延迟执行&quot;</span>);<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(foo, <span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
-<p>上面代码中，我们使用 <code>setTimeout</code> 定时器在 1000 毫秒后执行 <code>foo</code> 函数。定时器函数的第一个参数就是一个回调函数。</p>
-<p>定时器有两个 <code>setTimeout</code> 和 <code>setInterval</code>，<code>setTimeout</code> 只会执行一次，<code>setInterval</code> 会重复执行，直到你主动关闭定时器。</p>
+<p>定时器函数的第一个参数是一个回调函数，上面代码中，我们使用 <code>setTimeout</code> 定时器在 1000 毫秒后执行 <code>foo</code> 函数。</p>
+<p>定时器有两个 <code>setTimeout</code> 和 <code>setInterval</code>， <strong><code>setTimeout</code> 只会执行一次，<code>setInterval</code> 会重复执行，直到你主动关闭定时器。</strong></p>
 <p>演示 <code>setTimeout</code> 和 <code>setInterval</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;我只执行了一次&quot;</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;我执行了多次&quot;</span>);<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(foo, <span class="hljs-number">1000</span>);<br><span class="hljs-built_in">setInterval</span>(bar, <span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
 
@@ -316,26 +316,26 @@
 <p>你还可以在定时器内部关闭定时器：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">var</span> t1 = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (i++ &gt; <span class="hljs-number">10</span>) &#123;<br>    <span class="hljs-built_in">clearInterval</span>(t1);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>  &#125;<br>&#125;, <span class="hljs-number">500</span>);<br></code></pre></td></tr></table></figure>
 
-<h2 id="事件队列"><a href="#事件队列" class="headerlink" title="事件队列"></a>事件队列</h2><p>演示以下代码：</p>
+<h2 id="事件队列"><a href="#事件队列" class="headerlink" title="事件队列"></a>事件队列</h2><p>查看以下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);<br>&#125;, <span class="hljs-number">0</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
 
 <p>上述代码中，<code>2</code> 会在 <code>1</code> 之前打印。即使如果给定时器的时间定义为 0，它也不会立即执行，它会等到当前代码都处理结束之后才去执行。</p>
 <p>你可以尝试编写一个非常长的循环占用资源，来判断这个情况：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);<br>&#125;, <span class="hljs-number">0</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000000</span>; i++) &#123;&#125;<br></code></pre></td></tr></table></figure>
 
-<p>发送这种情况的原因是因为定时器回调函数的代码是异步的，异步代码不在当前代码的执行中。</p>
-<p>JS 中的代码是一栈一栈运行的，当前栈全部运行结束，才会运行下一栈。就好像银行办理手续的队伍，只有最前面的人办理结束后，后面的人才能接着办理。</p>
+<p>发送这种情况的原因是因为定时器回调函数的代码是异步的，异步代码不在当前代码的执行栈中。</p>
+<p><strong>JS 中的代码的执行单位是栈，代码是一栈一栈运行的，当前栈全部运行结束，才会运行下一栈。</strong> 这种执行方式就好像银行办理手续的队伍，只有最前面的人办理结束后，后面的人才能接着办理。其中每一个人就代表一栈代码，办理手续的人代表代码正在执行，正在执行的栈被称作 <strong>当前执行栈</strong>。</p>
 <p>定时器中的代码就会被分到队伍的末尾，如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 程序一开始首栈</span><br><br><span class="hljs-comment">// 定时器回调函数在 0 秒后，放到队伍末尾</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);<br>&#125;, <span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// 定时器回调函数在 0 秒后，放到队伍末尾</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);<br>&#125;, <span class="hljs-number">0</span>);<br><br><span class="hljs-built_in">console</span>.log(<span class="hljs-number">3</span>);<br><br><span class="hljs-comment">// 首栈运行结束，按顺序开始运行下一栈</span><br></code></pre></td></tr></table></figure>
 
-<p>栈与栈之间是按顺序排列的，依次形成一个队伍，最前面的被执行，后来的只能在末尾等候。这个队伍在 JS 中叫做 <strong>异步队列</strong>，或者 <strong>事件队列</strong>。</p>
-<p>需要注意的是，定时器设置 10 分钟后执行，是把 10 分钟后把回调函数放到事件队列中。就类似决定了在 10 分钟后去银行取钱，是在 10 分钟后才到银行排队，而不是做了这个决定时，就已经在银行排队了。</p>
-<p>需要注意的是，不管把代码分开写在多少个 <code>script</code> 元素上，全局上的代码都是在首栈中。</p>
-<p>JS 中针对事件队列，有一个并发模型，如果你很有兴趣，可以点击 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">这里</a> 查看。</p>
+<p>栈与栈之间是按顺序排列的，依次形成一个队伍，最前面的被执行，后来的只能在末尾等候。这个队伍在 JS 中叫做 <strong>异步队列</strong> 或者 <strong>事件队列</strong>。</p>
+<p>需要注意的是，定时器延时执行的代码，是延时后把回调函数放到事件队列中。设置一个 10 分钟的定时器，代码会在 10 分钟后加入到事件队列的末尾。就类似一个人到了银行，它没有立即取号，而是在 10 分钟后才取号，此时他才开始排队。</p>
+<p>还有一点就是，不管把代码分开写在多少个 <code>script</code> 元素上，全局上的代码都是在首栈中。</p>
+<p>JS 中针对事件队列，有一个并发模型，如果你很有兴趣，可以点击 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">这里</a> 。</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/05</span>
+      <span class="last-update">最后更新时间：2020/12/14</span>
     </p>
   </div>
 </article>

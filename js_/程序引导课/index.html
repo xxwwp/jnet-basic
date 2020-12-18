@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -298,18 +298,20 @@
     <main><article>
   <h1>程序引导课</h1>
   <hr />
-  <div class="article-bd"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>计算机科学家尼古拉斯·沃斯（Niklaus Wirth）说过一句至理名言，程序等于 <strong>数据结构加算法</strong>。简单的说，就是数据加逻辑。</p>
+  <div class="article-bd"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在计算机中，把代码称作程序语言，不同的程序由不同的语言编写，计算机中有很多编程语言，比如 C/C++、Python、Java、PHP、Go 等等。JavaScript 也是一种编程语言，它用来编写浏览器的脚本。它的主要用途是操纵 HTML 和 CSS，JavaScript 可以动态的修改 HTML 或者动态修改 CSS，页面有更好的交互。</p>
+<p>计算机科学家尼古拉斯·沃斯（Niklaus Wirth）说过一句至理名言，程序等于 <strong>数据结构加算法</strong>。简单的说，就是数据加逻辑。</p>
 <p>数据就是字面上的意思，比如你的身份证上，有你的姓名，性别，身份证号和户籍地址等信息，这些信息就被称作数据。</p>
 <p>逻辑大致有两种，判断和循环。循环和判断在生活中很常见，流水线上重复做着的事情就是循环，而根据试卷的分数来确定是否及格的过程就是一种判断。</p>
-<p>程序并不是凭空运行，至少需要获取一些基础数据，然后经过处理加工后，表达出来，就像人与人之间的对话。</p>
+<p>程序并不是凭空运行，至少需要获取一些基础数据，然后经过处理加工后，表达出来，就像人与人之间的对话。这个过程称作 <strong>输入和输出</strong>。</p>
 <p>你可以尝试打开浏览器的控制台，输入一行代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">prompt(<span class="hljs-string">&quot;哈喽，说句话吧！&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>然后摁下回车，你会发现浏览器弹出了一个方框，它被称作模态框，模态框中展示了刚才代码中的问候语。当你输入任何信息点击确定后，这些信息也会再次展示到控制台上，程序获得了你输入的文本信息。</p>
 <p>在刚才发生的过程中，浏览器弹出信息的过程叫做 <strong>输出</strong>，输出的形式有很多种，模态框只是其中的一种，所有程序向外表达信息的方式都可以称作输出，比如画面显示、播放声音、设备震动、把数据写到硬盘等等。反之，我们向模态框中输入文本并确定的过程称作 <strong>输入</strong>，输入的方式更多，鼠标键盘输入、触屏滑动、主动从电脑硬盘中读取数据等等。</p>
 <h2 id="数据抽象"><a href="#数据抽象" class="headerlink" title="数据抽象"></a>数据抽象</h2><p>程序中，数据分为两类，<strong>字面量</strong> 和 <strong>变量</strong>。</p>
-<p>字面量表示数据字面上的意义，比如数字 <code>1</code> 就是数字 <code>1</code>，程序不会把字面量 <code>1</code> 表示为数字 <code>2</code>。</p>
-<p>变量就像一个容器，它被用来存储字面量，比如把数字 <code>666</code> 存储到变量 <code>a</code> 中，可以写成：</p>
+<p>字面量表示数据字面上的意义，比如数字 <code>1</code> 就是数字 <code>1</code>，程序不会把字面量 <code>1</code> 表示为其他意思。</p>
+<p>变量就像一个容器，它被用来存储字面量，程序中可以动态更改变量存储的数据，所以变量是动态变化的。</p>
+<p>比如把数字 <code>666</code> 存储到变量 <code>a</code> 中，可以写成：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">666</span>;<br></code></pre></td></tr></table></figure>
 
 <p>注意，同数学上不一样的是，一个等号在程序中不是用来比较是否相等的，而是用来把数据存到变量中。</p>
@@ -321,7 +323,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">100</span> / <span class="hljs-number">4</span>;<br>alert(a);<br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，变量 <code>a</code> 的值是 100 除以 4 的计算结果。</p>
-<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><p>程序的另一基本能力就是逻辑判断，比如判断一张试卷及格：</p>
+<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><p>程序的另一基本能力就是逻辑判断，比如一个变量存储了一张试卷的分数，我们可以通过逻辑判断判断这种分数是否及格：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">a = <span class="hljs-number">68</span>;<br><br><span class="hljs-keyword">if</span> (a &lt; <span class="hljs-number">60</span>) &#123;<br>  alert(<span class="hljs-string">&quot;不及格，回家挨鞭子&quot;</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  alert(<span class="hljs-string">&quot;及格万岁&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>上面的代码中，你需要连续输入多行，你可以在编辑器中先写好再复制到控制台中，或者使用 【shift】+【enter】在控制台中输入回车。</p>
@@ -338,7 +340,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/11/28</span>
+      <span class="last-update">最后更新时间：2020/12/13</span>
     </p>
   </div>
 </article>

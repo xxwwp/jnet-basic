@@ -9,8 +9,8 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night.css"
-      integrity="sha256-qLi5v7wdKdn9AYLccUD3MLqpdfeMqy2ZU2vcImOS2xU="
+      href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
+      integrity="sha256-kp6wpFoGWDWLARjInqKMjQOa80CoSWr0RGbhXohAh2c="
       crossorigin="anonymous"
     />
     <link
@@ -40,10 +40,6 @@
     
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D/" class="">课程介绍</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="">软件安装</a>
 </li>
 
 <li>
@@ -115,14 +111,6 @@
 
 <li>
   <a href="/jnet-basic/css_/%E6%A6%82%E8%BF%B0/" class="">概述</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/%E7%BC%96%E5%86%99_CSS/" class="">编写_CSS</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/css_/CSS_%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" class="">CSS_引入方式</a>
 </li>
 
 <li>
@@ -241,7 +229,15 @@
 </li>
 
 <li>
-  <a href="/jnet-basic/js_/DOM&BOM/" class="">DOM&BOM</a>
+  <a href="/jnet-basic/js_/DOM/" class="">DOM</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/%E4%BA%8B%E4%BB%B6/" class="">事件</a>
+</li>
+
+<li>
+  <a href="/jnet-basic/js_/BOM/" class="">BOM</a>
 </li>
 
 <li>
@@ -250,10 +246,6 @@
 
 <li>
   <a href="/jnet-basic/js_/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="">错误处理</a>
-</li>
-
-<li>
-  <a href="/jnet-basic/js_/%E5%86%85%E5%AD%98/" class="">内存</a>
 </li>
 
 <li>
@@ -268,7 +260,15 @@
   <a href="/jnet-basic/js_/%E7%BD%91%E7%BB%9C%E7%AE%80%E8%BF%B0/" class="">网络简述</a>
 </li>
 
+<li>
+  <a href="/jnet-basic/js_/%E6%9D%82%E9%A1%B9/" class="">杂项</a>
+</li>
+
 </ul>
+
+<li>
+  <a href="/jnet-basic/%E6%80%BB%E7%BB%83%E4%B9%A0/" class="">总练习</a>
+</li>
 
 <li>
   <a href="/jnet-basic/%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/" class="">课程总结</a>
@@ -308,21 +308,22 @@
 <p>此时针对不同类型的日期格式，我们需要使用不同的方式去分割，并且在此之前，我们可能还不知道它们具体是什么格式，此时，一个正则字符串解决上述所有问题：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> dates = [<span class="hljs-string">&quot;2000-01-02&quot;</span>, <span class="hljs-string">&quot;2000/01/02&quot;</span>, <span class="hljs-string">&quot;2000.01.02&quot;</span>, <span class="hljs-string">&quot;2000-1-2&quot;</span>];<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; dates.length; i++) &#123;<br>  <span class="hljs-keyword">var</span> m = dates[i].match(<span class="hljs-regexp">/^(\d&#123;4&#125;).(\d&#123;1,2&#125;).(\d&#123;1,2&#125;)$/</span>);<br>  <span class="hljs-keyword">if</span> (m !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;年&quot;</span>, m[<span class="hljs-number">1</span>]);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;月&quot;</span>, m[<span class="hljs-number">2</span>]);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;日&quot;</span>, m[<span class="hljs-number">3</span>]);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在上面代码中，<code>/^(\d&#123;4&#125;).(\d?\d).(\d?\d)$/</code> 这一串火星文就是正则字符串，它指定了一个字符串规则，当字符串满足此规则，它会对其进行截取和分割。现在简单的了解下这段正则字符串：</p>
+<p>在上面代码中，<code>/^(\d&#123;4&#125;).(\d?\d).(\d?\d)$/</code> 这一串火星文就是正则字符串，它表示一种规则，当字符串满足此规则，它会对其进行截取和分割。</p>
+<p>现在简单的了解下这段正则字符串：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">/^(\d&#123;<span class="hljs-number">4</span>&#125;).(\d?\d).(\d?\d)$/;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>首尾的反斜杠 <code>/</code> 是用来声明正则字符串，就类似普通字符串的单双引号。</li>
 <li>开头的上尖号 <code>^</code> 指定字符串必须按照后续规则开头，也就是限制字符串的开头。</li>
+<li>末尾的 <code>$</code> 和上尖号 <code>^</code> 类似，表示了必须按照这个规则结尾，也就是限制字符串的结尾。</li>
 <li><code>\d&#123;4&#125;</code> 表示四个连续的数字，这个规则对应了年。</li>
-<li>圆括号包裹一组规则，表示这段规则记作一组。正则字符串会在查找后把每组规则内的字符串会依次分割出来，所以后续我们可以根据数组访问 <code>m[1]</code>、<code>m[2]</code> 和 <code>m[3]</code> ，对应了年月日三组数据。</li>
+<li>圆括号用来包裹一组规则，表示这段规则记作一组。正则字符串会在查找后把每组规则内的字符串会依次分割出来，所以后续我们可以根据数组访问 <code>m[1]</code>、<code>m[2]</code> 和 <code>m[3]</code> ，对应了年月日三组数据。</li>
 <li>小数点 <code>.</code> 表示任何字符，正好对应了我们日期分隔符的不同。</li>
 <li><code>\d&#123;1,2&#125;</code> 表示连续 1 到 2 个数字，对应了日期的月日缺省前缀 0 的情况，比如 <code>dates</code> 的最后一个值。</li>
-<li><code>$</code> 和上尖号 <code>^</code> 类似，表示了必须按照这个规则结尾，也就是限制字符串的结尾。</li>
 </ul>
 <p>把上面的话合并一下，这串正则表达式的意思就是：以 4 个数字开头，连接任意一个字符，连接一个或者两个数字，连接任意一个字符，连接一个或者两个数字结尾的字符串。</p>
 <p>实际上正则表达式真的真的很简单，希望大家学习本课程千万不要有负担，不要被如火星文一般的表示方式迷惑，只要学习完正则的语法，<strong>它完全是可读的</strong>。</p>
-<p><strong>eg：大部分程序语言的正则字符串都是统一参照 PCRE 标准，JS 中也是，所以你学习完正则字符串后，以后也可以在其他语言使用。如果你已经学习过 PCRE 标准的正则，那么可以直接跳过使用章节。</strong></p>
+<p><strong>eg：大部分程序语言的正则字符串都是统一参照 PCRE 标准，JS 中也是，所以你学习完正则字符串后，以后也可以在其他语言使用。如果你已经学习过 PCRE 标准的正则，那么可以直接跳过学习部分，去看使用章节。</strong></p>
 <p>eg：为了简化，正则字符串后面简化为正则。</p>
 <h2 id="创建与-match-函数"><a href="#创建与-match-函数" class="headerlink" title="创建与 match 函数"></a>创建与 match 函数</h2><p>正则的创建有两种方式：</p>
 <ul>
@@ -603,19 +604,19 @@
 </tr>
 </tbody></table>
 <p>演示：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> str = <span class="hljs-string">&quot;foobarfoobarfoobar&quot;</span>;<br><span class="hljs-keyword">var</span> reg = <span class="hljs-regexp">/(oo)../g</span>;<br><br><span class="hljs-built_in">console</span>.log(str.match(<span class="hljs-regexp">/(oo)../g</span>));<br><br><span class="hljs-comment">// 迭代对象可以使用 for of 遍历，for of 也是新标准中的语法，本系列课程不介绍</span><br><span class="hljs-keyword">var</span> mAll = str.matchAll(reg);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">of</span> mAll) &#123;<br>  <span class="hljs-built_in">console</span>.log(item);<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(str.search(reg));<br><span class="hljs-built_in">console</span>.log(str.replace(reg, <span class="hljs-string">&quot; replace &quot;</span>));<br><span class="hljs-built_in">console</span>.log(str.split(reg));<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> str = <span class="hljs-string">&quot;foobarfoobarfoobar&quot;</span>;<br><span class="hljs-keyword">var</span> reg = <span class="hljs-regexp">/(oo)../g</span>;<br><br><span class="hljs-built_in">console</span>.log(str.match(reg));<br><br><span class="hljs-comment">// 迭代对象可以使用 for of 遍历，for of 也是新标准中的语法，本系列课程不介绍</span><br><span class="hljs-keyword">var</span> mAll = str.matchAll(reg);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">of</span> mAll) &#123;<br>  <span class="hljs-built_in">console</span>.log(item);<br>&#125;<br><br><span class="hljs-built_in">console</span>.log(str.search(reg));<br><span class="hljs-built_in">console</span>.log(str.replace(reg, <span class="hljs-string">&quot; replace &quot;</span>));<br><span class="hljs-built_in">console</span>.log(str.split(reg));<br></code></pre></td></tr></table></figure>
 
 <h2 id="性能与应用"><a href="#性能与应用" class="headerlink" title="性能与应用"></a>性能与应用</h2><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>使用正则字符串实际上非常耗费性能，在一对多的服务中，很少使用正则，比如服务器，大量正则的使用是给计算机带来很大负担。但是 JS 是客户端语言，负担会小很多。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>正则一般都是用来处理有一定规则的文本，比如日期，邮箱，网址，手机号等等，使用正则分解这些文本会变得异常简单，比如本页最开始的段落，我们处理日期一样。</p>
-<p>尝试编写一个匹配邮箱的正则：邮箱的规则一般分为两部分，<code>@</code> 符前面表示账户，<code>@</code> 符后表示邮箱的服务商，比如 QQ 邮箱就是 <a href="mailto:&#x78;&#x78;&#120;&#120;&#120;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#x78;&#x78;&#120;&#120;&#120;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a>，其中账户或者服务商一般都由数字字符下划线和扩折号 <code>-</code> 组成，服务商一般是一个域名，域名至少由两个单词组成，中间用点连接。所以一个邮箱的规则可以写成：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> emailReg = <span class="hljs-regexp">/[\w-]+@[\w-]+(\.[\w-])/</span>;<br>emailReg.test(<span class="hljs-string">&quot;123456@163.com&quot;</span>); <span class="hljs-comment">//true</span><br>emailReg.test(<span class="hljs-string">&quot;123456@gmail.com&quot;</span>); <span class="hljs-comment">// true</span><br>emailReg.test(<span class="hljs-string">&quot;123456@qq.com&quot;</span>); <span class="hljs-comment">// true</span><br>emailReg.test(<span class="hljs-string">&quot;123456@mail.com.cn&quot;</span>); <span class="hljs-comment">// true</span><br>emailReg.test(<span class="hljs-string">&quot;@main.com&quot;</span>); <span class="hljs-comment">// false</span><br>emailReg.test(<span class="hljs-string">&quot;123456@com&quot;</span>); <span class="hljs-comment">// false</span><br>emailReg.test(<span class="hljs-string">&quot;123456mail.com&quot;</span>); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<p>尝试编写一个匹配邮箱的正则：邮箱的规则一般分为两部分，<code>@</code> 符前面表示账户，<code>@</code> 符后表示邮箱的主机（域名），比如 QQ 邮箱就是 <a href="mailto:&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>，其中账户或者主机一般都由数字、字母、下划线和扩折号 <code>-</code> 组成，主机至少由两个单词组成，中间用点连接。所以一个邮箱的规则可以写成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> emailReg = <span class="hljs-regexp">/^[\w-]+@[\w-]+(\.[\w-]+)+$/</span>;<br><span class="hljs-built_in">console</span>.log(<br>  emailReg.test(<span class="hljs-string">&quot;123456@163.com&quot;</span>), <span class="hljs-comment">//true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@gmail.com&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@qq.com&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@mail.com.cn&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;@main.com&quot;</span>), <span class="hljs-comment">// false</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@com&quot;</span>), <span class="hljs-comment">// false</span><br>  emailReg.test(<span class="hljs-string">&quot;123456mail.com&quot;</span>) <span class="hljs-comment">// false</span><br>);<br></code></pre></td></tr></table></figure>
 
 <p>如果你的项目有验证邮箱的需要，那么可以根据上述方式来判断表单是否提交，比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;form&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>申请账号需要一个邮箱<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mail&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mail&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>确定<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">  <span class="hljs-keyword">var</span> emailReg = <span class="hljs-regexp">/[\w-]+@[\w-]+(\.[\w-])/</span>;</span><br><br><span class="javascript">  <span class="hljs-keyword">var</span> formEl = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;form&quot;</span>);</span><br><span class="javascript">  <span class="hljs-keyword">var</span> inputEl = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;mail&quot;</span>);</span><br><br><span class="javascript">  formEl.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</span><br><span class="javascript">    <span class="hljs-keyword">if</span> (emailReg.test(inputEl.value)) &#123;</span><br><span class="javascript">      <span class="hljs-comment">// 提交表单</span></span><br><span class="javascript">      alert(<span class="hljs-string">&quot;验证成功，即将提交。&quot;</span>);</span><br><span class="javascript">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="javascript">      alert(<span class="hljs-string">&quot;邮箱格式不正确，请重新输入。&quot;</span>);</span><br>      e.preventDefault();<br>    &#125;<br>  &#125;);<br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;form&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>申请账号需要一个邮箱<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mail&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mail&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>确定<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">  <span class="hljs-keyword">var</span> emailReg = <span class="hljs-regexp">/^[\w-]+@[\w-]+(\.[\w-]+)+$/</span>;</span><br><br><span class="javascript">  <span class="hljs-keyword">var</span> formEl = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;form&quot;</span>);</span><br><span class="javascript">  <span class="hljs-keyword">var</span> inputEl = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;mail&quot;</span>);</span><br><br><span class="javascript">  formEl.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</span><br><span class="javascript">    <span class="hljs-keyword">if</span> (emailReg.test(inputEl.value)) &#123;</span><br><span class="javascript">      <span class="hljs-comment">// 提交表单</span></span><br><span class="javascript">      alert(<span class="hljs-string">&quot;验证成功，即将提交。&quot;</span>);</span><br><span class="javascript">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="javascript">      alert(<span class="hljs-string">&quot;邮箱格式不正确，请重新输入。&quot;</span>);</span><br>      e.preventDefault();<br>    &#125;<br>  &#125;);<br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/06</span>
+      <span class="last-update">最后更新时间：2020/12/17</span>
     </p>
   </div>
 </article>
