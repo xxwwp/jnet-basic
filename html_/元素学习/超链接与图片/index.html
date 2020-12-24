@@ -377,12 +377,12 @@
 <p>分析哔哩哔哩的网站链接：</p>
 <p><img src="../../../assets/URL%E5%89%96%E6%9E%90%E5%9B%BE.png"></p>
 <p><code>80</code> 端口是网站协议的默认端口，一般情况下，浏览器会隐藏 <code>80</code> 端口的显示来简化地址。</p>
-<h3 id="绝对地址"><a href="#绝对地址" class="headerlink" title="绝对地址"></a>绝对地址</h3><p>双击打开一个本地的 HTML 文件，在浏览器的地址栏上，就显示了文件在本地环境的 URL：</p>
+<h3 id="绝对地址"><a href="#绝对地址" class="headerlink" title="绝对地址"></a>绝对地址</h3><p>绝对地址表示一个完整的 URL，比如一个完整的网址，就是一个绝对地址。</p>
+<p>双击打开一个本地的 HTML 文件，在浏览器的地址栏上，就显示了文件在本地环境的 URL：</p>
 <p><img src="../../../assets/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%BC%94%E7%A4%BA.png"></p>
 <p>其中，<code>file:///</code> 就是文件管理系统的协议，<code>C:/document/test/index.html</code> 就是该文件的路径，路径一般使用 <code>/</code> 来分割。</p>
 <p>【尝试使用超链接跳转到另一个文件。】</p>
-<h3 id="相对地址"><a href="#相对地址" class="headerlink" title="相对地址"></a>相对地址</h3><p>上述的 URL 地址是用绝对地址，地址较长，还有另一种相对地址，能以较少的地址，访问到资源。</p>
-<p>使用相对地址，能以当前文件所在位置作为参考，指定其他资源：</p>
+<h3 id="相对地址"><a href="#相对地址" class="headerlink" title="相对地址"></a>相对地址</h3><p>相对地址能以较少字符表示一个 URL，它必须以另外一个 URL 作为参考来表示。相对地址有几个操作符如下：</p>
 <table>
 <thead>
 <tr>
@@ -414,10 +414,8 @@
 <p>在 <code>out.html</code> 中，可以使用 <code>./html/index.html</code> 和 <code>./html/app.html</code> 来指定其他两个文件。</p>
 <p><mark>eg：根路径是指当前协议解析的根路径，和计算机硬盘的根路径没有直接关系。</mark></p>
 <h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>锚点指的是 URL 的 <strong>片段</strong>，片段用于指定一个资源某个位置，片段在 URL 的最后部分。使用 <code>#</code> 号和路径部分隔开。</p>
-<p>在 HTML 中，给元素使用 <code>id</code> 属性时，会自动生成一个锚点，访问这个锚点，页面会被定位到该元素的位置。比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#foo&quot;</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>填充文本<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>填充文本<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>填充文本<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>二级标题<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>在上面代码中，当我们点击第一个超链接的时候，页面会定位为 <code>id</code> 为 <code>foo</code> 的元素上。</p>
+<p>在 HTML 中，给元素使用 <code>id</code> 属性时，会自动生成一个锚点，访问这个锚点，页面会被定位到该元素的位置。</p>
+<p>【锚点演示】</p>
 <h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>HTML 中载入一张图片使用 <code>img</code> 元素：</p>
 <table>
 <thead>
@@ -518,7 +516,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/23</span>
+      <span class="last-update">最后更新时间：2020/12/24</span>
     </p>
   </div>
 </article>

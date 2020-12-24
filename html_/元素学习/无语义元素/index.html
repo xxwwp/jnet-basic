@@ -312,27 +312,27 @@
 <tbody><tr>
 <td><code>div</code></td>
 <td>块级</td>
+<td>无</td>
 <td></td>
-<td></td>
-<td>划分任意块级区域</td>
+<td>划分任意 <strong>块级区域</strong></td>
 </tr>
 <tr>
 <td><code>span</code></td>
 <td>内联</td>
+<td>无</td>
 <td></td>
-<td></td>
-<td>划分任意行内区域</td>
+<td>划分任意 <strong>行内区域</strong></td>
 </tr>
 </tbody></table>
-<p>这两个元素没有任何样式和语义，一般用来划分页面，比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>卡片标题<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>卡片的描述...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>类型：明星片<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>时间：xxxx-xx-xx<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>div</code> 和 <code>span</code> 虽然没有语义和样式，却是使用最频繁的元素。如果你无法找到一个确切的元素来包裹内容，那么就可以使用 <code>div</code> 和 <code>span</code> 元素代替，比如卡片，广告，提醒，图标等等。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 使用 div 和 span 划分一张卡片的各个部分 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>卡片标题<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>卡片的描述...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>类型：明星片<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>时间：xxxx-xx-xx<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>HTML 并没有提供卡片相关的元素，我们就可以 <code>div</code> 或者 <code>span</code> 元素来划分卡片的内容。</p>
-<p><code>div</code> 和 <code>span</code> 虽然没有语义和样式，却是使用最频繁的元素，因为它们被用来标记所有没有相关语义的内容。比如卡片，广告，提醒，图标等等。</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/09</span>
+      <span class="last-update">最后更新时间：2020/12/24</span>
     </p>
   </div>
 </article>
