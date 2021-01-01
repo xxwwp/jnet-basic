@@ -281,7 +281,7 @@
   </ul>
 </div>
 </aside>
-  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%88%86%E7%B1%BB"><span class="toc-text">属性分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="toc-text">全局属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id"><span class="toc-text">id</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#title"><span class="toc-text">title</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tabindex"><span class="toc-text">tabindex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7"><span class="toc-text">自定义属性</span></a></li></ol></div>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%88%86%E7%B1%BB"><span class="toc-text">属性分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="toc-text">全局属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id"><span class="toc-text">id</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#title"><span class="toc-text">title</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tabindex"><span class="toc-text">tabindex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lang"><span class="toc-text">lang</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7"><span class="toc-text">自定义属性</span></a></li></ol></div>
 </aside>
 </div>
 <script>
@@ -357,6 +357,9 @@
 <p>下列代码中，选点击 <code>one</code> 文本让其获取焦点，使用【tab】键进行焦点导航时，会按照 <code>tabindex</code> 值的顺序切换焦点。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;3&quot;</span>&gt;</span>three<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span>tow<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>one<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="lang"><a href="#lang" class="headerlink" title="lang"></a>lang</h3><p><code>lang</code> 属性用于设置页面或者元素内容部分的语言，当设置 <code>html</code> 元素的 <code>lang</code> 属性时，它会作用于整个网页，用于设置页面中内容的语言。也可以个单独的一行文本设置语言属性，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>English<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h2><p>元素的属性并没有限制，可以为元素设置任意名称的属性：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">abc</span> <span class="hljs-attr">efg</span>=<span class="hljs-string">&quot;123&quot;</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -370,7 +373,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/26</span>
+      <span class="last-update">最后更新时间：2021/01/01</span>
     </p>
   </div>
 </article>
