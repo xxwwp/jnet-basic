@@ -333,30 +333,50 @@
 <tr>
 <th>选择器</th>
 <th>选择的元素</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>[attr]</code></td>
 <td>选择设置 <code>attr</code> 属性的元素</td>
+<td></td>
 </tr>
 <tr>
 <td><code>[attr=value]</code></td>
-<td>选择设置 <code>attr</code> 属性值为 <code>value</code> 的元素</td>
+<td>选择<code>attr</code> 属性值为 <code>value</code> 的元素</td>
+<td></td>
 </tr>
 <tr>
 <td><code>[attr~=value]</code></td>
-<td>选择设置 <code>attr</code> 属性值为包含 <code>value</code> 的元素</td>
+<td>选择<code>attr</code> 属性值为包含单词 <code>value</code> 的元素，其中 <code>value</code> 被视作一个单词，与其他单词使用空格隔开。</td>
+<td></td>
 </tr>
 <tr>
 <td><code>[attr|=value]</code></td>
-<td>选择设置<code>attr</code>属性值为以<code>value</code> 开头的元素</td>
+<td>选择<code>attr</code>属性值以 <code>value</code> 开头的元素，<code>value</code> 与其他单词只能使用 <code>-</code> 分隔。</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[attr^=value]</code></td>
+<td>选择<code>attr</code>属性值以 <code>value</code> 开头的元素</td>
+<td>CSS3，但是兼容到 IE7，下面同样</td>
+</tr>
+<tr>
+<td><code>[attr$=value]</code></td>
+<td>选择<code>attr</code>属性值以 <code>value</code> 结尾的元素</td>
+<td>CSS3</td>
+</tr>
+<tr>
+<td><code>[attr*=value]</code></td>
+<td>选择<code>attr</code>属性值含有 <code>value</code> 的元素</td>
+<td>CSS3</td>
 </tr>
 </tbody></table>
 <p>【属性选择器演示】</p>
 <h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><p>伪元素选择器可以一些类似元素的区域，它们一般不是真正的元素。它们的选择器一般由两个冒号开头，并配合其他选择器一起使用：</p>
 <ul>
 <li><code>::first-line</code>：选择第一行文本</li>
-<li><code>::first-letter</code>：选择第一个单词</li>
+<li><code>::first-letter</code>：选择第一个字符</li>
 <li><code>::before</code>：在元素的内容开始的地方创建一个元素，并选择这个元素</li>
 <li><code>::after</code>：在元素的内容结束的地方创建一个元素，并选择这个元素</li>
 </ul>
@@ -390,6 +410,7 @@
 <th>选择范围</th>
 <th>示例</th>
 <th>示例选择范围</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -397,30 +418,35 @@
 <td>选择多项</td>
 <td><code>div,p</code></td>
 <td>选择 <code>div</code> 和 <code>p</code> 元素</td>
+<td></td>
 </tr>
 <tr>
 <td>‘<code> </code>‘</td>
 <td>选择子级</td>
 <td><code>div p</code></td>
 <td>选择 <code>div</code> 元素内任意位置的 <code>p</code> 元素</td>
+<td></td>
 </tr>
 <tr>
 <td><code>&gt;</code></td>
 <td>选择直系子级</td>
 <td><code>div&gt;p</code></td>
 <td>选择 <code>div</code> 元素直系子级内的 <code>p</code> 元素</td>
+<td></td>
 </tr>
 <tr>
 <td><code>+</code></td>
 <td>选择下一个同级元素</td>
 <td><code>div + p</code></td>
-<td>选择同一级内紧跟 <code>div</code> 元素的 <code>p</code> 元素</td>
+<td>选择同一级内紧跟 <code>div</code> 元素的一个 <code>p</code> 元素</td>
+<td></td>
 </tr>
 <tr>
 <td><code>~</code></td>
-<td>选择后面的同级元素</td>
+<td>选择所有后续的同级元素</td>
 <td><code>div ~ p</code></td>
-<td>选择同一级内 <code>div</code> 元素后的 <code>p</code> 元素</td>
+<td>选择同一级内，<code>div</code> 元素后面的所有 <code>p</code> 元素</td>
+<td>CSS3，但是兼容到 IE7</td>
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
@@ -429,7 +455,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/10</span>
+      <span class="last-update">最后更新时间：2021/01/03</span>
     </p>
   </div>
 </article>
