@@ -573,7 +573,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.main</span> &#123;</span><br>    width: 600px;<br>    margin: auto;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    float: left;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>荷塘月色<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./favicon.png&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    这几天心里颇不宁静。今晚在院子里坐着乘凉，忽然想起日日走过的荷塘，<br>    在这满月的光里，总该另有一番样子吧。月亮渐渐地升高了，墙外马路上孩子们的欢笑，已经听不见了；妻在屋里拍着闰儿，迷迷糊糊地哼着眠歌。我悄悄地披了大衫，带上门出去。<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>img</code> 元素设置了浮动，它没有撑起父级 <code>div</code> 的高度；<code>p</code> 的布局并没有受到浮动影响，但是其内部的文字会环绕浮动元素布局。</p>
-<p>浮动元素对其他 BFC 内的元素不会造成上述影响，比如绝对定位就会产生新的 BFC，浮动并不会影响到绝对定位元素及其内部的排版。<strong>eg：关于什么情况下会创建 BFC，后续会介绍。</strong></p>
+<p>浮动元素对其他 BFC 内的元素不会造成上述影响，比如绝对定位就会产生新的 BFC，浮动并不会影响到绝对定位元素及其内部的排版。<strong>备注：关于什么情况下会创建 BFC，后续会介绍。</strong></p>
 <h3 id="浮动元素之间的影响"><a href="#浮动元素之间的影响" class="headerlink" title="浮动元素之间的影响"></a>浮动元素之间的影响</h3><ul>
 <li>浮动方向相同的元素会按照浮动方向依次排列</li>
 <li>溢出的浮动元素会最少限度的向下排列，并不一定是换行</li>
@@ -644,7 +644,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/12</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

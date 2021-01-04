@@ -323,8 +323,8 @@
 </ul>
 <p>把上面的话合并一下，这串正则表达式的意思就是：以 4 个数字开头，连接任意一个字符，连接一个或者两个数字，连接任意一个字符，连接一个或者两个数字结尾的字符串。</p>
 <p>实际上正则表达式真的真的很简单，希望大家学习本课程千万不要有负担，不要被如火星文一般的表示方式迷惑，只要学习完正则的语法，<strong>它完全是可读的</strong>。</p>
-<p><strong>eg：大部分程序语言的正则字符串都是统一参照 PCRE 标准，JS 中也是，所以你学习完正则字符串后，以后也可以在其他语言使用。如果你已经学习过 PCRE 标准的正则，那么可以直接跳过学习部分，去看使用章节。</strong></p>
-<p>eg：为了简化，正则字符串后面简化为正则。</p>
+<p><strong>备注：大部分程序语言的正则字符串都是统一参照 PCRE 标准，JS 中也是，所以你学习完正则字符串后，以后也可以在其他语言使用。如果你已经学习过 PCRE 标准的正则，那么可以直接跳过学习部分，去看使用章节。</strong></p>
+<p>备注：为了简化，正则字符串后面简化为正则。</p>
 <h2 id="创建与-match-函数"><a href="#创建与-match-函数" class="headerlink" title="创建与 match 函数"></a>创建与 match 函数</h2><p>正则的创建有两种方式：</p>
 <ul>
 <li>字面量创建：使用反斜杠直接包裹</li>
@@ -337,7 +337,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> m = <span class="hljs-string">&quot;abc 123 ABC&quot;</span>.match(<span class="hljs-regexp">/123/</span>);<br><span class="hljs-built_in">console</span>.log(m);<br></code></pre></td></tr></table></figure>
 
 <p><code>match</code> 函数会根据正则查找字符串，然后返回查找结果，如果不成功，返回一个 <code>null</code>。</p>
-<p><strong>eg：在正则中，把查找的过程称作匹配，后续介绍中，都会使用匹配一词代替查找。</strong></p>
+<p><strong>备注：在正则中，把查找的过程称作匹配，后续介绍中，都会使用匹配一词代替查找。</strong></p>
 <h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><h3 id="普通匹配"><a href="#普通匹配" class="headerlink" title="普通匹配"></a>普通匹配</h3><p>普通匹配就如同查找字符串，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;abc 123 ABC&quot;</span>;<br><span class="hljs-keyword">var</span> m = foo.match(<span class="hljs-regexp">/123/</span>);<br><span class="hljs-built_in">console</span>.log(m);<br></code></pre></td></tr></table></figure>
 
@@ -608,7 +608,7 @@
 
 <h2 id="性能与应用"><a href="#性能与应用" class="headerlink" title="性能与应用"></a>性能与应用</h2><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>使用正则字符串实际上非常耗费性能，在一对多的服务中，很少使用正则，比如服务器，大量正则的使用是给计算机带来很大负担。但是 JS 是客户端语言，负担会小很多。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>正则一般都是用来处理有一定规则的文本，比如日期，邮箱，网址，手机号等等，使用正则分解这些文本会变得异常简单，比如本页最开始的段落，我们处理日期一样。</p>
-<p>尝试编写一个匹配邮箱的正则：邮箱的规则一般分为两部分，<code>@</code> 符前面表示账户，<code>@</code> 符后表示邮箱的主机（域名），比如 QQ 邮箱就是 <a href="mailto:&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;</a>，其中账户或者主机一般都由数字、字母、下划线和扩折号 <code>-</code> 组成，主机至少由两个单词组成，中间用点连接。所以一个邮箱的规则可以写成：</p>
+<p>尝试编写一个匹配邮箱的正则：邮箱的规则一般分为两部分，<code>@</code> 符前面表示账户，<code>@</code> 符后表示邮箱的主机（域名），比如 QQ 邮箱就是 <a href="mailto:&#120;&#120;&#120;&#120;&#120;&#64;&#x71;&#x71;&#46;&#99;&#111;&#109;">&#120;&#120;&#120;&#120;&#120;&#64;&#x71;&#x71;&#46;&#99;&#111;&#109;</a>，其中账户或者主机一般都由数字、字母、下划线和扩折号 <code>-</code> 组成，主机至少由两个单词组成，中间用点连接。所以一个邮箱的规则可以写成：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> emailReg = <span class="hljs-regexp">/^[\w-]+@[\w-]+(\.[\w-]+)+$/</span>;<br><span class="hljs-built_in">console</span>.log(<br>  emailReg.test(<span class="hljs-string">&quot;123456@163.com&quot;</span>), <span class="hljs-comment">//true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@gmail.com&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@qq.com&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@mail.com.cn&quot;</span>), <span class="hljs-comment">// true</span><br>  emailReg.test(<span class="hljs-string">&quot;@main.com&quot;</span>), <span class="hljs-comment">// false</span><br>  emailReg.test(<span class="hljs-string">&quot;123456@com&quot;</span>), <span class="hljs-comment">// false</span><br>  emailReg.test(<span class="hljs-string">&quot;123456mail.com&quot;</span>) <span class="hljs-comment">// false</span><br>);<br></code></pre></td></tr></table></figure>
 
 <p>如果你的项目有验证邮箱的需要，那么可以根据上述方式来判断表单是否提交，比如：</p>
@@ -616,7 +616,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/17</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

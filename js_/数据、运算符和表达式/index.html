@@ -749,9 +749,9 @@
 <p>使用逗号运算符可以把语句分割成多个表达式，它们被统称为 <strong>逗号表达式，其值是最后一个表达式的值</strong>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo;<br>foo = (<span class="hljs-number">1</span> * <span class="hljs-number">2</span>, <span class="hljs-string">&quot;123&quot;</span>, <span class="hljs-number">100</span> + <span class="hljs-number">11</span>);<br><span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// 111</span><br></code></pre></td></tr></table></figure>
 
-<p><strong>eg：逗号运算符是所有运算符中最低的，比赋值运算符还低，所以上面代码需要使用圆括号提高优先级，让逗号表达式先运算再赋值。</strong></p>
+<p><strong>备注：逗号运算符是所有运算符中最低的，比赋值运算符还低，所以上面代码需要使用圆括号提高优先级，让逗号表达式先运算再赋值。</strong></p>
 <h3 id="void-运算符"><a href="#void-运算符" class="headerlink" title="void 运算符"></a>void 运算符</h3><p><code>void</code> 运算符用来修饰任意表达式，<code>void</code> 的计算结果总是 <code>undefined</code>。</p>
-<p><strong>eg：<code>void</code> 的优先级较高</strong>，几乎高于所有算术逻辑等运算符。所以下面代码的算术运算会使用圆括号提高优先级。</p>
+<p><strong>备注：<code>void</code> 的优先级较高</strong>，几乎高于所有算术逻辑等运算符。所以下面代码的算术运算会使用圆括号提高优先级。</p>
 <p>例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">void</span> (<span class="hljs-number">100</span> + <span class="hljs-number">100</span>);<br><span class="hljs-keyword">var</span> c = <span class="hljs-keyword">void</span> <span class="hljs-literal">true</span>;<br><span class="hljs-keyword">var</span> d = <span class="hljs-keyword">void</span> (<span class="hljs-string">&quot;文本&quot;</span> + <span class="hljs-string">&quot;信息&quot;</span>);<br><span class="hljs-built_in">console</span>.log(a, b, c, d);<br></code></pre></td></tr></table></figure>
 
@@ -762,7 +762,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/13</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

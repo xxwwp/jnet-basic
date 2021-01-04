@@ -404,7 +404,7 @@
 <p>但是这种主动设置原型的方式，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto">会带来较大的性能损耗</a>。虽然它们是修改原型最直观的方式，但实际开发中并不推荐。</p>
 <h3 id="通过-Object-create"><a href="#通过-Object-create" class="headerlink" title="通过 Object.create"></a>通过 Object.create</h3><p>使用 <code>Object.create</code> 函数也可以设置对象的原型，它接受一个对象或者 <code>null</code>，返回一个空对象，空对象的原型指向传入的值。<code>Object.create</code> 还有其他参数，它们可以用于新增属性并且设置属性状态，这部分内容不在本系列课程的讨论范围之内，我会在更深入课程中介绍。</p>
 <p>使用 <code>Object.create</code>，不同于上一节中的直接设置对象原型，这种方式不会给程序带来性能损耗。</p>
-<p><strong>eg：<code>Object.create</code> 在 IE 9 以下无法使用</strong></p>
+<p><strong>备注：<code>Object.create</code> 在 IE 9 以下无法使用</strong></p>
 <h3 id="new-关键字"><a href="#new-关键字" class="headerlink" title="new 关键字"></a><code>new</code> 关键字</h3><p>每个函数或函数表达式都会拥有一个内置属性 <code>prototype</code>，</p>
 <p><strong>记住这个属性和该函数的原型没有半毛钱关系！</strong><br><strong>记住这个属性和该函数的原型没有半毛钱关系！</strong><br><strong>记住这个属性和该函数的原型没有半毛钱关系！</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br><br><span class="hljs-built_in">console</span>.log(foo.prototype);<br><span class="hljs-built_in">console</span>.log(foo.prototype === foo.__proto__); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
@@ -456,7 +456,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/14</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

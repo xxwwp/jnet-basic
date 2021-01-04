@@ -327,14 +327,14 @@
 
 <p>普通模式下，重复参数只有最后的参数有效，<code>console.log(a)</code> 只会打印第二个参数 <code>a</code>。对象字面量的重复属性也不会报错，它会覆盖之前的值。</p>
 <p>但是在严格模式下，上述声明会产生语法错误（重复属性出错在 Chrome 中无法验证，可以在 IE 中验证）。</p>
-<p><strong>eg：重复属性争议较大，虽然严格模式标准中，对象字面量重复设置属性被禁止，但是各个浏览器并没有完全支持。</strong></p>
+<p><strong>备注：重复属性争议较大，虽然严格模式标准中，对象字面量重复设置属性被禁止，但是各个浏览器并没有完全支持。</strong></p>
 <h3 id="this-显式绑定改外-undefined"><a href="#this-显式绑定改外-undefined" class="headerlink" title="this 显式绑定改外 undefined"></a><code>this</code> 显式绑定改外 <code>undefined</code></h3><p>严格模式下，如果在全局中访问 <code>this</code> 关键字，依旧指向全局对象，在浏览器中，JS 的全局对象是 <code>window</code>，所以严格模式中，下列条件依旧成立：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&quot;use strict&quot;</span>;<br><span class="hljs-built_in">this</span> === <span class="hljs-built_in">window</span>; <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
 
 <p>但是 <code>this</code> 的显式绑定会被指向 <code>undefined</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>&#125;<br><br>foo(); <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
 
-<p><strong>eg：在普通模式下，<code>this</code> 的显式绑定指向 <code>window</code></strong></p>
+<p><strong>备注：在普通模式下，<code>this</code> 的显式绑定指向 <code>window</code></strong></p>
 <h3 id="eval-产生内部作用域"><a href="#eval-产生内部作用域" class="headerlink" title="eval 产生内部作用域"></a><code>eval</code> 产生内部作用域</h3><p>严格模式下，<code>eval</code> 函数内部会产生内部作用域，从而无法把变量定义到外部，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&quot;use strict&quot;</span>;<br><span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;var foo = 1;&quot;</span>);<br><span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// error  foo is not defined</span><br></code></pre></td></tr></table></figure>
 
@@ -346,7 +346,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/17</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

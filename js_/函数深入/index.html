@@ -389,7 +389,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loop</span>(<span class="hljs-params">a, i</span>) </span>&#123;<br>  i = i || <span class="hljs-number">0</span>;<br><br>  <span class="hljs-keyword">if</span> (i &lt; a.length) &#123;<br>    <span class="hljs-built_in">console</span>.log(a[i]);<br>    loop(a, i + <span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><br>loop(foo);<br></code></pre></td></tr></table></figure>
 
 <p>在上面代码中，我们使用递归函数遍历了数组。在函数执行的时候，我们设置了一个下标用来追踪当前遍历的位置，递归成立的条件是下标不超过数组长度。</p>
-<p><strong>eg：递归非常耗费计算机性能，这在任何编程语言中都成立。如果使用递归的层数极高，比如上万层递归的情况，并不建议使用。</strong></p>
+<p><strong>备注：递归非常耗费计算机性能，这在任何编程语言中都成立。如果使用递归的层数极高，比如上万层递归的情况，并不建议使用。</strong></p>
 <h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><p>前面介绍过，函数是引用类型，所以函数也是一个数据，函数可以赋值给变量或属性，并且相互传递：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;foo function&quot;</span>);<br>&#125;<br><span class="hljs-keyword">var</span> bar = foo;<br><span class="hljs-keyword">var</span> baz = bar;<br>baz(); <span class="hljs-comment">// &quot;foo function&quot;</span><br></code></pre></td></tr></table></figure>
 
@@ -438,7 +438,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/14</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>

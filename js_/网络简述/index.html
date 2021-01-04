@@ -494,7 +494,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">xhr.onprogress = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (e.lengthComputable) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;传输进度为：&quot;</span> + (e.loaded / e.total) * <span class="hljs-number">100</span> + <span class="hljs-string">&quot;%&quot;</span>);<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>本地测试时，可以增加 <code>data.txt</code> 文件的数据，然后在控制台的 Network 模块设置一个较慢网速，之后清除浏览器缓存后测试。</p>
-<p><strong>eg：<code>onprogress</code> 不兼容 IE 浏览器。</strong></p>
+<p><strong>备注：<code>onprogress</code> 不兼容 IE 浏览器。</strong></p>
 </li>
 </ul>
 <h3 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h3><p>当一切准备就绪，我们就可以发送一个请求了，<code>XMLHttpRequest</code> 对象使用 <code>send</code> 方法发送请求：</p>
@@ -575,7 +575,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/18</span>
+      <span class="last-update">最后更新时间：2021/01/04</span>
     </p>
   </div>
 </article>
