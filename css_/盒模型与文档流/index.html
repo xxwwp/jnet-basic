@@ -527,20 +527,19 @@
 <li><code>block</code>：大部分 HTML 块级元素的盒子。</li>
 <li><code>table</code>：是 <code>table</code> 元素的盒子，同 <code>block</code> 不同的是，它的内部是按照表格布局排列。</li>
 <li><code>list-item</code>：是 <code>li</code> 元素的盒子，同 <code>block</code> 不同的是，<code>list-tiem</code> 盒子的前面会有列表符号。</li>
-<li>其他（在更深入的课程介绍）</li>
 </ul>
 <p><strong>CSS 块级元素的盒子可以设置盒模型的任意值</strong>，内外边距、边框和宽高，并且它们都 <strong>独占一行</strong>。</p>
 <p>【演示 <code>block</code>】<br>【演示 <code>table</code> 与 <code>block</code> 的区别】<br>【演示 <code>list-item</code> 的列表符号】</p>
-<h3 id="行内级元素"><a href="#行内级元素" class="headerlink" title="行内级元素"></a>行内级元素</h3><p>CSS 行内级元素的一大特点就是 <strong>不会独占一行</strong>，超过一行的部分默认会换行显示，对应 HTML 中内联元素的盒模型。</p>
-<h4 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h4><ul>
+<h3 id="行内级元素"><a href="#行内级元素" class="headerlink" title="行内级元素"></a>行内级元素</h3><p>CSS 行内级元素的一大特点就是 <strong>不会独占一行</strong>，默认情况下，超过一行的部分会换行显示。</p>
+<h4 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h4><p>行内块元素类似于块级元素，但是它们不会独占一行，行内块元素有两种盒模型：</p>
+<ul>
 <li><code>inline-block</code>：类似于块级元素，可以设置盒模型的任意值。</li>
 <li><code>inline-table</code>：和普通表格的盒子类似。</li>
 </ul>
-<p>上述盒模型同 <code>display:block</code> 与 <code>display:table</code> 不同的就是不会独占一行，其他并无区别。</p>
-<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><ul>
+<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><p>行内元素大部分尺寸设置都会产生限制，连宽高都无法设置，本节的最后，会介绍行内元素的盒模型限制。行内元素的盒模型为 <code>inline</code>。</p>
+<ul>
 <li><code>inline</code>：大部分内联元素的默认盒模型。</li>
 </ul>
-<p>行内元素大部分尺寸设置都会产生限制，连宽高都无法设置，本节的最后，会介绍行内元素的盒模型限制。</p>
 <h3 id="表格元素"><a href="#表格元素" class="headerlink" title="表格元素"></a>表格元素</h3><p>表格内元素的盒模型非常特殊，在 HTML 中介绍过，表格内的元素既不是块级元素，也不是内联元素。表格内每种元素几乎都有特定的盒模型。各个元素默认对应的 <code>display</code> 值如下：</p>
 <table>
 <thead>
