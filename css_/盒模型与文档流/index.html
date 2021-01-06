@@ -513,7 +513,7 @@
 </li>
 <li><p>行内级元素：HTML 中的内联元素的盒模型。</p>
 <ul>
-<li>行内块元素：比如 <code>button</code> 或者提交按钮、等等，它们虽然在行内，但是表现为一个块而不是一个行文本。</li>
+<li>行内块元素：对应一些表单元素，比如 <code>button</code> 、输入框等等，它们虽然在行内，但是表现为一个块而不是一个行文本。</li>
 <li>行内元素：各种内联元素比如：<code>span</code>、<code>em</code>、<code>del</code> 等等。</li>
 </ul>
 </li>
@@ -587,8 +587,7 @@
 <ul>
 <li><code>table-caption</code> 盒子无限制（满足标准盒模型），其他盒模型都没有 <code>margin</code>。</li>
 <li><code>table-cell</code> 盒子只是不能设置 <code>margin</code>。</li>
-<li><code>table-row</code> 盒子只能设置 <code>border</code>。</li>
-<li>剩余盒模型什么都不能设置。</li>
+<li><code>table-row</code>、<code>table-row-group</code> 等盒模型虽然有 <code>border</code> 和宽高，但是设置了无效，不过你可以让 <code>th</code>、<code>td</code> 去继承。</li>
 </ul>
 <h3 id="盒模型分类小结"><a href="#盒模型分类小结" class="headerlink" title="盒模型分类小结"></a>盒模型分类小结</h3><ul>
 <li><p><code>display</code> 属性的值非常多，但是不用全部记忆，最常用的盒模型是以下三个：</p>
