@@ -371,7 +371,7 @@
 </tr>
 <tr>
 <td><code>padding</code></td>
-<td>内边距简写，当值为：<br/>1 个值：设置全部内边距；<br />2 个值：设置垂直和水平内边距；<br />3 个值：设置顶部、水平、底部内边距；<br />4 个值：逆时针依次从内上边距开始设置。</td>
+<td>内边距简写，当值为：<br/>1 个值：设置全部内边距；<br />2 个值：设置垂直和水平内边距；<br />3 个值：设置顶部、水平、底部内边距；<br />4 个值：顺时针依次从内上边距开始设置。</td>
 </tr>
 </tbody></table>
 <p>例如：</p>
@@ -379,7 +379,7 @@
 
 <p>上面的 <code>div</code> 元素顶部和左侧内边距分别被设置成了 <code>10px</code> 和 <code>20px</code>。</p>
 <p>使用 <code>padding</code> 简写更加方便，比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.one</span> &#123;</span><br>    padding: 10px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.tow</span> &#123;</span><br>    padding: 10px 20px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.three</span> &#123;</span><br>    padding: 10px 20px 30px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.four</span> &#123;</span><br>    padding: 10px 20px 30px 40px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one&quot;</span>&gt;</span>内边距全为 10px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;tow&quot;</span>&gt;</span>上下内边距 10px，左右内边距 20px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;three&quot;</span>&gt;</span>顶部内边距 10px，左右内边距 20px，底部内边距 30px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;four&quot;</span>&gt;</span>内边距：上 10px，右 20px，下 30px，左 40px。逆时针设置<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.one</span> &#123;</span><br>    padding: 10px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.tow</span> &#123;</span><br>    padding: 10px 20px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.three</span> &#123;</span><br>    padding: 10px 20px 30px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.four</span> &#123;</span><br>    padding: 10px 20px 30px 40px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;one&quot;</span>&gt;</span>内边距全为 10px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;tow&quot;</span>&gt;</span>上下内边距 10px，左右内边距 20px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;three&quot;</span>&gt;</span>顶部内边距 10px，左右内边距 20px，底部内边距 30px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;four&quot;</span>&gt;</span>内边距：上 10px，右 20px，下 30px，左 40px。顺时针设置<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h3><p>盒模型的边框一般使用 <code>border</code> 相关属性设置：</p>
 <table>
@@ -406,18 +406,19 @@
 <td>边框样式简写，比如：<code>border:1px solid silver</code></td>
 </tr>
 <tr>
-<td><code>border-radius</code></td>
-<td>设置圆角，CSS3 属性，低版本浏览器不兼容</td>
-</tr>
-<tr>
 <td>单独设置四边框</td>
 <td>可以使用 <code>border-left-width</code> 这些属性单独针对某一条边框设置样式，如：<br/><code>border-left-color</code> 设置左边框颜色；<br/><code>border-left</code> 简写左边框样式。</td>
+</tr>
+<tr>
+<td><code>border-radius</code></td>
+<td>设置圆角，CSS3 属性，IE9 及以上兼容。</td>
 </tr>
 <tr>
 <td>单独设置四边框的圆角</td>
 <td>可以使用 <code>border-top-left-radius</code>、<code>border-top-right-radius</code>、<code>border-bottom-left-radius</code>、<code>border-bottom-left-radius</code> 单独设置四个角的圆角</td>
 </tr>
 </tbody></table>
+<p><mark>这里只是对圆角进行简要介绍，你可以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-cn/docs/web/css/border-radius">点击这里</a> 查看圆角的详细设置。</mark></p>
 <h3 id="外边距"><a href="#外边距" class="headerlink" title="外边距"></a>外边距</h3><p>盒模型的外边距使用 <code>margin</code> 相关属性设置，和 <code>padding</code> 相关属性使用方式相同：</p>
 <table>
 <thead>
@@ -444,7 +445,7 @@
 </tr>
 <tr>
 <td><code>margin</code></td>
-<td>外边距简写，当值为：<br/>1 个值：设置全部外边距；<br />2 个值：设置垂直和水平外边距；<br />3 个值：设置顶部、水平、底部外边距；<br />4 个值：逆时针依次从外上边距开始设置。</td>
+<td>外边距简写，当值为：<br/>1 个值：设置全部外边距；<br />2 个值：设置垂直和水平外边距；<br />3 个值：设置顶部、水平、底部外边距；<br />4 个值：顺时针依次从外上边距开始设置。</td>
 </tr>
 </tbody></table>
 <p>外边距决定了盒模型的最边缘，布局时，会从外边距部分开始，比如：</p>
