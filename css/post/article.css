@@ -15,3 +15,15 @@ article img {
 article iframe {
   margin: 10px -10px;
 }
+article blockquote {
+  padding: 1.25rem;
+  margin: 1.25rem -10px;
+  border: 1px solid #eee;
+  border-left-width: 0.25rem;
+  border-radius: 0.25rem;
+  border-left-color: #f0ad4e;
+  font-size: 1em;
+}
+article blockquote p:last-child {
+  margin-bottom: 0;
+}

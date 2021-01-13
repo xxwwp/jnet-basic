@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -371,7 +371,9 @@
 <p>所以颜色 ff0000 转化为对应的 rgb 值为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">ff0000<br>&#x3D;&gt; (ff , 00 , 00)<br>&#x3D;&gt; (15 * 16 + 15 * 1 , 0 , 0)<br>&#x3D;&gt; (255 , 0 , 0)<br><br>即 rgb(255 , 0 , 0) 红色<br></code></pre></td></tr></table></figure>
 
-<p><strong>备注：一些编辑器中，还可以直接把鼠标挪到颜色上进行选择，比如 vscode 或者 codesandbox。</strong></p>
+<blockquote>
+<p>备注：一些编辑器中，还可以直接把鼠标挪到颜色上进行选择，比如 vscode 或者 codesandbox。</p>
+</blockquote>
 <h3 id="字体粗细"><a href="#字体粗细" class="headerlink" title="字体粗细"></a>字体粗细</h3><p>通过设置 <code>font-weight</code> 属性，可以改变字体的粗细，比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -527,7 +529,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/04</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -535,7 +537,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>

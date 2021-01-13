@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -407,7 +407,9 @@
 <p>对寄生式组合继承简化后，如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br><br><span class="hljs-comment">// 方法继承</span><br>_inherit(Student, Person);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Student</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 父类构造函数访问</span><br>  Person.call(<span class="hljs-built_in">this</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><strong>子类继承父类，只是继承属性和方法，不会继承静态属性或静态方法，同时子类可以添加新的属性或新的方法。</strong></p>
+<blockquote>
+<p>子类会继承父类属性和方法，同时子类可以添加新的属性或新的方法。</p>
+</blockquote>
 <h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>面相对象中，类与类的继承呈现为链式，比如类 C 继承类 B，类 B 又继承类 A，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_inherit</span>(<span class="hljs-params">SubClass, SuperClass</span>) </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br>  F.prototype = SuperClass.prototype;<br>  SubClass.prototype = <span class="hljs-keyword">new</span> F();<br>  SubClass.prototype.constructor = SubClass;<br>&#125;<br><br><span class="hljs-comment">// 定义动物类</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Animal</span>(<span class="hljs-params">type, birth</span>) </span>&#123;<br>  <span class="hljs-built_in">this</span>.type = type;<br>  <span class="hljs-built_in">this</span>.birth = birth;<br>&#125;<br><br>_inherit(Person, Animal);<br><span class="hljs-comment">// 定义人类</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name, birth</span>) </span>&#123;<br>  Animal.call(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;Person&quot;</span>, birth);<br>  <span class="hljs-built_in">this</span>.name = name;<br>&#125;<br><br>_inherit(Student, Person);<br><span class="hljs-comment">// 定义学生类</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Student</span>(<span class="hljs-params">name, birth, school, classroom</span>) </span>&#123;<br>  Person.call(<span class="hljs-built_in">this</span>, name, birth);<br>  <span class="hljs-built_in">this</span>.school = school;<br>  <span class="hljs-built_in">this</span>.classroom = classroom;<br>&#125;<br>Student.prototype.say = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.type, <span class="hljs-built_in">this</span>.name, <span class="hljs-built_in">this</span>.birth, <span class="hljs-built_in">this</span>.school, <span class="hljs-built_in">this</span>.classroom);<br>&#125;;<br><br><span class="hljs-keyword">var</span> ming = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&quot;小明&quot;</span>, <span class="hljs-string">&quot;2015-01-01&quot;</span>, <span class="hljs-string">&quot;xx小学&quot;</span>, <span class="hljs-string">&quot;三年二班&quot;</span>);<br>ming.say();<br></code></pre></td></tr></table></figure>
 
@@ -510,7 +512,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/15</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -518,7 +520,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>

@@ -29,12 +29,25 @@ article img {
 article iframe {
   margin: 10px -10px;
 }
+article blockquote {
+  padding: 1.25rem;
+  margin: 1.25rem -10px;
+  border: 1px solid #eee;
+  border-left-width: 0.25rem;
+  border-radius: 0.25rem;
+  border-left-color: #f0ad4e;
+  font-size: 1em;
+}
+article blockquote p:last-child {
+  margin-bottom: 0;
+}
 figure.highlight {
   margin: 10px -10px;
   overflow-x: auto;
 }
 figure.highlight table {
   width: 100%;
+  table-layout: fixed;
 }
 .highlight .gutter {
   display: none;
@@ -137,9 +150,6 @@ article th {
   box-shadow: 0 0 3px 0 #eee;
   overflow: hidden;
 }
-.sidebar .sidebar-toc-page:hover {
-  overflow: auto;
-}
 .sidebar .sidebar-toc-article {
   position: fixed;
   top: 0;
@@ -151,12 +161,18 @@ article th {
 .sidebar .sidebar-toc-article:hover {
   overflow: auto;
 }
+@media screen and (min-width: 1200px) {
+  .sidebar .sidebar-toc-page:hover {
+    overflow: auto;
+  }
+}
 @media screen and (max-width: 1200px) {
   .sidebar .sidebar-toc-page {
     transform: translateX(-90%);
   }
   .sidebar .sidebar-toc-page.show {
     transform: translateX(0);
+    overflow: auto;
   }
   .sidebar .sidebar-toc-article {
     display: none;

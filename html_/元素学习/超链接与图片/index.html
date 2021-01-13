@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -412,7 +412,9 @@
 
 <p>在 <code>index.html</code> 中，可以使用 <code>./app.html</code> 和 <code>../out.html</code> 来指定其他两个文件。</p>
 <p>在 <code>out.html</code> 中，可以使用 <code>./html/index.html</code> 和 <code>./html/app.html</code> 来指定其他两个文件。</p>
-<p><mark>备注：根路径是指当前协议解析的根路径，和计算机硬盘的根路径没有直接关系。</mark></p>
+<blockquote>
+<p>备注：根路径是指当前协议解析的根路径，和计算机硬盘的根路径没有直接关系。</p>
+</blockquote>
 <h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>锚点指的是 URL 的 <strong>片段</strong>，片段用于指定一个资源某个位置，片段在 URL 的最后部分。使用 <code>#</code> 号和路径部分隔开。</p>
 <p>在 HTML 中，给元素使用 <code>id</code> 属性时，会自动生成一个锚点，访问这个锚点，页面会被定位到该元素的位置。</p>
 <p>【锚点演示】</p>
@@ -516,7 +518,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/04</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -524,7 +526,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>

@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -688,11 +688,13 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.bilibili.com&quot;</span> <span class="hljs-attr">data-prevent</span>&gt;</span>bilibili<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">  <span class="hljs-built_in">document</span>.body.addEventListener(</span><br><span class="javascript">    <span class="hljs-string">&quot;click&quot;</span>,</span><br><span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</span><br><span class="javascript">      e = e || <span class="hljs-built_in">window</span>.event;</span><br><span class="javascript">      <span class="hljs-keyword">var</span> target = e.target || e.srcElement;</span><br><span class="javascript">      <span class="hljs-keyword">if</span> (target.hasAttribute(<span class="hljs-string">&quot;data-prevent&quot;</span>)) &#123;</span><br><span class="javascript">        e.returnValue = <span class="hljs-literal">false</span>;</span><br>        e.preventDefault &amp;&amp; e.preventDefault();<br>      &#125;<br>    &#125;,<br><span class="javascript">    <span class="hljs-literal">false</span></span><br>  );<br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，设置自定义布尔属性 <code>data-prevent</code> 的元素都会被禁止默认事件，从而让 <code>a</code> 元素无法产生跳转。</p>
-<p><mark>备注：非常不提倡把 JavaScript 内联写到 HTML 中。</mark></p>
+<blockquote>
+<p>备注：非常不提倡把 JavaScript 内联写到 HTML 中。</p>
+</blockquote>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/04</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -700,7 +702,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>

@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -418,7 +418,9 @@
 <td>可以使用 <code>border-top-left-radius</code>、<code>border-top-right-radius</code>、<code>border-bottom-left-radius</code>、<code>border-bottom-left-radius</code> 单独设置四个角的圆角</td>
 </tr>
 </tbody></table>
-<p><mark>这里只是对圆角进行简要介绍，你可以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-cn/docs/web/css/border-radius">点击这里</a> 查看圆角的详细设置。</mark></p>
+<blockquote>
+<p>这里只是对圆角进行简要介绍，你可以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-cn/docs/web/css/border-radius">点击这里</a> 查看圆角的详细设置。</p>
+</blockquote>
 <h3 id="外边距"><a href="#外边距" class="headerlink" title="外边距"></a>外边距</h3><p>盒模型的外边距使用 <code>margin</code> 相关属性设置，和 <code>padding</code> 相关属性使用方式相同：</p>
 <table>
 <thead>
@@ -525,7 +527,9 @@
 </li>
 </ul>
 <p>无论分为哪一类，他们的盒子都是在标准的盒模型上进行少量的修改。</p>
-<p><strong>备注: CSS 中的块级元素是基于 <code>display</code> 属性判断的，HTML 的块级元素根据元素名字判断，它们两者有一定的关联，但是不完全等同。</strong></p>
+<blockquote>
+<p>备注: CSS 中的块级元素是基于 <code>display</code> 属性判断的，HTML 的块级元素根据元素名字判断，它们两者有一定的关联，但是不完全等同。</p>
+</blockquote>
 <h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><p>当 <code>display</code> 属性为以下值时，元素表现为块级元素：</p>
 <ul>
 <li><code>block</code>：大部分 HTML 块级元素的盒子。（比如：<code>p、div、h1、h2、ul</code> 等等）</li>
@@ -592,7 +596,7 @@
 <li><code>table-cell</code> 盒子只是不能设置 <code>margin</code>。</li>
 <li>其他盒子大部分只有 <code>border</code> 和宽高，并且设置了也无效。</li>
 </ul>
-<p><mark>表格内部元素的盒子虽然多，但是只需要记住 <code>table-cell</code> 盒子即可，其他只是补充。</mark></p>
+<p><em>表格内部元素的盒子虽然多，但是只需要记住 <code>table-cell</code> 盒子即可，其他只是补充。</em></p>
 <h3 id="隐藏"><a href="#隐藏" class="headerlink" title="隐藏"></a>隐藏</h3><p>当设置 <code>display</code> 属性的值为 <code>none</code> 的时候，元素就会被隐藏，比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    display: none;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>这里被隐藏了<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -644,7 +648,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/10</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -652,7 +656,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>

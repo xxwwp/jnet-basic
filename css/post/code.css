@@ -4,6 +4,7 @@ figure.highlight {
 }
 figure.highlight table {
   width: 100%;
+  table-layout: fixed;
 }
 .highlight .gutter {
   display: none;

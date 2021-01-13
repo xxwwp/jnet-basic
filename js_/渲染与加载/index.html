@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HTML，CSS，JavaScript 基础知识 " />
-    
-<link rel="stylesheet" href="/jnet-basic/css/layout.css">
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.1/styles/agate.css"
@@ -24,6 +21,9 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
+<link rel="stylesheet" href="/jnet-basic/css/layout.css">
+
     <title>JNet Basic</title>
   <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -472,7 +472,9 @@
 <h2 id="eval-加载-JavaScript"><a href="#eval-加载-JavaScript" class="headerlink" title="eval 加载 JavaScript"></a>eval 加载 JavaScript</h2><p>极少数情况下，JavaScript 代码会以字符串的形式出现，可以使用内置函数 <code>eval</code> 把一段字符串当做 JavaScript 代码执行，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> jscode = <span class="hljs-string">&quot;var foo = 1; console.log(foo)&quot;</span>;<br><span class="hljs-built_in">eval</span>(jsCode);<br></code></pre></td></tr></table></figure>
 
-<p><mark>这种加载 JS 代码的方式是明令禁止的，因为它非常不安全。</mark></p>
+<blockquote>
+<p>使用 <code>eval</code> 这种加载 JS 代码的方式是明令禁止的，因为它非常不安全。</p>
+</blockquote>
 <p>如果代码本身就由前端开发人员编写，<code>eval</code> 完全不需要，所以一般这使用 <code>eval</code> 运行的代码都是开发者之外人员编写的代码，这部分代码可能存在一定的安全问题，比如盗取数据，或者干扰当前代码。</p>
 <p><code>eval</code> 中的代码并不是独立运行的，它会使用当前作用域，比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">var</span> jsCode = <span class="hljs-string">&quot;var bar = 2; console.log(foo)&quot;</span>;<br><span class="hljs-built_in">eval</span>(jsCode);<br><span class="hljs-built_in">console</span>.log(bar);<br></code></pre></td></tr></table></figure>
@@ -481,7 +483,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2020/12/17</span>
+      <span class="last-update">最后更新时间：2021/01/13</span>
     </p>
   </div>
 </article>
@@ -489,7 +491,6 @@
     <script>
       $(document).ready(function () {
         $("article table:not(.highlight table)").addClass("table table-hover");
-        $("article blockquote").addClass("blockquote");
       });
     </script>
   </body>
