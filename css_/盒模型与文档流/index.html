@@ -513,17 +513,18 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.content</span>,</span><br><span class="css">  <span class="hljs-selector-class">.border</span> &#123;</span><br>    border: 10px solid black;<br>    width: 100px;<br>    height: 100px;<br>    padding: 20px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.content</span> &#123;</span><br>    box-sizing: content-box;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.border</span> &#123;</span><br>    box-sizing: border-box;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;border&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>.border</code> 盒子的大小只有 100 * 100，边框和内边距都包含在内，而 <code>.content</code> 盒子的大小就是 130 * 130，<code>width</code> 和 <code>height</code> 只是限制了内容区的大小。</p>
-<h2 id="盒模型分类"><a href="#盒模型分类" class="headerlink" title="盒模型分类"></a>盒模型分类</h2><p>可以通过 CSS 属性 <code>display</code> 来决定了元素渲染时的盒子，根据盒子的大致风格，CSS 把元素分为以下几类：</p>
+<h2 id="盒模型分类"><a href="#盒模型分类" class="headerlink" title="盒模型分类"></a>盒模型分类</h2><p>CSS 中有很多种的盒子，它们都是在标准盒模型的基础上进行一些修改。可以使用 <code>display</code> 属性来设置了元素渲染时使用的盒子。</p>
+<p>根据盒子的大致风格，CSS 把元素分为以下几类：</p>
 <ul>
-<li><p>块级元素：对应 HTML 中的块级元素。</p>
+<li><p>块级元素：<strong>独占一行的元素。</strong></p>
 </li>
-<li><p>行内级元素：对应 HTML 中的内联元素。</p>
+<li><p>行内级元素：<strong>不会独占一行的元素。</strong></p>
 <ul>
-<li>行内块元素：对应一些不会独占一行的块状元素。</li>
-<li>行内元素：对应各种文本元素。</li>
+<li>行内块元素：<strong>超出一行时不会截断，直接整块换行。</strong></li>
+<li>行内元素：<strong>超出一行时会截断，换行继续展示剩余部分。</strong></li>
 </ul>
 </li>
-<li><p>表格元素：对应各个表格内的元素，比如 <code>thead</code>、<code>tr</code>、<code>td</code> 等，不包裹 <code>table</code> 元素。</p>
+<li><p>表格元素：对应各个表格内元素，比如 <code>thead</code>、<code>tr</code>、<code>td</code> 等，不包裹 <code>table</code> 元素。</p>
 </li>
 </ul>
 <p>无论分为哪一类，他们的盒子都是在标准的盒模型上进行少量的修改。</p>
@@ -532,9 +533,9 @@
 </blockquote>
 <h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><p>当 <code>display</code> 属性为以下值时，元素表现为块级元素：</p>
 <ul>
-<li><code>block</code>：大部分 HTML 块级元素的盒子。（比如：<code>p、div、h1、h2、ul</code> 等等）</li>
-<li><code>table</code>：是 <code>table</code> 元素的盒子，但是它的内部是按照表格布局排列。</li>
-<li><code>list-item</code>：是 <code>li</code> 元素的盒子，但是 <code>list-item</code> 盒子的前面会有列表符号。</li>
+<li><code>block</code>：大部分 HTML 块级元素的默认盒子。（比如：<code>p、div、h1、h2、ul</code> 等等）</li>
+<li><code>table</code>：<code>table</code> 元素的默认盒子，它的内部是按照表格布局排列。</li>
+<li><code>list-item</code>：<code>li</code> 元素的默认盒子，<code>list-item</code> 盒子的前面会有列表符号。</li>
 </ul>
 <p><strong>css 块级元素的盒子可以设置盒模型的任意值</strong>，并且它们都是 <strong>独占一行</strong>。</p>
 <p>【演示 <code>block</code>】<br>【演示 <code>table</code> 与 <code>block</code> 的区别】<br>【演示 <code>list-item</code> 的列表符号】</p>
@@ -593,8 +594,8 @@
 <p>表内的盒模型有以下特点：</p>
 <ul>
 <li><code>table-caption</code> 盒子无限制（满足标准盒模型），其他盒模型都没有 <code>margin</code>。</li>
-<li><code>table-cell</code> 盒子只是不能设置 <code>margin</code>。</li>
-<li>其他盒子大部分只有 <code>border</code> 和宽高，并且设置了也无效。</li>
+<li><code>table-cell</code> 盒子没有 <code>margin</code>，并且不会产生溢出，单元格的内容会无限扩张单元格大小。</li>
+<li>剩余盒子大部分只有 <code>border</code> 和宽高，并且设置了也无效。</li>
 </ul>
 <p><em>表格内部元素的盒子虽然多，但是只需要记住 <code>table-cell</code> 盒子即可，其他只是补充。</em></p>
 <h3 id="隐藏"><a href="#隐藏" class="headerlink" title="隐藏"></a>隐藏</h3><p>当设置 <code>display</code> 属性的值为 <code>none</code> 的时候，元素就会被隐藏，比如：</p>
@@ -608,25 +609,25 @@
 <li><code>inline</code>：行内元素代表</li>
 </ul>
 </li>
-<li><p>表格内的盒模型仅做了解，通常只会改变单元格的大小和内边距，不会触及到被限制的属性设置，比如很少会在表格中使用 <code>margin</code>，大部分表格内的盒模型在未来都不会遇到。</p>
+<li><p>表格内的各种盒子仅做了解，不用完全记忆。</p>
 </li>
 </ul>
 <h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><p>文档流是一个抽象的概念，它表示了元素在页面中的排列方式。默认情况下的文档流又被称作常规流或正常流。</p>
-<p>在常规流中</p>
+<p>在常规流中：</p>
 <ul>
 <li><p>行内级元素会横向排列（默认自左到右），这种横向排列的布局环境和规则被称作 <strong>行内格式化上下文(Inline formatting contexts)简称 IFC</strong> ；</p>
 </li>
 <li><p>常规流中的块级元素会纵向排列（自上而下），这种纵向排列的布局环境和规则被称作 <strong>块格式化上下文(Block formatting contexts)简称 BFC</strong>。</p>
 </li>
-<li><p>（表格内之所以有特殊的排列规则，既不是 BFC 也不是 IFC。）</p>
-</li>
 </ul>
-<p>IFC 和 BFC 描述了纵向和横向布局的区域和规则，默认情况下，一个 HTML 文件只有一个 BFC 环境，就是 <code>&lt;html&gt;</code> 元素内，因为里面的块级元素都是纵向排列的，而 IFC 就会很多，每一段文字的排列，都存在于一个 IFC 内，对应了所有的横向排列。</p>
-<h3 id="BFC-概述"><a href="#BFC-概述" class="headerlink" title="BFC 概述"></a>BFC 概述</h3><p>一个 BFC 包含了创建它的元素内部的所有内容。比如 <code>&lt;html&gt;</code> 元素创建的 BFC 就包含了它内部的所有内容。</p>
-<p>同一个 BFC 内的块级元素满足一下会按照一下方式排列：</p>
+<p>IFC 和 BFC 描述了纵向和横向布局的区域和规则，默认情况下，一个 HTML 文件只有一个 BFC 环境，就是 <code>&lt;html&gt;</code> 元素内，这个 BFC 使得整个页面是纵向布局的，然而 IFC 就比较多，可以假想页面足够宽使得页面没有换行，此时每一行都是一个 IFC，IFC 对应了所有的横向排列。</p>
+<blockquote>
+<p>表格内之所以有特殊的排列规则，既不是 BFC 也不是 IFC。</p>
+</blockquote>
+<h3 id="BFC-概述"><a href="#BFC-概述" class="headerlink" title="BFC 概述"></a>BFC 概述</h3><p>默认情况下，页面中只有 <code>html</code> 元素产生了一个 BFC，同一个 BFC 内的块级元素满足一下会按照一下方式排列：</p>
 <ul>
-<li>块级元素产生的各个盒子依次向下排列，每个盒子独占一行，（嵌套不会产生新的 BFC）；</li>
-<li>块级元素之间的盒子在垂直外边距上会出现相互重叠；（不论两个元素是并列还是嵌套）</li>
+<li>块级元素产生的各个盒子依次向下排列，每个盒子独占一行，（嵌套不会产生新的 BFC）</li>
+<li>块级元素之间的盒子在垂直外边距上会出现相互重叠；（不论两个元素是并列、嵌套甚至是间隔）</li>
 <li>BFC 内包含创建它的元素内部的所有内容；</li>
 </ul>
 <p>【逐项演示】</p>
@@ -636,14 +637,17 @@
 <li>当盒子相互排列溢出一行的时候，向下新开一行继续排列。</li>
 <li>每行都包含了本行中所有的内容，行与行之间没有垂直间距。</li>
 </ul>
+<blockquote>
 <p>备注：每行不一定都一样高，某一行可能有一张图片，就会把这行撑得比其他行高。</p>
+</blockquote>
 <p>行内元素的盒子会有些许不同：</p>
 <ul>
 <li>行内元素的盒子设置 <code>width</code>、<code>height</code> 无效，盒子的宽高是由行内元素内部的内容撑起；</li>
 <li><code>margin</code>、<code>border</code>、<code>padding</code> 只在水平方向上正常生效；</li>
 <li>垂直方向上：<code>margin</code> 不显示，<code>border</code> 和 <code>padding</code> 显示但是不参与布局计算；</li>
-<li>行内元素的盒子会在换行的时候出现断层现象；</li>
+<li>行内元素的盒子会在换行的时候出现截断现象；</li>
 </ul>
+<p>行内块元素没有上述限制，可以设置盒模型的任意值，但是在换行的时候，不会截断，而是表现为整块换行。</p>
 <p>【逐项演示】</p>
 </div>
   <div class="article-ft">
