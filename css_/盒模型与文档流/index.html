@@ -625,20 +625,21 @@
 </ul>
 <p>IFC 和 BFC 描述了纵向和横向布局的区域和规则，默认情况下，一个 HTML 文件只有一个 BFC 环境，就是 <code>&lt;html&gt;</code> 元素内，这个 BFC 使得整个页面是纵向布局的，然而 IFC 就比较多，可以假想页面足够宽使得页面没有换行，此时每一行都是一个 IFC，IFC 对应了所有的横向排列。</p>
 <blockquote>
-<p>表格内之所以有特殊的排列规则，既不是 BFC 也不是 IFC。</p>
+<p>备注：表格内有特殊的排列规则和区域，所以表格内部的布局既不是 BFC 也不是 IFC。</p>
 </blockquote>
-<h3 id="BFC-概述"><a href="#BFC-概述" class="headerlink" title="BFC 概述"></a>BFC 概述</h3><p>默认情况下，页面中只有 <code>html</code> 元素产生了一个 BFC，同一个 BFC 内的块级元素满足一下会按照一下方式排列：</p>
+<h3 id="BFC-概述"><a href="#BFC-概述" class="headerlink" title="BFC 概述"></a>BFC 概述</h3><p>默认情况下，页面中只有 <code>html</code> 元素会产生了一个 BFC，同一个 BFC 内的块级元素有以下规则：</p>
 <ul>
-<li>块级元素产生的各个盒子依次向下排列，每个盒子独占一行，（嵌套不会产生新的 BFC）</li>
-<li>块级元素之间的盒子在垂直外边距上会出现相互重叠；（不论两个元素是并列、嵌套甚至是间隔）</li>
-<li>BFC 内包含创建它的元素内部的所有内容；</li>
+<li>块级元素产生的各个盒子依次向下排列，每个盒子 <strong>独占一行</strong>，（嵌套不会产生新的 BFC）</li>
+<li>如果两个块级元素之间的盒子在垂直外边距上没有阻隔，那么相邻的垂直外边距会出现 <strong>重叠</strong>；（不论两个元素是并列、嵌套甚至是间隔）</li>
+<li><strong>BFC 内包含创建它的元素内部的所有内容</strong>；</li>
 </ul>
 <p>【逐项演示】</p>
-<h3 id="IFC-概述"><a href="#IFC-概述" class="headerlink" title="IFC 概述"></a>IFC 概述</h3><p>行内级元素的每个单词或汉字都会参与到一个 IFC 中，IFC 内的行内级元素会按照一下方式排列：</p>
+<h3 id="IFC-概述"><a href="#IFC-概述" class="headerlink" title="IFC 概述"></a>IFC 概述</h3><p><strong>所有的行内级元素以及每个单词或汉字都会参与到一个 IFC 中</strong>，IFC 内的盒子（包括匿名盒子）会按照一下方式排列：</p>
 <ul>
 <li>盒子都会依次按照书写方式排列（默认从左到右）。</li>
-<li>当盒子相互排列溢出一行的时候，向下新开一行继续排列。</li>
+<li>当盒子相互排列溢出一行的时候 IFC 会产生 <strong>截断</strong>，剩余部分会向下新开一行继续排列。</li>
 <li>每行都包含了本行中所有的内容，行与行之间没有垂直间距。</li>
+<li><code>&lt;br /&gt;</code> 元素的全称实际是 <code>break</code>，意思为截断。使用 <code>br</code> 元素会主动产生一个 IFC 中的断点，从而实现换行。（<em>断点</em> 并非专业术语，此处只是为了更容易的解释）</li>
 </ul>
 <blockquote>
 <p>备注：每行不一定都一样高，某一行可能有一张图片，就会把这行撑得比其他行高。</p>
@@ -647,15 +648,15 @@
 <ul>
 <li>行内元素的盒子设置 <code>width</code>、<code>height</code> 无效，盒子的宽高是由行内元素内部的内容撑起；</li>
 <li><code>margin</code>、<code>border</code>、<code>padding</code> 只在水平方向上正常生效；</li>
-<li>垂直方向上：<code>margin</code> 不显示，<code>border</code> 和 <code>padding</code> 显示但是不参与布局计算；</li>
+<li>垂直方向上：<code>margin</code> 不显示，<code>border</code> 和 <code>padding</code> 虽然显示但是不参与布局（垂直方向上的边框和内边距不会撑起行高）；</li>
 <li>行内元素的盒子会在换行的时候出现截断现象；</li>
 </ul>
-<p>行内块元素没有上述限制，可以设置盒模型的任意值，但是在换行的时候，不会截断，而是表现为整块换行。</p>
+<p>行内块元素没有上述限制，可以设置盒模型的任意值，并且在换行的时候，不会截断，而是表现为整块换行。</p>
 <p>【逐项演示】</p>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/25</span>
+      <span class="last-update">最后更新时间：2021/01/31</span>
     </p>
   </div>
 </article>
