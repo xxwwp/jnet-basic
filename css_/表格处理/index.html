@@ -281,7 +281,7 @@
   </ul>
 </div>
 </aside>
-  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="toc-text">表格样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E4%BC%B8%E7%BC%A9"><span class="toc-text">表格伸缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%A1%8C%E9%99%B7"><span class="toc-text">边框塌陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E9%9A%99"><span class="toc-text">间隙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%AE%BE%E8%AE%A1"><span class="toc-text">表格设计</span></a></li></ol></div>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="toc-text">表格样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E4%BC%B8%E7%BC%A9"><span class="toc-text">表格伸缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%A1%8C%E9%99%B7"><span class="toc-text">边框塌陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E9%9A%99"><span class="toc-text">间隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E5%86%85%E5%AE%B9%E5%9E%82%E7%9B%B4%E5%AF%B9%E9%BD%90"><span class="toc-text">单元格内容垂直对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">空单元格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E4%BD%8D%E7%BD%AE"><span class="toc-text">标题位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%AE%BE%E8%AE%A1"><span class="toc-text">表格设计</span></a></li></ol></div>
 </aside>
 </div>
 <script>
@@ -351,13 +351,85 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">table-layout</span>: fixed;<br>  <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>虽然表格间隙会消失，但是单元格之间的 <code>border</code> 不会合并，单元格的边框感觉被设置成了两倍。</p>
-<h2 id="表格设计"><a href="#表格设计" class="headerlink" title="表格设计"></a>表格设计</h2><p>一般情况下，我们都会使用塌陷模式的表格，这样表格会更加紧凑，边框合并也利于样式设置。表格内的边框只有 <code>th,td,caption</code> 元素会正常显示，同时也只有他们能够设置 <code>padding</code> 属性，表格内的元素是无法设置 <code>margin</code> 的，单元格的间隙使用 <code>border-spacing</code> 来设置。</p>
+<h3 id="单元格内容垂直对齐"><a href="#单元格内容垂直对齐" class="headerlink" title="单元格内容垂直对齐"></a>单元格内容垂直对齐</h3><p>可以使用 <code>vertical-align</code> 来垂直对齐单元格中的内容，它有很多值，但是在表格单元格内常用的值只有 3 个：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>top</code></td>
+<td>内容对齐到单元格的上方</td>
+</tr>
+<tr>
+<td><code>middle</code></td>
+<td>内容对齐到单元格的中间</td>
+</tr>
+<tr>
+<td><code>bottom</code></td>
+<td>内容对齐到单元格的下方</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  td &#123;<br>    border: 1px solid silver;<br>    width: 100px;<br>    height: 100px;<br><span class="css">    <span class="hljs-comment">/* 单元格的内容会被显示到单元格的最下方 */</span></span><br>    vertical-align: bottom;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>vertical-align</code> 不止在单元格中可以是垂直对齐，它还可以设置在 IFC 环境当中，在 【基础布局】 一节会有所介绍。</p>
+</blockquote>
+<h3 id="空单元格"><a href="#空单元格" class="headerlink" title="空单元格"></a>空单元格</h3><blockquote>
+<p>☹ 这个属性并不常用</p>
+</blockquote>
+<p>使用 <code>empty-cells</code> 属性可以设置空单元格的显示状态，它有两个值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>show</code></td>
+<td>默认值，显示空的单元格</td>
+</tr>
+<tr>
+<td><code>hide</code></td>
+<td>隐藏空的单元格，保留布局的位置</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  td &#123;<br>    border: 2px solid silver;<br>  &#125;<br>  table &#123;<br><span class="css">    <span class="hljs-comment">/* 空的单元格会被隐藏，但是不影响表格布局 */</span></span><br>    empty-cells: hide;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="标题位置"><a href="#标题位置" class="headerlink" title="标题位置"></a>标题位置</h3><blockquote>
+<p>☹ 这个属性并不常用</p>
+</blockquote>
+<p>使用 <code>caption-side</code> 可以 <code>caption</code> 元素在表格中显示的位置，它有两个值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>top</code></td>
+<td>默认值，标题在表格的上方</td>
+</tr>
+<tr>
+<td><code>bottom</code></td>
+<td>标题在表格的下方</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  td &#123;<br>    border: 2px solid silver;<br>  &#125;<br>  table &#123;<br><span class="css">    <span class="hljs-comment">/* 让标题放到表格的最下面 */</span></span><br>    caption-side: bottom;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span><br>    标题<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>单元格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="表格设计"><a href="#表格设计" class="headerlink" title="表格设计"></a>表格设计</h2><p>一般情况下，我们都会使用塌陷模式的表格，这样表格会更加紧凑，边框合并也利于样式设置。</p>
+<p>在盒模型一节介绍过，表格内的边框只有 <code>th,td,caption</code> 元素会正常显示，同时也只有他们能够设置 <code>padding</code> 属性，表格内的元素是无法设置 <code>margin</code> 的，单元格的间隙使用 <code>border-spacing</code> 来设置。</p>
 <p>一个常见的表格样式设计如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.my-table</span> &#123;<br>  <span class="hljs-attribute">border-collapse</span>: collapse;<br>&#125;<br><span class="hljs-selector-class">.my-table</span> <span class="hljs-selector-tag">td</span>,<br><span class="hljs-selector-class">.my-table</span> <span class="hljs-selector-tag">th</span> &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">196</span>, <span class="hljs-number">196</span>, <span class="hljs-number">196</span>);<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">15px</span>;<br>&#125;<br><span class="hljs-selector-class">.my-table</span> <span class="hljs-selector-tag">tr</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">196</span>, <span class="hljs-number">196</span>, <span class="hljs-number">196</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/01/15</span>
+      <span class="last-update">最后更新时间：2021/02/03</span>
     </p>
   </div>
 </article>
