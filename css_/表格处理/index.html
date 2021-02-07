@@ -281,7 +281,7 @@
   </ul>
 </div>
 </aside>
-  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="toc-text">表格样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E4%BC%B8%E7%BC%A9"><span class="toc-text">表格伸缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%A1%8C%E9%99%B7"><span class="toc-text">边框塌陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E9%9A%99"><span class="toc-text">间隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E5%86%85%E5%AE%B9%E5%9E%82%E7%9B%B4%E5%AF%B9%E9%BD%90"><span class="toc-text">单元格内容垂直对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">空单元格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E4%BD%8D%E7%BD%AE"><span class="toc-text">标题位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%AE%BE%E8%AE%A1"><span class="toc-text">表格设计</span></a></li></ol></div>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="toc-text">表格样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E4%BC%B8%E7%BC%A9"><span class="toc-text">表格伸缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E9%9A%99"><span class="toc-text">间隙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%A1%8C%E9%99%B7"><span class="toc-text">边框塌陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E5%86%85%E5%AE%B9%E5%9E%82%E7%9B%B4%E5%AF%B9%E9%BD%90"><span class="toc-text">单元格内容垂直对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-text">空单元格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E4%BD%8D%E7%BD%AE"><span class="toc-text">标题位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%AE%BE%E8%AE%A1"><span class="toc-text">表格设计</span></a></li></ol></div>
 </aside>
 </div>
 <script>
@@ -325,6 +325,11 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">table-layout</span>: fixed;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>如果去除表格 <code>width</code> 属性，<code>fixed</code> 布局方式会无效。</p>
+<h3 id="间隙"><a href="#间隙" class="headerlink" title="间隙"></a>间隙</h3><p>使用 <code>border-spacing</code> 属性可以设置单元格之间的间隙。</p>
+<p>比如设置单元格间隙为 0：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">table-layout</span>: fixed;<br>  <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>虽然表格间隙会消失，但是单元格之间的 <code>border</code> 并不会合并，单元格的边框被设置成了两倍。</p>
 <h3 id="边框塌陷"><a href="#边框塌陷" class="headerlink" title="边框塌陷"></a>边框塌陷</h3><p>使用 <code>border-collapse</code> 属性可以设置表格内部边框的塌陷模式，它有以下两个值：</p>
 <table>
 <thead>
@@ -339,18 +344,13 @@
 </tr>
 <tr>
 <td><code>collapse</code></td>
-<td>塌陷模式，相邻边框会产生合并，单元格之间的间隙会消失。</td>
+<td>塌陷模式，相邻边框会产生合并，单元格之间的间隙会消失，<code>border-spacing</code> 属性将会失效</td>
 </tr>
 </tbody></table>
 <p>在上一节代码的基础上，修改一下样式：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">table-layout</span>: fixed;<br>  <span class="hljs-attribute">border-collapse</span>: collapse;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>你会发现表格间隙消失了，并且单元格之间的 <code>border</code> 产生了合并。</p>
-<h3 id="间隙"><a href="#间隙" class="headerlink" title="间隙"></a>间隙</h3><p>使用 <code>border-spacing</code> 属性可以设置单元格之间的间隙，<strong>只适用于分离模式</strong>。</p>
-<p>现在关闭表格的边框塌陷模式，设置单元格间隙为 0：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">table</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>  <span class="hljs-attribute">table-layout</span>: fixed;<br>  <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>虽然表格间隙会消失，但是单元格之间的 <code>border</code> 不会合并，单元格的边框感觉被设置成了两倍。</p>
 <h3 id="单元格内容垂直对齐"><a href="#单元格内容垂直对齐" class="headerlink" title="单元格内容垂直对齐"></a>单元格内容垂直对齐</h3><p>可以使用 <code>vertical-align</code> 来垂直对齐单元格中的内容，它有很多值，但是在表格单元格内常用的值只有 3 个：</p>
 <table>
 <thead>
