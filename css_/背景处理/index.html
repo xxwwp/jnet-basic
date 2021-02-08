@@ -359,23 +359,23 @@
 </thead>
 <tbody><tr>
 <td><code>auto</code></td>
-<td>保持图片尺寸，默认，这是个理想的值，图片不会因为拉伸或缩放失真。</td>
+<td>保持图片原有大小，默认，这是个理想的值，图片不会因为拉伸或缩放失真。</td>
 </tr>
 <tr>
 <td><code>contain</code></td>
-<td>保持图片尺寸缩放，让背景区域完全包裹图片。</td>
+<td>保持图片比例情况下缩放，让背景区域完全 <strong>包裹</strong> 图片。</td>
 </tr>
 <tr>
 <td><code>cover</code></td>
-<td>保持图片尺寸缩放，让背景区域完全填充图片。</td>
+<td>保持图片比例情况下缩放，让背景区域完全 <strong>填充</strong> 图片。</td>
 </tr>
 <tr>
 <td>单个值</td>
-<td>同时设置图片的宽度和高度</td>
+<td>设置宽度，保持图片比例情况下设置图片的宽度，高度会自动缩放。</td>
 </tr>
 <tr>
 <td>两个值</td>
-<td>依次设置图片的宽度和高度，其中一个值设置为 <code>auto</code>，图片会缩放</td>
+<td>依次设置图片的宽度和高度，其中一个值设置为 <code>auto</code>，图片会保留缩放</td>
 </tr>
 </tbody></table>
 <p>【演示】</p>
@@ -393,15 +393,15 @@
 </tr>
 <tr>
 <td><code>top</code> 或 <code>bottom</code></td>
-<td>上下对齐</td>
+<td>设置图片上下对齐</td>
 </tr>
 <tr>
 <td><code>left</code> 或 <code>right</code></td>
-<td>左右对齐</td>
+<td>设置图片左右对齐</td>
 </tr>
 <tr>
 <td>单个值</td>
-<td>同时设置 x 轴和 y 轴的偏移量</td>
+<td>设置 x 轴偏移量，y 轴会显示为居中</td>
 </tr>
 <tr>
 <td>两个值</td>
@@ -409,11 +409,11 @@
 </tr>
 <tr>
 <td>百分值</td>
-<td>默认情况下根据元素滚动框和图片大小的差值计算</td>
+<td>默认情况下根据元素滚动框和图片大小的差值计算。<br />比如 x 轴的 0% 图片会在左侧，100% 会在右侧</td>
 </tr>
 <tr>
-<td>像素</td>
-<td>相对背景区域的偏移</td>
+<td>使用多个值指定偏移值</td>
+<td>图片会相对背景区域的偏移，比如：<br /> <code>left 10px bottom 20px</code>，图片会放在距离左侧 10px 底部 20px 的位置放置</td>
 </tr>
 </tbody></table>
 <p>【演示】</p>
