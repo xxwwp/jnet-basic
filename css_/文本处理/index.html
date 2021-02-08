@@ -393,9 +393,16 @@
 <blockquote>
 <p>备注：一些编辑器中，还可以直接把鼠标挪到颜色上进行选择，比如 vscode 或者 codesandbox。</p>
 </blockquote>
+<p><strong>在简写的基础上，如果每种颜色的值使用同一个字符，还可以继续简写</strong> 。比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#112233</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#ee99ff</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#aadd44</span>;<br>&#125;<br><span class="hljs-comment">/* 可以简写为 */</span><br><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#123</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#e9f</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#ad4</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h3><p><code>rgba</code>函数在 <code>rgb</code> 函数的基础上添加了透明度的设置，可以透明度写到最后一个值中，透明度的大小是 0 到 1，其中 1 表示完全显示，0 表示完全透明，比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-comment">/* 透明度为 50% 的黑色 */</span><br>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>);<br>  <span class="hljs-comment">/* 透明度为 50% 的红色 */</span><br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p><code>rgba</code> 也可以使用十六进制简写，但是并不推荐，因为简写的兼容性并不好，低版本的浏览器可以无法识别，比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#ff000066</span>;<br>&#125;<br><span class="hljs-comment">/* 可以简写为 */</span><br><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#f006</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中最后两位表示透明度。</p>
 <h3 id="字体粗细"><a href="#字体粗细" class="headerlink" title="字体粗细"></a>字体粗细</h3><p>通过设置 <code>font-weight</code> 属性，可以改变字体的粗细，比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -582,7 +589,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/07</span>
+      <span class="last-update">最后更新时间：2021/02/08</span>
     </p>
   </div>
 </article>
