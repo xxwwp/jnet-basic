@@ -281,7 +281,7 @@
   </ul>
 </div>
 </aside>
-  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cursor"><span class="toc-text">cursor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opacity"><span class="toc-text">opacity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline"><span class="toc-text">outline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#visibility"><span class="toc-text">visibility</span></a></li></ol></li></ol></div>
+  <aside class="sidebar-toc-article"><div class="toc-article"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cursor"><span class="toc-text">cursor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#opacity"><span class="toc-text">opacity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline"><span class="toc-text">outline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#visibility"><span class="toc-text">visibility</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E8%A1%A5%E5%85%85"><span class="toc-text">隐藏补充</span></a></li></ol></div>
 </aside>
 </div>
 <script>
@@ -342,14 +342,62 @@
 <p>但是 <code>outline</code> 也有一个缺点就是不支持圆角属性，比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">151</span>, <span class="hljs-number">147</span>, <span class="hljs-number">147</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><p><code>visibility</code> 可以设置元素的可见状态，当设置为 <code>hidden</code> 的时候，元素会完全透明，并且无法选中，但是它所在的位置会被空出来。其子级可以通过设置属性值 <code>visible</code> 来显示。比如：</p>
+<h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><p><code>visibility</code> 可以设置元素的可见状态，它有两个值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hidden</code></td>
+<td>元素及其子级会被隐藏，并且无法选中，但是元素原始布局位置会被保留。</td>
+</tr>
+<tr>
+<td><code>visible</code></td>
+<td>初识值，元素会显示，可以主动给已经隐藏元素的子级元素设置为 <code>visible</code>，子级元素就会显示。</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.box</span> &#123;</span><br>    width: 200px;<br>    height: 200px;<br>    background-color: rgb(151, 147, 147);<br>    visibility: hidden;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.child</span> &#123;</span><br>    width: 100px;<br>    height: 100px;<br>    background-color: rgb(70, 68, 68);<br>    visibility: visible;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span>这里会显示<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这里被隐藏了<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面例子中，<code>.box</code> 元素依旧会占据空间，它和它的子级元素都不会显示，但是其子级元素可以使用 <code>visible</code> 来显示。</p>
+<h2 id="隐藏补充"><a href="#隐藏补充" class="headerlink" title="隐藏补充"></a>隐藏补充</h2><p>分析一下三条声明的不同：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">display</span>: none;<br>  <span class="hljs-attribute">visibility</span>: hidden;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>声明</th>
+<th>结果</th>
+<th>影响</th>
+<th>交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>display:none</code></td>
+<td>元素没有盒模型，不会参与布局</td>
+<td>不渲染 + 不保留布局</td>
+<td>不参与交互</td>
+</tr>
+<tr>
+<td><code>visibility:hidden</code></td>
+<td>元素不可见</td>
+<td>不渲染 + 保留布局</td>
+<td>不参与交互</td>
+</tr>
+<tr>
+<td><code>opacity:0</code></td>
+<td>元素完全透明</td>
+<td>渲染 + 保留布局</td>
+<td>参与交互，如果是表单或者超链接等等，依旧可以点击</td>
+</tr>
+</tbody></table>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/09</span>
+      <span class="last-update">最后更新时间：2021/02/14</span>
     </p>
   </div>
 </article>
