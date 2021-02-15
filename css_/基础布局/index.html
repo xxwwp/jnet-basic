@@ -308,26 +308,31 @@
 </thead>
 <tbody><tr>
 <td><code>left</code></td>
-<td>左侧对其</td>
+<td>文本靠左侧对其</td>
 </tr>
 <tr>
 <td><code>center</code></td>
-<td>居中对其</td>
+<td>文本居中对其</td>
 </tr>
 <tr>
 <td><code>right</code></td>
-<td>右侧对其</td>
+<td>文本靠右侧对其</td>
 </tr>
 <tr>
 <td><code>justify</code></td>
-<td>两端对齐，最后一行靠左</td>
+<td>文本会在一行内两端对齐，最后一行靠左</td>
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
 <h3 id="垂直排版"><a href="#垂直排版" class="headerlink" title="垂直排版"></a>垂直排版</h3><p>垂直排版有两个属性：</p>
 <ul>
-<li><code>line-height</code>：用来设置元素内部文本的行高（这个属性不是作用到元素上，是作用到文本上）</li>
-<li><code>vertical</code>：用来设置行内级元素垂直方向上的位置</li>
+<li><code>line-height</code>：用来设置元素的行高。</li>
+<li><code>vertical-align</code>：用来设置行内级元素垂直方向上的位置。</li>
+</ul>
+<p>关于 <code>line-height</code> 属性需要强调的点：</p>
+<ul>
+<li><code>line-height</code> 属性用来设置元素的行高，行高并不参与不属于盒模型的组成部分；</li>
+<li>元素内部的默认文本会使用 <code>line-height</code> 的值渲染文本的高度。</li>
 </ul>
 <p><code>line-height</code> 属性有以下值：</p>
 <table>
@@ -339,18 +344,22 @@
 </thead>
 <tbody><tr>
 <td><code>normal</code></td>
-<td>默认值，记住不是 <code>auto</code></td>
+<td>默认值，这个值是相对于 <code>font-size</code> 属性和字体样式计算得来的一个合适的行高。这个高度并不等于 <code>font-size</code> 的大小。</td>
 </tr>
 <tr>
-<td>数值</td>
-<td>像素，百分比等</td>
+<td>长度</td>
+<td></td>
+</tr>
+<tr>
+<td>百分比</td>
+<td>100% 等于 <code>font-size</code> 值的大小。</td>
 </tr>
 </tbody></table>
 <p>比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>上面的代码会给 <code>p</code> 元素内的文本行高设置为 <code>50px</code>，<code>line-height</code> 并不是固定值，它只是设置了元素内部字体所占的行高，行高还是可能因为一张巨大的图片撑开。</p>
-<p><code>vertical-align</code> 用来设置一个行内元素在其所在行的垂直位置，并不是定义元素内容的垂直排列，所以 <code>vertical-align</code> 应用在行内级元素上。它有以下值：</p>
+<p><strong><code>vertical-align</code> 用来设置一个行内级元素在其所在行的垂直位置，并不是定义元素内容的垂直排列，所以 <code>vertical-align</code> 应用在行内级元素上</strong>。它有以下值：</p>
 <table>
 <thead>
 <tr>
@@ -360,61 +369,96 @@
 </thead>
 <tbody><tr>
 <td><code>baseline</code></td>
-<td>默认值，基于文字基线对齐</td>
+<td>默认值，让元素的基线和父级元素的基线对齐。</td>
 </tr>
 <tr>
 <td><code>middle</code></td>
-<td>基于中线对齐</td>
+<td>让元素的中部与父级元素的基线加上父级 x-height 的一半对齐。</td>
 </tr>
 <tr>
 <td><code>top</code></td>
-<td>基于顶部对齐</td>
+<td>让元素的顶部与所在行的顶部对齐。</td>
 </tr>
 <tr>
 <td><code>bottom</code></td>
-<td>基于底部对齐</td>
+<td>让元素的底部与所在行的底部对齐。</td>
 </tr>
 <tr>
 <td><code>text-top</code></td>
-<td>基于字体顶部对齐</td>
+<td>让元素的顶部与父级元素字体的顶部对齐。</td>
 </tr>
 <tr>
 <td><code>text-bottom</code></td>
-<td>基于字体底部对齐</td>
+<td>让元素的顶部与父级元素字体的顶部对齐。</td>
+</tr>
+<tr>
+<td><code>super</code></td>
+<td>让元素基线与对齐父级元素的上标基线。</td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>让元素基线与对齐父级元素的下标基线。</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>设置元素基线与父级元素基线的长度偏移值。</td>
+</tr>
+<tr>
+<td>百分比</td>
+<td>设置元素基线与父级元素基线的百分比偏移值，百分比基于当前元素的 <code>line-height</code> 属性计算。</td>
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
+<blockquote>
+<p><strong>关于 x-height：</strong><br>x-height 表示字符 ‘x’ 的高度，这是个相对值，会随着 <code>font-size</code> 的值改变而改变。</p>
+</blockquote>
+<blockquote>
+<p><strong>关于上标和下标基线：</strong><br>HTML 中有两个元素 <code>sub</code> 和 <code>sup</code>，它们会使文本的排列位置向上或向下进行偏移，比如：<br><code>H&lt;sub&gt;2&lt;/sub&gt;O</code> 会被渲染成：H<sub>2</sub>O；<br><code>y = X&lt;sup&gt;2&lt;/sup&gt;</code> 会被渲染成：X<sup>2</sup>。<br><code>sub</code> 元素和 <code>sup</code> 元素的 <code>vertical-align</code> 默认值就是 <code>sub</code> 和 <code>super</code>。</p>
+</blockquote>
 <h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>中文段落常常会在首行缩进两个汉字，可以使用 <code>text-indent</code> 属性来实现：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>其中，<code>em</code> 是字体的相对单位，<code>1em</code> 的大小等同于字体 <code>font-size</code> 设置的大小。所以 <code>2em</code> 正好缩进了两倍 <code>font-size</code> 的大小。</p>
-<h3 id="留白"><a href="#留白" class="headerlink" title="留白"></a>留白</h3><p>设置 <code>white-space</code> 属性，可以改变渲染时对留白的处理，留白由缩进、空格、换行等组成，它有以下值：</p>
+<h3 id="留白"><a href="#留白" class="headerlink" title="留白"></a>留白</h3><p>设置 <code>white-space</code> 属性，可以改变渲染时对留白的处理，留白由缩进、空格、换行符等组成。</p>
+<p>学习 <code>white-space</code> 之前，我们需要先整理页面渲染时，能够发生换行的情况：</p>
+<ol>
+<li>换行符 <code>\n</code>，即回车键输入的符号，记作 ①；</li>
+<li>IFC 内水平溢出产生截断，记作 ②；</li>
+<li>插入 <code>&lt;br /&gt;</code> 元素主动截断，记作 ③。</li>
+</ol>
+<p>现在来了解 <code>white-space</code> 的值：</p>
 <table>
 <thead>
 <tr>
 <th>值</th>
 <th>描述</th>
+<th>有效的换行</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>normal</code></td>
-<td>默认值，忽略留白</td>
-</tr>
-<tr>
-<td><code>pre</code></td>
-<td>原样渲染（不会自动换行，<code>pre</code> 元素的默认样式）</td>
+<td>默认值，忽略所有留白，连续的留白会压缩成一个空格。</td>
+<td>②、③</td>
 </tr>
 <tr>
 <td><code>nowrap</code></td>
-<td>文本永不换行，除非插入 <code>br</code> 元素</td>
+<td>类似于 <code>normal</code>，但是文本不会换行，除非主动插入 <code>br</code> 元素。</td>
+<td>③</td>
+</tr>
+<tr>
+<td><code>pre</code></td>
+<td>原样渲染，保留所有留白（水平溢出不会自动换行，除非插入 <code>br</code> 元素，<code>pre</code> 元素的默认样式）</td>
+<td>①、③</td>
 </tr>
 <tr>
 <td><code>pre-wrap</code></td>
-<td>自动换行并保留空白</td>
+<td>类似于 <code>pre</code> 元素，但是水平溢出会产生换行。</td>
+<td>②、③</td>
 </tr>
 <tr>
 <td><code>pre-line</code></td>
-<td>自动换行并合并空白</td>
+<td>行内连续留白会压缩成一个空格，保留所有换行。</td>
+<td>①、②、③</td>
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
@@ -644,7 +688,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/14</span>
+      <span class="last-update">最后更新时间：2021/02/15</span>
     </p>
   </div>
 </article>
