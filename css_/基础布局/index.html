@@ -329,11 +329,7 @@
 <li><code>line-height</code>：用来设置元素的行高。</li>
 <li><code>vertical-align</code>：用来设置行内级元素垂直方向上的位置。</li>
 </ul>
-<p>关于 <code>line-height</code> 属性需要强调的点：</p>
-<ul>
-<li><code>line-height</code> 属性用来设置元素的行高，行高并不属于盒模型的组成部分；</li>
-<li>元素内部的默认文本会使用 <code>line-height</code> 的值来渲染文本的高度。</li>
-</ul>
+<p><strong><code>line-height</code> 属性设置的行高并不属于盒模型的组成部分，它设置的是元素内部文本渲染的高度。</strong></p>
 <p><code>line-height</code> 属性有以下值：</p>
 <table>
 <thead>
@@ -358,7 +354,7 @@
 <p>比如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>上面的代码会给 <code>p</code> 元素内的文本行高设置为 <code>50px</code>，<code>line-height</code> 并不是固定值，它只是设置了元素内部字体所占的行高，行高还是可能因为一张巨大的图片撑开。</p>
+<p>上面的代码会给 <code>p</code> 元素内的文本行高设置为 <code>50px</code>，<code>line-height</code> 只是设置了元素内部字体所占的行高，IFC 内一行的高度还是可能因为一张巨大的图片撑开。</p>
 <p><strong><code>vertical-align</code> 用来设置一个行内级元素在其所在行的垂直位置，并不是定义元素内容的垂直排列，所以 <code>vertical-align</code> 应用在行内级元素上</strong>。它有以下值：</p>
 <table>
 <thead>
@@ -684,7 +680,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/15</span>
+      <span class="last-update">最后更新时间：2021/02/16</span>
     </p>
   </div>
 </article>
