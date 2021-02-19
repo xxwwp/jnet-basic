@@ -424,12 +424,12 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>其中，<code>em</code> 是字体的相对单位，<code>1em</code> 的大小等同于当前元素 <code>font-size</code> 设置的大小。所以 <code>2em</code> 正好缩进了两倍 <code>font-size</code> 的大小。</p>
-<h3 id="留白"><a href="#留白" class="headerlink" title="留白"></a>留白</h3><p>设置 <code>white-space</code> 属性，可以改变渲染时对留白的处理，留白由缩进、空格、换行符等组成。</p>
-<p>学习 <code>white-space</code> 之前，我们需要先整理页面渲染时，能够发生换行的情况：</p>
+<h3 id="留白"><a href="#留白" class="headerlink" title="留白"></a>留白</h3><p>设置 <code>white-space</code> 属性，可以页面改变渲染时对留白的处理，留白由缩进、空格、换行符等空白符号组成。</p>
+<p>学习 <code>white-space</code> 之前，我们需要先整理页面当中可能够发生换行的情况：</p>
 <ol>
-<li>换行符 <code>\n</code>，即回车键输入的符号，记作 ①；</li>
-<li>IFC 内水平溢出产生截断，记作 ②；</li>
-<li>插入 <code>&lt;br /&gt;</code> 元素主动截断，记作 ③。</li>
+<li>换行符 <code>\n</code>，即回车键输入的符号，记作 ①；默认情况下，这种换行只会在 <code>pre</code> 元素中发生。</li>
+<li>IFC 内水平排列超出一行自动产生截断换行，记作 ②；</li>
+<li>插入 <code>&lt;br /&gt;</code> 元素主动截断换行，记作 ③。</li>
 </ol>
 <p>现在来了解 <code>white-space</code> 的值：</p>
 <table>
@@ -442,27 +442,27 @@
 </thead>
 <tbody><tr>
 <td><code>normal</code></td>
-<td>默认值，忽略所有留白，连续的留白会压缩成一个空格。</td>
+<td>默认值，连续的留白会压缩成一个空格。</td>
 <td>②、③</td>
 </tr>
 <tr>
 <td><code>nowrap</code></td>
-<td>类似于 <code>normal</code>，但是文本不会换行，除非主动插入 <code>br</code> 元素。</td>
+<td>类似于 <code>normal</code>，但是文本不会因为水平排列产生截断换行，除非主动插入 <code>br</code> 元素。</td>
 <td>③</td>
 </tr>
 <tr>
 <td><code>pre</code></td>
-<td>原样渲染，保留所有留白（水平溢出不会自动换行，除非插入 <code>br</code> 元素，<code>pre</code> 元素的默认样式）</td>
+<td>原样渲染，保留所有留白（水平排列不会自动产生换行，<code>pre</code> 元素的默认样式）。</td>
 <td>①、③</td>
 </tr>
 <tr>
 <td><code>pre-wrap</code></td>
-<td>类似于 <code>pre</code> 元素，但是水平溢出会产生换行。</td>
+<td>类似于 <code>pre</code> 元素，但是水平排列会自动产生换行。</td>
 <td>①、②、③</td>
 </tr>
 <tr>
 <td><code>pre-line</code></td>
-<td>行内连续留白会压缩成一个空格，保留所有换行。</td>
+<td>每行内连续留白会压缩成一个空格，保留所有换行。</td>
 <td>①、②、③</td>
 </tr>
 </tbody></table>
@@ -485,92 +485,116 @@
 </tr>
 </tbody></table>
 <p><strong>但是需要强调的是，只有横向溢出，并且是 <code>white-space</code> 属性设置为 <code>nowrap</code> 时产生的溢出，<code>text-overflow</code> 属性才会生效。</strong></p>
-<p>所以下面三行代码需要同时设置，才能设置横向溢出样式：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.text</span> &#123;<br>  <span class="hljs-attribute">overflow</span>: hidden;<br>  <span class="hljs-attribute">white-space</span>: nowrap;<br>  <span class="hljs-attribute">text-overflow</span>: ellipsis;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><em>所以下面三行代码需要同时设置，才能设置横向溢出样式：</em></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.text</span> &#123;<br>  <span class="hljs-comment">/* 设置盒模型溢出隐藏 */</span><br>  <span class="hljs-attribute">overflow</span>: hidden;<br>  <span class="hljs-comment">/* 设置文本不换行排列 */</span><br>  <span class="hljs-attribute">white-space</span>: nowrap;<br>  <span class="hljs-comment">/* 设置文本水平溢出时显示为省略号 */</span><br>  <span class="hljs-attribute">text-overflow</span>: ellipsis;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>上述代码在业界常被称作 <em>文本三件套</em> 。</p>
 </blockquote>
-<h2 id="定位布局"><a href="#定位布局" class="headerlink" title="定位布局"></a>定位布局</h2><p>通过设置元素的 <code>position</code> 样式，可以改变其在文档中的定位方式，默认情况下，元素的位置根据文档流的排列放置，这种定位方式被称作静态定位。</p>
-<p>通过设置 <code>position</code> 的值，可以有以下几种定位方式：</p>
+<h2 id="定位布局"><a href="#定位布局" class="headerlink" title="定位布局"></a>定位布局</h2><p>通过设置元素的 <code>position</code> 属性，可以改变其在文档中的定位方式，例如把一个块级元素定位到页面的左侧形成导航栏，或者把一段文字定位到父级元素的边框区域等，这些布局方式都可以使用 <code>position</code> 属性定位实现。</p>
+<p><code>position</code> 的有以下值可供使用：</p>
 <table>
 <thead>
 <tr>
 <th>值</th>
 <th>定位方式</th>
-<th>参考位置</th>
-<th>备注</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>static</code></td>
 <td>静态定位</td>
-<td>元素会随着文档流排列，无法进行偏移</td>
-<td>默认初始值</td>
+<td>默认值，元素会随着文档流排列，无法进行偏移</td>
 </tr>
 <tr>
 <td><code>relative</code></td>
 <td>相对定位</td>
-<td>元素会相对于在文档流中原本的位置进行偏移</td>
-<td>元素依旧存在于文档流之中</td>
+<td>元素会 <strong>相对于在文档流中原本的位置</strong> 进行偏移</td>
 </tr>
 <tr>
 <td><code>fixed</code></td>
 <td>固定定位</td>
-<td>元素会相对于视口区域（窗口，也可能是一个 iframe 区域）进行偏移</td>
-<td>元素会脱离当前文档流，建立新的文档流，形成新的布局区域，元素的盒子会改变为 <code>block</code>，并产生新的 BFC 区域</td>
+<td>元素会 <strong>相对于视口</strong> 区域（窗口，也可能是一个 iframe 区域）进行偏移</td>
 </tr>
 <tr>
 <td><code>absolute</code></td>
 <td>绝对定位</td>
-<td>元素会相对于最近的非静态定位父级元素的内容边界进行偏移</td>
-<td>同固定定位</td>
+<td>元素会 <strong>相对于最近的非静态定位父级元素的内容边界</strong> 进行偏移</td>
 </tr>
 <tr>
 <td><code>sticky</code></td>
 <td>粘性定位</td>
-<td>元素相对于最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素）进行偏移（CSS3 新增的定位，IE 不支持。）</td>
-<td></td>
+<td>元素 <strong>根据</strong> 最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素）进行偏移，这是一个 CSS3 的属性</td>
 </tr>
 </tbody></table>
 <h3 id="相对定位与偏移"><a href="#相对定位与偏移" class="headerlink" title="相对定位与偏移"></a>相对定位与偏移</h3><p><strong>偏移值：</strong></p>
 <p>给一个元素设置相对定位后，可以通过设置 <code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code> 四个属性设置元素相对与定位参考位置的偏移量。</p>
 <p>例如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0px</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>上述代码中，类名含有 <code>foo</code> 的元素会进行相对定位，元素会自身原本的位置进行定位，声明 <code>top: 0px;</code> 会让元素距离原始位置顶部偏移 0 像素，声明 <code>right: 10px;</code> 会让元素距离原始位置右侧偏移 10 像素。</p>
+<p>上述代码中，类名含有 <code>foo</code> 的元素会进行相对定位，元素会相对默认情况下的原始位置进行定位，声明 <code>top: 10px;</code> 会让元素距离原始位置顶部偏移 10 像素，声明 <code>right: 10px;</code> 会让元素距离原始位置的右侧偏移 10 像素。</p>
 <blockquote>
-<p><strong>关于偏移量</strong><br>除去静态定位，其他定位方式都可以设置偏移量。</p>
+<p><strong>关于偏移量</strong><br>偏移量的设置对静态定位元素无效，对其他定位方式都有效。</p>
 </blockquote>
 <p><strong>负值偏移量：</strong></p>
 <p>偏移量可以设置为负值，会采取相反方向的偏移。比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: relative;<br>    left: -100px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>相对原本位置从左侧偏移 -100px<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h3><p>固定定位的元素参考视口（视口就是页面展示区域）进行定位，<strong>固定定位的元素不会跟随页面滚动，被钉死在了视口上。</strong></p>
+<h3 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h3><p>固定定位的元素参考视口进行定位，<strong>固定定位的元素不会跟随页面滚动，被钉死在了视口上。</strong></p>
 <p><strong>固定定位和绝对定位的元素都有以下特性：</strong></p>
 <ul>
 <li><strong>元素会脱离当前文档流；</strong></li>
 <li><strong>元素会形成新的 BFC 布局区域，</strong> 也就是产生新的纵向布局环境；</li>
 <li><strong>元素元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位，它们的盒子会转化为 <code>block</code>。</li>
+<li>固定定位的元素虽然是块级元素，但是它脱离了文档流，并不会表现为独占一行，<strong>设置偏移值可以决定固定定位元素的宽高</strong>，当然宽高也可以通过 <code>width</code> 和 <code>height</code> 设置。</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    bottom: 100px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    position: fixed;<br>    bottom: 0;<br>    right: 0;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>距离视口最下方 100px，不会跟随页面滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>元素在视口右下方，不会跟随页面滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    bottom: 100px;<br>    right: 20px;<br>    width: 100px;<br>    height: 100px;<br>    background-color: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>元素被放到距离视口底部 100px 右侧 20px 的位置<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h3><p><strong>绝对定位的元素特性和固定定位一样，只是参考的位置不一样。</strong></p>
-<p>绝对定位的元素参考最近的 <code>position</code> 不是 <code>static</code> 的祖先定位（即非静态定位元素），如果没有，则参考的是页面第一页来定位，不管如何定位，都会跟随页面或元素滚动。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: relative;<br>    left: -100px;<br>    width: 500px;<br>    height: 500px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    position: absolute;<br>    bottom: 0;<br>    right: 0;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>相对父级最近的不是静态定位的元素定位，跟随页面或元素滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>相对父级最近的不是静态定位的元素定位，跟随页面或元素滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>固定定位元素的宽高显示方式很多：</p>
+<ul>
+<li><strong>默认情况下，固定定位的元素宽高由内容撑起；</strong></li>
+<li><strong>如果设置了偏移值，那么会根据偏移值拉伸元素的宽高；</strong></li>
+<li><strong>也可以直接设置 <code>width</code> 和 <code>height</code> 属性，确定元素的宽高。</strong></li>
+</ul>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span>,</span><br><span class="css">  <span class="hljs-selector-class">.bar</span>,</span><br><span class="css">  <span class="hljs-selector-class">.baz</span> &#123;</span><br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    top: 0;<br>    left: 0;<br>    background-color: silver;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    left: 100px;<br>    right: 100px;<br>    top: 20%;<br>    bottom: 70%;<br>    background-color: tomato;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.baz</span> &#123;</span><br>    bottom: 0;<br>    right: 0;<br>    height: 100px;<br>    width: 100px;<br>    background-color: skyblue;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>foo 默认大小，由内容撑起<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>bar 通过偏移值确定大小，大小会随着页面进行拉伸<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;baz&quot;</span>&gt;</span>baz 直接限制大小<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>固定定位有一个很特殊的居中方式，就是当水平方向上的偏移量设置为 0，并且水平方向上的外边距为 <code>auto</code> 的时候，元素会产生水平居中效果，垂直方向同理。如果同时设置了水平和垂直居中，那么元素就会在视口的中央。</strong></p>
+<p>比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  div &#123;<br>    line-height: 100px;<br>    height: 100px;<br>    width: 100px;<br>    text-align: center;<br>    background-color: silver;<br>  &#125;<br><span class="css">  <span class="hljs-comment">/* 水平居中 */</span></span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    top: 0;<br>    bottom: 0;<br>    margin: auto 0;<br>  &#125;<br><span class="css">  <span class="hljs-comment">/* 上下居中 */</span></span><br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    position: fixed;<br>    right: 0;<br>    left: 0;<br>    margin: 0 auto;<br>  &#125;<br><span class="css">  <span class="hljs-comment">/* 正中间居中 */</span></span><br><span class="css">  <span class="hljs-selector-class">.baz</span> &#123;</span><br>    position: fixed;<br>    top: 0;<br>    bottom: 0;<br>    left: 0;<br>    right: 0;<br>    margin: auto;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;baz&quot;</span>&gt;</span>baz<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><em>视口是什么？</em><br>视口（viewport）可以简单的理解为浏览器的窗口区域，又或者一个 <code>&lt;iframe&gt;</code> 元素的内容边界，相关内容被我分到 CSS3 的讲义中，你可以点击以下链接提前了解：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Viewport_concepts">视口概念</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shierfen/p/5316679.html">移动前端开发之 viewport 的深入理解</a></li>
+</ul>
+</blockquote>
+<h3 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h3><p><strong>绝对定位和固定定位的特性和规则完全一样，只是参考的位置不同。</strong></p>
+<p>诸如固定定位的宽高设置，居中效果，对于绝对定位也完全适用，只是需要改变定位参考的位置。</p>
+<p><strong>绝对定位的元素会参考最近的 <code>position</code> 不是 <code>static</code> 的祖先定位（即最近的非静态定位祖先元素），如果没有，则参考的是页面第一页来定位，不管如何定位，都会跟随页面或元素滚动。</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: relative;<br>    left: -100px;<br>    width: 500px;<br>    height: 500px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    position: absolute;<br>    bottom: 0;<br>    right: 0;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>相对最近的非静态定位祖先元素定位，跟随页面或元素滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>相对最近的非静态定位祖先元素定位，跟随页面或元素滚动<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>大部分情况下，绝对定位都会配合一个相对定位一起使用，比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-id">#fieldset</span> &#123;</span><br>    position: relative;<br>    padding: 10px 20px;<br>    border: 1px solid silver;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#legend</span> &#123;</span><br>    position: absolute;<br>    top: -10px;<br>    left: 20px;<br>    height: 20px;<br>    background: white;<br>    padding: 0 10px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fieldset&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;legend&quot;</span>&gt;</span>说明<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>通过设置 <code>#fieldset</code> 元素的偏移值，可以让 <code>#legend</code> 元素在父级内任意位置进行偏移，上述代码就简单模拟了 <code>fieldset</code> 和 <code>legend</code> 的默认样式。</p>
+<p>因为 <code>#fieldset</code> 元素为相对定位，可以其作为 <code>#legend</code> 元素的定位参考，从而实现相对父级进行定位，上述代码就简单模拟了 <code>fieldset</code> 和 <code>legend</code> 的默认样式。</p>
+<p>这种方式不仅限于父子级，还可以应用到祖孙级等更复杂的嵌套关系当中。</p>
 <h3 id="粘性定位"><a href="#粘性定位" class="headerlink" title="粘性定位"></a>粘性定位</h3><p>元素相对于最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素）进行偏移。</p>
-<p>粘性定位的元素大致会按照一下顺序进行定位：</p>
+<p>粘性定位的元素会按照以下顺序进行定位：</p>
 <ol>
 <li>粘性定位元素会率先按照默认文档流进行定位，类似静态定位。</li>
-<li>当粘性定位的滚动祖先发生滚动时，粘性定位元素会在尽可能保留上一条规则的情况下，相对于视口进行定位。</li>
-<li>当元素的包含块被滚动出页面时，粘性定位元素会随着包含块滚动出页面。</li>
+<li>当粘性定位的滚动祖先发生滚动时，粘性定位元素会在尽可能保留上一条规则的情况下，相对于滚动祖先进行定位。</li>
+<li>当元素最近的滚动祖先或包含块被滚动出页面时，粘性定位元素会随着滚动出页面。</li>
 </ol>
-<p>比如：</p>
+<blockquote>
+<p>滚动祖先被视作拥有滚动机制的祖先元素，即元素的 overflow 是 hidden、scroll、auto、或 overlay 等值时，算作一个滚动祖先。</p>
+</blockquote>
+<blockquote>
+<p>overflow 的值 overlay 是一个较新的值，它的作用和 <code>auto</code> 类似，但是产生的滚动条不会占据页面空间，我把它放到了 CSS3 的讲义中。</p>
+</blockquote>
+<p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">    <span class="hljs-selector-class">.foo</span> &#123;</span><br>      position: sticky;<br>      top: 50px;<br>      width: 100px;<br>      height: 100px;<br>      background-color: tomato;<br>    &#125;<br><span class="css">    <span class="hljs-selector-class">.bar</span> &#123;</span><br>      width: 200px;<br>      height: 500px;<br>      background-color: teal;<br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>此元素的包含块是父级元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin: 20px 0&quot;</span>&gt;</span>此元素的包含块是 body 元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 2000px&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -597,10 +621,10 @@
 <p>例如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    top: 0;<br>    left: 0;<br>    width: 200px;<br>    height: 200px;<br>    background: red;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    position: absolute;<br>    top: 0;<br>    left: 0;<br>    width: 100px;<br>    height: 100px;<br>    background: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>普通文本<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>默认情况下，定位元素都会覆盖当前文档流中的元素，它们在最上层，给上面选择器添加以下两个声明：</p>
+<p>默认情况下，定位元素都会覆盖当前文档流中的元素，给上面选择器添加以下两个声明：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">100</span>;<br>&#125;<br><span class="hljs-selector-class">.bar</span> &#123;<br>  <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">50</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>此时它们将不再继续覆盖文档流中的元素，层级最大的元素会显示在最上层，安装层级依次覆盖，<strong>千万记住，层级对静态定位元素无效</strong>。</p>
+<p>此时它们将不再继续覆盖文档流中的元素，不同层级的元素会依次进行覆盖，<strong>千万记住，层级对静态定位元素无效</strong>。</p>
 <h4 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h4><p>元素产生定位并存在层叠时，会产生层叠上下文，<strong>子级元素无法突破父级元素层叠上下文的层级</strong>。</p>
 <p>层叠上下文的产生条件如下：</p>
 <ul>
@@ -608,7 +632,7 @@
 <li><code>position</code> 值为 <code>fixed</code> 或 <code>sticky</code> 的元素。</li>
 </ul>
 <p>例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  div &#123;<br>    width: 200px;<br>    height: 200px;<br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l1</span> &#123;</span><br>    z-index: 1;<br><span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#fff</span>;</span><br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l2</span> &#123;</span><br>    z-index: 1000;<br>    background-color: red;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l3</span> &#123;</span><br>    z-index: 2;<br><span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#000</span>;</span><br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  div &#123;<br>    width: 200px;<br>    height: 200px;<br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l1</span> &#123;</span><br>    z-index: 1;<br>    background-color: white;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l2</span> &#123;</span><br>    z-index: 1000;<br>    background-color: red;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l3</span> &#123;</span><br>    z-index: 2;<br>    background-color: black;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上诉代码中，屏幕上最终会显示一个黑块，<code>#l3</code> 排到了最前。<code>#l2</code> 元素的层级虽然是 <code>1000</code>，但是依旧无法突破到最前。这是因为其父级的层级小于 <code>#l3</code>的层级，而 <code>#l2</code> 被限制在 <code>#l1</code> 的层叠上下文中，无法越级。</p>
 <p>你可以把层叠关系想象成楼房的楼层，并假设每层楼无限高，那么一楼里面的人不管垫多少梯子，就都无法到第二层。所以上面代码中的 <code>#l2</code> 元素不论如何增加层级，都无法突破父级的层级，又因为父级的层级比 <code>#l3</code> 元素低，所以 <code>#l2</code> 元素永远无法覆盖 <code>#l3</code> 元素。</p>
@@ -635,16 +659,16 @@
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
-<h3 id="浮动元素的特性"><a href="#浮动元素的特性" class="headerlink" title="浮动元素的特性"></a>浮动元素的特性</h3><p>先简单回顾下 BFC 和 IFC，粗略的理解，它们就是文档流中的纵向布局和横向布局。</p>
+<h3 id="浮动元素的特性"><a href="#浮动元素的特性" class="headerlink" title="浮动元素的特性"></a>浮动元素的特性</h3><p>先简单回顾下 BFC，BFC 是常规流中的块级元素纵向布局的环境和规则。</p>
 <p>浮动元素对同一个 BFC 内的元素影响如下：</p>
 <ul>
-<li><p><strong>浮动元素不会脱离文档流</strong>，只是漂浮在文档流之上。</p>
+<li><p>浮动元素会靠左或者靠右排列，视 <code>float</code> 属性的值而定。</p>
 </li>
-<li><p><strong>浮动元素会自动转化为块级元素</strong>，比如让一个 <code>span</code> 元素浮动，那么它的盒子会改变为 <code>block</code></p>
+<li><p><strong>浮动元素会自动转化为块级元素</strong>，比如让一个 <code>span</code> 元素浮动，那么它的盒子会改变为 <code>block</code>；</p>
 </li>
-<li><p>浮动元素周围的 IFC 会环绕浮动元素排列。</p>
+<li><p>浮动元素周围的 IFC 会环绕浮动元素排列；（不论是相邻、嵌套或者间隔）</p>
 </li>
-<li><p>浮动元素会浮动在在块元素之上，在布局上块级元素会无视浮动元素，在渲染上块级元素会被浮动元素覆盖。</p>
+<li><p>浮动元素会浮动在在块元素之上，在布局上块级元素会无视浮动元素，在渲染上块级元素会被浮动元素覆盖；</p>
 </li>
 <li><p>浮动元素不能撑起父级的高度，只能撑起 BFC 环境的高度。</p>
 </li>
@@ -654,7 +678,6 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.main</span> &#123;</span><br>    width: 600px;<br>    margin: auto;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    float: left;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>荷塘月色<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./favicon.png&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    这几天心里颇不宁静。今晚在院子里坐着乘凉，忽然想起日日走过的荷塘，<br>    在这满月的光里，总该另有一番样子吧。月亮渐渐地升高了，墙外马路上孩子们的欢笑，已经听不见了；妻在屋里拍着闰儿，迷迷糊糊地哼着眠歌。我悄悄地披了大衫，带上门出去。<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>img</code> 元素设置了浮动，它没有撑起父级 <code>div</code> 的高度；<code>p</code> 的布局并没有受到浮动影响，但是其内部的文字会环绕浮动元素布局。</p>
-<p>浮动元素对齐他 BFC 内的元素不会造成上述影响，比如绝对定位就会产生新的 BFC。</p>
 <h3 id="浮动元素之间的影响"><a href="#浮动元素之间的影响" class="headerlink" title="浮动元素之间的影响"></a>浮动元素之间的影响</h3><ul>
 <li>浮动方向相同的元素会按照浮动方向依次排列</li>
 <li>溢出的浮动元素会最少限度的向下排列，并不一定是换行</li>
