@@ -589,10 +589,7 @@
 <li>当元素最近的滚动祖先或包含块被滚动出页面时，粘性定位元素会随着滚动出页面。</li>
 </ol>
 <blockquote>
-<p>滚动祖先被视作拥有滚动机制的祖先元素，即元素的 overflow 是 hidden、scroll、auto、或 overlay 等值时，算作一个滚动祖先。</p>
-</blockquote>
-<blockquote>
-<p>overflow 的值 overlay 是一个较新的值，它的作用和 <code>auto</code> 类似，但是产生的滚动条不会占据页面空间，我把它放到了 CSS3 的讲义中。</p>
+<p><strong>什么是滚动祖先？</strong><br>滚动祖先被视作拥有滚动机制的祖先元素，即元素的 <code>overflow</code> 是 <code>hidden</code>、<code>scroll</code>、<code>auto</code> 等值时，算作一个滚动祖先。</p>
 </blockquote>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">    <span class="hljs-selector-class">.foo</span> &#123;</span><br>      position: sticky;<br>      top: 50px;<br>      width: 100px;<br>      height: 100px;<br>      background-color: tomato;<br>    &#125;<br><span class="css">    <span class="hljs-selector-class">.bar</span> &#123;</span><br>      width: 200px;<br>      height: 500px;<br>      background-color: teal;<br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>此元素的包含块是父级元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin: 20px 0&quot;</span>&gt;</span>此元素的包含块是 body 元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 2000px&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -659,8 +656,7 @@
 </tr>
 </tbody></table>
 <p>【逐项演示】</p>
-<h3 id="浮动元素的特性"><a href="#浮动元素的特性" class="headerlink" title="浮动元素的特性"></a>浮动元素的特性</h3><p>先简单回顾下 BFC，BFC 是常规流中的块级元素纵向布局的环境和规则。</p>
-<p>浮动元素对同一个 BFC 内的元素影响如下：</p>
+<h3 id="浮动元素的特性"><a href="#浮动元素的特性" class="headerlink" title="浮动元素的特性"></a>浮动元素的特性</h3><p>浮动元素有以下特性：</p>
 <ul>
 <li><p>浮动元素会靠左或者靠右排列，视 <code>float</code> 属性的值而定。</p>
 </li>
@@ -670,7 +666,7 @@
 </li>
 <li><p>浮动元素会浮动在在块元素之上，在布局上块级元素会无视浮动元素，在渲染上块级元素会被浮动元素覆盖；</p>
 </li>
-<li><p>浮动元素不能撑起父级的高度，只能撑起 BFC 环境的高度。</p>
+<li><p>浮动元素不能撑起父级的高度。</p>
 </li>
 </ul>
 <p>浮动元素带来的影响并不会干扰到其他的 BFC 区域。</p>
