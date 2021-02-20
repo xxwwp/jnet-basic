@@ -524,7 +524,7 @@
 <tr>
 <td><code>sticky</code></td>
 <td>粘性定位</td>
-<td>元素 <strong>根据</strong> 最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素）进行偏移，这是一个 CSS3 的属性</td>
+<td>元素 <strong>根据</strong> 最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素祖先）进行偏移，这是一个 CSS3 的属性</td>
 </tr>
 </tbody></table>
 <h3 id="相对定位与偏移"><a href="#相对定位与偏移" class="headerlink" title="相对定位与偏移"></a>相对定位与偏移</h3><p><strong>偏移值：</strong></p>
@@ -546,7 +546,7 @@
 <li><strong>元素会脱离当前文档流；</strong></li>
 <li><strong>元素会形成新的 BFC 布局区域，</strong> 也就是产生新的纵向布局环境；</li>
 <li><strong>元素元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位，它们的盒子会转化为 <code>block</code>。</li>
-<li>固定定位的元素虽然是块级元素，但是它脱离了文档流，并不会表现为独占一行，<strong>设置偏移值可以决定固定定位元素的宽高</strong>，当然宽高也可以通过 <code>width</code> 和 <code>height</code> 设置。</li>
+<li>固定定位的元素虽然是块级元素，但是它脱离了文档流，并不会表现为独占一行。</li>
 </ul>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    bottom: 100px;<br>    right: 20px;<br>    width: 100px;<br>    height: 100px;<br>    background-color: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>元素被放到距离视口底部 100px 右侧 20px 的位置<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -557,6 +557,9 @@
 <li><strong>如果设置了偏移值，那么会根据偏移值拉伸元素的宽高；</strong></li>
 <li><strong>也可以直接设置 <code>width</code> 和 <code>height</code> 属性，确定元素的宽高。</strong></li>
 </ul>
+<blockquote>
+<p><strong>上列情况并不完全适用于表单相关元素</strong>，例如输入框，按钮等，表单元素固定定位后也会拥有初始样式，比如初始宽度，所以并不一定会随着偏移值进行变化。</p>
+</blockquote>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span>,</span><br><span class="css">  <span class="hljs-selector-class">.bar</span>,</span><br><span class="css">  <span class="hljs-selector-class">.baz</span> &#123;</span><br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    top: 0;<br>    left: 0;<br>    background-color: silver;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.bar</span> &#123;</span><br>    left: 100px;<br>    right: 100px;<br>    top: 20%;<br>    bottom: 70%;<br>    background-color: tomato;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.baz</span> &#123;</span><br>    bottom: 0;<br>    right: 0;<br>    height: 100px;<br>    width: 100px;<br>    background-color: skyblue;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>foo 默认大小，由内容撑起<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>bar 通过偏移值确定大小，大小会随着页面进行拉伸<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;baz&quot;</span>&gt;</span>baz 直接限制大小<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -744,7 +747,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/19</span>
+      <span class="last-update">最后更新时间：2021/02/20</span>
     </p>
   </div>
 </article>
