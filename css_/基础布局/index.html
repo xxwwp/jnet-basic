@@ -584,23 +584,31 @@
 
 <p>因为 <code>#fieldset</code> 元素为相对定位，可以其作为 <code>#legend</code> 元素的定位参考，从而实现相对父级进行定位，上述代码就简单模拟了 <code>fieldset</code> 和 <code>legend</code> 的默认样式。</p>
 <p>这种方式不仅限于父子级，还可以应用到祖孙级等更复杂的嵌套关系当中。</p>
-<h3 id="粘性定位"><a href="#粘性定位" class="headerlink" title="粘性定位"></a>粘性定位</h3><p>元素相对于最近的滚动祖先和<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>（最近的块级元素）进行偏移。</p>
-<p>粘性定位的元素会按照以下顺序进行定位：</p>
-<ol>
-<li>粘性定位元素会率先按照默认文档流进行定位，类似静态定位。</li>
-<li>当粘性定位的滚动祖先发生滚动时，粘性定位元素会在尽可能保留上一条规则的情况下，相对于滚动祖先进行定位。</li>
-<li>当元素最近的滚动祖先或包含块被滚动出页面时，粘性定位元素会随着滚动出页面。</li>
-</ol>
+<h3 id="粘性定位"><a href="#粘性定位" class="headerlink" title="粘性定位"></a>粘性定位</h3><p><strong>粘性定位的元素会在其<a href="../%E5%B8%83%E5%B1%80%E8%BF%9B%E9%98%B6/#%E5%8C%85%E5%90%AB%E5%9D%97">包含块</a>范围内，相对于它最近的滚动祖先进行偏移。</strong></p>
 <blockquote>
 <p><strong>什么是滚动祖先？</strong><br>滚动祖先被视作拥有滚动机制的祖先元素，即元素的 <code>overflow</code> 是 <code>hidden</code>、<code>scroll</code>、<code>auto</code> 等值时，算作一个滚动祖先。</p>
 </blockquote>
+<p>粘性定位的元素定位方式非常特殊，它并不一定会在一开始就相对于最近的滚动祖先进行定位，在完全阐述它的定位之前，我们需要准备一些区域和规则：</p>
+<ul>
+<li>把粘性定位的包含块记作 A，粘性定位元素的包含块就是最近的块级元素祖先的内容边界；</li>
+<li>把粘性定位元素最近的滚动祖先的可视滚动区域减去四个方向上的偏移量得到区域记作 B（偏移值如果出现冲突依旧是 <code>left</code> 或者 <code>top</code> 优先，某个方向上没有设置偏移值的话则使用滚动祖先的内容边界充当该方向上的边界，比如所有偏移值都不设置时，区域 B 相当于滚动祖先的整个内容区）；</li>
+</ul>
+<p>那么粘性定位元素的位置是：</p>
+<ul>
+<li>当元素处在区域 B 和 A 里面时，元素会进行静态定位；</li>
+<li>当滚动祖先发生滚动让元素处在区域 B 或者 A 的边缘时，元素会粘在区域 B 或 A 的边缘，并优先停靠在区域 A 的边缘。</li>
+</ul>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">    <span class="hljs-selector-class">.foo</span> &#123;</span><br>      position: sticky;<br>      top: 50px;<br>      width: 100px;<br>      height: 100px;<br>      background-color: tomato;<br>    &#125;<br><span class="css">    <span class="hljs-selector-class">.bar</span> &#123;</span><br>      width: 200px;<br>      height: 500px;<br>      background-color: teal;<br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>此元素的包含块是父级元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin: 20px 0&quot;</span>&gt;</span>此元素的包含块是 body 元素的内容边界<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 2000px&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>粘性定位是一个 CSS3 的属性，适配所有移动设备上的浏览器，但是并不是兼容老旧浏览器，比如 IE。</p>
 </blockquote>
-<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>定位元素之间有可能会因为偏移重叠在一起，通过 <code>z-index</code> 属性可以设置它们之间如何相互覆盖，<code>z-index</code> 属性又称 <strong>层级，层级对静态定位的元素无效</strong>。</p>
+<h3 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h3><p>定位元素之间有可能会因为偏移重叠在一起，默认情况下，定位元素都会覆盖原始文档流中的元素。</p>
+<p>可以通过 <code>z-index</code> 属性可以设置定位元素之间的覆盖优先级，<code>z-index</code> 属性又称 <strong>层级，层级对静态定位的元素无效</strong>。</p>
+<blockquote>
+<p><code>z-index</code> 属性不是定位元素独有的，比如 <code>opacity</code> 属性不为 1 时也可以使用层级。</p>
+</blockquote>
 <p><code>z-index</code> 属性有以下值：</p>
 <table>
 <thead>
@@ -630,12 +638,38 @@
 <ul>
 <li><code>position</code> 值为 <code>absolute</code> 或 <code>relative</code> 且 <code>z-index</code> 值不为 <code>auto</code> 的元素。</li>
 <li><code>position</code> 值为 <code>fixed</code> 或 <code>sticky</code> 的元素。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">其他</a></li>
 </ul>
 <p>例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  div &#123;<br>    width: 200px;<br>    height: 200px;<br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l1</span> &#123;</span><br>    z-index: 1;<br>    background-color: white;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l2</span> &#123;</span><br>    z-index: 1000;<br>    background-color: red;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l3</span> &#123;</span><br>    z-index: 2;<br>    background-color: black;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上诉代码中，屏幕上最终会显示一个黑块，<code>#l3</code> 排到了最前。<code>#l2</code> 元素的层级虽然是 <code>1000</code>，但是依旧无法突破到最前。这是因为其父级的层级小于 <code>#l3</code>的层级，而 <code>#l2</code> 被限制在 <code>#l1</code> 的层叠上下文中，无法越级。</p>
-<p>你可以把层叠关系想象成楼房的楼层，并假设每层楼无限高，那么一楼里面的人不管垫多少梯子，就都无法到第二层。所以上面代码中的 <code>#l2</code> 元素不论如何增加层级，都无法突破父级的层级，又因为父级的层级比 <code>#l3</code> 元素低，所以 <code>#l2</code> 元素永远无法覆盖 <code>#l3</code> 元素。</p>
+<p>如果把层叠上下文的嵌套关系分出等级，那么上面三个元素的所处的层叠上下文和层级如下：</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>一级层叠上下文层级</th>
+<th>二级层叠上下文层级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#l1</code></td>
+<td>1</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>#l2</code></td>
+<td>1</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>#l3</code></td>
+<td>2</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p>虽然 <code>#l2</code> 元素的在二级层叠上下文中的层级是 1000，但是它所处的一级层叠上下文层级是 1，所以无法对 <code>#l3</code> 元素进行覆盖。</p>
 <h2 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h2><p>浮动布局可以让文本图片（行内级元素）环绕另一个元素布局，通过给元素设置 <code>float</code> 属性来让元素浮动。</p>
 <p><code>float</code> 属性有以下值：</p>
 <table>
@@ -747,7 +781,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/20</span>
+      <span class="last-update">最后更新时间：2021/02/21</span>
     </p>
   </div>
 </article>
