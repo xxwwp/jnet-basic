@@ -719,6 +719,7 @@
 <h3 id="浮动元素之间的影响"><a href="#浮动元素之间的影响" class="headerlink" title="浮动元素之间的影响"></a>浮动元素之间的影响</h3><ul>
 <li>浮动方向相同的元素会按照浮动方向依次排列</li>
 <li>溢出的浮动元素会最少限度的向下排列，并不一定是换行</li>
+<li>浮动元素之间不会产生外边距重叠</li>
 </ul>
 <p>比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.main</span> &#123;</span><br>    width: 300px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    float: left;<br>    border: 1px solid black;<br>    background-color: silver;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo50</span> &#123;</span><br>    width: 50px;<br>    height: 50px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo70</span> &#123;</span><br>    width: 70px;<br>    height: 70px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo100</span> &#123;</span><br>    width: 100px;<br>    height: 100px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo50&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo50&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo70&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo70&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -726,7 +727,8 @@
 <p>如果多个浮动连续排列它会尽可能的朝同一个方向排列，一般情况下并不会让不同大小的元素浮动到一起，虽然浮动被用来让文字环绕布局，但是也通过上述排列方法来渲染横向列表，比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    padding: 0;<br>    list-style: none;<br>  &#125;<br><br><span class="css">  <span class="hljs-selector-class">.foo</span> <span class="hljs-selector-tag">li</span> &#123;</span><br>    float: left;<br>    line-height: 50px;<br>    width: 120px;<br>    text-align: center;<br>    margin: 10px;<br>    background-color: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>content 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>content 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>content 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>content 4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>content 5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这里的文字会环绕这个列表布局<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><p>消除浮动可以消除环绕布局方式，消除浮动使用 <code>clear</code> 属性，它有以下值：</p>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><p>如果浮动元素对周围的块级元素（非父级或祖先的块级元素）产生了覆盖，可以使用 <code>clear</code> 属性让该块级元素向下移动到浮动元素的下方。</p>
+<p><code>clear</code> 属性它有以下值：</p>
 <table>
 <thead>
 <tr>
@@ -736,26 +738,33 @@
 </thead>
 <tbody><tr>
 <td><code>none</code></td>
-<td>不清除浮动 默认</td>
+<td>不清除浮动，默认值</td>
 </tr>
 <tr>
 <td><code>left</code></td>
-<td>清除左侧的浮动</td>
+<td>将元素向下移动，直至清除左侧浮动</td>
 </tr>
 <tr>
-<td><code>left</code></td>
-<td>清除右侧的浮动</td>
+<td><code>right</code></td>
+<td>将元素向下移动，直至清除右侧浮动</td>
 </tr>
 <tr>
 <td><code>both</code></td>
-<td>清除两侧的浮动</td>
+<td>将元素向下移动，直至清除两侧浮动</td>
 </tr>
 </tbody></table>
-<p>清除浮动会消除浮动带来的影响，元素会从新的行开始布局</p>
+<blockquote>
+<p>当应用于非浮动块时，它将非浮动块的边框边界移动到所有相关浮动元素外边界的下方。这个非浮动块的垂直外边距会折叠。</p>
+<p>另一方面，两个浮动元素的垂直外边距将不会折叠。当应用于浮动元素时，它将元素的外边界移动到所有相关的浮动元素外边框边界的下方。这会影响后面浮动元素的布局，后面的浮动元素的位置无法高于它之前的元素。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear">MDN clear</a></p>
+</blockquote>
+<blockquote>
+<p><strong>关于外边界和边框边界：</strong><br>外边界：即 <code>margin</code> 的边缘；<br>边框边界： 即 <code>border</code> 的边缘。</p>
+</blockquote>
+<p>清除浮动的方式有两种。</p>
 <ul>
 <li><p>从兄弟元素上清除</p>
 </li>
-<li><p>从父元素上清除 使用伪元素</p>
+<li><p>从父元素上清除，使用伪元素</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.float-root</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;&quot;</span>;<br>  <span class="hljs-attribute">display</span>: block;<br>  <span class="hljs-attribute">clear</span>: left;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 </li>
