@@ -633,17 +633,19 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">100</span>;<br>&#125;<br><span class="hljs-selector-class">.bar</span> &#123;<br>  <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">50</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>此时它们将不再继续覆盖文档流中的元素，不同层级的元素会依次进行覆盖，<strong>千万记住，层级对静态定位元素无效</strong>。</p>
-<h4 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h4><p>元素产生定位并存在层叠时，会产生层叠上下文，<strong>子级元素无法突破父级元素层叠上下文的层级</strong>。</p>
+<h4 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h4><p>元素因为样式产生相互覆盖时，元素会产生层叠上下文，层叠上下文的层级大的元素会优先显示。</p>
 <p>层叠上下文的产生条件如下：</p>
 <ul>
 <li><code>position</code> 值为 <code>absolute</code> 或 <code>relative</code> 且 <code>z-index</code> 值不为 <code>auto</code> 的元素。</li>
 <li><code>position</code> 值为 <code>fixed</code> 或 <code>sticky</code> 的元素。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">其他</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">其他产生层叠上下文的方式</a></li>
 </ul>
-<p>例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>  div &#123;<br>    width: 200px;<br>    height: 200px;<br>    position: fixed;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l1</span> &#123;</span><br>    z-index: 1;<br>    background-color: white;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l2</span> &#123;</span><br>    z-index: 1000;<br>    background-color: red;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#l3</span> &#123;</span><br>    z-index: 2;<br>    background-color: black;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;l3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>层叠上下文的特性：</p>
+<p><strong>元素会相对最近的产生层叠上下文祖先进行层级设置</strong>。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-id">#foo</span>,</span><br><span class="css">  <span class="hljs-selector-id">#bar</span>,</span><br><span class="css">  <span class="hljs-selector-id">#baz</span> &#123;</span><br>    position: fixed;<br>    top: 0;<br>    right: 0;<br>    width: 200px;<br>    height: 200px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#foo</span> &#123;</span><br>    z-index: 1;<br>    background-color: tomato;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#bar</span> &#123;</span><br>    z-index: 99999;<br>    background-color: skyblue;<br>  &#125;<br><span class="css">  <span class="hljs-selector-id">#baz</span> &#123;</span><br>    z-index: 2;<br>    background-color: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;baz&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>上诉代码中，屏幕上最终会显示一个黑块，<code>#l3</code> 排到了最前。<code>#l2</code> 元素的层级虽然是 <code>1000</code>，但是依旧无法突破到最前。这是因为其父级的层级小于 <code>#l3</code>的层级，而 <code>#l2</code> 被限制在 <code>#l1</code> 的层叠上下文中，无法越级。</p>
+<p>上诉代码中，屏幕上最终会显示一个黑块，<code>#baz</code> 排到了最前。<code>#bar</code> 元素的层级虽然是 <code>1000</code>，但是依旧无法突破到最前。这是因为其父级的层级小于 <code>#baz</code>的层级，而 <code>#bar</code> 被限制在 <code>#foo</code> 的层叠上下文中，无法越级。</p>
 <p>如果把层叠上下文的嵌套关系分出等级，那么上面三个元素的所处的层叠上下文和层级如下：</p>
 <table>
 <thead>
@@ -654,22 +656,22 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>#l1</code></td>
+<td><code>#foo</code></td>
 <td>1</td>
-<td>无</td>
+<td></td>
 </tr>
 <tr>
-<td><code>#l2</code></td>
+<td><code>#bar</code></td>
 <td>1</td>
-<td>1000</td>
+<td>99999</td>
 </tr>
 <tr>
-<td><code>#l3</code></td>
+<td><code>#baz</code></td>
 <td>2</td>
-<td>无</td>
+<td></td>
 </tr>
 </tbody></table>
-<p>虽然 <code>#l2</code> 元素的在二级层叠上下文中的层级是 1000，但是它所处的一级层叠上下文层级是 1，所以无法对 <code>#l3</code> 元素进行覆盖。</p>
+<p>虽然 <code>#bar</code> 元素的在二级层叠上下文中的层级是 99999，但是它所处的一级层叠上下文层级是 1，所以无法对 <code>#baz</code> 元素进行覆盖。</p>
 <h2 id="浮动布局"><a href="#浮动布局" class="headerlink" title="浮动布局"></a>浮动布局</h2><p>浮动布局可以让文本图片（行内级元素）环绕另一个元素布局，通过给元素设置 <code>float</code> 属性来让元素浮动。</p>
 <p><code>float</code> 属性有以下值：</p>
 <table>
