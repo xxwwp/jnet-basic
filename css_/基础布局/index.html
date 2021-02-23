@@ -545,7 +545,7 @@
 <ul>
 <li><strong>元素会脱离当前文档流；</strong></li>
 <li><strong>元素会形成新的 BFC 布局区域，</strong> 也就是产生新的纵向布局环境；</li>
-<li><strong>元素元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位，它们的盒子会转化为 <code>block</code>。</li>
+<li><strong>固定定位元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位，它们的盒子会转化为 <code>block</code>。</li>
 <li>固定定位的元素虽然是块级元素，但是它脱离了文档流，并不会表现为独占一行。</li>
 </ul>
 <p>示例：</p>
@@ -704,22 +704,28 @@
 </li>
 <li><p><strong>浮动元素会自动转化为块级元素</strong>，比如让一个 <code>span</code> 元素浮动，那么它的盒子会改变为 <code>block</code>；</p>
 </li>
-<li><p>浮动元素周围的 IFC 会环绕浮动元素排列；（不论是相邻、嵌套或者间隔）</p>
+<li><p>浮动元素周围的文本会环绕浮动元素排列；（不论文本与浮动元素是相邻、嵌套或者间隔）</p>
 </li>
 <li><p>浮动元素会浮动在在块元素之上，在布局上块级元素会无视浮动元素，在渲染上块级元素会被浮动元素覆盖；</p>
 </li>
 <li><p>浮动元素不能撑起父级的高度。</p>
 </li>
+<li><p>浮动元素会漂浮在文档流之上，不会遵循 BFC 和 IFC 的规则，所有没有独占一行，外边距重叠等特性，甚至没有行的概念。</p>
+</li>
+<li><p>浮动元素带来的影响并不会干扰到其他的 BFC 区域。</p>
+</li>
 </ul>
-<p>浮动元素带来的影响并不会干扰到其他的 BFC 区域。</p>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.main</span> &#123;</span><br>    width: 600px;<br>    margin: auto;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    float: left;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>荷塘月色<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./img.png&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    这几天心里颇不宁静。今晚在院子里坐着乘凉，忽然想起日日走过的荷塘，<br>    在这满月的光里，总该另有一番样子吧。月亮渐渐地升高了，墙外马路上孩子们的欢笑，已经听不见了；妻在屋里拍着闰儿，迷迷糊糊地哼着眠歌。我悄悄地披了大衫，带上门出去。<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>img</code> 元素设置了浮动，它没有撑起父级 <code>div</code> 的高度；<code>p</code> 的布局并没有受到浮动影响，但是其内部的文字会环绕浮动元素布局。</p>
 <h3 id="浮动元素之间的影响"><a href="#浮动元素之间的影响" class="headerlink" title="浮动元素之间的影响"></a>浮动元素之间的影响</h3><ul>
-<li>浮动方向相同的元素会按照浮动方向依次排列</li>
-<li>溢出的浮动元素会最少限度的向下排列，并不一定是换行</li>
-<li>浮动元素之间不会产生外边距重叠</li>
+<li>浮动方向相同的元素会按照浮动方向依次排列；</li>
+<li>因为浮动元素是漂浮在文档流之上的，并不遵循 BFC 的布局规则，所以：<ul>
+<li>浮动元素没有换行的概念，横向溢出的浮动元素会最少限度的向下排列，并不一定是换行；</li>
+<li>浮动元素之间不会产生外边距重叠；</li>
+</ul>
+</li>
 </ul>
 <p>比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.main</span> &#123;</span><br>    width: 300px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    float: left;<br>    border: 1px solid black;<br>    background-color: silver;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo50</span> &#123;</span><br>    width: 50px;<br>    height: 50px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo70</span> &#123;</span><br>    width: 70px;<br>    height: 70px;<br>  &#125;<br><span class="css">  <span class="hljs-selector-class">.foo100</span> &#123;</span><br>    width: 100px;<br>    height: 100px;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo50&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo50&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo70&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo70&quot;</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo foo100&quot;</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -758,7 +764,7 @@
 <p>另一方面，两个浮动元素的垂直外边距将不会折叠。当应用于浮动元素时，它将元素的外边界移动到所有相关的浮动元素外边框边界的下方。这会影响后面浮动元素的布局，后面的浮动元素的位置无法高于它之前的元素。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear">MDN clear</a></p>
 </blockquote>
 <blockquote>
-<p><strong>关于外边界和边框边界：</strong><br>外边界：即 <code>margin</code> 的边缘；<br>边框边界： 即 <code>border</code> 的边缘。</p>
+<p><strong>关于外边界和边框边界和折叠：</strong><br>外边界：即 <code>margin</code> 的边缘；<br>边框边界： 即 <code>border</code> 的边缘。<br>上述所讲的折叠并不是 BFC 环境中的外边距重叠，两者并没有关系。</p>
 </blockquote>
 <p>清除浮动的方式有两种。</p>
 <ul>
@@ -773,7 +779,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/21</span>
+      <span class="last-update">最后更新时间：2021/02/23</span>
     </p>
   </div>
 </article>

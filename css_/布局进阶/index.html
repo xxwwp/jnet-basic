@@ -438,14 +438,14 @@
 <li><p>不同 BFC 中</p>
 <ul>
 <li>浮动元素的影响不会干扰到当前 BFC 区域外部。</li>
-<li>如果产生 BFC 的元素本身还是一个块级元素，并且还在常规流中，并且它和浮动元素相邻，那么它会紧靠浮动元素独占一行，<strong>不会因为浮动元素挤压换行。</strong></li>
+<li>如果产生 BFC 的元素本身还是一个块级元素，并且还在常规流中，并且它和浮动元素相邻，那么它会紧靠浮动元素独占一行，<strong>不会因为浮动元素挤压换行。</strong> 比如让一个收到浮动元素影响的普通块级元素的 <code>overflow</code> 为 <code>auto</code>，那么它将不再被浮动元素覆盖。</li>
 </ul>
 </li>
 </ul>
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/21</span>
+      <span class="last-update">最后更新时间：2021/02/23</span>
     </p>
   </div>
 </article>
