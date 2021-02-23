@@ -545,8 +545,8 @@
 <ul>
 <li><strong>元素会脱离当前文档流；</strong></li>
 <li><strong>元素会形成新的 BFC 布局区域，</strong> 也就是产生新的纵向布局环境；</li>
-<li><strong>固定定位元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位，它们的盒子会转化为 <code>block</code>。</li>
-<li>固定定位的元素虽然是块级元素，但是它脱离了文档流，并不会表现为独占一行。</li>
+<li><strong>元素的盒子会改变为块级元素，</strong> 比如给 <code>span</code> 或者 <code>input</code> 这样的默认行内级元素进行固定定位或者绝对定位，它们的盒子会转化为 <code>block</code>。</li>
+<li>固定定位或绝对定位的元素虽然是块级元素，但是它们脱离了文档流，并不会表现为独占一行。</li>
 </ul>
 <p>示例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">  <span class="hljs-selector-class">.foo</span> &#123;</span><br>    position: fixed;<br>    bottom: 100px;<br>    right: 20px;<br>    width: 100px;<br>    height: 100px;<br>    background-color: silver;<br>  &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>元素被放到距离视口底部 100px 右侧 20px 的位置<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
