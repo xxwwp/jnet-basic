@@ -301,12 +301,12 @@
   <div class="article-bd"><h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><blockquote>
 <p><strong>什么是包含块？</strong><br>描述：一个元素的框的尺寸和位置的计算有时相对于某个特定的长方形，称为该元素的包含块。<br>—W3C</p>
 </blockquote>
-<p>元素的布局经常会受到包含块的影响，比如计算块级元素垂直方向上的 <code>margin</code> 的百分比或者粘性布局的参考区域，都会受到包含块的影响。</p>
-<h3 id="确定元素的包含块"><a href="#确定元素的包含块" class="headerlink" title="确定元素的包含块"></a>确定元素的包含块</h3><p>一个元素的包含块和他的 <code>position</code> 属性息息相关：</p>
+<p>元素的布局经常会受到包含块的影响，比如计算块级元素垂直方向上 <code>margin</code> 的百分比，又或者粘性布局的参考区域等，相关布局都会受到包含块的影响。</p>
+<h3 id="确定元素的包含块"><a href="#确定元素的包含块" class="headerlink" title="确定元素的包含块"></a>确定元素的包含块</h3><p>一个元素的包含块和它的 <code>position</code> 属性息息相关：</p>
 <ol>
-<li><code>position</code> 的值是 <code>relative</code> 、<code>static</code> 或者 <code>sticky</code>，他的包含块一般是它最近的块元素祖先的内容边界组成。</li>
-<li><code>position</code> 值为 <code>fixed</code> 时，那么它的包含块就是视口区域。</li>
-<li><code>position</code> 值为 <code>absolute</code> 时，包含块由它最近的 <code>position</code> 不是 <code>static</code> 的祖先的内容边界组成。</li>
+<li><code>position</code> 的值是 <code>relative</code> 、<code>static</code> 或者 <code>sticky</code>，该元素的包含块一般由它最近的块元素祖先的内容边界组成。</li>
+<li><code>position</code> 值为 <code>fixed</code> 时，该元素的包含块就是视口区域。</li>
+<li><code>position</code> 值为 <code>absolute</code> 时，包含块由该元素最近的 <code>position</code> 不是 <code>static</code> 的祖先的内容边界组成。</li>
 </ol>
 <p>当然包含块的确定不止规则，比如把一个页面使用打印机打印，那么固定定位元素的包含块就是分页区域，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/All_About_The_Containing_Block#%E7%A1%AE%E5%AE%9A%E5%8C%85%E5%90%AB%E5%9D%97">详情点击这里</a>。</p>
 <h3 id="计算盒模型的百分值"><a href="#计算盒模型的百分值" class="headerlink" title="计算盒模型的百分值"></a>计算盒模型的百分值</h3><ul>
