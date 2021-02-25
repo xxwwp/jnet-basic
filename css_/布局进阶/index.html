@@ -317,7 +317,7 @@
 </li>
 <li><p><code>width</code>、<code>left</code>、<code>right</code>、<code>padding</code> 和 <code>margin</code> 的百分值参考的是包含块的宽度。</p>
 </li>
-<li><p>绝对定位的元素参考的百分比滚动祖先 pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp</p>
+<li><p>粘性定位元素的偏移值 <code>top</code>、<code>bottom</code>、<code>left</code> 和 <code>right</code> 的百分比参考的是最近的滚动祖先，而非包含块，其余属性的百分比遵循上述规则。</p>
 </li>
 </ul>
 <p>综上，如果你给一个固定定位的元素设置 <code>margin-top : 50%</code> 时，你会发现，它居然是根据视口宽度进行变化的。</p>
@@ -450,7 +450,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/23</span>
+      <span class="last-update">最后更新时间：2021/02/25</span>
     </p>
   </div>
 </article>
