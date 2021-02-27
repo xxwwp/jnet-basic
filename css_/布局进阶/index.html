@@ -402,8 +402,10 @@
 <li>其他（一些我们未学到或不常用的方式，又或者兼容性不佳，可以查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">这里</a> 了解所有产生 BFC 的方式）</li>
 </ul>
 <blockquote>
-<p>关于给 <code>body</code> 元素设置 <code>overflow</code> 不为 <code>visible</code> 时，不一定产生 BFC 的解释：</p>
+<p>关于给 <code>body</code> 元素设置 <code>overflow</code> 不为 <code>visible</code> 时，不一定产生 BFC 的解释，在 W3C 中是这样介绍的：</p>
+<blockquote>
 <p>用户代理必须把根元素上设置的 <code>overflow</code> 属性应用到视口上，当根元素是 <code>html</code> 或者 <code>xhtml</code> 元素，并且根元素具有 <code>body</code> 元素作为子元素时，如果根元素上的值为 <code>visible</code>，则用户代理必须把第一个这样的子元素的 <code>overflow</code> 属性应用到视口上。值 <code>visible</code> 用在视口上时解释为 <code>auto</code>。必须有 <code>overflow</code> 为 <code>visible</code> 的元素从中传递值。<br>— <a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS21/visufx.html#overflow">W3C overflow</a></p>
+</blockquote>
 <p>也就是说，默认情况下，给 <code>body</code> 元素设置 <code>overflow</code> 属性会应用到视口上，所以 <code>body</code> 元素不会产生新的 BFC 区域。<br>如果 <code>html</code> 元素的溢出样式不为 <code>visible</code> 时，那么给 <code>body</code> 元素的 <code>overflow</code> 设置非 <code>visible</code> 值时，就会产生新的 BFC 区域。</p>
 </blockquote>
 <h3 id="独占一行"><a href="#独占一行" class="headerlink" title="独占一行"></a>独占一行</h3><p><strong>外边距填充：</strong></p>
