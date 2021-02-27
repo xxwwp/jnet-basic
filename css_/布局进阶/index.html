@@ -392,19 +392,24 @@
 <li>外边距重叠：块级元素之间的盒子在垂直外边距上会出现相互重叠；</li>
 <li>内容包含：BFC 内包含创建它的元素内部的所有内容；</li>
 </ul>
-<h3 id="创建-BFC"><a href="#创建-BFC" class="headerlink" title="创建 BFC"></a>创建 BFC</h3><p>以下方式可以为元素创建 BFC ：</p>
+<h3 id="创建-BFC"><a href="#创建-BFC" class="headerlink" title="创建 BFC"></a>创建 BFC</h3><p>以下方式可以为 <strong>元素的内部</strong> 创建新的 BFC ：</p>
 <ul>
 <li><code>&lt;html&gt;</code> 元素；</li>
-<li><code>overflow</code> 值不为 <code>visible</code> 的块元素（<code>overflow-x/y</code> 其中一项不为 <code>visible</code> 即可）；</li>
+<li><code>overflow</code> 值不为 <code>visible</code> 的块元素（<code>overflow-x/y</code> 其中一项不为 <code>visible</code> 即可，这种方式不能给 <code>body</code> 元素内部创建新的 BFC）；</li>
 <li>行内块元素：<code>display:inline-block</code>；</li>
 <li>浮动元素：<code>flaot</code> 不是 <code>none</code>:</li>
 <li>绝对定位和固定定位元素；</li>
-<li>其他（其他方式会有较大的副作用，或是我们未学到的知识，又或者兼容性不佳，可以查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">这里</a> 了解所有产生 BFC 的方式）</li>
+<li>其他（一些我们未学到或不常用的方式，又或者兼容性不佳，可以查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">这里</a> 了解所有产生 BFC 的方式）</li>
 </ul>
-<h3 id="独占一行"><a href="#独占一行" class="headerlink" title="独占一行"></a>独占一行</h3><p><strong>水平居中：</strong></p>
-<p>因为 BFC 内块级元素独占一行的特性，块级元素的宽度小于当前行时，其余部分会自动被 <code>margin</code> 填充。如果此时设置水平方向的 <code>margin</code> 为 <code>auto</code>，这个块级元素就会水平居中。</p>
+<h3 id="独占一行"><a href="#独占一行" class="headerlink" title="独占一行"></a>独占一行</h3><p><strong>外边距填充：</strong></p>
+<p>因为 BFC 内块级元素独占一行的特性，块级元素的宽度小于当前行时，其余部分会自动被 <code>margin</code> 填充。在这种情况下：</p>
+<ul>
+<li>设置水平方向其中一侧的 <code>margin</code> 为 <code>auto</code>，外边距会在这侧进行填充；</li>
+<li>设置水平方向的 <code>margin</code> 为 <code>auto</code>，这个块级元素就会水平居中。</li>
+</ul>
 <p><strong>边界对齐：</strong></p>
-<p><strong>父子级的块级元素在水平上是按照父级内容边界和子级外边距的边缘进行对齐</strong>。就比如默认情况下的列表项，因为 <code>ul</code> 和 <code>ol</code> 元素拥有左侧的内边距，导致列表项元素会像右侧进行偏移。当 <code>margin</code> 设置为负值时，元素的外边距边界会收缩到元素内部，与父级元素对齐的位置也会产生改变。比如 <code>margin-left: -100px</code>。</p>
+<p><strong>父子级的块级元素在水平上是按照父级内容边界和子级外边距的边缘进行对齐</strong>。</p>
+<p>就比如默认情况下的列表项，因为 <code>ul</code> 和 <code>ol</code> 元素拥有左侧的内边距，导致列表项元素会像右侧进行偏移。当 <code>margin</code> 设置为负值时，元素的外边距边界会收缩到元素内部，与父级元素对齐的位置也会产生改变。比如 <code>margin-left: -100px</code>。</p>
 <p>可以使用负值外边距，插入一个比父级宽度更宽但是水平居中的元素，比如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;outside&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这里是正常文本<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;inside&quot;</span>&gt;</span>这里比父级元素更宽，并且在相对父级水平居中<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -421,15 +426,15 @@
 <p>上面发生的重叠现象还会相互叠加，比如父子级产生重叠后，又与兄弟级产生重叠。</p>
 <p>围绕外边距重叠的定义，有以下方式解决重叠的问题：</p>
 <ul>
-<li>让外边距不直接接触</li>
-<li>累加重叠部分</li>
-<li>建立新的 BFC 环境</li>
+<li>让外边距不直接接触：在两个外边距之间添加 <code>border</code>、<code>padding</code>、行框或非空内容区等；</li>
+<li>累加重叠部分：如果重叠了 <code>20px</code>，那么在其中一侧累加 <code>20px</code> 的外边距即可；</li>
+<li>建立新的 BFC 环境：不同 BFC 环境之间的元素不会产生外边距重叠。</li>
 </ul>
 <p><strong>是否一定需要解决外边距合并？</strong></p>
 <p>不一定，如果并没有影响到我们的布局，我们并不需要去处理外边距重叠，因为它并不是一个 bug，它只是 BFC 环境中块级元素的布局方式。</p>
 <h3 id="内容包含"><a href="#内容包含" class="headerlink" title="内容包含"></a>内容包含</h3><p>BFC 内包含创建它的元素内部的所有内容。它会产生以下影响：</p>
 <ul>
-<li>外边距合并无法重叠到 BFC 外，关于此点可以参考上一小节的建立新的 BFC 区域消除外边距合并。</li>
+<li>外边距合并无法重叠到 BFC 外，会撑起当前 BFC 区域。</li>
 <li>浮动元素会撑起 BFC 区域。</li>
 </ul>
 <p><strong>关于浮动元素会撑起 BFC 区域：</strong></p>
