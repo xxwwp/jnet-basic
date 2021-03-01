@@ -335,8 +335,8 @@
 </ul>
 <p>介绍两个字体的高度：</p>
 <ul>
-<li>字体高度：字体根据 <code>font-size</code> 和 <code>font-family</code> 计算渲染出来的高度，可以使用一个 <code>span</code> 元素包裹字体，然后填充背景色看到。这个高度用来显示字体。</li>
-<li>字体行高：由 <code>line-height</code> 确定，即 <code>line-height</code> 的高度。这个高度用来布局。</li>
+<li>字体高度：字体根据 <code>font-size</code> 和 <code>font-family</code> 计算渲染出来的高度，可以使用一个 <code>span</code> 元素包裹文本，然后填充背景色看到。这个高度用来显示字体。</li>
+<li>字体行高：由 <code>line-height</code> 决定，这个高度用来布局。</li>
 </ul>
 <p>演示这个沙箱：</p>
 <iframe src="https://codesandbox.io/embed/jinjiebuju-ifc-ziti-de0e9?fontsize=14&hidenavigation=1&theme=dark"
@@ -356,7 +356,7 @@
 </li>
 <li><p>行内框的宽高</p>
 <ul>
-<li>如果是行内元素（或匿名文本），行内框的高度是字体行高。宽度那么由 <code>font-size</code>、文本长度、<code>margin</code>、<code>border</code>、<code>padding</code> 在水平方向的总值决定</li>
+<li>如果是行内元素（或匿名文本），行内框的高度是字体行高。宽度那么由 <code>font-size</code>、文本长度、<code>margin</code>、<code>border</code>、<code>padding</code> 等相关属性在水平方向的排列后决定。</li>
 <li>如果是行内块元素，行内框的大小是其盒模型的总大小，即 <code>margin</code> + <code>padding</code> + <code>border</code> 加内容区。</li>
 </ul>
 </li>
@@ -459,7 +459,7 @@
 </div>
   <div class="article-ft">
     <p>
-      <span class="last-update">最后更新时间：2021/02/28</span>
+      <span class="last-update">最后更新时间：2021/03/01</span>
     </p>
   </div>
 </article>
