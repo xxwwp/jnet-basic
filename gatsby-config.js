@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: `/jnet-basic`,
+  pathPrefix: `/jnet-basic-v2`,
   plugins: [
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,

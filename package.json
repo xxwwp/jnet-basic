@@ -11,9 +11,10 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "devploy": "node ./gatsby/devploy.js"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",

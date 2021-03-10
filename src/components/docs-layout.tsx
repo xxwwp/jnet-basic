@@ -15,19 +15,6 @@ const cls = {
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
       color: #303133;
     }
-    * {
-      ::-webkit-scrollbar {
-        width: 0.5rem;
-      }
-      ::-webkit-scrollbar-thumb {
-        border-radius: 0.25rem;
-        background-color: #9ba6cc;
-      }
-      ::-webkit-scrollbar-track {
-        border-radius: 0.25rem;
-        background-color: #dfdfdf;
-      }
-    }
   `,
   leftSidebar: css`
     position: fixed;
