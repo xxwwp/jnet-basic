@@ -1,0 +1,251 @@
+---
+title: 常用 API
+---
+
+## 数字
+
+- `toFixed` 保留小数：
+
+  ```js
+  console.log((1).toFixed(2)); // '1.00'
+  ```
+
+- `toString` 转化字符串，并设置进制：
+
+  ```js
+  console.log((255).toString(16)); // 'ff'
+  ```
+
+## 字符串处理
+
+- `concat` 拼接字符串
+
+  ```js
+  "123".concat(null, "abc"); // '123nullabc'
+  ```
+
+- `indexOf` 查找子字符串并返回索引，失败返回 `-1`
+
+  ```js
+  "123 456".indexOf("56"); // 5
+  "123 456".indexOf("9"); // -1
+  ```
+
+- `search` 查找子字符串，类似 `indexOf`：
+
+  ```js
+  "123 456".indexOf("56"); // 5
+  "123 456".indexOf("9"); // -1
+  ```
+
+- `replace` 替换字符串
+
+  ```js
+  "123 456".replace("123", "ABC"); // 'ABC 456'
+  ```
+
+- `slice` 提取字符串
+
+  ```js
+  "0123456789".slice(3, 8); // '34567'
+  "0123456789".slice(7); // '789'
+  "0123456789".slice(-3); // '789'
+  "0123456789".slice(3, -2); // '34567'
+  ```
+
+- `split` 分割字符串为数组
+
+  ```js
+  "A*B*C".split("*"); // ['A','B','c']
+  "A*B*C".split(""); // ['A','*','B','*','c']
+  "A*B*C".split("", 2); // ['A','*']
+  ```
+
+- 大小写
+
+  ```js
+  "Content".toUpperCase(); // 'CONTENT'
+  "Content".toLowerCase(); // 'content'
+  ```
+
+## 数组处理
+
+- `concat` 数组链接：
+
+  ```js
+  [1, 2, 3].concat([4, 5, 6], [7, 8, 9]); // [1,2,3,4,5,6,7,8,9]
+  ```
+
+- `join` 连接数组项目为字符串
+
+  ```js
+  [1, 2, 3, "A", "B"].join(); // '1,2,3,A,B';
+  [1, 2, 3, "A", "B"].join(""); // '123AB';
+  [1, 2, 3, "A", "B"].join("-"); // '1-2-3-A-B';
+  ```
+
+- `slice` 提取数组，类似字符串的 slice 函数
+
+  ```js
+  [1, 2, 3, 4].slice(3); // [4]
+  ```
+
+- `pop push shift unshift` 数据结构函数 **!!!会修改原数组**
+
+  ```js
+  var foo = ["b", "c", "d"];
+  foo.push("e"); // 4
+  console.log(foo); // ['b','c','d','e']
+  foo.pop(); // 'e'
+  console.log(foo); // ['b','c','d']
+  foo.unshift("a"); // 5
+  console.log(foo); // ['a','b','c','d']
+  foo.shift(); // 'a'
+  console.log(foo); // ['b','c','d']
+  ```
+
+- `reverse` 颠倒数组 **!!!会修改原数组**
+
+  ```js
+  [1, 2, 3].reverse(); // [3,2,1]
+  ```
+
+- `splice` 数组增删改 **!!!会修改原数组**
+
+  ```js
+  var foo = [];
+
+  foo = [1, 2, 3, 4, 5, 6, 8];
+  // 从下标 4 开始删除到末尾
+  foo.splice(4);
+  console.log(foo); // [1,2,3,4]
+  // 从下标 2 删除1个
+  foo.splice(2, 1); // [1,2,4]
+  // 从下标 2 删除 0 个，并插入两个 'a'
+  foo.splice(0, 0, "a", "a"); // ['a','a', 1, 2, 4]
+  ```
+
+## 数学
+
+数学对象 `Math` 上有许多属性可用，比如：
+
+- `Math.random` 随机数，返回一个随机数字
+
+  ```js
+  console.log(Math.random());
+  ```
+
+- 一些常量：
+
+  ```js
+  console.log(Math.PI); // 圆周率
+  console.log(Math.E); // 欧拉常数
+  ```
+
+- 一些数学函数：
+
+  ```js
+  console.log(Math.pow(2, 10)); // 计算 2 的 10 次方
+  console.log(Math.sin(Math.PI / 2)); // 计算二分之 π 的正弦值
+  console.log(Math.cos(Math.PI / 2)); // 计算二分之 π 的余弦值
+  console.log(Math.tan(Math.PI / 4)); // 计算四分之 π 的正切值
+  // ... 还有很多
+  ```
+
+其余 Math 对象 API 可以到这里 [查表](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math)。
+
+## 日期对象
+
+`Date` 函数用来处理关于时间的问题，可以通过以下方式建立一个日期对象：
+
+```js
+var date = new Date();
+```
+
+### 获取年月日、时分秒、毫秒
+
+日期对象内置获取各种时间的函数：
+
+```js
+console.log(date.getFullYear()); // 获取年份
+console.log(date.getMonth()); // 获取月份 0 ~ 11，0 是一月，11 是 12 月
+console.log(date.getDate()); // 获取日，1 ~ 31
+console.log(date.getDay()); // 获取星期几，0 ~ 6，其中 0 代表星期天
+console.log(date.getHours()); // 获取小时，24 小时制
+console.log(date.getMinutes()); // 获取分钟
+console.log(date.getSeconds()); // 获取秒钟
+console.log(date.getTime()); // 从 1970-01-01 第一个时区到现在的毫秒数，这个数字称作时间戳
+```
+
+### 设置年月日、时分秒、毫秒
+
+日期对象创建后，时间是创建时的时间，不会跟随计算机时间变化，比如创建一个时间对象，然后在控制台打印它的时间戳或者秒钟数，它是不变的：
+
+```js
+// 控制台中
+var date = new Date();
+// 等上一会儿
+date.getSeconds(); // 值不变
+// 等上一会儿
+date.getSeconds(); // 值不变
+```
+
+我们可以在创建时间对象后改变其时间，使用以下函数：
+
+```js
+date.setFullYear(1999); // 设置为 1999 年
+date.setFullYear(2000, 0); // 设置为 2000 年 1 月，月份从 0 开始计算
+date.setFullYear(1999, 10, 20); // 设置为 1999 年 11 月 20 日，可以同时设置月份和日期
+
+date.setMonth(2); // 设置为 3 月份，范围 0 ~ 11，同获取月份一样
+date.setMonth(2, 30); // 设置为 3 月 30 号
+
+date.setDate(18); // 设置为 18 号
+
+date.getHours(3); // 设置为凌晨 3 点
+date.getHours(3, 20); // 设置为凌晨 3 点 20 分
+date.getHours(3, 20, 15); // 设置为凌晨 3 点 20 分 15 秒
+date.getHours(3, 20, 15, 300); // 设置为凌晨 3 点 20 分 15 秒 300 毫秒
+
+date.setMinutes(20); // 设置为 20 分
+date.setMinutes(20, 38); // 设置为 20 分 38 秒
+date.setMinutes(20, 38, 200); // 设置为 20 分 38 秒 200 毫秒
+
+date.setSeconds(17); // 设置为 17 秒
+date.setSeconds(17, 378); // 设置为 17 秒 378 毫秒
+
+date.setTime(0); // 设置时间为 1970-01-01 00:00:00，通过时间戳设置
+```
+
+### 创建时间对象
+
+我们可以创建指定时间的对象，在创建时间对象时传入对应的参数即可：
+
+```js
+var date1 = new Date(); // 当前时间对象
+var date2 = new Date(1607927663589); // 按照时间戳创建
+var date3 = new Date("1995-12-17T03:24:00"); // 按照时间字符串格式创建
+var date4 = new Date(2000, 9); // 传入年月日时分秒创建，最少需要传入年份和月份。这行代码创建时间为 2000-10-01 00:00:00
+var date4 = new Date(2000, 9, 20, 6, 40); // 创建时间：2000-10-20 06:40:00
+var date4 = new Date(2000, 9, 20, 6, 40, 30, 300); // 创建时间：2000-10-20 06:40:30 300毫秒
+```
+
+**记住：创建事件对象必须使用 `new` 关键字修饰 `Date` 函数的执行，不然 `Date` 函数只会返回一个时间字符串。**
+
+日期其余 API 可以到这里 [查表](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95)。
+
+## JSON 字符串
+
+- `JSON.stringify`
+- `JSON.parse`
+
+```js
+var foo = {
+  bar: "0000",
+  baz: false,
+};
+
+var fooToJson = JSON.stringify(foo);
+console.log(fooToJson);
+console.log(JSON.parse(fooToJson));
+```

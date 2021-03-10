@@ -1,0 +1,128 @@
+---
+title: 异步编程
+---
+
+## 定时器
+
+在 JS 中，我们可能会需要延迟执行某些逻辑，或者定时执行某些逻辑。JS 中内置了两个定时器函数，用来处理这种情况：
+
+```js
+function foo() {
+  console.log("延迟执行");
+}
+
+setTimeout(foo, 1000);
+```
+
+定时器函数的第一个参数是一个回调函数，上面代码中，我们使用 `setTimeout` 定时器在 1000 毫秒后执行 `foo` 函数。
+
+定时器有两个 `setTimeout` 和 `setInterval`， **`setTimeout` 只会执行一次，`setInterval` 会重复执行，直到你主动关闭定时器。**
+
+演示 `setTimeout` 和 `setInterval`：
+
+```js
+function foo() {
+  console.log("我只执行了一次");
+}
+
+function bar() {
+  console.log("我执行了多次");
+}
+
+setTimeout(foo, 1000);
+setInterval(bar, 1000);
+```
+
+使用函数表达式简化上述代码：
+
+```js
+setTimeout(function () {
+  console.log("我只执行了一次");
+}, 1000);
+
+setInterval(function () {
+  console.log("我执行了多次");
+}, 1000);
+```
+
+## 关闭定时器
+
+关闭定时器使用 `clearTimeout` 和 `clearInterval`。定时器函数会返回一个数字，用来关闭定时器：
+
+```js
+var t1 = setTimeout(function () {
+  console.log("我只执行了一次");
+}, 1000);
+
+clearTimeout(t1);
+```
+
+上述代码并不会打印任何数据，因为定时器被关闭了。
+
+你还可以在定时器内部关闭定时器：
+
+```js
+var i = 0;
+var t1 = setInterval(function () {
+  if (i++ > 10) {
+    clearInterval(t1);
+  } else {
+    console.log(i);
+  }
+}, 500);
+```
+
+## 事件队列
+
+查看以下代码：
+
+```js
+setTimeout(function () {
+  console.log(1);
+}, 0);
+console.log(2);
+```
+
+上述代码中，`2` 会在 `1` 之前打印。即使如果给定时器的时间定义为 0，它也不会立即执行，它会等到当前代码都处理结束之后才去执行。
+
+你可以尝试编写一个非常长的循环占用资源，来判断这个情况：
+
+```js
+setTimeout(function () {
+  console.log(1);
+}, 0);
+console.log(2);
+for (var i = 0; i < 1000000000; i++) {}
+```
+
+发送这种情况的原因是因为定时器回调函数的代码是异步的，异步代码不在当前代码的执行栈中。
+
+**JS 中的代码的执行单位是栈，代码是一栈一栈运行的，当前栈全部运行结束，才会运行下一栈。** 这种执行方式就好像银行办理手续的队伍，只有最前面的人办理结束后，后面的人才能接着办理。其中每一个人就代表一栈代码，办理手续的人代表代码正在执行，正在执行的栈被称作 **当前执行栈**。
+
+定时器中的代码就会被分到队伍的末尾，如：
+
+```js
+// 程序一开始首栈
+
+// 定时器回调函数在 0 秒后，放到队伍末尾
+setTimeout(function () {
+  console.log(1);
+}, 0);
+
+// 定时器回调函数在 0 秒后，放到队伍末尾
+setTimeout(function () {
+  console.log(2);
+}, 0);
+
+console.log(3);
+
+// 首栈运行结束，按顺序开始运行下一栈
+```
+
+栈与栈之间是按顺序排列的，依次形成一个队伍，最前面的被执行，后来的只能在末尾等候。这个队伍在 JS 中叫做 **异步队列** 或者 **事件队列**。
+
+需要注意的是，定时器延时执行的代码，是延时后把回调函数放到事件队列中。设置一个 10 分钟的定时器，代码会在 10 分钟后加入到事件队列的末尾。就类似一个人到了银行，它没有立即取号，而是在 10 分钟后才取号，此时他才开始排队。
+
+还有一点就是，不管把代码分开写在多少个 `script` 元素上，全局上的代码都是在首栈中。
+
+JS 中针对事件队列，有一个并发模型，如果你很有兴趣，可以点击 [这里](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop) 。

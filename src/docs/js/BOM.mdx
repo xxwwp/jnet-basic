@@ -1,0 +1,208 @@
+---
+title: BOM
+---
+
+## 概述
+
+BOM 全称 Browser Object Model（浏览器对象模型），它是浏览器各种 API 集合的数据模型，在浏览器中，使用 `window` 即可获取。
+
+BOM 是一个特殊的对象，所有全局上的函数和变量都是 `window` 的属性。比如：
+
+```js
+var foo = 1;
+function bar() {}
+console.log(window.foo, window.bar);
+console.log(window.Number === Number); // true
+console.log(window.Math === Math); // true
+console.log(window.document === document); // true
+```
+
+同时，它自身也是自身的属性：
+
+```js
+window.window === window; // true
+```
+
+因为全局上的函数和变量都是 `window` 上的属性，反向推理，`window` 上的属性也都是全局函数或变量，访问它们的时候可以当做全局数据获取。
+
+BOM 上挂载了大量的内置 API，比如 `Math` 对象、`Date` 对象等等。当我们引入第三方的 API 时，基本上也都挂载在 `window` 上。比如引入 [Moment.js](https://momentjs.com/) 库，它被用来处理时间，它比原生的 `Date` 功能更强大。
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script>
+  console.log(moment, window.moment);
+  console.log("当前时间", moment().format("YYYY-MM-DD hh:mm:ss"));
+</script>
+```
+
+你可以 [在此](https://developer.mozilla.org/zh-CN/docs/Web/API/Window) 查询 BOM 模型的所有 API。
+
+## 定位 location
+
+`window.location` 中包含当前页面地址相关信息，同时提供了页面跳转相关功能。
+
+示例：
+
+```js
+console.log(location);
+```
+
+它的属性和方法如下：
+
+| 属性                | 描述                                                                    |
+| ------------------- | ----------------------------------------------------------------------- |
+| `Location.href`     | 当前页面的 URL 地址，设置该属性可以跳转到指定页面                       |
+| `Location.protocol` | URL 的协议                                                              |
+| `Location.host`     | 主机名（域名）及其端口号（没有端口则省略）                              |
+| `Location.hostname` | 主机名（域名）                                                          |
+| `Location.port`     | 端口号，可能省略                                                        |
+| `Location.pathname` | URL 的路径部分                                                          |
+| `Location.search`   | URL 的查询参数，对应 GET 参数部分                                       |
+| `Location.hash`     | URL 的片段部分，对应 HTML 中的锚点，如 `/path/index.html#foo` 的 `#foo` |
+
+| 方法                    | 描述                                                                       |
+| ----------------------- | -------------------------------------------------------------------------- |
+| `Location.assign(url)`  | 加载一个新文档，相当于跳转页面。                                           |
+| `Location.reload()`     | 重加载当前页                                                               |
+| `Location.replace(url)` | 使用其他页面替换当前页面，原页面不会保存在历史记录中，无法通过返回键后退。 |
+| `Location.toString()`   | 返回当前页面完整的 URL                                                     |
+
+示例：
+
+```html
+<button>highlight js</button>
+<script>
+  document.querySelector("button").onclick = function () {
+    location.href = "https://highlightjs.org/";
+    // or
+    // location.assign("https://highlightjs.org/")
+    // 上面两条语句等价
+
+    // 使用新页面替换当前记录，跳转后无法通过后退键回到当前页
+    // location.replace("https://highlightjs.org/")
+  };
+</script>
+```
+
+## 历史 history
+
+`window.history` 中记录了部分当前标签页的历史记录，这些记录不可更改，不过可以根据历史记录前进或后退页面。
+
+| 属性             | 描述             |
+| ---------------- | ---------------- |
+| `History.length` | 当前历史记录总数 |
+
+| 方法                | 描述                                                                   |
+| ------------------- | ---------------------------------------------------------------------- |
+| `History.go(num)`   | `num` 为一个正数，当 `num` 为一个正数时，前进 `num` 条历史，反之后退。 |
+| `History.back()`    | 后退一页                                                               |
+| `History.forward()` | 前进一页                                                               |
+
+当跳转失败时，不会产生任何变化。
+
+示例：
+
+```html
+<fieldset>
+  <legend>指定跳转步数</legend>
+  <input type="text" id="step" /> <button id="bt-go">跳转</button>
+</fieldset>
+<fieldset>
+  <legend>后退或前进</legend>
+  <button id="bt-back">后退</button>
+  <button id="bt-forward">前进</button>
+</fieldset>
+<script>
+  function el(id) {
+    return document.getElementById(id);
+  }
+
+  el("bt-go").onclick = function () {
+    var step = el("step").value;
+    history.go(parseInt(step) || 0);
+  };
+
+  el("bt-back").onclick = function () {
+    history.back();
+  };
+
+  el("bt-forward").onclick = function () {
+    history.forward();
+  };
+</script>
+```
+
+## 用户代理 navigator
+
+navigator 又被称作用户代理，它中包含了和浏览器相关的信息，是浏览器内置的全局对象，但是各个浏览器对此对象的实现都不太一样。
+
+大部分情况下，开发者都通过 `navigator.userAgent` 来判断浏览器厂商版本号及当前设备信息。通过对 `navigator.userAgent` 的判断，可以对不同的浏览器做不一样的适配与兼容。
+
+示例：
+
+```js
+// 这个值在不同浏览器中不同
+console.log(navigator.userAgent);
+```
+
+我不建议大家去分析各个浏览器 `navigator` 的不同，它们差异不止大，`navigator` 本身的值也不一定是最准确的。比如 `navigator.appCodeName` 和 `navigator.appName` 它们分别代表浏览器内部开发代号和浏览器的官方名称，但是它不一定是准确的：
+
+```js
+console.log(navigator.appCodeName, navigator.appName);
+
+/**
+ * Chrome、Firefox、IE11 中的打印结果都是："Mozilla Netscape"
+ * Mozilla 指 Mozilla 基金会，是 Firefox 的官方团队，我们常常查表的网站 MDN 也是它们整理的，Netscape 指网景公司，是 Mozilla 的前身。
+ *
+ * IE11 以下打印结果是："Mozilla Microsoft Internet Explorer"
+ * Microsoft 指的是微软，Internet Explorer 是 IE 浏览器的全称
+ */
+```
+
+你可以 [在此](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator) 查询它的属性和方法。
+
+## 内置弹窗
+
+`window` 对象内置了三个弹窗：
+
+- `Window.alert(text)`：提示 `text` 文本内容。
+- `Window.confirm(text)`：提示 `text` 文本内容，含有确定和取消按钮。确定返回 `true`，取消返回 `false`。
+- `Window.prompt(text)`：提示 `text` 文本内容，获取一段输入。返回对应的输入文本。
+
+示例：
+
+```html
+<button id="alert">alert</button>
+<button id="confirm">confirm</button>
+<button id="prompt">prompt</button>
+<script>
+  function el(id) {
+    return document.getElementById(id);
+  }
+  el("alert").onclick = function () {
+    alert("一段信息");
+  };
+  el("confirm").onclick = function () {
+    var re = confirm("确定或取消");
+    console.log(re);
+  };
+  el("prompt").onclick = function () {
+    var re = prompt("请输入文本");
+    console.log(re);
+  };
+</script>
+```
+
+它们的执行会把页面挂起，无法执行后续程序，所以一般不被推荐。
+
+示例：
+
+```js
+function foo() {
+  alert("something");
+  console.log("后续代码必须关闭弹框后才会执行");
+}
+foo();
+```
+
+上面代码中，如果不关闭弹框，那么页面将一直被挂起，无法执行后续代码。

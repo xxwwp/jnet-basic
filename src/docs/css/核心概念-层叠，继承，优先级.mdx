@@ -1,0 +1,251 @@
+---
+title: 核心概念-层叠，继承，优先级
+---
+
+## 优先级
+
+同一个元素，有可能会被多个选择器选中，如果多个选择器都设置了同一个样式，但是这些样式只有一个会生效，这取决于选择器的优先级，优先级最高的选择器设置的样式会被运用。
+
+选择器的权重是：
+
+| 权重 | 元素                 |
+| ---- | -------------------- |
+| 千位 | 内联样式             |
+| 百位 | id 选择器            |
+| 十位 | 类、属性、伪类选择器 |
+| 个位 | 元素、伪元素选择器   |
+
+**优先级计算方式：**
+
+- **优先级权重没有进位**，个位权重的选择器不管怎么叠加，都不可能超过十位的选择器。
+- 通配符 `*` 没有权重。
+- 顺序覆盖，优先级相同的情况下，写在后面的选择器的声明会覆盖之前的声明。
+- 在 css 属性值后面添加 `!important` 可以强制覆盖其他优先级的属性。如果多个声明使用了 `!important` 关键字，那么会根据优先级决定渲染那个样式。
+
+### 优先级权重
+
+```html
+<style>
+  /* 权重：十位 1 */
+  .foo {
+    color: red;
+  }
+  /* 权重：十位 2 */
+  .foo.bar {
+    color: silver;
+  }
+</style>
+<!-- .foo.bar 权重更大，所以字体为银色 -->
+<p class="foo bar">content</p>
+```
+
+### 权重不会进位
+
+**权重是不会产生进位的**，例如十位的权重再多也不会比百位大，比如：
+
+```html
+<style>
+  /* 权重：百位 1 */
+  #bar {
+    color: red;
+  }
+  /* 权重：十位 11 */
+  .foo1.foo2.foo3.foo4.foo5.foo6.foo7.foo8.foo9.foo10.foo11 {
+    color: silver;
+  }
+</style>
+<!-- #bar 权重更大，所以字体为红色，十位的权重并不会进位到百位 -->
+<p id="bar" class="foo1 foo2 foo3 foo4 foo5 foo6 foo7 foo8 foo9 foo10 foo11">content</p>
+```
+
+### 通配符 `*`
+
+通配符 `*` 没有权重，任何其他选择器都可以覆盖它的样式，比如：
+
+```css
+/* 没有权重，相当于页面的文字一个默认颜色 */
+* {
+  color: silver;
+}
+/* 权重：个位 1，会覆盖通配符的样式，所有 p 元素的字体颜色为黑色 */
+p {
+  color: black;
+}
+```
+
+### 顺序覆盖
+
+在优先级相同的情况下，写在后面的选择器的声明会覆盖之前的声明。比如：
+
+```html
+<style>
+  .foo {
+    background-color: black;
+    color: white;
+  }
+  .foo {
+    /* 覆盖了前一个 foo 的 color 样式 */
+    color: silver;
+  }
+</style>
+<p class="foo">黑底银字</p>
+```
+
+上面代码中，第二个 `.foo` 选择器的 `color` 样式会对之前的 `color` 声明进行覆盖，但是并不会覆盖其他声明，比如 `background-color`。
+
+不同选择器优先级相同，也会产生覆盖，比如：
+
+```html
+<style>
+  .foo {
+    background-color: black;
+    color: white;
+  }
+  .bar {
+    color: silver;
+  }
+</style>
+<p class="bar foo">黑底银字</p>
+```
+
+类似上面的代码，如果一个元素同时使用了 `.foo` 和 `.bar` 的样式，那么 `.bar` 的样式会覆盖 `.foo` 的样式。
+
+### `!important` 关键字
+
+可以使用 `!important` 覆盖样式：
+
+```html
+<style>
+  #bar {
+    color: red;
+  }
+  .foo {
+    /* !important 可以强制渲染此样式 */
+    color: silver !important;
+  }
+</style>
+<!-- !important 权重更大，所以字体为银色 -->
+<p id="bar" class="foo">content</p>
+```
+
+如果有多个声明使用了 `!important` 关键字，那么会根据优先级规则作用优先级高的样式，比如：
+
+```html
+<style>
+  #bar {
+    color: red !important;
+  }
+  .foo {
+    color: silver !important;
+  }
+</style>
+<!-- 虽然 #bar 和 .foo 内 color 声明都使用了 !important，但是 #bar 权重更大，所以字体为红色 -->
+<p id="bar" class="foo">content</p>
+```
+
+## 层叠和继承
+
+### 层叠
+
+元素的样式并不是某一个选择器固定，而是在默认样式的基础上外加多个选择器叠加得到。比如：
+
+```css
+p {
+  background-color: black;
+  color: red;
+}
+
+p {
+  color: skyblue;
+}
+```
+
+在上面的代码中，第二个 `p` 选择器会覆盖前一个的声明，这种现象被称作 **层叠**。一个元素可能层叠多个选择器，比如：
+
+```html
+<style>
+  .bar {
+    background-color: black;
+    color: red;
+  }
+  .foo {
+    color: silver;
+  }
+  [data-high]:hover {
+    color: white;
+  }
+</style>
+<p class="foo bar" data-high>黑底银字，鼠标悬停时字体白色高亮</p>
+```
+
+上面代码中，三个选择器都作用了上下文中的 `p` 元素，产生了层叠，可以打开控制台，点击控制台左上角选择元素的工具选择这个 `p` 元素，会在控制台中发现它们的层叠关系。
+
+### 继承
+
+元素的样式也可以通过继承父级的样式，比如：
+
+```css
+body {
+  color: skyblue;
+}
+```
+
+上面代码中，我们只是设置了 `body` 元素内的字体颜色，但是你会发现整个页面的字体颜色都被改变了。这是因为大部分元素的 `color` 样式默认情况下都继承自父级，父级可能又继承爷爷级，最后继承到 `body` 元素上。
+
+可以主动设置元素的样式继承父级，比如：
+
+```css
+p {
+  color: inherit;
+}
+```
+
+`inherit` 并不是颜色值，它表示该声明的值继承自父级，CSS 中有三个 **通用样式值**：
+
+| 值        | 描述               |
+| --------- | ------------------ |
+| `inherit` | 让声明继承自父级   |
+| `initial` | 让声明的值为初始值 |
+| `unset`   | 样式未设置         |
+
+**任何属性都可以使用上述三个值，其中 `inherit` 决定了是否继承父级样式。** 比如：
+
+```html
+<style>
+  body {
+    color: skyblue;
+  }
+  .one {
+    /* 继承父级样式 */
+    color: inherit;
+  }
+  .tow {
+    /* 不继承父级样式，使用初始值 */
+    color: initial;
+  }
+</style>
+
+<p class="one">字体颜色继承</p>
+<p class="tow">字体颜色初始值</p>
+```
+
+并不是所有声明的默认值都是 `inherit`，比如：
+
+```html
+<style>
+  div {
+    height: 100px;
+  }
+
+  div p {
+    background-color: silver;
+    color: black;
+    /* 添加下面的代码可以让 p 元素的高度继承父级 */
+    /* height: inherit; */
+  }
+</style>
+
+<div>
+  <p>p 元素的 height 样式默认值就不是 inherit，不会继承父级</p>
+</div>
+```

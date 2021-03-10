@@ -1,0 +1,245 @@
+---
+title: 背景处理
+---
+
+## 背景色
+
+使用 `background-color` 属性可以设置元素的背景样式，比如：
+
+```css
+body {
+  background-color: black;
+}
+```
+
+大部分元素的背景都是透明的，所以给 `body` 设置背景色后，大部分元素的背景也都随之改变，少部分元素例外，比如 `button` 按钮，它具有默认的背景色。
+
+## 背景图片
+
+背景图片可以和背景色一起用，图片透明区域和图片没有填充的区域会显示背景色。关于背景图片有以下属性：
+
+### `background-image`
+
+`background-image` 用于指定元素的背景图片，它有以下值
+
+| 值     | 描述         |
+| ------ | ------------ |
+| `none` | 不指定 默认  |
+| `url`  | 图片资源路径 |
+
+比如：
+
+```css
+p {
+  background-image: url(./img.png);
+}
+```
+
+### `background-repeat`
+
+`background-repeat` 用于指定背景图片的重复排列方式，开发时可能会遇到背景很小，此时可以让背景图片重复排列，它有以下值：
+
+| 值          | 描述          |
+| ----------- | ------------- |
+| `repeat`    | 双向平铺 默认 |
+| `no-repeat` | 不重复        |
+| `repeat-x`  | 水平平铺      |
+| `repeat-y`  | 垂直平铺      |
+
+【演示】
+
+### `background-size`
+
+`background-size` 用于指定背景图片的大小，让背景图片拉伸或者收缩：
+
+| 值        | 描述                                                                 |
+| --------- | -------------------------------------------------------------------- |
+| `auto`    | 保持图片原有大小，默认，这是个理想的值，图片不会因为拉伸或缩放失真。 |
+| `contain` | 保持图片比例情况下缩放，让背景区域完全 **包裹** 图片。               |
+| `cover`   | 保持图片比例情况下缩放，让背景区域完全 **填充** 图片。               |
+| 单个值    | 设置宽度，保持图片比例情况下设置图片的宽度，高度会自动缩放。         |
+| 两个值    | 依次设置图片的宽度和高度，其中一个值设置为 `auto`，图片会保留缩放    |
+
+【演示】
+
+### `background-position`
+
+`background-position` 用于设置背景图片的定位，它有以下值：
+
+| 值                   | 描述                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `center`             | 居中                                                                                                         |
+| `top` 或 `bottom`    | 设置图片上下对齐                                                                                             |
+| `left` 或 `right`    | 设置图片左右对齐                                                                                             |
+| 单个值               | 设置 x 轴偏移量，y 轴会显示为居中                                                                            |
+| 两个值               | 依次设置 x 轴和 y 轴的偏移量                                                                                 |
+| 百分值               | 默认情况下根据元素滚动框和图片大小的差值计算。<br />比如 x 轴的 0% 图片会在左侧，100% 会在右侧               |
+| 使用多个值指定偏移值 | 图片会相对背景区域的偏移，比如：<br /> `left 10px bottom 20px`，图片会放在距离左侧 10px 底部 20px 的位置放置 |
+
+【演示】
+
+## CSS3 新属性
+
+在 CSS3 标准中，背景图片被添加了一些功能强大的属性，它们的一般都不太兼容老旧的浏览器，这里一并讲了，我推荐大家使用，但是需要额外记住下列属性是 CSS3 中的样式。
+
+### 背景固定
+
+`background-attachment` 属性可以设置背景的固定方式，它有以下值（IE9 以上完全兼容）：
+
+| 值       | 描述                                       | 定位影响                               |
+| -------- | ------------------------------------------ | -------------------------------------- |
+| `local`  | 会随着滚动条滚动，背景图片像内容一样放置。 | 定位基于整个内容区（包括溢出的区域）   |
+| `scroll` | 和元素进行固定，不受元素滚动影响。         | 定位基于滚动框大小（不包括溢出的区域） |
+| `fixed`  | 固定在视口上，不受所有滚动影响。           | 定位基于视口大小                       |
+
+【演示】
+
+### 指定参考位置
+
+`background-origin` 用来 **设置背景图片渲染的参考位置**，它有以下属性（IE9 以上完全兼容）：
+
+| 值            | 描述                            |
+| ------------- | ------------------------------- |
+| `padding-box` | 背景图片参考 `padding` 区域填充 |
+| `border-box`  | 背景图片参考 `border` 区域填充  |
+| `content-box` | 背景图片参考内容区域填充        |
+
+如：
+
+```html
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    padding: 100px;
+    border: 20px dashed black;
+    background-color: silver;
+    background-repeat: no-repeat;
+    background-image: url(./img.png);
+  }
+  .content {
+    background-origin: content-box;
+  }
+  .padding {
+    background-origin: padding-box;
+  }
+  .border {
+    background-origin: border-box;
+  }
+</style>
+<div class="box content"></div>
+<hr />
+<div class="box padding"></div>
+<hr />
+<div class="box border"></div>
+```
+
+### 剪裁
+
+`background-clip` 属性用于设置背景的渲染区域，它有以下值（IE9 以上部分兼容）：
+
+| 值            | 描述                                                             |
+| ------------- | ---------------------------------------------------------------- |
+| `border-box`  | 默认值，背景区域从 `border` 开始，背景会在边框下层               |
+| `padding-box` | 背景区域被剪裁为 `padding + 内容` 部分。                         |
+| `content-box` | 背景区域被裁剪为内容部分。                                       |
+| `text`        | （实验功能，不建议使用，兼容性并不好）背景被裁剪成文字的前景色。 |
+
+同 `background-origin` 不同，`background-origin` 并不会剪裁背景，只是改变渲染的参考位置，而 `background-clip` 会直接剪裁背景区域。
+
+比如：
+
+```html
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    padding: 100px;
+    border: 20px dashed black;
+    background-color: silver;
+    background-image: url(./img.png);
+  }
+  .content {
+    background-clip: content-box;
+  }
+  .padding {
+    background-clip: padding-box;
+  }
+  .border {
+    background-clip: border-box;
+  }
+</style>
+<div class="box content"></div>
+<hr />
+<div class="box padding"></div>
+<hr />
+<div class="box border"></div>
+```
+
+上面的代码中，三个 `div` 的背景区域依次产生了剪裁，
+
+`background-clip` 还有一个特殊的值 `text`，用于按照文字区域剪裁，比如：
+
+```html
+<style>
+  .clip {
+    background-clip: text;
+    /* 这是兼容代码 */
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 50px;
+    background-image: url(./img.png);
+  }
+</style>
+<p class="clip">文字剪裁</p>
+```
+
+文字剪裁方式还在试验中，不推荐使用。
+
+## background 简写
+
+上面学习的各种属性都可以使用 `background` 来简写，它的格式如下：
+
+```
+background:bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment ;
+```
+
+比如：
+
+```css
+body {
+  background: #ffffff url(./img.png) center top no-repeat;
+}
+```
+
+## 多张背景
+
+可以指定多张图片作为背景，使用逗号分割不同的背景代码：
+
+```css
+/* 分配三张图片为背景 */
+body {
+  margin: 0;
+  height: 100vh;
+  background: url(./img.png) no-repeat, url(./img.png) right bottom no-repeat, url(./img.png) right top no-repeat rgb(163, 245, 207);
+}
+```
+
+也可以拆开来写，比如：
+
+```css
+/* 和上一段代码等价 */
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: url(./img.png), url(./img.png), url(./img.png);
+  background-position: 0 0, right bottom, right top;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+
+  /* 背景图片可以应用多个，但是背景色只能应用一个 */
+  background-color: rgb(163, 245, 207);
+}
+```
+
+> 多重只能设置图片，背景色仅能设置一次。

@@ -1,0 +1,104 @@
+---
+title: 课程总结
+---
+
+## 概述
+
+在系列课程中，介绍了 HTML、CSS、JavaScript 的基础内容，学习了前端基础知识。如果你已经掌握了系列课程的全部内容，那么你已经完全入门前端开发了。
+
+系列课程中的知识都是较早版本的前端知识，它们虽然早，确实重中之重，就比如数学的中加减乘除，基础但是重要。
+
+### 版本
+
+目前介绍的 HTML，大部分都是 HTML4.1 版本的知识，这些知识以及满足了基本的网站开发需求，并且适应各个浏览器。在 2008 年，制定了 HTML5 版本，它对 HTML4.1 进行一些改进，添加各式各样的新元素，比如视频元素，音频元素，这部分知识将会在 HTML5 的课程中介绍。
+
+目前介绍的 CSS 是 CSS1 和 CSS2 版本，它们其实是最难的部分，在未来的 CSS3 课程中，学习会非常简单，没有那么多复杂概念。
+
+JavaScript 其实是一个复杂的集合，它不仅仅是代表一个语言。JavaScript 的语法标准是 ECMA-262，ECMA 是一个标准化组织，它们制定了各式各样各行各业的标准。JavaScript 是 ECMA-262 标准的一种实现，在此基础上，它还添加了 BOM 和 DOM 模型，所以它实际上是三者的组合。ECMA-262 又被称作 ECMAScript，简称 es。当前课程中主要介绍了 es3 相关知识，也涉及少部分 es5 的知识，比如严格模式就是 es5 中制定的，所以老旧浏览器其实没有严格模式，因为当时 es5 标准都还没出现。BOM 和 DOM 也有相关标准，比如在 DOM4 版本中，就制定了一些额外的属性和方法来操纵 DOM。在 JavaScript 的后续课程中，我会尽可能全的讲解 JavaScript 新标准的知识，它们并不会很难，涉及到的新知识并不多，至少没有基础部分的学习难。
+
+## 文档
+
+前端知识并没有官方文档，如果在学习中，你遇到了不了解的知识，可以去 [MDN](https://developer.mozilla.org/zh-CN/) 上查询，MDN 上整理了最新最全的的前端知识。不建议使用当前网站的电子书查询知识，本电子书只是相当于课堂讲义。
+
+## 兼容
+
+目前为止，我们遇到了各式各样的兼容性问题，这是因为各个浏览器的厂商都不一样，大家按照标准去实现得来的 JavaScript 也就不尽相同，甚至是 CSS 也有兼容性问题。
+
+如果你的公司是自主开发，不依赖各种库，那么没办法，这些兼容性问题只能你自己去查阅资料总结，课程中我把大部分可能出现的兼容问题都概括过，比如 IE 低版本没有 `addEventListener` 来绑定事件，需要使用 `attachEvent`，你可以自己编写函数来实现兼容，比如：
+
+```html
+<button id="bt">click</button>
+<script>
+  function bindEvent(el, name, handle, useCatch) {
+    if (document.addEventListener) {
+      el.addEventListener(name, handle, useCatch);
+    } else {
+      el.attachEvent("on" + name, handle);
+    }
+  }
+
+  var bt = document.getElementById("bt");
+  bindEvent(
+    bt,
+    "click",
+    function () {
+      console.log("事件触发");
+    },
+    false
+  );
+</script>
+```
+
+这样写的确多增加了几行代码，但是却可以兼容低版本 IE 的事件绑定。
+
+这种方法肯定都不是最简便的，如果项目允许，我更推荐使用一些库来编写代码，比如 JQuery，jQuery 库简化了 DOM 操作，比如上面一堆代码中，在 jQuery 中可以简化为：
+
+```js
+$("#bt").on("click", function () {
+  console.log("事件触发");
+});
+```
+
+jQuery 定义了一个强大的函数 `$`，类似：
+
+```js
+function $() {
+  // jQuery code
+}
+```
+
+所以 `$` 不是语法，只是 jQuery 库提供的函数。使用 jQuery 绑定的事件还可向低版本浏览器兼容，不用我们再编写兼容代码。jQuery 甚至封装 AJAX，在 jQuery 发送请求如下：
+
+```js
+$.ajax({
+  method: "GET",
+  url: "/data.txt",
+  dataType: "json",
+  success: function (data, res) {
+    console.log("响应成功，响应值为", data, res);
+  },
+  error: function (err) {
+    console.log("响应错误，响应值为", err);
+  },
+});
+```
+
+是不是非常简单，不用再去 `new XMLHttpRequest`，也不用再一个个的配置各种事件，甚至设置了 `dataType` 为 `json` 时，解析 json 字符串的过程都帮我们省去了，它同样兼容低版本的浏览器。
+
+不管是自己编写兼容，还是使用库，都希望你能理解不同浏览器的差异。并且千万不要依赖库的使用，因为如果项目不允许使用库，还是要回到自己造轮子的时代。
+
+### 如何查询兼容性？
+
+通过查阅文档的方式查看某个 JS API 或者 CSS 样式的兼容性并不明智，你可以到 [Can i use](https://caniuse.com/) 网站查看前端知识的兼容性。
+
+进入 Can i use 官网，搜索 “unit rem”，你可以查看到 CSS 单位 `rem` 在各个浏览器中的兼容性，又或者输入 “Object.create”，你可以查看 JS 中 `Object.create` API 的兼容性。
+
+Can i use 整理各大主流浏览器，和移动端浏览器对 HTML、CSS 和 JS 的相关兼容程度，甚至包含了国内 UC 浏览器、QQ 浏览器、百度浏览器的兼容性。
+
+## 这不是结束
+
+本系列课程到此就结束了，但这并不是前端学习的终点，更像是一个起点。就目前的前端体系来说，课程中的知识只是冰山一角，希望各位同学不要停止前端的学习，任何时候都是。
+
+后续我会持续更新的前端课程，但是都会采取付费制，比较我是要恰饭的。不出意外的话，课程都会发布在腾讯课堂（免费课程我还会发布到其他视频平台），如果你觉得课程不错，非常希望你推荐给身边的朋友。
+
+我是 jNet 课堂的嘉学长，网名 xxww，希望能得到你的持续关注。

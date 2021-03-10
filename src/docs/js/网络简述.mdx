@@ -1,0 +1,479 @@
+---
+title: 网络简述
+---
+
+## 网络认识
+
+每台计算机都独立存在了，当两台计算机通过线路的连接后，它们之间可以互相通信，这就最简单的网络。
+
+全世界最大的网络被称作互联网，互联网上有很多计算机向外提供服务，向外提供服务的计算机被广义上定义为 <mark>服务器</mark>。当我们访问某个网址时，计算机根据网址找到对应的计算机，与其开始通信。
+
+互联网就像一张巨大的蜘蛛网，数据在网中传输，而每台计算机就像蜘蛛网上的节点，网最左边的节点虽然和右边的节点相距甚远，但是总能找到一条线路把它们连接起来。
+
+线路中其他的节点会帮我们传递数据，这个操作被叫做 <mark>路由或代理</mark>。
+
+在互联网中，每台计算机都被指定了一个唯一的地址，这个地址被称作 IP 地址，它指定了计算机在网络中的具体网址。通过 IP 地址我们可以访问任何一台互联网中的计算机，但是前提是对方愿意和我们通信。
+
+在计算机终端中使用 `ping` 命令可以判断网络中是否有指定 IP 的计算机。在计算机的启动台里搜索终端可以并打开，键入以下代码：
+
+```shell
+ping www.baidu.com
+```
+
+上面代码我们 `ping` 了百度的网址，它会显示百度网的 IP 地址。这个操作类似于微信里的 “拍一拍”，我们和百度网的服务器打了声招呼。
+
+不同程序之间互相通信通过端口互相连接，如果把 IP 地址比作现实生活中的地址，比如 “北京市 xx 路 120 弄 3 栋 302 号”，那么端口类似于详细的门牌号。其中 “北京市 xx 路 120 弄 3 栋” 就对应一个 IP 地址，这栋楼代表互联网中的一台计算机，楼中每户人家代表不同的程序，而 “302 号” 就指定了某个具体程序，“302 号” 就代表端口号。
+
+剖析一个网络地址：
+
+```shell
+163.177.151.110:80
+```
+
+上面地址表示了 IP `163.177.151.110` 计算机上运行在 `80` 端口的程序。你可以在浏览器输入这个地址和端口号，试一试。
+
+此时你也许有点混乱，`www.baidu.com` 是一个网址，并不是 IP 地址啊，也没有端口号，我们是如何与百度的服务器通信的呢？
+
+这是因为 IP 地址不利于人类记忆，可读性太差，所以网络的上层使用可读的字符串也就是 URL 来表示 IP 地址，`www.baidu.com` 被称作域名或者主机名，用来替代百度服务器的 IP 地址。域名和 IP 地址直接存在映射关系。在网络中，有一些服务器会专门存储和处理域名和 IP 映射关系，并提供映射关系的查找服务，它们被称作 DNS 服务器。
+
+当我们打开浏览器，键入百度网址时，网络中大致会发生以下过程：
+
+1. 浏览器获取网址，现在本机缓存或配置文件中查询这个地址有没有对应的 IP，如果没有继续下一步；
+1. 浏览器会把网址发送最近的 DNS 服务器，待 DNS 服务器查寻网址和 IP 的映射关系后，返回具体的 IP 地址；
+1. 浏览器得到到真实的 IP 地址后，会对域名和 IP 的映射关系进行缓存，以免重复上述步骤。
+1. 接着浏览器会把 IP 配上具体的端口号，把数据扔到互联网中。互联网的用来通信的计算机会把数据转发到指定 IP 的计算机，然后这台计算机又通过端口号把数据发送给指定的程序，这个程序就是服务器程序；
+1. 服务器会按照相同的方式返回数据包，浏览器会在获取到数据后进行解析，如果是 HTML 数据，就渲染展示。
+
+## 本地服务器
+
+上一节我们简单介绍了数据如何在网络中通信，并了解浏览器与服务器的通信实际是两台计算机不同程序的通信。在开发时，我们一般不会使用多台计算机开发，所以会把服务器和浏览器都安装在同一台计算机上，这种服务器被称作本地服务器。这种方式简化了数据在网络中传输，而是直接在当前计算机的两个程序中传输。
+
+它的工作方式大概是：
+
+首先在我们的计算机中安装服务器和浏览器，然后开启服务器，并监听某个端口，比如 80 端口，接着在浏览器中输入 `127.0.0.1:80` 这个地址，`127.0.0.1` 是一个特殊的 IP 地址，它指向当前计算机，被称作 <mark>环回地址</mark>。接着会发生以下过程：
+
+1. 浏览器向 `127.0.0.1:80` 地址发送数据包；
+1. 计算机发现这个地址是环回地址，于是直接发送给本机运行在 `80` 端口的程序。
+1. 运行在 `80` 端口的程序是我们本地服务器，本地服务器解析浏览器发送的数据包后，返回相应的数据；
+1. 浏览器获取到本地服务器返回的数据包，解析后渲染展示。
+
+这个过程被简化了非常多，至少我们不用去访问互联网了，家里断网时，也不影响开发。
+
+## nginx 简述
+
+nginx 是一个服务器软件，它是目前主流的 web 服务器软件，它有一个劲敌是 Apache，但是 Apache 不够简便，不适合新手操作。这一小节我们将使用 nginx 搭建一个本地 web 服务器，它的操作非常简单，安装启动即可。
+
+[点此](http://nginx.org/en/download.html) 获取 nginx 的下载链接，下载 Stable version（稳定版本）。不同的系统下载不同版本的包，不要下错。
+
+因为我使用的是 windows 系统，十分抱歉无法演示 mac 系统的安装过程。
+
+nginx 的安装包是一个压缩包，直接解压即可，包中会有一个 nginx.exe 文件，双击即可启动。nginx 默认会运行在 `80` 端口上，打开浏览器，键入 `127.0.0.1:80` 即可访问我们自己的 nginx 服务器。
+
+`:80` 是 web 服务器的默认端口，它会在访问后消失自动省略，如果是 nginx 运行在 `:9999` 这样的其他端口就不能省略。
+
+### nginx 常用命令
+
+在 nginx 的文件夹中摁下 【shift + 鼠标右键】，点击【在此打开 Powershell 窗口】即可在这个文件夹中打开终端。
+
+nginx 并有可视化窗口给我们控制，关闭或重启 nginx 都需要依靠命令，nginx 常用命令如下：
+
+| 命令                    | 描述                              |
+| ----------------------- | --------------------------------- |
+| `.\nginx.exe -s quit`   | 等所有连接结束后，关闭 nginx 程序 |
+| `.\nginx.exe -s stop`   | 直接关闭 nginx 程序               |
+| `.\nginx.exe -s reload` | 重启 nginx 程序                   |
+| `.\nginx.exe -h `       | 获取帮助                          |
+
+### 路由规则
+
+当通过浏览器访问 nginx 时，地址栏的路径会和 html 文件夹内的文件做映射关系，比如：
+
+| 浏览器地址                | 对应 html 内的文件     |
+| ------------------------- | ---------------------- |
+| `127.0.0.1/index.html`    | `html/index.html`      |
+| `127.0.0.1/style.css`     | `html/style.css`       |
+| `127.0.0.1/page/one.html` | `html/page/one.html`   |
+| `127.0.0.1`               | `html/index.html`      |
+| `127.0.0.1/page`          | `html/page/index.html` |
+
+nginx 会有限按照地址路径查询文件，如果查询失败，会尝试在路径后添加 `/index.html` 来再次查询，如果都查询失败，返回一个 404 页面。
+
+### 本地域名
+
+`127.0.0.1` 不便于书写，在计算机中，有一个本地主机名和它有相同的作用，`localhost`。可以使用 `localhost` 来代替 `127.0.0.1`。在浏览器地址栏输入 `localhost` 单击回车，也可以访问本地 nginx 服务器。
+
+## XMLHttpRequest
+
+目前为止，我们的页面都是一次性加载，需要获取或者发送数据都需要刷新页面。AJAX （Asynchronous JavaScript And XML ，异步脚本）技术可以用于在页面不刷新的情况下，向网络中收发数据。在 JS 中，使用 `XMLHttpRequest` 函数来实现 AJAX。
+
+在网络中，客户端向服务器发送的数据称作 **请求报文**，服务器针对请求返回的数据称作 **响应报文**，使用 `XMLHttpRequest` 函数可以让 JS 向网络中发送请求和接收响应。
+
+在 nginx 的 html 文件夹创建文件 `data.txt` 如下：
+
+```txt
+一段数据信息。
+```
+
+然后在 `html/index.html` 中编写以下程序：
+
+```html
+<button id="bt">发送请求</button>
+<p>响应数据为：<span id="res"></span></p>
+
+<script>
+  var btEl = document.getElementById("bt");
+  var resEl = document.getElementById("res");
+  btEl.addEventListener("click", function () {
+    // 获取 XMLHttpRequest 实例
+    var xhr = new XMLHttpRequest();
+    // 设置数据传输方法和地址，类似 form 元素的 method 和 action 属性
+    xhr.open("GET", "http://localhost/data.txt");
+    // 设置请求结束时的回调
+    xhr.onload = function (e) {
+      // 获取响应数据并展示到页面上
+      resEl.innerText = e.target.response;
+    };
+    // 发送请求
+    xhr.send();
+  });
+</script>
+```
+
+上面代码中，再点击【发送请求】按钮后，程序发送了一个简单的网络请求，并且把响应的数据放到了页面中。这个网络请求中，nginx 充当了我们的后端服务器，它解析地址 `http://localhost/data.txt` 后发现是一个文件，于是读取这个文件的内容作为响应数据。
+
+实际开发中，我们的请求一般由后端人员处理，后端人员会根据请求的信息，发送合适的响应。nginx 服务器是一个静态资源服务器，它只处理 `GET` 方法的请求，遇到无法解析的地址，它会返回错误。比如修改上面请求的地址，nginx 会给我返回一个 404 数据包。
+
+请求的数据包可以在控制台的 Network 模块查看，它详细描述了每个请求与响应的信息。
+
+### 请求前
+
+在建立连接时，我们可以设置请求报文的相关信息，请求报文由 **起始行** 、**首部** 和 **主体** 三部分组成，起始行包含了请求方法，地址和使用协议。首部包含了请求报文的详细信息，比如数据的格式，请求的主机，设置的安全规则等等，这些信息被称作 **头信息**。最后一条头信息会连续换行两次，之后的内容为主体数据，一般情况下，GET 方法的请求不设置主体数据。
+
+可以打开控制台的 Network 模块，然后选择一个数据包，依次点击【Headers】 -\> 【Reqeust Headers】 -\> 【view source】查看完成的数据包头源码。它大概长这样：
+
+```http
+GET /data.txt HTTP/1.1
+Host: localhost
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+
+```
+
+其中，第一行是起始行，它的意思是使用 `GET` 方法请求 `/data.txt` 地址，使用的网络协议是 `HTTP/1.1`。
+
+除去第一行的信息，后面的信息都统称为头信息，它们的格式都是键值对 key:value 的形式，它们都有各自不同的功能，比如 `Host` 描述了请求的域名是 `localhost`，`User-Agent` 描述了用户代理信息，这些信息作用于不同模块，在此不多介绍。
+
+打开网络连接后到发送数据钱，可以使用 `XMLHttpRequest` 实例的以下属性和方法：
+
+- `open` 方法：用于打开一个网络连接，它会发送请求报文的起始行，比如 `GET /data.txt HTTP/1.1`。它有两个必要参数和三个可选参数：
+
+  - `method`：设置数据包的方法，比如 `GET` 或 `POST`（nginx 只能接收 get 方法）。
+  - `url`：设置数据包发送的地址。
+  - `async`：可选，默认为 `true`，表示设置是否异步发送数据，如果同步的话，请求后面的 JavaScript 代码会被挂起，要等到请求结束才能执行，一般不会设置同步请求。
+  - `username`: 可选，设置请求时使用的账户名，web 服务器使用不到
+  - `password`: 可选，设置请求时使用的密码，web 服务器使用不到
+
+  ```js
+  var xhr = new XMLHttpRequest();
+  // 异步请求
+  xhr.open("GET", "/data.text", true);
+  ```
+
+- `setRequestHeaders` 方法：用于设置数据包的头信息，它有两个参数，使用如下：
+
+  ```js
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/data.text");
+  xhr.setRequestHeader("something", "eeeeeeeeeeeee");
+  ```
+
+  在发送上面数据包后打开控制台，可以看到头信息设置成功了。需要记住，这个方法必须在 `send` 之前使用。
+
+- `timeout` 属性：设置请求的超时时间，单位是毫秒，如果超出 `timeout` 的值，那么就视为请求超时。默认值为 0，表示永不超时。
+
+- `ontimeout` 方法：设置请求超时的事件，请求超时后触发。
+
+  ```js
+  xhr.timeout = 2000; // 超过 2 秒就算超时，触发 ontimeout 事件，可以设置为 1 毫秒，就很容易发生超时
+  xhr.ontimeout = function () {
+    console.log("请求超时");
+  };
+  ```
+
+- `readyState` 只读属性：
+
+  返回一个数字，对应请求的状态。各个数字的对应状态为：
+
+  | `readyState` | 状态                                                                                                                                                                                             |
+  | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | `0`          | `XMLHttpRequest.UNSEND`，数据未发送。                                                                                                                                                            |
+  | `1`          | `XMLHttpRequest.OPENED`，`open` 方法调用后改变，此时网络连接已经建立。                                                                                                                           |
+  | `2`          | `XMLHttpRequest.HEADERS_RECEIVED`，`send` 方法调用后改变，此时服务器已经接受到数据包的头信息，数据部分还未接收完毕。                                                                             |
+  | `3`          | `XMLHttpRequest.LOADING`，服务器开始接收数据时改变，服务器正在接收数据或者处理数据包，这个过程可能很长，如果是上传或下载文件，那么这个状态就表示正在上传或者下载，文件很大的话，会持续很长时间。 |
+  | `4`          | `XMLHttpRequest.DONE`，服务器响应数据后改变，此时整个请求已结束，数据也都全部获得                                                                                                                |
+
+- `onreadystatechange` 方法：设置 `readyState` 属性改变时的事件。
+
+  ```js
+  xhr.onreadystatechange = function () {
+    console.log(xhr.readyState);
+  };
+  ```
+
+- `onload` 方法：设置请求结束时的事件，在 `readyState` 为 `4` 时触发。
+
+- `onprogress` 方法：监听网络连接的传输进度，一般用于上传或者下载，它对应的事件对象为 `ProgressEvent`，`ProgressEvent` 事件对象有三个属性用于获取进度：
+
+  | `ProgressEvent` 属性 | 描述                                 |
+  | -------------------- | ------------------------------------ |
+  | `lengthComputable`   | 一个布尔值，判断当前进度是否可以计算 |
+  | `loaded`             | 一个数字，表示已经传输数据量         |
+  | `total`              | 一个数字，表示总共的数据量           |
+
+  可以使用以下方式监听传输进度：
+
+  ```js
+  xhr.onprogress = function (e) {
+    if (e.lengthComputable) {
+      console.log("传输进度为：" + (e.loaded / e.total) * 100 + "%");
+    }
+  };
+  ```
+
+  本地测试时，可以增加 `data.txt` 文件的数据，然后在控制台的 Network 模块设置一个较慢网速，之后清除浏览器缓存后测试。
+
+  **备注：`onprogress` 不兼容 IE 浏览器。**
+
+### 发送请求
+
+当一切准备就绪，我们就可以发送一个请求了，`XMLHttpRequest` 对象使用 `send` 方法发送请求：
+
+```js
+xhr.send();
+```
+
+`send` 方法接受一个参数用于发送主体数据，但是不适用于 GET 方式的请求，<mark>GET 方法的请求语义为获取数据</mark>，标准中约定 GET 方法不在主体部分发送数据。浏览器遵守这个约定，所以 GET 方法的请求即便设置主体数据，浏览器也不会处理。
+
+在 HTML 的表单课程我们介绍过，使用 GET 方法传输数据时，数据放在传输地址上，在 AJAX 中发送 GET 请求时，GET 的发送数据可以直接在 `open` 方法中就设置，比如：
+
+```js
+xhr.open("GET", "/data.txt/?one=1&tow=2");
+```
+
+打开控制台，你会发现数据被放到了数据包的起始行。这就是 GET 请求时传输数据的特点，直接放到数据包的起始行。
+
+POST 请求传输数据也不难，但是 nginx 不会处理 POST 请求，所以无法使用 nginx 演示，可以到 [这个沙箱](https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html) 中测试，这是我们在 HTML 学习时介绍表单提交使用的沙箱（需要登录 codesandbox，无法使用的同学可以查看课程 HTML 的 form 元素介绍），这个沙箱用来请求的地址是 `/send`，任意方法都可以。
+
+打开沙箱，编写以下代码：
+
+```js
+var resEl = document.createElement("div");
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/send");
+xhr.onload = function () {
+  resEl.innerText = xhr.response;
+  document.body.appendChild(resEl);
+};
+xhr.send("asd=123&zxc=123");
+```
+
+你会发现我们打印了 POST 请求的响应数据。
+
+当使用 POST 发送数据的时候，因为 POST 可以发送多种数据格式，比如图片、视频，如果不加以说明，后端人员就会难以辨别，浏览器也不知道如何处理发送的数据，所以我们要为传输的数据设置数据格式，数据格式使用 `Content-Type` 头信息设置，基于上面的代码，在 `open` 方法下面添加以下代码：
+
+```js
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+```
+
+`application/x-www-form-urlencoded` 数据格式我们在 HTML 的表单提交章节介绍过，它的格式和 GET 参数的格式一样。
+
+AJAX 中，POST 请求的数据的常用格式是 `application/json`，也就是 JSON 字符串格式。使用 JSON 格式可以很容易的传输复杂的数据，比如：
+
+```js
+var resEl = document.createElement("div");
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/send");
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.onload = function () {
+  resEl.innerText = xhr.response;
+  document.body.appendChild(resEl);
+};
+
+var data = {
+  name: "data",
+  list: [1, 2, 3, 4],
+  bool: false,
+};
+
+xhr.send(JSON.stringify(data));
+```
+
+后端人员根据 `Content-Type` 头信息了解到数据格式是 JSON，他们也会使用类似 `JSON.parse` 的函数解析 JSON 字符串，从而得到复杂的数据格式。
+
+**网络数据包中，POST 数据被放在了哪里？**
+
+在 POST 请求时，数据放在了请求报文的主体部分，例如：
+
+```http
+POST /send HTTP/1.1
+Content-Length: 11
+Content-type: application/x-www-form-urlencoded
+......
+Origin: http://localhost
+
+one=1&tow=2
+```
+
+或者
+
+```http
+POST /send HTTP/1.1
+Content-Length: 45
+Content-type: application/json
+......
+Origin: http://localhost
+
+{"name":"data","list":[1,2,3,4],"bool":false}
+```
+
+在最后的头信息发送结束后，会连续发送两个换行，表示后面都是数据部分。
+
+**终止请求：`abort` 方法**
+
+如果在请求的过程中，需要停止当前终止当前请求继续发送，可以使用：
+
+```js
+// 监听终止请求事件
+xhr.onabort = function () {
+  console.log("请求被终止了。", xhr);
+};
+// 终止请求
+xhr.abort();
+```
+
+被终止的请求其 `readyState` 状态是 0，状态码 `status` 也会是 0。
+
+### 响应
+
+在服务器接收到请求数据包后，也会发送一个响应报文作为回复，响应数据包和请求数据包类似，也具有起始行、头信息和主体。可以在控制台的 Network 模块中选择一个数据包，依次点击【Headers】 -\> 【Response Headers】 -\> 【view source】查看响应报文。
+
+一个响应数据包如下：
+
+```http
+HTTP/1.1 200 OK
+Server: nginx/1.18.0
+Date: Tue, 08 Dec 2020 04:39:02 GMT
+Content-Type: text/plain
+Content-Length: 9
+Last-Modified: Tue, 08 Dec 2020 04:38:58 GMT
+Connection: keep-alive
+ETag: "5fcf0362-9"
+Accept-Ranges: bytes
+```
+
+第一行 `HTTP/1.1 200 OK` 表示响应的协议是 `HTTP/1.1` 版本，状态码是 `200`，状态信息是 `OK`，这表示一个正确的响应。
+
+针对于数据响应的处理，`XMLHttpRequest` 提供以下属性和方法：
+
+- `status` 只读属性：
+
+  表示响应的状态码，正常响应的状态码是 200，数据找不到时状态码是 404，常见的 404 页面就是使用此状态码。一般处理响应时，都是根据状态码是否是 200 而判断响应是否成功。比如：
+
+  ```js
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // 响应成功
+    } else {
+      // 其他情况
+    }
+  };
+  ```
+
+  状态码并不是除了 200 都是错误，关于各个状态码对应的语义，可以 [查看这里](https://www.runoob.com/http/http-status-codes.html)，在此不过多解释。
+
+- `statusText` 只读属性：
+
+  描述响应状态的信息，它是人为设置的字符串，在数据包中，它紧跟在状态码后面，比如 `200 OK`，`404 Not Found`，其中 `OK` 和 `Not Found` 就是 `statusText`，这个值并不常用。
+
+- `response` 只读属性：
+
+  响应的数据，它的数据格式变化多样，可能是二进制数据，字符串或者数字，需要针对不同的情况做不同的处理。
+
+- `responseText` 只读属性：
+
+  响应数据的文本形式，如果你确信知道响应数据是可读文本，可以通过此项获取数据。
+
+- `getResponseHeader` 方法：获取指定的响应头信息，传入头信息的名字，返回其值，比如：
+
+  ```js
+  xhr.onload = function () {
+    // 当返回类型是 json 时，对其解析
+    if (xhr.getResponseHeader("content-type") === "application/json") {
+      var data = JSON.parse(xhr.response);
+    }
+  };
+  ```
+
+  获取头信息时，名字不区分大小写，`content-type` 和 `Content-Type` 一样。
+
+- `getAllResponseHeaders()` 方法：获取能够读取的全部响应头信息，返回一段字符串，比如：
+
+  ```js
+  var allHeaders = xhr.getAllResponseHeaders();
+  console.log(allHeaders);
+  ```
+
+### 事件绑定
+
+`XMLHttpRequest` 的事件继承自事件目标对象，所以也可以使用 `addEventListener` 来绑定事件，解除事件同样可以使用 `removeEventListener`，比如：
+
+```js
+var xhr = new XMLHttpRequest();
+
+xhr.addEventListener("load", function () {
+  console.log("load", xhr);
+});
+xhr.addEventListener("progress", function () {
+  console.log("progress", xhr);
+});
+xhr.addEventListener("abort", function () {
+  console.log("abort", xhr);
+});
+
+xhr.send();
+```
+
+### XMLHttpRequest 兼容性
+
+`XMLHttpRequest` 兼容到 IE 9，如果需要在低版本 IE 中使用 AJAX，可以使用 IE 自带的 `ActiveXObject` 对象，但是它并不是很好用。比如：
+
+```js
+// IE8 及以下
+var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+
+xhr.open("GET", "/data.txt");
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    console.log(xhr.responseText);
+  }
+};
+
+xhr.send();
+```
+
+上面的代码可以在 IE9 以下发送请求，写法和 `XMLHttpRequest` 有一定的出入，比如 `new ActiveXObject("Microsoft.XMLHTTP")` 返回的对象就没有 `onload` 事件，只有 `onreadstatechange` 事件。
+
+`ActiveXObject` 和 `XMLHttpRequest` 并不兼容，你可以在【课程总结】中找到处理二者兼容的方案。
+
+## 小结
+
+上面简单介绍了 JavaScript 中 AJAX 的实现，其中涉及到很多网络知识，为了照顾零基础的同学，此章节对网络部分的剖析并不够深入，请大家见谅。我会在后续开设 web 网络的课程，对其详细的介绍。

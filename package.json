@@ -1,0 +1,42 @@
+{
+  "name": "my-gatsby-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My Gatsby Site",
+  "author": "刘嘉豪",
+  "typeings": "./index.d.ts",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.1.1",
+    "gatsby": "^3.0.1",
+    "gatsby-plugin-emotion": "^6.0.0",
+    "gatsby-plugin-mdx": "^2.0.0",
+    "gatsby-plugin-nprogress": "^3.0.0",
+    "gatsby-plugin-react-helmet": "^4.0.0",
+    "gatsby-plugin-sharp": "^3.0.0",
+    "gatsby-remark-images": "^4.0.0",
+    "gatsby-source-filesystem": "^3.0.0",
+    "gatsby-transformer-sharp": "^3.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "remark-prism": "^1.3.4"
+  },
+  "devDependencies": {
+    "@types/mdx-js__react": "^1.5.3",
+    "@types/react-helmet": "^6.1.0",
+    "gh-pages": "^3.1.0"
+  }
+}

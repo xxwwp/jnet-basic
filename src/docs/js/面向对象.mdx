@@ -1,0 +1,654 @@
+---
+title: 面向对象
+---
+
+## 面向过程与面向对象
+
+程序有两种开发模式，面向过程和面向对象。目前为止，我们的开发方式都是面向过程的，并没有面向对象开发。
+
+面向对象的开发，只是对数据和逻辑进行另一种方式的封装，面向过程和面向对象的开发方式并没有孰强孰弱。
+
+我们之前的开发练习等，都是面向过程开发的，不会再对面向过程做出介绍。
+
+## 基础概念
+
+相比面向过程，面向对象更容易对现实世界的事物进行抽象。
+
+就像汽车的制造，总会先做出一个的 **设计图**，然后根据这个设计图，批量生产汽车。这种生产汽车的方式，**是可复制的**，设计师可以通过草图，在汽车没有生产出来的时候，就知道汽车长什么样，用的什么零件，设计了几座等 **数据**，同时还可以知道汽车有什么功能，比如是否有自动挡，是否支持导航，是否支持无人驾驶等 **功能（或行为）**。
+
+在面向对象中，也有上述的概念。用来生成汽车的设计图，被我们称作 **类**，汽车的数据被称作 **属性**（这个属性不是指 JS 的对象属性），汽车的功能（或行为）被称作 **方法**，生产出来的汽车被称作 **实例或对象**（此对象的语义是基于面向对象的，和 JS 中的对象类型数据语义不同）。
+
+需要说的是，方法是对现实事物行为或功能的抽象。任何行为和功能，都只是在处理信息而已，比如奔跑提高了身体素质这项数据，说话是在传达思维中的数据，听歌是为了缓解压力这项数据，这些行为都只是在处理信息。行为本身是不具有数据的，它就像程序中的逻辑部分。
+
+在其他语言中，都有面向对象的语法，很遗憾，JS 中并不提供这些语法，在 JS 中，我们可以通过使用函数和原型链的相关知识来模拟面向对象开发。
+
+首先，我们对人的信息和行为进行抽象：
+
+```js
+function Person(name) {
+  this.name = name;
+  this.say = function () {
+    console.log("name is " + this.name);
+  };
+}
+
+var ming = new Person("小明");
+var hong = new Person("小红");
+ming.say();
+hong.say();
+```
+
+上述代码中，我们使用 `Person` 函数模拟了一个类，使用对象属性来模拟面向对象的属性和方法，其中 `name` 是属性，`say` 是方法，然后我们使用 `new` 关键字来实例化了这个类，获得了两个实例 `ming` 和 `hong`。
+
+这不是最理想的状态，通过 `console.log(ming,hong)` 可以看到，这两个实例都存在一样的方法，同样的逻辑却占据了两份存储空间。
+
+在 JS 中，我们可以把方法定义到函数的 `prototype` 上，因为使用 `new` 关键字修饰的函数，返回的对象原型都指向该函数的 `prototype`，所以每个实例都可以通过原型链访问这些方法。
+
+```js
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.say = function () {
+  console.log("name is " + this.name);
+};
+```
+
+当我们模拟一个类的时候，函数通常使用大写开头，因为在大部分开发语言中，类都是大写开头。在 JS 中，我们称这些用来模拟类的函数叫做该类的 **构造函数**。
+
+## 静态属性和静态方法
+
+在面向对象中，属性和方法，都是使用实例去访问。也有的属性或方法，是类本身的数据或行为，它们不属于实例。
+
+比如一瓶可乐的成分介绍，有碳酸，水，糖等，这些属性不是某一瓶可乐特有的，它是可乐这种饮料的属性，如果抽象到程序中，这些属性应该属于类的属性，而不是实例的属性，这种类上面的属性，被称作 **静态属性**，同理还有 **静态方法**。
+
+在 JS 中，我们把类的静态属性和静态方法直接写到构造函数上：
+
+```js
+function Coke() {}
+Coke.FORMULA = "成分：碳酸、水、糖......";
+```
+
+在其他语言中，静态属性和静态方法都不允许更改。在 JS 中并没有要求，因为它们都是模拟的，非特殊情况，静态属性、静态方法和普通方法都没有更改的需要。
+
+静态属性通过类直接去访问，在 JS 中，可以通过构造函数直接访问：
+
+```js
+// 从面相对象上理解，Math 类只有静态属性和静态方法，比如 Math.E、Math.sin、Math.pow ......
+console.log(Math.PI);
+```
+
+备注：通常来说，静态属性我们都使用大写命名，静态方法命名和普通方法命名方式一样。
+
+## instanceof 和面向对象
+
+在对象原型的章节，我们介绍过 `instanceof` 关键字，它被用来判断某个函数的 `prototype` 是否在某个对象的原型链上。
+
+**在面向对象中，`instanceof` 可以理解为判断一个对象是否是某个类的实例**，比如：
+
+```js
+function Person() {}
+function OtherClass() {}
+
+var p = new Person();
+
+console.log(p instanceof Person); // true ; p 是 Person 类的实例
+console.log(p instanceof OtherClass); // false ; p 不是 OtherClass 类的实例
+```
+
+如果面试时，问到 `instanceof` 关键字的作用你可以从两个方面回答：
+
+- 从语法上：`instanceof` 用来判断函数的 `prototype` 是否在某个对象的原型链上；
+- 从面向对象上：`instanceof` 用来判断一个对象是否是某个类的实例。
+
+## 面向对象的特性
+
+面向对象有三个基础特性，**封装、继承、多态**。
+
+也有些其他特性，比如方法 **重写，重载**。
+
+封装是面向对象的设计方式的一大特点，把数据和它们的行为进行融合，编写到类中，在上一节的例子中，已经介绍 JS 中实现对类封装的方式，再次不再赘述。
+
+再次强调一下，JS 中没有面向对象语法，一切关于面向对象的知识，都只是模拟，本节课并没有介绍新的语法或 API，只是讲解一种新的设计模式，从本质上来说，面向对象就是一种设计模式。
+
+### 继承
+
+在面向对象的设计中，我们可以把抽象的过程分层，最开始，我们只需要抽象最简单的数据即可。
+
+比如对人进行初步的抽象：
+
+```js
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.say = function () {
+  console.log("name is " + this.name);
+};
+```
+
+然后我们根据职业的不同，从 `Person` 类的基础上，派生出学生类的抽象：
+
+```js
+function Student(name, grade) {
+  this.name = name;
+  this.grade = grade;
+}
+Student.prototype.say = function () {
+  console.log("name is " + this.name);
+};
+```
+
+非常明显的可以看到，我们的代码产生了冗余。在面向对象中，基于某个类派生的另一个类，它们之间的关系称作 **继承**。
+
+在面向对象中，基于原始类派生的类称作子类，原始类称作父类。程序应该让子类继承父类的属性和方法，并执行父类的构造函数来构造子类的实例，从而减少代码的冗余。
+
+在上述代码中，`Student` 类应当继承自 `Person` 类，`Student` 作为子类，`Person` 作为父类。在 JS 中，可以使用 `call` 或 `apply` 来执行父类的初始化方法：
+
+```js
+function Student(name, grade) {
+  Person.call(this, name);
+  this.grade = grade;
+}
+```
+
+我们使用了一个显式绑定，使用 `Person` 来处理了一下 `Student` 内的 `this` 对象，一个类的属性应该都在其构造函数中被初始化，所以执行父类的构造函数，相当于继承了父类的属性。
+
+接着我们还需要让子类继承父类的方法，目前 `Student` 类实例的原型链如下：
+
+```
+Student.prototype ->  Object.prototype -> null
+```
+
+因为父类 `Person` 的方法都存放在 `Person.prototype` 上，如果需要让 `Student` 类继承 `Person` 类的方法，就要在 `Student` 实例的原型链上增加 `Person.prototype`，让 `Student` 实例的原型如下：
+
+```
+Student.prototype -> Person.prototype -> Object.prototype -> null
+```
+
+很明显，只要改变 `Student.prototype` 的原型为 `Person.prototype` 即可，最简单的方式就是：
+
+```js
+Object.setPrototypeOf(Student.prototype, Person.prototype);
+// or
+Student.prototype.__proto__ = Person.prototype;
+```
+
+但是以上方式并不是很好的实现，原型的动态修改会降低 JS 性能，同时，`setPrototypeOf` 不支持老版本浏览器，`__proto__` 又是非标准的实现，不是所有浏览器都支持，基于这些原因，实际开发中 JS 没有使用上述方式来继承父类的方法，更换以下方式实现：
+
+```js
+function Person(name, birth) {
+  this.name = name;
+  this.birth = birth;
+}
+Person.prototype.say = function () {
+  console.log("name is " + this.name);
+};
+
+Student.prototype = new Person();
+Student.prototype.constructor = Student;
+
+function Student(name, birth, grade) {
+  Person.call(this, name, birth);
+  this.grade = grade;
+}
+```
+
+`new Person()` 得到一个原型指向 `Person.prototype` 的对象，用这个对象作为 `Student.prototype`。因为每个函数的 `prototype` 都有一个 `constructor` 属性指向自身，所以需要修复。这样我们就实现了 `Student` 实例对 `Person` 方法的继承。
+
+上面代码中，`Student` 类实例的原型链如下：
+
+```
+Student.prototype(new Person 得来) -> Person.prototype -> Object.prototype -> null
+```
+
+这种继承方式被称作 **寄生式组合继承**，这是 JS 中最常见和使用最广泛的继承方式。
+
+现在 `Student` 的实例继承 `Person` 类的属性，也继承 `Person` 类的方法，比如：
+
+```js
+var ming = new Student("明", 2000, "一年级");
+ming.say(); // 'name is 明'
+```
+
+上述代码中，`Student` 的实例执行了父类的 `say` 方法，`say` 方法内也访问父级定义的 `name` 属性。自此，我们在 JS 中完成了类的继承。
+
+但是上述继承方式，有一个比较大的缺陷是，`Student.prototype` 是使用 `new` 关键字修饰 `Person` 得来的，`new Person()` 的执行了 `Person` 内部逻辑，于是会产生一定程度的副作用，。
+
+在程序最后打印 `Student.prototype` 会得到一个奇奇怪怪的值：
+
+```
+Person {name: undefined, birth: undefined, constructor: ƒ}
+```
+
+很容易理解，`new Person` 时我们没有传入参数，`name` 和 `birth` 为 `undefined`，内部的空对象绑定了这两个属性。把上面的对象记作 A，目前 `Student` 实例的原型就是 A，它的原型链是：
+
+```
+A -> Person.prototype -> Object.prototype -> null
+```
+
+A 会作为所有 `Student` 类实例的原型，`name` 和 `birth` 属性是我们使用 `new Person` 带来的副作用，如果 `Person` 函数中有其他影响巨大的副作用，比如定时器等：
+
+```js
+function Person(name, birth) {
+  this.name = name;
+  this.birth = birth;
+  setInterval(function () {
+    console.log("do something");
+  }, 1000);
+}
+```
+
+此时使用 `new Person` 作为 `Student.prototype` 的话，程序就会多余执行一个定时器，可以使用以下方式来消除父类执行时的副作用：
+
+```js
+function SpacePerson() {}
+SpacePerson.prototype = Person.prototype;
+Student.prototype = new SpacePerson();
+Student.prototype.constructor = Student;
+```
+
+上面代码中，我们声明了一个空函数，来代替 `Person` ，把 `SpacePerson.prototype` 指向 `Person.prototype`，`new SpacePerson` 就不会有任何副作用，相当于抹去了 `Person` 函数的内部执行。此时，`Student` 实例的原型链就为：
+
+```
+Student.prototype(new SpacePerson 得来) -> Person.prototype -> Object.prototype -> null
+```
+
+现在我们把封装的代码封装起来：
+
+```js
+function _inherit(SubClass, SuperClass) {
+  function F() {}
+  F.prototype = SuperClass.prototype;
+  SubClass.prototype = new F();
+  SubClass.prototype.constructor = SubClass;
+}
+```
+
+现在使用 `_inherit` 函数来实现继承：
+
+```js
+function _inherit(SubClass, SuperClass) {
+  function F() {}
+  F.prototype = SuperClass.prototype;
+  SubClass.prototype = new F();
+  SubClass.prototype.constructor = SubClass;
+}
+
+function Person(name, birth) {
+  this.name = name;
+  this.birth = birth;
+}
+Person.prototype.say = function () {
+  console.log("name is " + this.name);
+};
+
+_inherit(Student, Person);
+function Student(name, birth, grade) {
+  Person.call(this, name, birth);
+  this.grade = grade;
+}
+```
+
+上述继承方式依旧是寄生式组合继承，只是重新进行了封装。
+
+寄生式组合继承的原则是以下两点：
+
+- **子类的构造函数内执行父类的构造函数**
+- **子类实例的原型链上继承了父类的方法**
+
+关于第一条，只要在子类的构造函数中，使用 `SuperClass.call(this,...)` 就可以实现，第二条我们使用了 `_inherit` 函数封装实现，根据定义，`_inherit` 的实现方式有多种：
+
+```js
+// 使用 `new` 关键字
+function _inherit(SubClass, SuperClass) {
+  function F() {}
+  F.prototype = SuperClass.prototype;
+  SubClass.prototype = new F();
+  SubClass.prototype.constructor = SubClass;
+}
+
+// 使用 Object.create 低版本浏览器不兼容
+function _inherit2(SubClass, SuperClass) {
+  SubClass.prototype = Object.create(SuperClass.prototype);
+  SubClass.prototype.constructor = SubClass;
+}
+
+// 直接设置原型，会降低运行效率
+function _inherit3(SubClass, SuperClass) {
+  if (Object.setPrototypeOf) {
+    Object.setPrototypeOf(SubClass.prototype, SuperClass.prototype);
+  } else {
+    SubClass.prototype.__proto__ = SuperClass.prototype;
+  }
+}
+```
+
+使用以上的函数都可以在 JS 中完成类方法的继承。
+
+对寄生式组合继承简化后，如下：
+
+```js
+function Person() {}
+
+// 方法继承
+_inherit(Student, Person);
+function Student() {
+  // 父类构造函数访问
+  Person.call(this);
+}
+```
+
+> 子类会继承父类属性和方法，同时子类可以添加新的属性或新的方法。
+
+### 多重继承
+
+面相对象中，类与类的继承呈现为链式，比如类 C 继承类 B，类 B 又继承类 A，比如：
+
+```js
+function _inherit(SubClass, SuperClass) {
+  function F() {}
+  F.prototype = SuperClass.prototype;
+  SubClass.prototype = new F();
+  SubClass.prototype.constructor = SubClass;
+}
+
+// 定义动物类
+function Animal(type, birth) {
+  this.type = type;
+  this.birth = birth;
+}
+
+_inherit(Person, Animal);
+// 定义人类
+function Person(name, birth) {
+  Animal.call(this, "Person", birth);
+  this.name = name;
+}
+
+_inherit(Student, Person);
+// 定义学生类
+function Student(name, birth, school, classroom) {
+  Person.call(this, name, birth);
+  this.school = school;
+  this.classroom = classroom;
+}
+Student.prototype.say = function () {
+  console.log(this.type, this.name, this.birth, this.school, this.classroom);
+};
+
+var ming = new Student("小明", "2015-01-01", "xx小学", "三年二班");
+ming.say();
+```
+
+注意，`Person` 类中，我们访问 `Animal` 类的构造函数时，直接传递了类型，所以可以在参数列表中简化 `type` 参数。
+
+### 方法重载
+
+在某些语言中，一个方法可以被定义多次，由它们的参数规则来区分如何调用。
+
+比如：
+
+```
+// 伪代码
+class Compute {
+  method add (a, b) {
+    return a + b;
+  }
+  method add (a, b, c) {
+    return a + b + c;
+  }
+}
+
+a = new Math();
+a.add(1,2); // 3
+a.add(1,2,3); // 6
+```
+
+类似上面的伪代码，我们定义了一个类 `Compute`，它有两个同名方法 `add` ，当我们调用 `add` 方法的时候，根据传入的参数不同，程序引擎会自动识别，然后选择符合条件的那个执行。
+
+这种 **在同一个类中，同一个方法，因参数不同重复声明的行为被称作方法重载**。
+
+JS 中没有重载，同一个方法重复声明会被覆盖，因为我们是用 JS 对象属性来模拟方法的。如下：
+
+```js
+function Compute() {}
+
+Compute.prorotype.add = function (a, b) {
+  return a + b;
+};
+Compute.prorotype.add = function (a, b, c) {
+  return a + b + c;
+};
+```
+
+上述代码中，第二次对 `add` 方法的定义会被覆盖，因为在 JS 中 `prototype.add` 只是一个普通的对象属性。
+
+在 JS 中，方法重载需要程序员手动实现：
+
+```js
+function Compute() {}
+
+Compute.prototype.add = function () {
+  function _add1(a, b) {
+    return a + b;
+  }
+
+  function _add2(a, b, c) {
+    return a + b + c;
+  }
+
+  switch (arguments.length) {
+    case 2:
+      return _add1.apply(this, arguments);
+    case 3:
+      return _add2.apply(this, arguments);
+    default:
+      return 0;
+  }
+};
+
+var comp = new Compute();
+comp.add(1, 2); // 3
+comp.add(1, 2, 3); // 6
+```
+
+上述代码中，我们自己判断了参数个数，实现了方法的重载。【代码解释】
+
+上面是一种简单的实现重载的方式，通过参数数量来判断，**方法重载并不一定只是参数数量不同，也有可能是参数数量相同，但是参数类型不同**，需要根据不同的重载来编写不同的分支。
+
+因为在 JS 中重载是被我们自己实现的，所以重载并不局限于类的方法中，普通函数也可以实现重载。如：
+
+```js
+function add() {
+  function _add1(a, b) {
+    return a + b;
+  }
+
+  function _add2(a, b, c) {
+    return a + b + c;
+  }
+
+  switch (arguments.length) {
+    case 2:
+      return _add1.apply(this, arguments);
+    case 3:
+      return _add2.apply(this, arguments);
+    default:
+      return 0;
+  }
+}
+add(1, 2); // 3
+add(1, 2, 3); // 6
+```
+
+**小结：在同一个类中，重复定义一个方法，参数的类型或数量不同，这种情况才被称作重载。JS 中的方法重载是手动实现的，所以方法重载的思维还可以用到普通函数中。**
+
+### 方法重写
+
+面向对象中还有另一种重复声明方法的方式 **重写**，重写定义如下：子类继承父类，子类重新定义父类的方法，并且参数和父类的方法完全相同。
+
+为什么会有重写？可以看如下例子：
+
+```js
+// 鸟类
+function Bird(type) {
+  this.type = type;
+}
+Bird.prototype.fly = function () {
+  console.log(this.type + "会飞");
+};
+
+// 企鹅类
+_inherit(Penguin, Bird);
+function Penguin() {
+  Bird.call(this, "企鹅");
+}
+
+var Penguin = new Penguin();
+
+Penguin.fly(); // 企鹅会飞
+```
+
+企鹅虽然属于鸟类，但是企鹅被不会飞行，如果 `Penguin` 类不重新定义父类的 `fly` 方法，那就会出现一些预料之外的行为。
+
+关于上述例子，我们需要重新定义 `Penguin` 类的 `fly` 方法：
+
+```js
+Penguin.prototype.fly = function () {
+  console.log(this.type + "并不会飞");
+};
+```
+
+重写并不是都像上面一样否定父类方法，也可能是扩展父类方法，比如：
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+// 自我介绍
+Person.prototype.desc = function () {
+  console.log("我叫" + name);
+};
+
+_inherit(Student, Person);
+function Student(name, school, classroom) {
+  Person.call(this, name);
+  this.school = school;
+  this.classroom = classroom;
+}
+
+// 重写自我介绍
+Student.prototype.desc = function () {
+  console.log("我叫" + this.name + "，来自" + this.school + this.classroom);
+};
+
+var ming = new Student("小明", "xx小学", "三年二班");
+ming.desc();
+```
+
+在上面代码中，`Student` 类重写了 `desc` 方法，扩展了父类 `desc` 方法的功能。
+
+**小结：重写方法必须和父类方法的参数列表相同，重写可能是修正父类方法，也可能是扩展父类方法。**
+
+### 多态
+
+多态是面向对象的一大特色，字面意思就是多种状态，指的主要是类中方法的多种状态。
+
+多态产生的条件：
+
+- 继承
+- 子类重写父类方法
+- 父类引用子类对象
+
+前两个条件我们已经实现了，关键是第三个条件的理解。
+
+观察以下代码：
+
+```js
+function Person(name) {
+  this.name = name;
+}
+// 自我介绍
+Person.prototype.desc = function () {
+  console.log("我叫" + this.name);
+};
+
+_inherit(Student, Person);
+function Student(name, grade) {
+  Person.call(this, name);
+  this.grade = grade;
+}
+Student.prototype.desc = function () {
+  console.log("我叫" + this.name + "，是一名学生，今年上" + this.grade);
+};
+
+_inherit(Dirver, Person);
+function Dirver(name) {
+  Person.call(this, name);
+}
+Dirver.prototype.desc = function () {
+  console.log("我叫" + this.name + "，是一个司机");
+};
+
+function doDesc(obj) {
+  if (obj instanceof Person) {
+    obj.desc();
+  }
+}
+
+doDesc(new Student("foo", "三年级")); // 我叫foo，是一名学生，今年上三年级
+doDesc(new Dirver("bar")); // 我叫bar，是一个司机
+```
+
+在上述代码中，`Student` 类和 `Dirver` 类都继承自 `Person` 类，并且重写的 `desc` 方法，完成了多态的前两个条件。
+
+从面向对象的角度观察 `doDesc` 函数，我们判断传入的对象是否是 `Person` 的实例，如果是，执行 `Person` 类的 `desc` 方法。
+
+但是我们后来传入了 `Student` 类和 `Dirver` 类的实例，它们被顺利执行了。在 `doDesc` 函数中，程序基于 `Person` 类引用了其子类实例的 `desc` 方法，它满足了多态的第三个条件，父类引用子类实例。
+
+最后的结果也显而易见，父类的 `desc` 方法在子类中的不同形态得以表现，这就是面向对象的多态。
+
+多态常被用来在父类方法的基础上做出一定的修改，或者将某些行为插入到父类中。
+
+**需要注意的是，方法重载和多态并没有关系。**
+
+## 总结
+
+在 JS 中，并不支持面向对象开发，在 JS 中，只能基于 JS 原始的特性和语法模拟面向对象开发。面向对象是一种设计模式，使用面向对象的思维来抽象实际问题大部分情况下，都可以起到事半功倍的效果。
+
+- 在面向对象中
+
+  - 类就像实际问题的设计图
+
+  - 事物的数据信息和行为被抽象成来了类的属性和方法
+
+  - 属于类的属性和方法称作静态属性与静态方法
+
+  - 基于某个类生成的对象被称作这个类的实例
+
+  - 类的方法有重载和重写特性
+
+    - 同一个类中，可能存在参数不同的同名方法，这种重复声明的方式称作重载
+    - 子类可以重新定义父类方法，参数必须相同，这种重复声明的方式称作重写
+
+  - 面向对象有三大特性：封装、继承、多态
+
+    - 面向对象开发，会基于对象本身，把它的数据和行为封装到一个类中，面向对象提供非常好的封装性
+    - 基于一个类的派生的类，它们存在继承关系。在面向对象中，可以让派生出的类继承自原始类，子类会继承父类的属性和方法（不会继承父类的静态属性和静态方法）
+    - 多态是指父类方法在不同子类中得以不同形态的展现。
+
+- 在 JS 中
+
+  - 使用函数来模拟类，用来模拟类的函数也叫作类的构造函数。
+
+  - 使用对象属性来模拟类的属性，在构造函数的 `prototype` 上定义函数来模拟类的方法
+
+  - 类的实例使用 `new` 关键字修饰函数执行得到
+
+  - 方法重载需要主动实现
+
+  - 方法重写依靠原型链的属性屏蔽
+
+  - 类的继承基于对父类构造函数的调用和原型链的委托（这里单指寄生式组合继承）
+
+  - 实例与类的关系使用 `instanceof` 关键字的结果模拟

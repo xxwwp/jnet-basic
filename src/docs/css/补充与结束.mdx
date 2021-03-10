@@ -1,0 +1,114 @@
+---
+title: 补充与结束
+---
+
+## body 的背景
+
+`body` 元素的背景被代理到了视口部分，`body` 的背景并不会根据 `body` 元素的实际区域显示，比如在一个空白页上设置：
+
+```css
+body {
+  background: #000000;
+}
+```
+
+你会发现整个页面都变为黑色，并不是 `body` 元素的背景变成黑色。或者设置图片，也会产生同样的效果。
+
+> 类似 `overflow` 属性一样，`body` 元素设置 `background` 时会被用户代理应用到视口的画布上，虽然可以给 `html` 元素设置一个非透明色或者背景图片来消除这种影响，但是并不建议，一般情况，应该使用 `body` 元素给整个页面设置背景。
+> 具体可以查看 [W3C background](https://www.w3.org/TR/CSS21/colors.html#propdef-background)。
+
+## 多列布局
+
+多列布局中，会把文档分割成多列，类似报纸的布局格式。多列布局需要 IE 10 及以上才完全兼容。
+
+- `column-count` 设置列数，`auto` 会根据包含块大小增加列
+- `column-width` 设置每列的 **最小宽度**
+- `columns` 是 `column-count` 和 `column-width` 的简写
+- `column-gap` 间隙
+- `column-rule` 分割线，类似 `border` 属性。
+- `column-span:all` 横跨所有列，常用在标题元素上
+
+多列布局中的一些规则：
+
+- _块级元素_ 会在列尾被截断（并不是算溢出）
+- 每列都会产生一个 BFC
+
+多列布局使用并不频繁，一般都是用来对文字进行多列布局。
+
+## 值与单位
+
+CSS 中的值非常多，一个值可能是一个数字、一个单词、也可能是函数，比如：
+
+```css
+.value {
+  /* 一个单词作为值 */
+  position: fixed;
+  /* 数字值：整数、小数或者百分比 */
+  z-index: 100;
+  opacity: 0.5;
+  height: 50%;
+  /* 带单位的值 */
+  width: 20px;
+  margin: 20px;
+  /* 函数值 */
+  background: rgb(123, 234, 69) url(./img.png);
+}
+```
+
+值的单位有很多，比如表示长度的单位：
+
+```css
+.unit {
+  /* 以下单位分别是：厘米、毫米、英寸和像素 */
+  width: 20cm;
+  width: 20mm;
+  width: 20in;
+  width: 20px;
+  /* 
+    单位也有可能是相对的，比如：
+    em：如果当前元素的字体大小为 16 px，那么 1em = 16px；
+    rem：root-em，根元素字体大小的相对值，即 <html> 元素的字体为 20px，那么 1rem = 20px；IE 9 以上支持；
+    ex：1ex = `x` 字符的高度。字符 `x` 的高度和字体、`font-size` 等相关。
+    vw：1vw 等于视口宽度的 1%；IE 9 以上支持；
+    vh：1vh 等于视口高度的 1%；IE 9 以上支持；
+    vmin：1min 等于视口宽度或高度较小值的 1%；IE 9 以上支持；
+    vmax：1max 等于视口宽度或高度较大值的 1%，IE 不兼容；
+    ....
+  */
+  width: 20em;
+  width: 20rem;
+  width: 20ex;
+  width: 20vw;
+  width: 20vh;
+  width: 20vmin;
+  width: 20vmax;
+}
+```
+
+> 上述单位中 `cm`、`mm`、`in` 使用非常少，一般不会在页面上使用，因为 `vmax` 完全不兼容 IE，所以暂时也使用较少。
+
+**这里只是简单介绍 CSS 中的值与单位，详细可以到 [MDN](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Values_and_units) 上查看每种单位的详细意思以及剩余单位。**。
+
+## 代码组织
+
+- CSS 代码应该符合 HTML 的结构，从上到下书写；
+- 非必须不要 **直接编写** 内联样式，这会干扰 HTML 代码的可读性，当然后期通过 JS 动态修改是推荐的；
+- CSS 类名尽可能带有语义，不要随意命名，常用类名可以简写，但要保证别丢失语义或有歧义。我曾经看到一个很好笑的文章，一个内容为「用户分析」的模块，一般类名为 `class="user-analysis"`，但是这个程序员喜欢简写，写成 `class="user-anal"`，主管英语很好，每次检查代码的时候看到 `user-anal` 就很烦躁。所以一定不要随意简写，简写是在保持语义的同时提升效率，不要本末倒置。
+
+## 编辑器和代码
+
+- 如果你英文不太好，背一背用到的英文单词，即使只是阅读通顺都可以，这可以有效提高开发速度
+- 初学者应该合理使用代码补全
+
+## 下一步
+
+CSS 基础课程到此结束，如果觉得有所收获，不妨推荐给你的朋友。
+
+下一步你可以开始 JavaScript 的学习，或者先动手模拟一些常见的网站。
+
+## 讲义参考
+
+- [MDN](https://developer.mozilla.org/)
+- [W3C CSS2](https://www.w3.org/html/ig/zh/wiki/CSS2)
+- [Deep dive CSS: font metrics, line-height and vertical-align](https://iamvdo.me/en/blog/css-font-metrics-line-height-and-vertical-align)
+- [移动前端开发之 viewport 的深入理解](https://www.cnblogs.com/shierfen/p/5316679.html)

@@ -1,0 +1,233 @@
+---
+title: 闭包
+---
+
+## 理解闭包
+
+我曾经遇到一个面试题大致是这样的：
+
+```md
+设 a1 和 a2 表示任意两个数字，编写一个函数 foo，使 foo(a1)(a2) 的返回值是 a1 和 a2 的和。
+```
+
+分析得出，`foo` 返回的是一个函数，所以可以连续执行，返回的函数再次执行返回两次传入参数的和。于是可以有以下代码：
+
+```js
+function foo(x) {
+  return function bar(y) {
+    return x + y;
+  };
+}
+foo(1)(2); // 3
+```
+
+这个题目并不难，我想说的是，`foo` 还可以照下列方式调用：
+
+```js
+var sum = foo(1);
+sum(1); // 2
+sum(10); // 11
+```
+
+你会发现，传入 `foo` 的参数 `1` 被 `foo` 返回的函数保存下来了，并且可以无限次使用。
+
+**这种函数执行结束后，外层作用域被绑定到内部函数的情况被称作闭包。** 上面代码中，`bar` 对原来的作用域的绑定，就是一个闭包。
+
+在《你不知道的 JavaScript》一书中，闭包的定义如下：
+
+> 当一个函数绑定了它所在的词法作用域时，就产生了闭包。
+> --- KYLE SIMPSON《你不知道的 JavaScript》
+
+闭包可以用来保存外层作用域的变量，类似上面的情况，一个常见的闭包结构如下：
+
+```js
+function foo() {
+  var a = "something";
+  return function () {
+    console.log(a);
+  };
+}
+
+var bar1 = foo(); // 形成一个闭包，bar1 保存了 foo 作用域的数据
+
+// 把上面代码简写为立即执行表达式，可以直接形成一个闭包
+
+var bar2 = (function () {
+  var a = "something";
+  return function () {
+    console.log(a);
+  };
+})();
+
+// 闭包也可能是在回调函数中实现
+
+function baz(x) {
+  setTimeout(function () {
+    console.log(x); // 这个回调函数保存了上一级作用域的变量 x，形成了闭包
+  }, 5000);
+}
+```
+
+## 循环
+
+如果你不是非常了解闭包，那么在循环的时候使用闭包会得到你意料之外的结果。
+
+```js
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, i * 1000);
+}
+```
+
+上面的代码形成了闭包，每一个回调函数都保存外层作用域的变量 `i`，当回调函数开始执行时，`i` 早已经因为循环被递加到 `10`。所以打印出来的值就都是 `10`。如果需要上述程序按照预期的结果执行，需要再嵌套一层闭包：
+
+```js
+for (var i = 0; i < 5; i++) {
+  function foo(j) {
+    setTimeout(function () {
+      console.log(j);
+    }, j * 1000);
+  }
+  foo(i);
+}
+```
+
+上面代码中，我们定义了辅助函数 `foo`，然后按循环执行了：
+
+```js
+foo(0);
+foo(1);
+foo(2);
+foo(3);
+foo(4);
+```
+
+从而 `setTimeout` 的回调函数就会形成 5 个闭包，保存了每次 `foo` 函数执行的参数 `i`，程序的执行也会达到预期效果。观察可知，`foo` 函数可以被简化为一个立即执行表达式：
+
+```js
+for (var i = 0; i < 5; i++) {
+  (function (j) {
+    setTimeout(function () {
+      console.log(j);
+    }, j * 1000);
+  })(i);
+}
+```
+
+## 闭包与模块
+
+闭包是把双刃剑，上一小节就是在处理闭包发生的问题。不过闭包也有好的使用场景，比如使用闭包包装我们的代码。
+
+使用闭包封装一个数据类型判断的模块：
+
+```js
+function JSType() {
+  // 生成判断函数
+  function _judge(type) {
+    return function (val) {
+      return Object.prototype.toString.call(val) === type;
+    };
+  }
+
+  return {
+    isNull: _judge("[object Null]"),
+    isUndefined: _judge("[object Undefined]"),
+    isNumber: _judge("[object Number]"),
+    isString: _judge("[object String]"),
+    isObject: _judge("[object Object]"),
+    isArray: _judge("[object Array]"),
+    isFunction: _judge("[object Function]"),
+  };
+}
+```
+
+在上述代码中，我们编写了一个判断 JS 数据类型的模块，这个模块暴露了判断各种数据类型的方法，各个类型的字符串都被保存到了闭包中。
+
+其中每个判断函数都产生了一个闭包。
+
+尝试调用：
+
+```js
+var foo = JSType();
+
+console.log(foo.isNumber(1)); // true
+console.log(foo.isNull(null)); // true
+console.log(foo.isUndefined(null)); // false
+```
+
+目前我们每次需要使用 `JSType` 的时候，都会执行一遍 `JSType`，实际上这行代码用处不大，并且重复使用会消耗计算和内存成本，所以我们可以让这个模块一次生成，永久使用。尝试使用一个 IIFE 来包装它：
+
+```js
+var jsType = (function JSType() {
+  // code ...
+})();
+
+console.log(jsType.isNumber(1)); // true
+console.log(jsType.isNull(null)); // true
+```
+
+上述方式中，我们直接把 `JSType` 模块挂载到了全局变量 `jsType` 上，至少在浏览器中，我们的验证模块可以随意使用了。
+
+但是它依旧不够完美，有当一日，你也许会在其他模块环境中运行 JavaScript，那个时候，这种包装方式也许并不适用，比如 AMD，CMD，CommonJS 等模块环境。
+
+我们应该对模块的挂载部分单独处理，尝试再把挂载模块的部分分离出来：
+
+```js
+function JSType() {
+  // code ...
+}
+
+// 挂载模块代码
+function mountJSType(global, factory) {
+  // 这里是对模块的挂载部分
+  // 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性
+
+  // 挂载到全局对象上
+  global.jsType = factory();
+}
+
+// 立即挂载模块
+mountJSType(window, JSType);
+```
+
+好像可以使用 IIFE 简化：
+
+```js
+function JSType() {
+  // code ...
+}
+
+// 挂载模块代码
+(function mountJSType(global, factory) {
+  // 这里是对模块的挂载部分
+  // 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性
+
+  // 挂载到全局对象上
+  global.jsType = factory();
+})(window, JSType);
+```
+
+再把 `JSType` 直接写成函数表达式当做参数传入 IIFE：
+
+```js
+(function (global, factory) {
+  // 这里是对模块的挂载部分
+  // 你可以针对各个模块系统分别挂载模块，提升你代码在各种模块环境的兼容性
+
+  // 挂载到全局对象上
+  global.jsType = factory();
+})(window, function JSType() {
+  // code...
+});
+```
+
+上述代码中，`JSType` 只执行了一次，暴露出来的一个个函数都绑定了它们的词法作用域，形成了闭包，外部代码无法对其内部做出访问和修改，可见闭包在处理模块化封装时的强大之处。
+
+未来你会在大部分优质的源码中看到类似上述代风格的代码包，因为现在常见的模块化打包工具，打包后的代码风格像上面一样，这种对模块的封装方式叫 UMD（Universal Module Definition，通用模块定义）。
+
+介于目前我们并没有学过其他模块环境，所以挂载部分的代码少得可怜，只是把模块挂载到全局上。
+
+## 性能
+
+闭包会保留函数外部作用域的数据，让函数执行结束后无法释放内存，这会给内存造成一定程度的负担，如果点开浏览器的进程，你会发现一些很复杂的页面，打开后浏览器占用的内存会飙升，这就是闭包给计算机带来的压力。

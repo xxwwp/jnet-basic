@@ -1,0 +1,321 @@
+---
+title: 表格
+---
+
+## 表格元素
+
+可以使用以下元素来标记表格：
+
+| 元素      | 类别           | 语义           | 属性                    | 备注                    |
+| --------- | -------------- | -------------- | ----------------------- | ----------------------- |
+| `table`   | 块级           | 标记表格       |                         | 内容只能是表格相关元素  |
+| `tr`      | 不是块级或内联 | 标记表格的行   |                         | 内容只能是 `th` 或 `td` |
+| `th`      | 不是块级或内联 | 标记表头单元格 | `colspan,rowspan,scope` |                         |
+| `td`      | 不是块级或内联 | 标记普通单元格 | `colspan,rowspan`       |                         |
+| `caption` | 不是块级或内联 | 标记表格标题   |                         |                         |
+
+表格相关元素比较特殊，大部分元素并不属于块级或者内联，是单独的表格类型。
+
+`th` 与 `td` 的属性：
+
+| 属性      | 默认值 | 描述                                                                                                                   |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `colspan` | `1`    | 合并表格的列（横向合并）                                                                                               |
+| `rowspan` | `1`    | 合并表格的行（纵向合并）                                                                                               |
+| `scope` ☹ | `col`  | `col`：默认值，标记是列头 <br /> `row`：标记是行头 <br /> `colgroup`：标记是列组的头 <br /> `rowgroup`：标记是行组的头 |
+
+一个普通的表格如下：
+
+```html
+<table>
+  <tr>
+    <th>名字</th>
+    <th>价格</th>
+    <th>颜色</th>
+  </tr>
+  <tr>
+    <td>卫衣</td>
+    <td>100</td>
+    <td>红</td>
+  </tr>
+  <tr>
+    <td>外套</td>
+    <td>200</td>
+    <td>灰</td>
+  </tr>
+</table>
+```
+
+为了方便观看，可以给 `table` 添加属性 `border=1`：
+
+```html
+<table border="1"></table>
+```
+
+> 备注: `border` 是一个已经废弃的属性，这里只是为了能更清楚的演示，不要在开发中使用。
+
+表格的数据也可以横向表示，此时需要修改 HTML 结构如下：
+
+```html
+<table border="1">
+  <tr>
+    <th scope="row">名字</th>
+    <td>卫衣</td>
+    <td>外套</td>
+  </tr>
+  <tr>
+    <th scope="row">价格</th>
+    <td>100</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <th scope="row">颜色</th>
+    <td>灰</td>
+    <td>红</td>
+  </tr>
+</table>
+```
+
+横向的表格比较少见，因为横向表格对应的 HTML 代码可读性非常的低，横向表格并不利于开发。
+
+如果 `th` 标记的是行，可以把 `scope` 属性设置 `row`，代表这个 `th` 元素是一个横向表头，这不会给表格带来其他变化，只是增强表格语义。
+
+使用 `colspan` 或者 `rowspan` 可以合并单元格，比如：
+
+```html
+<table border="1">
+  <tr>
+    <th colspan="2">个人信息</th>
+    <th colspan="2">附属信息</th>
+  </tr>
+  <tr>
+    <th>姓名</th>
+    <th>年龄</th>
+    <th>父亲</th>
+    <th>母亲</th>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>20</td>
+    <td>张xx</td>
+    <td>李xx</td>
+  </tr>
+</table>
+```
+
+使用 `colspan` 会按列合并单元格，`rowspan` 会按行合并单元格。
+
+`scope` 属性用来确定 `th` 是关联列还是关联行，默认情况下，`th` 关联的是列，值为 `col`，在上面代码中，`个人信息` 和 `附属信息` 是多列的组合，它们应该被标记为列组：
+
+```html
+<th colspan="2" scope="colgroup">个人信息</th>
+<th colspan="2" scope="colgroup">附属信息</th>
+```
+
+对应的，如果 `th` 表示的是一个行组，可以设置其 `scope` 属性为 `rowgroup`。上面的表格也可以被横向表示，这时各个 `th` 元素应该表示的是行头或者行组：
+
+```html
+<table border="1">
+  <tr>
+    <th rowspan="2" scope="rowgroup">个人信息</th>
+    <th>姓名</th>
+    <td>张三</td>
+  </tr>
+  <tr>
+    <th scope="row">年龄</th>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th rowspan="2" scope="rowgroup">其他信息</th>
+    <th scope="row">父亲</th>
+    <td>张xx</td>
+  </tr>
+  <tr>
+    <th scope="row">母亲</th>
+    <td>李xx</td>
+  </tr>
+</table>
+```
+
+基于行的表头并不是无用的，比如一张复杂的课程表：
+
+```html
+<table border="1">
+  <tr>
+    <th rowspan="2" colspan="2">课程表</th>
+    <th colspan="5" scope="colgroup">学习日</th>
+    <th colspan="2" scope="colgroup">周末</th>
+  </tr>
+  <tr>
+    <th>周一</th>
+    <th>周二</th>
+    <th>周三</th>
+    <th>周四</th>
+    <th>周五</th>
+    <th>周六</th>
+    <th>周七</th>
+  </tr>
+  <tr>
+    <th rowspan="4" scope="rowgroup">上午</th>
+    <th scope="row">第一节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="row">第二节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="row">第三节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="row">第四节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="9">午休</td>
+  </tr>
+  <tr>
+    <th rowspan="2" scope="rowgroup">下午</th>
+    <th scope="row">第一节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="row">第二节</th>
+    <td>语</td>
+    <td>数</td>
+    <td>外</td>
+    <td>政</td>
+    <td>史</td>
+    <td>地</td>
+    <td></td>
+  </tr>
+</table>
+```
+
+表格一旦存在单元格合并，就会变得十分复杂，其代码也会变得混乱，庆幸的是，实际开发中很少会遇到如此复杂的表格，大部分表格都和本节第一个例子类似。
+
+还有一个元素是 `caption`，用来定义表格的标题：
+
+示例：
+
+```html
+<table border="1">
+  <caption>
+    表格标题
+  </caption>
+  <tr>
+    <th>col 1</th>
+    <th>col 2</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+  </tr>
+</table>
+```
+
+## 格外的表格元素
+
+| 元素         | 类别 | 语义                   | 属性 | 备注   |
+| ------------ | ---- | ---------------------- | ---- | ------ |
+| `thead`      |      | 标记表头区             |      |        |
+| `tbody`      |      | 标记表格数据区         |      |        |
+| `tfoot`      |      | 标记表格尾部区，如分页 |      |        |
+| `colgroup` ☹ |      | 标记表格列区           | span |        |
+| `col` ☹      |      | 标记表格的列           | span | 空元素 |
+
+表格还有几个额外的元素，用来划分表格的区域，`thead`、`tbody`、`tfoot` 用法如下：
+
+```html
+<table border="1">
+  <thead>
+    <tr>
+      <th>col 1</th>
+      <th>col 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">表尾信息</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+`thead`、`tbody`、`tfooot` 并没有任何样式，他们的语义是划分表格区域。
+
+`col` 和 `colgroup` 使用非常少，它们专属支持的属性大部分已经废弃，我个人并不推荐使用它们。它们的作用是在 HTML 中划分列的区域，并不会改变表格渲染，比如：
+
+```html
+<table>
+  <!-- 标记了前两列 -->
+  <colgroup span="2"></colgroup>
+  <!-- 标记了第三列 -->
+  <colgroup></colgroup>
+  <tr>
+    <th>col 1</th>
+    <th>col 2</th>
+    <th>col 3</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+</table>
+```
+
+针对上述代码，使用 `col` 可以进行更加细致划分：
+
+```html
+<!-- 标记所有列 -->
+<colgroup>
+  <!-- 标记前两列 -->
+  <col span="2" />
+  <!-- 标记第三列 -->
+  <col />
+</colgroup>
+```
+
+> 备注: 不建议开发是使用 `col` 或者 `colgroup`元素，这里只是对其进行补充。

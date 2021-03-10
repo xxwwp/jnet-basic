@@ -1,0 +1,64 @@
+# 导航栏一项含有：id，title，items
+# id 指定跳转，没有 id 则不是跳转链接
+# title 指定渲染标题，没有 title 使用 id 代替
+# items 指定分级内容
+# id 和 title 至少含有一个
+
+- id: 课程介绍
+- title: html
+  items:
+    - id: 概述
+    - id: 基础理论
+    - id: 头部学习
+    - title: 元素学习
+      items:
+        - id: 文章相关的元素
+        - id: 超链接与图片
+        - id: 无语义元素
+        - id: 表格
+        - id: 表单元素
+    - id: 属性
+    - id: 补充与结束
+- title: css
+  items:
+    - id: 概述
+    - id: 选择器
+    - id: 核心概念-层叠，继承，优先级
+    - id: 盒模型与文档流
+    - id: 文本处理
+    - id: 表格处理
+    - id: 背景处理
+    - id: 杂项
+    - id: 基础布局
+    - id: 布局进阶
+    - id: 常见布局练习
+    - id: 补充与结束
+- title: js
+  items:
+    - id: 程序引导课
+    - id: 基础
+    - id: 数据、运算符和表达式
+    - id: 函数和作用域
+    - id: 引用类型
+    - id: 流程控制
+    - id: 类型判断与类型转换
+    - id: 函数深入
+    - id: 常用_API
+    - id: 异步编程
+    - id: 提升
+    - id: 闭包
+    - id: this_关键字
+    - id: 对象原型
+    - id: 面向对象
+    - id: DOM
+    - id: 事件
+    - id: BOM
+    - id: 渲染与加载
+    - id: 错误处理
+    - id: 严格模式
+    - id: 正则字符串
+    - id: 网络简述
+    - id: 杂项
+- id: 总练习
+- id: 课程总结
+- id: 素材

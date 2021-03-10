@@ -1,0 +1,397 @@
+---
+title: 对象原型
+---
+
+## 原型和原型链
+
+每个引用类型数据都会有一个特殊的内置属性 **\[\[prototype\]\]** (注意这不是属性名)，这个属性被称作对象的 **原型**，原型可能是一个对象或者 `null`。
+
+下面是获取引用类型原型的常用方式：
+
+| 方式                         | 描述                                           |
+| ---------------------------- | ---------------------------------------------- |
+| `obj.__proto__`              | 通过引用类型的内置属性获取，这个是非标准的方式 |
+| `Object.getPrototypeOf(obj)` | 通过 `Object.getPrototypeOf` 函数获取          |
+
+```js
+var obj = {};
+function fn() {}
+
+console.log(obj.__proto__, fn.__proto__);
+console.log(Object.getPrototypeOf(obj), Object.getPrototypeOf(fn));
+```
+
+在旧浏览器中上面原型可能无法获得，上面两种方式都可能获取失败，比如 IE 9 以下。
+
+如果一个对象的原型是引用类型，那么这个原型就也有自己原型，它们都被链式关联到一起，这组原型的链式数据被称为对象的 **原型链**。
+
+可以通过 `.__proto__.__proto__...` 这种方式来访问对象的原型链，默认情况下，一个对象的原型指向 `Object.prototype` 对象，而 `Object.prototype` 的原型指向 `null`。`null` 是原始类型，它没有原型，访问它的原型会出错。
+
+```js
+var obj = {};
+obj.__proto__ === Object.prototype; // true
+obj.__proto__.__proto__ === null; // true
+obj.__proto__.__proto__.__proto__; // error null 没有原型
+```
+
+## 基于原型链的属性访问
+
+当访问一个对象的属性的时候，会在对象内和它的原型链上查找该属性。比如：
+
+```js
+var foo = { name: "foo" };
+
+var bar = {};
+bar.__proto__ = foo;
+
+// 原型链： bar {} -> foo { name: "foo" }
+console.log(bar.name); // 'foo'
+```
+
+上述代码把 `bar` 对象的原型指定为 `foo` 对象，当我们访问 `bar.name` 时，会先在 `bar` 对象找寻找 `name` 属性，如果没有，就继续向原型链中的对象寻找 `name` 属性，最后在 `foo` 对象上找到了属性 `name`，它被打印了出来。
+
+**使用 `Object.create` 函数会返回一个空对象，这个空对象会引用传入的参数作为它的原型。** 比如：
+
+```js
+var foo = { name: "foo" };
+
+// 创建一个空对象，让空对象的原型指向 foo
+var bar = Object.create(foo);
+
+console.log(bar.name); // 'foo'
+```
+
+其中，`bar` 的原型指向 `foo`，和前面的代码相同。
+
+### `in` 关键字
+
+**可以用 `in` 关键字来判断属性是不是在对象或它的原型链上**：
+
+```js
+var foo = { name: "foo" };
+var bar = Object.create(foo);
+
+// 原型链： bar {} -> foo { name: "foo" }
+console.log("name" in bar); //true
+```
+
+不论是 `"name" in bar` 还是 `bar.name`，它们查找属性 `name` 的方式都如下【画图演示】：
+
+1. 到上下文对象中查找属性
+1. 如果找到，返回其属性值，否则到上下文对象的原型上继续查找
+1. 如果找不到并且原型链到头，返回 `undefined`
+
+不论属性访问、键访问还是使用 `in` 关键字，都会重复上述操作查找属性。
+
+### 属性屏蔽
+
+给对象添加或修改属性时，如果对象原型上有同名属性，并不会修改到原型上的属性，比如：
+
+```js
+var foo = { name: "foo" };
+var bar = Object.create(foo);
+
+// 给 bar 添加了属性 name
+bar.name = "bar";
+
+// 原型链： bar { name: "bar" } -> foo { name: "foo" }
+console.log(foo.name, bar.name); // 'foo' 'bar'
+```
+
+默认情况下，给对象添加、设置或者访问属性，都会优先基于对象本身去处理，这种情况被称作 **属性屏蔽**。
+
+比如上面代码中，设置 `bar.name` 时，被视为给 `bar` 对象添加属性，这个操作不会改变原型链上的值，然后打印 `bar.name` 时，因为在 `bar` 对象中找到了刚添加的 `name` 属性，就不会再去原型链上寻找。
+
+不要完全被属性访问迷惑，比如以下代码：
+
+```js
+var foo = {
+  name: "foo",
+  say: function () {
+    console.log(this.name);
+  },
+};
+
+var bar = Object.create(foo);
+bar.name = "bar";
+
+// 原型链： bar { name: "bar" } -> foo { name: "foo", say:function... }
+bar.say();
+```
+
+访问 `bar.say` 时，的确是从原型上找到了 `say` 属性，但是 `bar.say` 是一个显式绑定，内部 `this` 还是指向上下文对象 `bar`，又因为属性屏蔽的存在，上述代码打印出来的应该是字符串 '`bar`'。
+
+## Object.prototype
+
+一个普通对象的原型指向 `Object.prototype` 对象，`Object.prototype` 的原型一般指向 `null`，所以当我们建立一个普通的对象时，它的原型链如下：
+
+```js
+// 原型链： foo {} -> object.prototype {...} -> null
+var foo = {};
+foo.__proto__ === Object.prototype; // true
+foo.__proto__.__proto__ === null; // true
+```
+
+`Object.prototype` 是一个对象，它提供了一些内置属性，常用的一般只有一个：
+
+| 属性             | 类型 | 描述                                                                                                        |
+| ---------------- | ---- | ----------------------------------------------------------------------------------------------------------- |
+| `hasOwnProperty` | 函数 | 传入一个字符串作为属性名，判断该属性是否是当前对象的属性，而非原型链上的属性。是返回 `true`，反之 `false`。 |
+
+根据原型链的访问关系，我们可以访问 `Object.prototype` 上的属性：
+
+```js
+var foo = { name: "foo" };
+var bar = Object.create(bar);
+
+// 原型链：bar {} -> foo { name: "foo" } -> Object.prototype {...} -> null
+console.log(foo.isOwnProperty("name")); // true
+console.log(bar.isOwnProperty("name")); // false
+```
+
+`Object.prototype.hasOwnProperty` 和 `in` 关键字不同，前者是判断属性是否在当前对象上，而 `in` 关键字是判断属性是否在当前对象或原型链上，`in` 关键字的查找包括原型链。
+
+因为 `Object.prototype` 是几乎所有对象的原型，所以它的属性在大部分对象中都可以直接顺着原型链找到，就像上面的例子，但是有的情况会有例外，比如：
+
+```js
+var foo = Object.create(null);
+
+// 原型链： foo {} -> null
+console.log(foo.hasOwnProperty); // undefined
+```
+
+上面例子中，生成的对象原型直接指向 `null`，因为原型上没有 `Object.prototype`，所以 `hasOwnProperty` 自然就访问不到。
+
+`Object.prototype` 上还有其他属性，因为其余的属性不常用或者兼容性极差，不再介绍，如果你有兴趣，可以点击 [这里](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype)。
+
+## 原型链的属性遍历
+
+一般情况下，我们使用 `for in` 语句来遍历一个对象及其原型链上的所有可枚举的属性：
+
+```js
+var foo = { a: 1 };
+
+var bar = Object.create(foo);
+bar.b = 2;
+// 原型链： bar { b: 2 } -> foo { a: 1 } -> Object.prototype {...} -> null
+
+// 遍历 bar 及其原型链上的属性
+for (var key in bar) {
+  console.log(key + ":" + bar[key]);
+}
+// 输出
+// b:2
+// a:1
+```
+
+你也许会很意外，大部分对象的原型都是 `Object.prototype`，那为什么我们使用 `for in` 遍历对象属性的时候，没有遍历出 `Object.prototype` 上的属性。这是因为 **有的属性是不可枚举的，这类属性无法遍历**。关于属性是否可以被枚举，可以使用 `Object.getOwnPropertyDescriptors` 函数查看，比如：
+
+```js
+console.log(Object.getOwnPropertyDescriptors(Object.prototype));
+```
+
+打印的结果会显示，`Object.prototype` 上的属性全都是不可枚举的。如果你打印一个数组的属性状态，你会发现 `length` 属性也是不可枚举的，所以我们无法使用 `for in` 语句遍历 `length` 属性。**属性是否可以被枚举是对象属性的一种状态，我会在深入课程中讲解。**
+
+使用 `for in` 语句也会产生属性屏蔽，重名属性不会全部遍历：
+
+```js
+var foo = { name: "foo" };
+
+var bar = Object.create(foo);
+bar.name = "bar";
+// 原型链： bar { name: "bar" } -> foo { name: "foo" } -> ...
+
+// 遍历 bar 及其原型链上的属性
+for (var key in bar) {
+  console.log(key + ":" + bar[key]);
+}
+// 输出
+// name : bar
+```
+
+也许你并不想遍历原型链上的属性，所以 `for in` 一般配合 `hasOwnProperty` 使用：
+
+```js
+var foo = { a: 1 };
+
+var bar = Object.create(foo);
+bar.b = 2;
+
+// 遍历 bar 及其原型链上的属性
+for (var key in bar) {
+  if (bar.hasOwnProperty(key)) {
+    console.log(key + ":" + bar[key]);
+  }
+}
+// 输出
+// b:2
+```
+
+`hasOwnProperty` 用来判断一个属性是否在当前对象上，而非原型链上。
+
+## 设置对象原型
+
+设置原型有以下方式：
+
+- 通过设置 `__proto__` （非标准，但是一些老浏览器只支持这个）
+- 通过 `Object.setPrototypeOf`（标准，但是一些老浏览器不支持）
+- 通过 `Object.create`（IE9 以下不支持）
+- 使用 `new` 关键字
+
+### `__proto__` & `Object.setPrototypeOf`
+
+也可以通过设置对象的 `__proto__` 属性或者使用 `Object.setPrototypeOf` 函数来修改对象的原型：
+
+```js
+var foo = {};
+var bar = { name: "foo 的原型" };
+foo.__proto__ = bar;
+// or Object.setPrototypeOf(foo ,bar)
+```
+
+但是这种主动设置原型的方式，[会带来较大的性能损耗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)。虽然它们是修改原型最直观的方式，但实际开发中并不推荐。
+
+### 通过 Object.create
+
+使用 `Object.create` 函数也可以设置对象的原型，它接受一个对象或者 `null`，返回一个空对象，空对象的原型指向传入的值。`Object.create` 还有其他参数，它们可以用于新增属性并且设置属性状态，这部分内容不在本系列课程的讨论范围之内，我会在更深入课程中介绍。
+
+使用 `Object.create`，不同于上一节中的直接设置对象原型，这种方式不会给程序带来性能损耗。
+
+**备注：`Object.create` 在 IE 9 以下无法使用**
+
+### `new` 关键字
+
+每个函数或函数表达式都会拥有一个内置属性 `prototype`，
+
+**记住这个属性和该函数的原型没有半毛钱关系！**
+**记住这个属性和该函数的原型没有半毛钱关系！**
+**记住这个属性和该函数的原型没有半毛钱关系！**
+
+```js
+function foo() {}
+
+console.log(foo.prototype);
+console.log(foo.prototype === foo.__proto__); // false
+```
+
+上面代码中，我们打印了一个函数的原型和其 `prototype` 属性，它们并不相等。
+
+默认情况下，函数的 `prototype` 指向一个对象，该对象上有一个属性 `constructor`，这个属性记录了函数本身，这个属性被称作函数的 **构造器**。
+
+使用 `new` 关键字修饰函数的执行有且仅有以下两个作用：
+
+- **把函数内部的 `this` 关键字绑定到一个空对象上并作为默认返回值**
+- **这个空对象的原型指向该函数的 `prototype` 属性**
+
+关于第一点，在 [this\_关键字](/JavaScript/this_关键字/#new-绑定) 章节中已经介绍过了，不再赘述。通过以下代码可以证实第二点：
+
+```js
+function foo() {}
+
+// 原型链：bar {} -> foo.prototype -> ...
+var bar = new foo();
+
+console.log(bar.__proto__ === foo.prototype); // true
+```
+
+上面代码中，`bar` 对象的原型就指向了 `Foo.prototype`。目前为止，通过 `new` 关键字来设置的原型是最被推荐的，因为它可以兼容到骨灰级浏览器，并且也不会带来性能损耗。
+
+## instanceof 原型判断
+
+在 `new` 关键字一节中介绍，每个函数都内置了一个 `prototype` 属性，**关键字 `instanceof` 用来判断一个函数的 `prototype` 属性是否在某个对象的原型链上**：
+
+```js
+function Foo() {}
+
+var bar1 = Object.create(Foo.prototype);
+var bar2 = {};
+
+console.log(bar1 instanceof Foo); // true
+console.log(bar2 instanceof Foo); // false
+```
+
+- 因为 `Foo.prototype` 在 `bar1` 的原型链上，所以 `bar1 instanceof Foo` 是 `true`
+- 因为 `Foo.prototype` 不在 `bar2` 的原型链上，所以 `bar2 instanceof Foo` 得到 `false`
+
+注意： **`instanceof` 的左边是一个普通对象，右边是一个函数。**
+
+`instanceof` 关键字经常和 `new` 关键字配合使用，比如：
+
+```js
+function Foo() {}
+function Bar() {}
+function Baz() {}
+
+var foo = new Foo();
+
+console.log(foo instanceof Foo); // true
+console.log(foo instanceof Bar); // false
+console.log(foo instanceof Baz); // false
+```
+
+如果基于 `new` 关键字来理解，那么 `instanceof` 关键字就是判断一个对象是不是 `new` 某个函数得来。
+
+## 基础数据的原型链
+
+### 数组
+
+一个数组被创建后，它的原型链如下：
+
+```js
+var foo = [];
+
+foo.__proto__ === Array.prototype; // true
+foo.__proto__.__proto__ === Object.prototype; // true
+foo.__proto__.__proto__.__proto__ === null; // true
+
+// foo[] -> Array.prototype {...} -> Object.prototype {...} -> null
+```
+
+我们前面所学的数组函数例如 `push`、`join` 等都在 `Array.prototype` 上，前面我把它们称作内置属性，实际上它们是原型链上的属性。
+
+### 函数
+
+函数的原型链如下：
+
+```js
+function foo() {}
+// or
+// var foo = function () {}
+
+foo.__proto__ === Function.prototype; // true
+foo.__proto__.__proto__ === Object.prototype; // true
+foo.__proto__.__proto__.__proto__ === null; // true
+
+// foo[] -> Function.prototype {...} -> Object.prototype {...} -> null
+```
+
+前面学过的显式绑定 `call`、`apply`、`bind` 等函数都是放在 `Function.prototype` 上，所以才能够访问。
+
+### 包装类
+
+```js
+var numObj = new Number(0);
+var strObj = new String(0);
+var boolObj = new Boolean(0);
+
+// 对应原型链
+// numObj {} -> Number.prototype {...} -> Object.prototype {...} -> null
+// strObj {} -> String.prototype {...} -> Object.prototype {...} -> null
+// boolObj {} -> Boolean.prototype {...} -> Object.prototype {...} -> null
+```
+
+和前面介绍的一样，所有之前提到的内置函数其实都放在原型链上，比如数字的 `toFixed` 放在 `Number.prototype` 上，字符串的 `search` 放在 `String.prototype` 上。
+
+### 原型链小结
+
+看完上面的原型链，你会发现，其实没有什么内置属性，所有属性需要正常访问，引用类型的数据想要访问到一个属性，它不是在当前对象上，就是在原型链上。
+
+## 小结
+
+- 每个引用类型的数据都存在一个内置属性 `[[prototype]]`，它被称作引用类型的 **原型**。
+- 原型可能是一个对象或者 `null`。
+- 引用类型的属性访问会顺着原型链查找，同原型链上重名的属性会产生属性屏蔽。
+- 使用 `in` 关键字可以判断一个属性是否在对象或其原型链上。
+- 使用 `Object.prototype.hasOwnProperty` 可以判断一个属性是否在一个对象上而非其原型链上。
+- `new` 关键字修饰一个函数执行会在函数内部创建一个空对象作为 `this`，这个空对象的原型指向函数的 `prototype` 属性
+- `instanceof` 关键字用以判断一个函数的 `prototype` 是否在一个对象的原型链上。

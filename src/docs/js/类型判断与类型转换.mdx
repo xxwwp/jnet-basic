@@ -1,0 +1,398 @@
+---
+title: 类型判断与类型转换
+---
+
+## 类型判断
+
+开发时常常需要对数据进行类型判断，然后针对不同的类型进行不同的处理。常用来进行类型判断的方式有两种，一个是通过运算符 `typeof`，或者通过一个内置函数：
+
+- `typeof` 关键字
+- `Object.prototype.toString.call` 函数
+
+也还要其他判断类型的方式，在此不做过多讨论。
+
+### typeof
+
+`typeof` 的使用很简单，它只有一个操作数：
+
+```js
+var num = 123;
+var numType = typeof num;
+console.log(numType === "number"); // true
+```
+
+使用 `typeof` 关键字描述一个数据会返回这个数据的类型，是一个字符串，一般通过逻辑分支来来判断这个数据的类型，比如：
+
+```js
+function foo(x, y) {
+  if (typeof x === "number" && typeof y === "number") {
+    console.log("x + y = ", x + y);
+  } else {
+    console.log("x 或 y 不是一个数字，请传入正确的参数类型");
+  }
+}
+
+foo("123", 123);
+```
+
+使用 `typeof` 会返回以下字符串：
+
+| 类型             | typeof 返回的字符串 |
+| ---------------- | ------------------- |
+| Null 空值        | `"object"`          |
+| Undefined 未定义 | `"undefined"`       |
+| String 字符      | `"string"`          |
+| Number 数字      | `"number"`          |
+| Boolean 布尔     | `"boolean"`         |
+| 对象             | `"object"`          |
+| 数组             | `"object"`          |
+| 函数             | `"function"`        |
+
+注意，使用 `typeof` 判断数组和 `null` 的时候，返回的是 `object` 和对象一样。其中 `typeof null` 是 JS 程序中一个悠久的 bug，这个 bug 不会修复，因为现在很多 JS 代码中依赖这个 bug 开发代码。
+
+### Object.prototype.toString.call
+
+也可以使用内置函数 `Object.prototype.toString.call` 来判断数据类型，它同样会返回一段字符串，比如：
+
+```js
+var num = 123;
+var numType = Object.prototype.toString.call(num);
+console.log(numType === "[object Number]"); // true
+```
+
+| 类型             | 函数返回的字符串       |
+| ---------------- | ---------------------- |
+| Null 空值        | `"[object Null]"`      |
+| Undefined 未定义 | `"[object Undefined]"` |
+| String 字符      | `"[object String]"`    |
+| Number 数字      | `"[object Number]"`    |
+| Boolean 布尔     | `"[object Boolean]"`   |
+| 对象             | `"[object Object]"`    |
+| 数组             | `"[object Array]"`     |
+| 函数             | `"[object Function]"`  |
+
+```js
+console.log(Object.prototype.toString.call(null)); // '[object Null]'
+console.log(Object.prototype.toString.call(NaN)); // '[object Number]'
+console.log(Object.prototype.toString.call(false)); // '[object Boolean]'
+```
+
+## 练习
+
+编写一组判断类型的函数或一个判断类型的对象。比如判断数字类型的函数 `isNumber` ，传入任意类型的数据，如果是数字或者数字对象，就返回 `true`，否则返回 `false`。为所有类型编写类型判断函数，或把它们整合到一个对象中。
+
+```js
+function isNull(v) {
+  return Object.prototype.toString.call(v) === "[object Null]";
+  // or
+  // return null === v;
+}
+function isUndefined(v) {
+  return Object.prototype.toString.call(v) === "[object Undefined]";
+  // or
+  // return v === undefined;
+}
+function isString(v) {
+  return Object.prototype.toString.call(v) === "[object String]";
+  // or
+  // return typeof v === "string";
+}
+function isNumber(v) {
+  return Object.prototype.toString.call(v) === "[object Number]";
+  // or
+  // return typeof v === "number";
+}
+function isBoolean(v) {
+  return Object.prototype.toString.call(v) === "[object Boolean]";
+  // or
+  // return typeof v === "boolean";
+}
+function isObject(v) {
+  return Object.prototype.toString.call(v) === "[object Object]";
+  // or
+  // return typeof v === "object" && !isNull(v);
+}
+function isArray(v) {
+  return Object.prototype.toString.call(v) === "[object Array]";
+}
+function isFunction(v) {
+  return Object.prototype.toString.call(v) === "[object Function]";
+  // or
+  // return typeof v === "function";
+}
+```
+
+## 类型转换
+
+有时我们不得不把原始类型进行转换，比如我们在网络或者 HTML 中获取到一段数字字符串，我们需要对这串数字进行数学计算，但会发生以下情况。
+
+```js
+var foo = "100" + 5;
+console.log(foo); // '1005'
+```
+
+这和我们预期的结果完全不一样，数字运算被转化成了字符串拼接。产生这种情况的结果显而易见，是因为 '`100`' 是字符串类型。为了上面代码能正确运算，我们可以使用 `parseInt` 函数把字符串转化为数字：
+
+```js
+var foo = parseInt("100") + 5;
+console.log(foo); // 105
+```
+
+这种主动把一个类型转换为另一种类型的方式，称作 **显式类型转换**。还有一种类型转换是由程序默认执行的，称作 **隐式类型转换**。上面代码中， `"100" + 1` 就存在一个隐式类型转换，数字的 `1` 被程序隐式转化成字符串的 `"1"`，然后和前面的字符串进行拼接。
+
+### 显式类型转换
+
+#### 转化为数字
+
+把其他类型的数据转化为数字常用以下方式：
+
+- 使用 `Number` 函数：转化为数字
+- 使用 `parseInt` 函数：转化为整数，不保留小数
+- 使用 `parseFloat` 函数：转化为数字，保留小数
+- 使用 `+` 一元运算符：转化为数字
+- 使用 `-` 一元运算符：转化为数字并且为相反数
+
+```js
+var foo1 = Number("1.2");
+var foo2 = parseInt("1.2");
+var foo3 = parseFloat("1.2");
+var foo4 = +"1.2";
+var foo5 = -"1.2";
+
+console.log(foo1);
+console.log(foo2);
+console.log(foo3);
+console.log(foo4);
+console.log(foo5);
+```
+
+`+` 和 `-` 运算符功能强大，可以用于计算、正负值或类型转换。
+
+当任何数据转换为数字类型时，如果转换失败，都会得到一个 `NaN`，比如：
+
+```js
+var foo1 = +"1.3a";
+var foo2 = Number("1.3a");
+var foo3 = parseInt("1.3a");
+var foo4 = parseFloat("1.3a");
+
+console.log(foo1); // NaN
+console.log(foo2); // NaN
+console.log(foo3); // 1
+console.log(foo4); // 1.3
+```
+
+**使用一元运算符 `+` 或者 `-` 和 `Number` 函数对转换的数据要求更为严格，不能出现错误的数字表示，只能在首尾出现空格。**
+
+**使用 `parseInt` 和 `parseFloat` 稍微放松要求，出现数字或空格外字符的位置会被截断，只保留前面的数据。**
+
+有一种特殊的小数数字被认为是合法的：
+
+```
+var foo = .3 + 1;
+var bar = Number(".3") + 1;
+console.log(foo, bar); // 1.3 1.3
+```
+
+如果小数的整数部分是 0，那么可以省略。一般不建议这么写，会降低代码可读性。
+
+#### 转化为字符串
+
+其他类型的数据也可以转化为字符串，常用方式如下：
+
+- 使用 `String` 函数
+- 大部分类型都可以使用内置的 `toString` 函数转化为字符串
+
+使用 `String` 函数可以把大部分数据类型转化为字符串：
+
+```js
+function foo() {
+  console.log("foo function !");
+}
+
+var bar1 = String(foo);
+var bar2 = String(null);
+var bar3 = String(undefined);
+var bar4 = String(123);
+var bar5 = String(false);
+var bar6 = String([1, 2, 3, 4]);
+var bar7 = String({ test: "test text" });
+
+console.log(bar1);
+console.log(bar2);
+console.log(bar3);
+console.log(bar4);
+console.log(bar5);
+console.log(bar6);
+console.log(bar7);
+```
+
+需要注意的事，对象通过 `String` 函数转换时，不会序列化对象，返回的字符串是只是对象的标识，和其内容无关。（序列化表示保存数据所有信息成为字符串，在需要的时候又可以转化回来，转化回来的过程称作反序列化）
+
+通过内置的 `toString` 函数来转换为字符串：
+
+```js
+var arr = [1, 2, 3, 4];
+var obj = { name: "obj" };
+
+console.log(num.toString());
+console.log(bool.toString());
+console.log(arr.toString());
+console.log(obj.toString());
+```
+
+类似于 `String` 函数，对象依旧是一串固定的文本。
+
+#### 转化为布尔类型
+
+- 使用 `Boolean` 函数
+- 使用双非运算符
+
+一般情况下，很少出现把数据转化为布尔类型的需求，除非你是确切的需要一个布尔值。如果你只是判断表达式是否成立，你应该依靠 falsy 值来判断真假。
+
+查看一下代码：
+
+```js
+var foo1 = Boolean("");
+var foo2 = Boolean(0);
+var foo3 = Boolean(1 > 2);
+var foo4 = Boolean(null);
+
+console.log(foo1, foo2, foo3, foo4);
+```
+
+函数 `Boolean` 接收一个参数，所有 falsy 值的表达式会被转化为 `false`，反之为 `true`。
+
+转化为布尔类型的另一种方式是连续使用两次非逻辑运算符，因为 `!` 会得到反命题一个布尔值，双非逻辑符可以得到反命题的反命题，也就是原命题，相当于语文中的双重否定句：
+
+```js
+var foo1 = !!"";
+var foo2 = !!0;
+var foo3 = !!(1 > 2);
+var foo4 = !!null;
+console.log(foo1, foo2, foo3, foo4);
+```
+
+### 隐式类型转换
+
+JS 隐式类型转化的情况及其复杂，开发过程中应该尽量避免特殊情况的隐式转换，因为一旦发生隐式类型转换的错误，程序非常难调试。
+
+以下是进行算术计算时可能发生的隐式转换：
+
+| 字面量                 | 可能的特殊转换     |
+| ---------------------- | ------------------ |
+| `true`                 | 1                  |
+| `false`                | 0                  |
+| `null`                 | 0                  |
+| 可转换的为数字的字符串 | 对应数字，对应字符 |
+| `[]`                   | 0,''               |
+| `[n]`                  | n,'n'              |
+| `''`                   | 0                  |
+
+[//]: # "所有类型参与非加法的算术运算时，会被转换为数字，转换失败就是 `NaN`。"
+[//]: # "对于只含有原始类型的加法计算，如果含有字符串，会从第一个字符串位置转化为字符串拼接运算，否则进行数学计算。"
+[//]: # "引用类型参与加法计算时，会调用自身的 `toString` 函数转换为字符串。"
+
+JS 内的隐式转换是比较混乱的，查看一下代码
+
+```js
+console.log(1 + "1"); // '11'
+console.log(1 - "1"); // 0
+console.log(null + {}); // 'null[object Object]'
+console.log(true / false); // Infinity
+console.log(true / 0.2); // 5
+console.log([10] * 2); // 20
+console.log({} + 1); // 1
+console.log(1 + {}); // '1[object Object]'
+```
+
+**非常非常非常不建议在不知道变量类型之前，直接拿来计算，程序容易出错。**
+
+但是也不是所有隐式类型转化都被否定，在使用字符串拼接时，就推荐使用隐式转换：
+
+```js
+var arr = [1, 2, 3, 4, 5];
+var countStr = "数组项有" + arr.length + "个";
+```
+
+这种程度的隐式转化提高了代码可读性，并且简单，被推荐使用。
+
+#### 包装类
+
+JS 中为了提高原始类型数据的能力，给 **数字、字符串、布尔类型** 设计了相应的对象形式，它们被称作 **包装类**，包装类提供很多内置属性，方便开发。
+
+关于数字、字符串、布尔三个原始类型的对象形式，可以如下创建：
+
+```js
+var numObj = new Number(10);
+var strObj = new String("something");
+var boolObj = new Boolean(false);
+```
+
+`Number`、`String`、`Boolean` 函数是用来类型转换的，但是使用 `new` 关键字修饰后，就可以获得对应类型的对象形式。如果不使用 `new` 关键字，调用这几个函数只是进行类型转换。
+
+这些对象都具有自己的内置属性，比如数字对象可以访问内置属性 `toFixed` 来保留小数：
+
+```js
+var numObj = new Number(10);
+console.log(numObj.toFixed(2)); // 保留两位小数并转化为字符串
+```
+
+或者调用内置属性 `toString` 转化为字符串：
+
+```js
+var numObj = new Number(10);
+var boolObj = new Boolean(false);
+console.log(numObj.toString(), boolObj.toString());
+```
+
+它们的常用内置属性还有很多，我会在后面进行介绍。
+
+#### 装箱与拆箱
+
+查看一下代码：
+
+```js
+var str = "content";
+var num = 123;
+
+// 打印 str 长度，转化 num 为字符串
+console.log(str.length, num.toString());
+```
+
+粗略的观看上述代码，好像没有什么不妥，但是 `str` 和 `num` 都是原始类型，它们不是引用类型，但是却可以像引用类型一样访问包装类的属性。
+
+**当我们对一个原始类型进行属性访问的时候，它会被隐式转换为对应的对象形式，操作完成后再隐式转换为原始类型。这个过程在业界被称作 `装箱` 和 `拆箱`。**
+
+所以说，对一个数字进行 `toString` 属性访问，它首先进行了隐式转换，使用包装类变成了数字对象，然后访问了自身的属性 `toString`，在访问结束后，又转化回来。
+
+这种隐式转换还可能反向进行：
+
+```js
+var a = new Number(1); // a 是对象
+var b = a + 1;
+console.log(b); // 2
+```
+
+数字对象和字面量相加的时候，它会先隐式转换为原始数字，之后再转换回数字引用类型。
+
+### 原始类型与包装类的类型
+
+原始类型和其包装类的类型在进行类型判断时有一些坑，因为包装类创建的对象，所以使用 `typeof` 判断时，会得到一个 `"object"` 字符串：
+
+```js
+var num = 123;
+var numObj = new Number(123);
+console.log(typeof num, typeof numObj); // "number"  "object"
+```
+
+使用 `Object.prototype.toString.call` 判断原始类型和其包装类时，都会得到相同的值，和 `typeof` 的情况正好相反。
+
+```js
+var num = 123;
+var numObj = new Number(123);
+Object.prototype.toString.call(num) === "[object Number]"; // true
+Object.prototype.toString.call(numObj) === "[object Number]"; // true
+```
+
+这是原始类型和其对应包装类的类型区别，这些点几乎可以忽略，因为开发中不会故意使用包装类创建数据。

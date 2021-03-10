@@ -1,0 +1,780 @@
+---
+title: 表单元素
+---
+
+## 介绍
+
+表单元素用于获取用户的输入，表单元素并不多，但是所表现的形式比较多，其中常见的是各种输入框、按钮或者下拉框等。用户的大部分输入，都是使用表单元素完成。
+
+> 声明：表单元素的学习过程中，会涉及到网络相关的知识，我会尽可能简化这部分知识理解的门槛，网络部分理解起来比较困难很正常，不用担心，我会在网络系列的课程中再次介绍这部分知识。
+
+## form 介绍
+
+`form` 元素用来确定一个表单的主体，它用来包裹表单中的其他元素，比如输入框、选择框等。
+
+`form` 元素有几个常用的属性：
+
+- `method`：用于设置表单提交时数据的传输方法
+- `action`：用于设置表单提交的地址
+- `enctype`：用于设置表单提交时数据的格式
+
+目前你不用记住上面属性，本节的最后我会详细介绍它们。
+
+## input
+
+`input` 元素一般用来描述一个输入控件：
+
+| 元素    | 类别 | 语义             | 备注 |
+| ------- | ---- | ---------------- | ---- |
+| `input` | 内联 | 标记一个输入控件 |      |
+
+`input` 元素可能是文本框，可能是复选框，也可能是一个文件上传控件， **`input` 元素所表示的控件，由它的 `type` 属性决定**：
+
+| `type` 属性的常用值 | 表示的控件   |
+| ------------------- | ------------ |
+| `text`              | 文本输入框   |
+| `password`          | 密码框       |
+| `checkbox`          | 复选框       |
+| `radio`             | 单选框       |
+| `file`              | 文件上传     |
+| `reset`             | 重置表单按钮 |
+| `submit`            | 提交表单按钮 |
+| `hidden`            | 隐藏表单数据 |
+
+```html
+<form>
+  <div>文本框<input type="text" /></div>
+  <div>密码框<input type="password" /></div>
+  <div>复选框<input type="checkbox" /></div>
+  <div>单选框<input type="radio" /></div>
+  <div>文件上传<input type="file" /></div>
+  <div>重置按钮<input type="reset" /></div>
+  <div>提交按钮<input type="submit" /></div>
+  <div>隐藏表单数据<input type="hidden" /></div>
+</form>
+```
+
+`input` 元素因为显示控件的不同，展现的形态也不一样，以下是 `input` 的其他属性：
+
+| 属性           | 作用                                                                                         |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `name`         | 描述了该输入控件的名称，会在发送表单时，当做数据的名称，没有 `name` 属性的控件数据不会被发送 |
+| `value`        | 表示当前 `input` 元素的默认值                                                                |
+| `disabled`     | 布尔属性，表示当前 `input` 元素是否可用，不可用的元素在发送表单的时候会被忽略                |
+| `readonly`     | 布尔属性，类似于 `disabled` 属性，不过在发送表单时数据可被发送                               |
+| `checked`      | 布尔属性，表示当前复选框或单选框是否被选中                                                   |
+| `size`         | 设置当前 `input` 元素是输入框情况下的输入宽度                                                |
+| `maxlength`    | 限制当前 `input` 元素值的长度上限                                                            |
+| `placeholder`  | 设置参考文本                                                                                 |
+| `multiple`     | 布尔属性，用在文件框中，设置该属性可以上传多个文件，默认只能上传一个文件。                   |
+| `autocomplete` | 设置元素是否使用浏览器的自动补全                                                             |
+| `autofocus`    | 布尔属性，自动获取焦点                                                                       |
+
+### name & value
+
+**`name` 属性设置了表单提交时的数据名。**
+
+观察以下代码：
+
+```html
+<form>
+  <div>用户名：<input type="text" name="user" /></div>
+  <div>密码：<input type="password" name="pass" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+在输入框中输入任意数据，当我们点击提交的时候，数据会被提交到 URL 上，可以通过 URL 观察到提交的数据。
+
+**表单提交时，数据的名称会由 `name` 属性决定，其值是输入元素被提交时的数据。**
+
+**可以通过设置 `value` 属性改变输入控件的默认值：**
+
+```html
+<input type="text" name="user" value="12345@abc.com" />
+```
+
+刷新页面，会发现输入框中默认填充了 `12345@abc.com`。
+
+### disabled & readonly
+
+**通过设置布尔属性 `disabled`，可以禁用输入元素，这些输入元素会无法获得焦点，同时，它们也不会参与表单的提交。**
+
+**布尔属性 `readonly` 会设置输入元素只读，只读的元素无法进行修改，但是提交的时候，会参与表单的提交。**
+
+例：
+
+```html
+<form>
+  <div>用户名：<input type="text" name="user" value="123" disabled /></div>
+  <div>密码：<input type="password" name="pass" value="zxc" readonly /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+上述代码中，用户名和密码输入框都无法修改数据，当提交表单的时候，只会提交密码框内的数据。
+
+### checked
+
+**复选框或者单选框类型的输入元素，可以使用 `checked` 属性来设置其默认选中**。
+
+比如：
+
+```html
+<form>
+  <div>复选框1<input type="checkbox" checked /></div>
+  <div>复选框2<input type="checkbox" /></div>
+  <div>单选框1<input type="radio" checked /></div>
+  <div>单选框2<input type="radio" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+上述代码中，设置 `checked` 属性的复选框或单选框会被默认选中。
+
+### size
+
+`size` 属性用来设置文本框类型的输入元素显示字符的宽度，这个属性很少使用，一般情况下，我们都会只用 CSS 来修改元素的样式，而不是依赖元素的属性。
+
+例：
+
+```html
+<input type="text" size="20" /> <input type="text" size="5" />
+```
+
+刷新页面，会发现上面两个输入框的一长一短。
+
+### maxlength
+
+**`maxlength` 用于设置文本框类型的输入元素能填入的最大字符数。**
+
+比如：
+
+```html
+验证码：<input type="text" maxlength="4" />
+```
+
+上面的输入框只能填入最多 4 个字符。
+
+### placeholder
+
+`placeholder` 属性可以设置输入框的参考文本。
+
+```html
+<input type="text" placeholder="请输入" />
+```
+
+> 备注：`placeholder` 在 IE10 以下都不支持。
+
+### multiple
+
+**`multiple` 是一个布尔属性，设置它可以让一个文件框上传多个文件。**
+
+比如：
+
+```html
+<div>单文件上传<input type="file" /></div>
+<div>多文件上传<input type="file" multiple /></div>
+```
+
+### autocomplete
+
+**`autocomplete` 属性用来设置浏览器是否自动补全，它会根据 `name` 属性的值来记录历史输入数据，然后在下次使用该元素时，弹出一个历史输入记录用来快速输入。它还可以设置在 `form` 元素上，这会作用于表单内的所有元素。**
+
+`autocomplete` 属性有两个可选值：
+
+- `on`：默认值，开启浏览器自动补全。
+- `off`：关闭浏览器自动补全；
+
+比如：
+
+```html
+<form>
+  <div>自动补全：<input type="text" name="foo" /></div>
+  <div>关闭自动补全：<input type="text" name="bar" autocomplete="off" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+### autofocus
+
+**`autofocus` 是一个布尔属性，用来让元素自动获取焦点。它是一个全局属性，每个可以获得焦点的元素，都可以使用它。**
+
+在输入框密码框等控件中，可以使用 `autofocus` 属性来使其在页面第一次显示的时候，自动获取焦点，减少用户的步骤。比如：
+
+```html
+<div>这个文本框会自动获取焦点：<input type="text" autofocus /></div>
+```
+
+## 输入框 & 密码框
+
+默认情况下，`input` 元素的就是一个输入框。当输入框获取焦点的时候，可以填入文本，如果是在手机上，输入框获取焦点后会弹出小键盘。
+
+密码框和输入框类似，但是密码框看不到输入数据是什么，全部会被 `*` 号代替。
+
+## 复选框
+
+复选框是用来支持多选操作的，有时候会单独使用一个复选框当做开关使用。
+
+例如：
+
+```html
+<form>
+  <p>被当做开关的时候</p>
+  <div>是否签署 xx 协议<input type="checkbox" /></div>
+
+  <p>被当做多选框</p>
+  <p>请选择你的兴趣爱好</p>
+  <div>体育<input type="checkbox" /></div>
+  <div>艺术<input type="checkbox" /></div>
+  <div>文学<input type="checkbox" /></div>
+  <div>其他<input type="checkbox" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+**复选框的值默认情况下是字符串 `on`** ，可以通过给复选框设置 `name` 属性，然后勾选复选框后提交，其值可以通过 URL 查看。
+
+**也可以通过设置 `value` ，来改变表单提交时复选框的值。**
+
+> 备注：复选框只有在设置了 `name` 属性，并且勾选的情况下，提交表单的时候才会提交数据。其他情况下，复选框的数据不会被发送。
+
+## 复选框组
+
+**如果复选框被当做多选框使用，它表示的应该是一组数据。同一组数据的情况下，设置这些复选框的 `name` 属性存在一定规律。**
+
+其规律需要视后端语言决定，比如后端为 Java 开发，那么同一组复选框的 `name` 都设置为相同的字符串，如果后端是 PHP 开发，就需要在相同字符串的基础上，再添加 `[]`。这个不是我们前端人员去决定的，我们只负责把数据传给后端，后端需要什么数据，我们给什么数据。
+
+比如：
+
+```html
+<form>
+  <p>被当做多选框</p>
+  <p>请选择你的兴趣爱好</p>
+  <div>体育<input type="checkbox" name="hobby" value="体育" /></div>
+  <div>艺术<input type="checkbox" name="hobby" value="艺术" /></div>
+  <div>文学<input type="checkbox" name="hobby" value="文学" /></div>
+  <div>其他<input type="checkbox" name="hobby" value="其他" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+勾选上面某几个复选框，然后在提交表单，会发现数据都提交成功了。
+
+复选框的默认选择状态，可以通过布尔属性 `checked` 设置。
+
+## 单选框
+
+单选框一般成组出现，它用来从多个选项中单独选择一项作为表单数据提交。
+
+独立的一个单选框如果被选中，那么无法取消勾选。
+
+```html
+<form>
+  <div>单选框<input type="radio" /></div>
+</form>
+```
+
+**单选框的默认值和复选框一样，如果被选中，默认值是字符串 `on`。** 可以使用 `name` 和 `value` 属性设置单选框数据名和值，比如：
+
+```html
+<form>
+  <div>单选框<input type="radio" name="foo" value="bar" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+选中单选框后提交表单，可以在 URL 上看到传输的数据。
+
+## 单选框组
+
+**单选框组的写法和复选框组类似，唯一不同的是，单选框组的每个单选框 `name` 属性必须相同，而复选框组每个复选框的 `name` 名字是和后端人员协商设置的。**
+
+一个单选框组如下：
+
+```html
+<form>
+  <p>俄罗斯属于那个州？</p>
+  <div>亚洲<input type="radio" name="continent" value="亚洲" /></div>
+  <div>欧洲<input type="radio" name="continent" value="欧洲" /></div>
+  <div>两个洲都属于<input type="radio" name="continent" value="both" /></div>
+  <div><input type="submit" /></div>
+</form>
+```
+
+**多个单选框的 `name` 属性都相同的时候，用户只能选择其中一个，选中的单选框会在表单提交时发送。**
+
+同复选框，单选框也可以用布尔属性 `checked` 来设置默认选择，如果一个单选框组有多个单选框设置了 `checked` 属性，那么只有一个会生效。
+
+## 重置按钮和提交按钮
+
+设置 `input` 元素的 `type` 属性为 `reset` 或 `submit`，输入元素会表现会重置按钮和提交按钮。
+
+**重置按钮会把表单重置到默认状态，并不一定会清空，这取决于表单内的数据是否设置了默认值。**
+
+提交按钮会提交当前表单，关于表单提交的基本信息和格式由 `form` 元素决定，默认情况下，表单会被提交到当前页，表单数据会被传输到地址栏上。
+
+```html
+<form>
+  <div>用户名：<input type="text" name="user" /></div>
+  <div>密码：<input type="text" name="pass" /></div>
+  <input type="reset" />
+  <input type="submit" />
+</form>
+```
+
+重置和提交按钮的文本可以通过 `value` 属性设置。
+
+比如：
+
+```html
+<form>
+  <div>用户名：<input type="text" name="user" /></div>
+  <div>密码：<input type="text" name="pass" /></div>
+  <input type="reset" value="初始化" />
+  <input type="submit" value="登录" />
+</form>
+```
+
+## 隐藏输入框
+
+有的时候，基于用户体验，部分数据我们会将其隐藏，比如用来标记数据的标识，大部分情况下，用户不需要理会这部分数据，我们不用让其展示到表单当中。
+
+例：
+
+```html
+<form>
+  <input type="hidden" name="user_id" value="312J3HZL" />
+  <div>用户<input type="text" value="超炸天" readonly /></div>
+  <div>修改手机号<input type="text" name="tel" /></div>
+  <input type="submit" value="修改" />
+</form>
+```
+
+上面的表单中，用户标识和修改的手机号会被提交，后端人员可以通过用户标识，决定修改那个用户的手机号。
+
+## 文件框
+
+当 `input` 元素的 `type` 属性是 `file` 时，`input` 元素会表现为一个文件框，文件框可以用来上传文件。
+
+默认表单只会发送文件名，我们需要给 `form` 元素设置两个属性来支持文件上传：
+
+```html
+<form method="POST" enctype="multipart/form-data">
+  <input type="file" name="image" />
+  <input type="submit" value="上传" />
+</form>
+```
+
+`form` 元素的 `method` 属性设置了表单上传的方式，文件上传需要使用 `POST` 方式提交表单。`enctype` 属性设置表单上传的格式，在 HTML 中上传文件时，我们必须使用 `multipart/form-data` 格式上传。稍后我会详细介绍 `form` 元素的相关属性。
+
+使用文件上传的时候，我们可以点击文件框，或者把文件拖拽到文件框内。当表单提交的时候，浏览器会自动把文件上传到某个服务器。
+
+表单提交需要服务器，你可以到 [这个沙箱](https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html) 来测试表单提交。注意，这个沙箱需要登录。
+
+**文件需要上传，必须有以下条件：**
+
+- **表单提交方法为 `POST` 方法**
+- **表单数据格式为 `multipart/form-data`**
+
+**文件框的数据必须用户修改，开发者无法设置默认值，所以设置文件框的 `value` 值无效。**
+
+## input 元素小结
+
+`input` 元素的 `type` 属性决定了其表现的控件，不同的控件有些许不同。
+
+- 输入框和密码框类似，只是密码框不可见；
+- 复选框用于多项选择或者设置开关，复选框组的 `name` 属性需要与后端人员协调；
+- 单选框用于单项选择，一般不会单个出现，单选框组的 `name` 属性必须相同；
+- 单选框和复选框可以通过布尔属性 `checked` 设置默认选中；
+- 文件框可以上传文件，不过需要设置提交方法和表单数据格式；
+- 不同控件的 `value` 属性表达意义不同：
+
+  - 输入框、密码框和隐藏输入框中，使用 `value` 属性设置默认值；
+  - 复选框和单选框中，使用 `value` 属性设置选中的值；
+  - 重置和提交按钮中，使用 `value` 属性设置内容文本；
+  - 文件框中，设置 `value` 属性无效；
+
+- 重置按钮会把表单重置到最初的状态；
+- 提交按钮会提交表单；
+
+## 下拉框
+
+还有一种特殊的输入控件是下拉框，它由多个元素组成：
+
+| 元素       | 类别             | 语义                   | 特有属性 |
+| ---------- | ---------------- | ---------------------- | -------- |
+| `select`   | 内联             | 标记一个下拉框         |
+| `option`   | 不是块级或者内联 | 标记下拉框中的数据项   |
+| `optgroup` | 不是块级或者内联 | 对下拉框数据项进行分组 | `label`  |
+
+一个普通的下拉框如下：
+
+```html
+<form>
+  <p>孩子送命题，你最喜欢哪个长辈</p>
+  <select>
+    <option>父亲</option>
+    <option>母亲</option>
+  </select>
+</form>
+```
+
+如果下拉框有多组数据，可以使用 `optgroup` 进行分组：
+
+```html
+<p>乐器</p>
+<select>
+  <optgroup label="民乐">
+    <option>扬琴</option>
+    <option>二胡</option>
+  </optgroup>
+  <optgroup label="西洋乐">
+    <option>钢琴</option>
+    <option>小提琴</option>
+  </optgroup>
+</select>
+```
+
+可以修改 `optgroup` 元素的 `label` 属性来设置组名。
+
+### 下拉框禁用与只读
+
+下拉框中的三种元素都可以设置布尔属性 `disabled`，根据设置的位置，可以实现不同层次的禁用。
+
+下拉框不支持 `readonly` 布尔属性。
+
+### 下拉框的值
+
+下拉框的值也可以通过表单提交，在 `select` 元素上设置 `name` 属性来定义提交数据的名字，然后设置 `option` 元素的 `value` 属性来设置每项的值。
+
+同 `input` 框不同的是，下拉框的数据名和数据值没有设置到同一个元素上。
+
+```html
+<p>乐器</p>
+<select name="ins">
+  <optgroup label="民乐">
+    <option value="yang">扬琴</option>
+    <option value="er">二胡</option>
+  </optgroup>
+  <optgroup label="西洋乐">
+    <option value="gang">钢琴</option>
+    <option value="xiao">小提琴</option>
+  </optgroup>
+</select>
+```
+
+默认情况下，下拉框的值为第一个数据，比如上述例子中，下拉框的值是 `yang`。通过给 `option` 元素设置布尔属性 `selected` 可以主动设置下拉框的默认值。
+
+> 备注：HTML 的下拉框并不能嵌套，你看网上看到的酷炫的嵌套的下拉框都是使用其他方式实现的。
+
+## 文本框
+
+`textarea` 元素表现会一个多行文本框，它与普通 `input` 输入框最大的区别就是多行文本框支持换行。
+
+| 元素       | 类别 | 语义           | 特有属性    |
+| ---------- | ---- | -------------- | ----------- |
+| `textarea` | 内联 | 标记一个文本框 | `cols,rows` |
+
+一个普通的 `textarea` 元素如下：
+
+```html
+<textarea cols="30" rows="10"></textarea>
+```
+
+通过设置属性 `cols` 和 `rows` 可以设置多行文本框默认显示的列数和行数，这两个属性的表现仅仅是视觉上多行文本框的大小。
+
+多行文本框的换行有两种方式，一种是超出一行的部分自动换行，一种是用户摁下回车主动换行。
+
+除此之外，多行文本框的大小是可以自由伸缩的，拉动多行文本框的右下角，可以设置其大小。
+
+多行文本框同普通输入框一样，支持 `name`、`placeholder`、`disabled`、`readonly` 等属性，但需要注意的是，`textarea` 不支持 `value` 属性。
+
+`textarea` 元素不是空元素，它的默认值可以通过元素内容来设置。比如：
+
+```html
+<textarea cols="30" rows="10">默认值</textarea>
+```
+
+> 备注：`textarea` 元素的收缩功能可以使用 CSS 来禁用，我会在 CSS3 的教程中会介绍。
+
+## label
+
+| 元素    | 类别 | 语义         | 特有属性 |
+| ------- | ---- | ------------ | -------- |
+| `label` | 内联 | 标记数据描述 | `for`    |
+
+不知道你是否有过这样的体验，使用某款软件的时候，常常需要签署协议，然后签署协议的复选框又非常的小，很难点到，搞得心里很狂躁。
+
+如下：
+
+```html
+<form action="/send">
+  <p>xx 软件协议</p>
+  <div>
+    <input type="checkbox" />
+    <strong>点击签署协议。</strong>
+  </div>
+  <input type="submit" />
+</form>
+```
+
+这用户体验是很差的，如果是多选的情况，体验更差，这是因为各种输入控件并没有和它们的标签产生关联。
+
+**我们把用来描述某个表单元素的文本内容，称作它们的标签，使用 `label` 元素包裹。**
+
+比如：
+
+```html
+<div>
+  <input type="checkbox" />
+  <label><strong>点击签署协议。</strong></label>
+</div>
+```
+
+`label` 元素可以和表单元素产生关联，我们需要为表单元素设置 `id` 属性，然后为 `label` 元素设置 `for` 属性指定关联的 `id`。
+
+如：
+
+```html
+<div>
+  <input id="sign" type="checkbox" />
+  <label for="sign"><strong>点击签署协议。</strong></label>
+</div>
+```
+
+现在复选框和 `点击签署协议` 的文本产生了关联。刷新页面，你会发现，在点击 `点击签署协议` 的文本时，复选框被选中了，用户不用再去点击那个小小的复选框。
+
+`label` 元素可以绑定任何输入控件，如下：
+
+```html
+<form action="/send">
+  <p>账号申请</p>
+  <div>
+    <label for="uname">昵称：</label>
+    <input type="text" id="uname" name="uname" />
+  </div>
+  <div>
+    <label for="password">密码：</label>
+    <input type="password" id="password" name="pass" />
+  </div>
+  <div>
+    <p>性别：</p>
+    <ul>
+      <li>
+        <input type="radio" id="sex-male" name="sex" />
+        <label for="sex-male">男</label>
+      </li>
+      <li>
+        <input type="radio" id="sex-female" name="sex" />
+        <label for="sex-female">女</label>
+      </li>
+    </ul>
+  </div>
+  <input type="submit" />
+</form>
+```
+
+上面代码中，我们点击 `昵称：` 或者 `密码：` 文本，输入框会自动获取到焦点，
+
+这种写法有些许复杂，实际上， **`label` 元素也可用通过包裹表单元素来实现关联。**
+
+比如：
+
+```html
+<form action="/send">
+  <p>账号申请</p>
+  <div>
+    <label>昵称：<input type="text" name="uname" /> </label>
+  </div>
+  <div>
+    <label>密码：<input type="password" id="password" name="pass" /></label>
+  </div>
+  <div>
+    <p>性别：</p>
+    <ul>
+      <li>
+        <label><input type="radio" id="sex-male" name="sex" />男</label>
+      </li>
+      <li>
+        <label><input type="radio" id="sex-female" name="sex" />女</label>
+      </li>
+    </ul>
+  </div>
+  <input type="submit" />
+</form>
+```
+
+两种方式都比较常用，某些情况下，后端开发中会占用 `id` 属性，那个时候就可以使用第二种写法。
+
+## fieldset & legend
+
+| 元素       | 类别               | 语义                 |
+| ---------- | ------------------ | -------------------- |
+| `fieldset` | 块级               | 标记一组数据项       |
+| `legend`   | 不是块级也不是内联 | 描述 `fieldset` 元素 |
+
+对于成组的数据，可以使用 `fieldset` 与 `legend` 元素来划分，比如在上一小节的表单中，`性别：` 的数据项就有两个，此时就可以使用 `fieldset` 与 `legend` 元素来把它们包裹起来：
+
+```html
+<div>
+  <fieldset>
+    <legend>性别：</legend>
+    <ul>
+      <li>
+        <label><input type="radio" id="sex-male" name="sex" />男</label>
+      </li>
+      <li>
+        <label><input type="radio" id="sex-female" name="sex" />女</label>
+      </li>
+    </ul>
+  </fieldset>
+</div>
+```
+
+`fieldset` 与 `legend` 元素使用并不多，因为它们的样式比较特殊。
+
+## button
+
+| 元素     | 类别 | 语义         |
+| -------- | ---- | ------------ |
+| `button` | 内联 | 标记一个按钮 |
+
+`button` 元素是一个普通按钮，它是一个双标签元素。
+
+一个普通的按钮如下：
+
+```html
+<button>按钮</button>
+```
+
+**如果一个按钮被放到 `form` 元素中，那么它等价于一个提交按钮**，也就是：
+
+```html
+<form>
+  <input type="submit" />
+  <button>普通按钮提交</button>
+</form>
+```
+
+上面两个按钮都可以提交表单。
+
+同时一个普通按钮也可以携带数据提交表单：
+
+```html
+<button name="bt" value="something">按钮</button>
+```
+
+上面的按钮会在表单提交的时候，发送数据 `bt`，它的值为 `something`。
+
+普通按钮的使用场景非常多，它不是为表单提交而生，如果你想提交表单，应该使用一个 `submit` 类型的 `input` 元素，如果不是，那就使用 `button` 元素。
+
+`button` 元素的功能比重置按钮或提交按钮更强大，`button` 元素的内容是可以任意设置的，比如设置为一张图片，或者多行文本等等，但是重置按钮或提交按钮就无法实现。
+
+## 表单提交
+
+表单提交时，数据会在网络中传输，表单提交的时候，会整理当前表单的数据，然后通过某种传输方式把数据提交到某个地址。
+
+`form` 元素的以下属性决定了表单是如何被提交的：
+
+- `method`：表单传输数据的方法
+- `action`：表单数据提交的地址
+- `enctype`：数据的格式
+
+### method
+
+**`method` 属性决定了表单传输数据的方法，指定了数据是如何传输的。** 它有两个可选值：
+
+| `method` 值 | 描述                               |
+| ----------- | ---------------------------------- |
+| GET         | 默认值，表单数据会被放到地址上传输 |
+| POST        | 表单数据会放在网络数据包中传输     |
+
+GET 方法传输数据是默认情况，在前面的演示中，大家都可以看到，数据被放到了地址栏。
+
+**GET 方法传输的数据时，会把数据放到路径后面，片段（锚点）的前面，然后使用 `?` 号把数据与路径部分隔开。其中的每项数据被叫做字段，字段之间使用 `&` 符连接，字段名与字段值使用 `=` 号连接，其中没有空隙，`?` 号不属于数据部分。**
+
+例如下列表单：
+
+```html
+<form method="GET">
+  <p>登录</p>
+  <div>
+    <label>用户名：<input type="text" name="username" /> </label>
+  </div>
+  <div>
+    <label>密码：<input type="password" name="pass" /></label>
+  </div>
+  <input type="submit" />
+</form>
+```
+
+上面的表单被提交的时候，数据格式类似于 `?username=...&password=...`。它会被拼接到提交的地址后面，然后页面会跳转到此地址。
+
+这段数据被称作 **URL 参数**，或者 **GET 参数**。
+
+POST 方法提交表单时，数据会被放到网络数据包中传输，你可以使用控制台查看这些网络数据包。打开控制台并切换到 Network 模块，然后设置表单的 `method` 为 `POST`，点击提交。
+
+表单提交后，点击数据包，可以发现被提交的数据。**需要记住的是，不要试图通过控制台查看 POST 提交时数据的格式，那是被浏览器整理后的格式。**
+
+可以打开 [这个沙箱](https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html)，来测试 POST 提交时数据的格式，就是之前演示文件上传的时所用到的。
+
+### action
+
+**`action` 属性决定了数据提交的地址，不设置 `action` 值或者设置为空时，它会把数据提交到当前页。**
+
+这就是为什么我之前演示时，GET 提交表单时数据都放在当前地址上。
+
+你可以把数据提交到百度的搜索页面上，比如：
+
+```html
+<!-- 百度搜索数据的地址是 https://www.baidu.com/s -->
+<form method="GET" action="https://www.baidu.com/s">
+  <div>
+    <!-- 百度搜索的关键字字段名是 wd -->
+    <label><input type="text" name="wd" />百度一下</label>
+  </div>
+  <input type="submit" />
+</form>
+```
+
+上面表单会把数据发送到百度的服务器上，提交表单你会收到一个搜索结果。
+
+### enctype
+
+**`enctype` 属性决定了数据提交的格式** ，它有三个可选值：
+
+| `enctype` 属性值                    | 描述                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------ |
+| `application/x-www-form-urlencoded` | 默认值，数据会被压缩为一行文本，就是 URL 参数的格式。                          |
+| `multipart/form-data`               | 用于文件上传，数据格式可读性差，但是能传输的数据信息更丰富，比如传输文件数据。 |
+| `text/plain`                        | 用于程序调试，不可上传文件，数据直接可读。                                     |
+
+其中，**GET 方法只支持第一种数据格式，后面的无效。而 POST 方法支持所有格式。**
+
+同样，这部分例子也是在 [这个沙箱](https://codesandbox.io/s/example-form-submit-oz0ix?file=/src/index.html) 中演示。
+
+一般情况下，我们不会使用 `text/plain` 数据格式提交数据，它仅用于调试。
+
+### 表单提交小结
+
+- 表单提交的方式有两种，GET 方式与 POST 方式，其中：
+
+  - GET 方式提交表单，数据会被拼接到传输地址上。
+  - POST 方式提交表单，数据会被放到网络数据包中。
+
+- 表单提交时，数据会被传输到某个地址。如果这个地址对应了某个服务器程序，那么它会根据数据包的相关信息整理新的页面返回。
+
+- 表单提交时，数据格式有三种，其中：
+
+  - GET 方式提交表单，数据格式只有 `application/x-www-form-urlencoded`。
+  - 文件传输只能使用 POST 方式，并且数据格式必须是 `multipart/form-data`。
+  - `text/plain` 数据格式仅作为调试使用，不要在正式项目中使用，此格式几乎不会被使用。
+
+## 总结
+
+在未来的开发中，我们可能很少会使用到这些原始的表单元素，表单提交也会由 JS 处理，让页面在不刷新的情况下，发送数据。但是不论如何开发，都离不开这些基础知识，希望你能熟知表单的基础知识，才能在后续学习中游刃有余。
+
+表单提交时的 `method` 和 `enctype` 属性较难，因为它是网络相关的知识，如果你难以理解，并不用担心，我会在 web 网络课程中详细介绍它们。
+
+备注：表单元素不存在严格的嵌套关系，比如 `button` 按钮就可能出现各种不是表单的地方。表单元素内也可以嵌套其他各种元素，比如表格、文章、超链接等。

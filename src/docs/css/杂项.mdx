@@ -1,0 +1,138 @@
+---
+title: 杂项
+---
+
+## 常用属性
+
+### cursor
+
+`cursor` 属性用来设置鼠标移动到元素上时的样式，非特殊需要，不需要设置 `cursor` 属性，特别是可点击状态的属性：
+
+比如：
+
+```css
+.pointer {
+  cursor: pointer;
+}
+```
+
+上面的代码会在鼠标移到元素上时，显示为小手，表示可点击，同超链接或者按钮一样。
+
+一般情况下，可点击的内容也就是超链接和按钮，它们自带了这个样式。如果你真的要在一个 `div` 或者 `li` 等元素上设置该属性，应该考虑 HTML 结构是不是出现了问题。
+
+`cursor` 的值非常的多，比如：
+
+| 值        | 描述     |
+| --------- | -------- |
+| `wait`    | 等待状态 |
+| `move`    | 移动状态 |
+| `zoom-in` | 放大镜   |
+| ...       | ...      |
+
+`cursor` 还有很多其他属性，都不常用，需要时[查表](https://developer.mozilla.org/zh-CN/docs/web/css/cursor)。
+
+### opacity
+
+`opacity` 属性用来改变元素的透明度，包括它的子元素。`opacity` 的值是数字 0~1，0 为完全透明，1 为完全显示。
+
+```css
+.transp {
+  opacity: 0.5;
+}
+```
+
+### outline
+
+`outline` 属性类似于 `border` ，但是它不占据元素盒模型的大小，只是在 `padding` 区域之外套上一层边线。比如：
+
+```html
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(151, 147, 147);
+  }
+  .foo:hover {
+    outline: 3px solid black;
+  }
+  .bar:hover {
+    border: 3px solid black;
+  }
+</style>
+<div class="box foo">content</div>
+<div class="box bar">content</div>
+```
+
+作用上面两个样式的元素，在 `:hover` 状态会显示一层边线，其中 `border` 样式会改变页面布局，而 `outline` 样式不会。怪异盒子可以消除 `border` 出现元素外部的布局抖动，但是元素内部又会产生抖动，比如修改样式如下：
+
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(151, 147, 147);
+  box-sizing: border-box;
+}
+```
+
+但是 `outline` 也有一个缺点就是不支持圆角属性，比如：
+
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(151, 147, 147);
+  border-radius: 50%;
+}
+```
+
+### visibility
+
+`visibility` 可以设置元素的可见状态，它有两个值：
+
+| 值        | 描述                                                                                     |
+| --------- | ---------------------------------------------------------------------------------------- |
+| `hidden`  | 元素及其子级会被隐藏，并且无法选中，但是元素原始布局位置会被保留。                       |
+| `visible` | 初识值，元素会显示，可以主动给已经隐藏元素的子级元素设置为 `visible`，子级元素就会显示。 |
+
+示例：
+
+```html
+<style>
+  .box {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(151, 147, 147);
+    visibility: hidden;
+  }
+  .child {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(70, 68, 68);
+    visibility: visible;
+  }
+</style>
+<div class="box">
+  <div class="child">这里会显示</div>
+  <p>这里被隐藏了</p>
+</div>
+```
+
+上面例子中，`.box` 元素依旧会占据空间，它和它的子级元素都不会显示，但是其子级元素可以使用 `visible` 来显示。
+
+## 隐藏补充
+
+分析一下三条声明的不同：
+
+```css
+.foo {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+```
+
+| 声明                | 结果                         | 影响                | 交互                                             |
+| ------------------- | ---------------------------- | ------------------- | ------------------------------------------------ |
+| `display:none`      | 元素没有盒模型，不会参与布局 | 不渲染 + 不保留布局 | 不参与交互                                       |
+| `visibility:hidden` | 元素不可见                   | 不渲染 + 保留布局   | 不参与交互                                       |
+| `opacity:0`         | 元素完全透明                 | 渲染 + 保留布局     | 参与交互，如果是表单或者超链接等等，依旧可以点击 |

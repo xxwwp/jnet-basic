@@ -1,0 +1,213 @@
+---
+title: 表格处理
+---
+
+## 表格样式
+
+### 表格伸缩
+
+使用 `table-layout` 属性可以设置表格的伸缩方式，它有以下两个值：
+
+| 值      | 描述                                                        |
+| ------- | ----------------------------------------------------------- |
+| `auto`  | 默认值，列之间会自动伸缩，内容多的列会挤压其他列。          |
+| `fixed` | 固定每个列宽度相同，但是必须设置表格宽度 `width` 才能生效。 |
+
+比如：
+
+```html
+<style>
+  table,
+  td,
+  th {
+    border: 1px solid black;
+  }
+</style>
+<table>
+  <tr>
+    <th>列 1</th>
+    <th>列 2</th>
+    <th>列 3</th>
+  </tr>
+  <tr>
+    <td>一段很长很长很长很长很长很长很长很长的文本</td>
+    <td>文本，文本</td>
+    <td>文本，文本，文本</td>
+  </tr>
+</table>
+```
+
+上面的表格中，表格的内容会自动拉伸，如果设置宽度，内容多的列会挤压其他列，比如添加以下样式：
+
+```css
+table {
+  width: 300px;
+}
+```
+
+上面样式作用后，表格会发生明显的挤压，可以设置表格布局方式为 `fixed` 来使每列宽度一致：
+
+```css
+table {
+  width: 300px;
+  table-layout: fixed;
+}
+```
+
+如果去除表格 `width` 属性，`fixed` 布局方式会无效。
+
+### 间隙
+
+使用 `border-spacing` 属性可以设置单元格之间的间隙。
+
+比如设置单元格间隙为 0：
+
+```css
+table {
+  width: 300px;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+```
+
+虽然表格间隙会消失，但是单元格之间的 `border` 并不会合并，单元格的边框被设置成了两倍。
+
+### 边框塌陷
+
+使用 `border-collapse` 属性可以设置表格内部边框的塌陷模式，它有以下两个值：
+
+| 值         | 描述                                                                                |
+| ---------- | ----------------------------------------------------------------------------------- |
+| `separate` | 默认值，分离模式，相邻边框不会合并                                                  |
+| `collapse` | 塌陷模式，相邻边框会产生合并，单元格之间的间隙会消失，`border-spacing` 属性将会失效 |
+
+在上一节代码的基础上，修改一下样式：
+
+```css
+table {
+  width: 300px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+```
+
+你会发现表格间隙消失了，并且单元格之间的 `border` 产生了合并。
+
+### 单元格内容垂直对齐
+
+可以使用 `vertical-align` 来垂直对齐单元格中的内容，它有很多值，但是在表格单元格内常用的值只有 3 个：
+
+| 值       | 描述                   |
+| -------- | ---------------------- |
+| `top`    | 内容对齐到单元格的上方 |
+| `middle` | 内容对齐到单元格的中间 |
+| `bottom` | 内容对齐到单元格的下方 |
+
+```html
+<style>
+  td {
+    border: 1px solid silver;
+    width: 100px;
+    height: 100px;
+    /* 单元格的内容会被显示到单元格的最下方 */
+    vertical-align: bottom;
+  }
+</style>
+<table>
+  <tr>
+    <td>单元格</td>
+    <td>单元格</td>
+  </tr>
+</table>
+```
+
+> `vertical-align` 不止在单元格中可以是垂直对齐，它还可以设置在 IFC 环境当中，在 【基础布局】 一节会有所介绍。
+
+### 空单元格
+
+> ☹ 这个属性并不常用
+
+使用 `empty-cells` 属性可以设置空单元格的显示状态，它有两个值：
+
+| 值     | 描述                           |
+| ------ | ------------------------------ |
+| `show` | 默认值，显示空的单元格         |
+| `hide` | 隐藏空的单元格，保留布局的位置 |
+
+例子：
+
+```html
+<style>
+  td {
+    border: 2px solid silver;
+  }
+  table {
+    /* 空的单元格会被隐藏，但是不影响表格布局 */
+    empty-cells: hide;
+  }
+</style>
+<table>
+  <tr>
+    <td></td>
+    <td>单元格</td>
+  </tr>
+  <tr>
+    <td>单元格</td>
+    <td></td>
+  </tr>
+</table>
+```
+
+### 标题位置
+
+> ☹ 这个属性并不常用
+
+使用 `caption-side` 可以 `caption` 元素在表格中显示的位置，它有两个值：
+
+| 值       | 描述                     |
+| -------- | ------------------------ |
+| `top`    | 默认值，标题在表格的上方 |
+| `bottom` | 标题在表格的下方         |
+
+```html
+<style>
+  td {
+    border: 2px solid silver;
+  }
+  table {
+    /* 让标题放到表格的最下面 */
+    caption-side: bottom;
+  }
+</style>
+<table>
+  <caption>
+    标题
+  </caption>
+  <tr>
+    <td>单元格</td>
+    <td>单元格</td>
+  </tr>
+</table>
+```
+
+## 表格设计
+
+一般情况下，我们都会使用塌陷模式的表格，这样表格会更加紧凑，边框合并也利于样式设置。
+
+在盒模型一节介绍过，表格内的边框只有 `th,td,caption` 元素会正常显示，同时也只有他们能够设置 `padding` 属性，表格内的元素是无法设置 `margin` 的，单元格的间隙使用 `border-spacing` 来设置。
+
+一个常见的表格样式设计如下：
+
+```css
+.my-table {
+  border-collapse: collapse;
+}
+.my-table td,
+.my-table th {
+  border: 1px solid rgb(196, 196, 196);
+  padding: 5px 15px;
+}
+.my-table tr:hover {
+  background-color: rgb(241, 241, 241);
+}
+```

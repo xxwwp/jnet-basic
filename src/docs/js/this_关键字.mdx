@@ -1,0 +1,272 @@
+---
+title: this 关键字
+---
+
+## this 是什么
+
+`this` 是 JS 中的一个关键字，它被用来指代当前执行上下文，当前执行上下文可能是对某个对象，也可能是 `undefined`。在浏览器的全局环境下，`this` 指向全局对象 `window`：
+
+```js
+// 全局环境下
+this === window; // true
+```
+
+`this` 所处的上下文对象不同，指向也会不同，比如在一个对象中：
+
+```js
+var foo = {
+  bar: function () {
+    console.log(foo === this);
+  },
+};
+
+foo.bar(); // true
+```
+
+它提供了一种更加快捷的访问方式，同时增强了代码的封装性和可读性。
+
+## `this` 绑定
+
+`this` 究竟指向的是那个对象，这取决于它所处的环境，`this` 的执行和它的作用域并没有直接关系。
+
+### 默认绑定
+
+**当函数没有任何修饰被调用时，`this` 指向全局 `window` 对象。**
+
+比如：
+
+```js
+function foo() {
+  // 默认绑定时，this 执行 window，所以 this.bar = 1 相当于 window.bar = 1
+  this.bar = 1;
+  console.log(this === window); // true
+}
+
+foo();
+console.log(window.bar); // 1
+```
+
+`foo` 执行的时候并没有任何修饰，此时 `foo` 内部的 `this` 指向的是全局对象。
+
+### 隐式绑定
+
+**如果函数作为某个对象的属性被调用，那么它内部的 `this` 指向这个对象。**
+
+比如：
+
+```js
+var obj = {
+  info: "name is obj",
+  foo: function () {
+    console.log(this.info);
+    console.log(this === obj);
+  },
+};
+
+obj.foo(); // 'name is obj' ; true
+```
+
+**`this` 指向只是和它所处函数的调用方式有关系**，修改上面代码中对 `obj.foo` 的调用方式得到：
+
+```js
+var bar = obj.foo;
+bar(); // undefined ; false
+```
+
+此时 `bar` 虽然是 `obj.foo` 的引用，但是 `bar` 执行的时候没有任何修饰方式，应是默认绑定，其内部 `this` 指向全局对象。
+
+这种情况还可能出现在回调函数中，继续上述代码在后面添加以下几行：
+
+```js
+function doFn(fn) {
+  fn();
+}
+
+doFn(obj.foo); // undefined ; false
+```
+
+此时 `obj.foo` 被当做回调函数传到 `doFn` 中，然而回调函数被执行的时候还是没有任何修饰或处理，它依旧是对 `this` 进行默认绑定。
+
+数组是应用类型，它的每个下标都是它的属性，所以在数组内存储的函数也满足隐式绑定：
+
+```js
+var foo = [
+  1,
+  2,
+  3,
+  function () {
+    console.log(this === foo); // true
+  },
+];
+
+foo[3]();
+```
+
+### 显式绑定
+
+我们还可以强制改变函数内部的 `this` 指向，这种方式叫做显式绑定，显式绑定提供了 2 个方法，`call` 和 `apply`。
+
+每个函数都内置了 `call` 和 `apply` 方法，通过以下方式调用：
+
+```js
+// 伪代码
+function foo() {}
+
+foo.call(...);
+foo.apply(...);
+```
+
+`call` 和 `apply` 的第一个参数接收函数执行时 `this` 指向的对象，比如：
+
+```js
+function foo() {
+  console.log(this);
+}
+var bar = { name: "bar" };
+var baz = { name: "baz" };
+
+foo.call(bar); // 改变 foo 内部 this 指向 bar 对象，并执行 foo 函数
+foo.apply(bar); // 改变 foo 内部 this 指向 bar 对象，并执行 foo 函数
+
+foo.call(baz); // 改变 foo 内部 this 指向 baz 对象，并执行 foo 函数
+foo.apply(baz); // 改变 foo 内部 this 指向 baz 对象，并执行 foo 函数
+```
+
+上面的代码会依次打印 `bar` 和 `baz` 对象，但是出现一个问题，此时我们如何向 `foo` 函数传入参数？
+
+`call` 和 `apply` 可以在绑定 `this` 的参数后面传递其他参数当做函数执行时的参数，比如：
+
+```js
+function foo(x, y) {
+  console.log(this, x, y);
+}
+var bar = { name: "bar" };
+
+foo.call(bar, 1, 2); // 执行 foo 函数时传递参数 1 和 2
+foo.apply(bar, [1, 2]); // 执行 foo 函数时传递参数 1 和 2
+```
+
+`call` 和 `apply` 改变了函数执行时 `this` 指向的对象，同时可以传递函数执行时所需的参数。`call` 把参数一个一个传递，而 `apply` 把参数当做一个数组传递，类似于传递了函数内部的 `arguments`。
+
+如果 `call` 或者 `apply` 传入的第一个值是 `undefined` 或者 `null`，会被转化为默认绑定。比如：
+
+```js
+function foo(x, y) {
+  console.log(this, x, y);
+}
+foo.call(null, 1, 2); // 相当于默认绑定，即 foo(1,2)
+foo.apply(undefined, [1, 2]); // 相当于默认绑定，即 foo(1,2)
+```
+
+通过 `call` 或者 `apply` 绑定 `this` 的方式叫做 **显式绑定**，但是这种绑定时一次性的，函数立刻会被执行。我们可以使用闭包建立一个长久的绑定关系，比如：
+
+```js
+function foo(x, y) {
+  console.log(this.name, x, y);
+}
+var bar = { name: "bar object" };
+
+function bind(fn, obj) {
+  return function () {
+    return fn.apply(obj, arguments);
+  };
+}
+
+var bar = bind(foo, obj);
+bar(1, 2); // "bar object"  1  2
+```
+
+这种绑定方式叫做 **硬绑定** ，每个函数都内置了硬绑定的辅助方法 `bind`，不过它的实现方式更加复杂，不能等价于上述 `bind` 函数，通过以下方式调用：
+
+```js
+function foo(x, y) {
+  console.log(this.a, x, y);
+}
+var obj = { a: "something" };
+
+var bar = foo.bind(obj);
+bar(1, 2); // something ; 1 ; 2
+```
+
+每个函数内置的 `bind` 方法可以传入一个参数，返回一个把内部 `this` 指向这个参数的函数，作用和原函数相同。
+
+### new 绑定
+
+通过 `new` 关键字来修饰一个函数的执行，函数内的 `this` 绑定一个新的空对象，并且这个空对象会作为函数的默认返回值，比如：
+
+```js
+function Foo() {
+  this.a = 1;
+}
+console.log(new Foo()); // { a : 1}
+```
+
+需要注意的是，使用 `new` 关键字修饰函数执行，如果函数内没有主动返回一个对象，那么默认就会返回执行时 `this` 指向的那个对象。（返回原始类型无效，依旧会返回 `this` 指向的对象）
+
+### 小结
+
+- 默认绑定：全局作用域或者普通函数执行的作用域内，`this` 默认指向全局对象。
+- 隐式绑定：对象通过属性访问符执行函数，`this` 指向这个上下文对象。
+- 显式绑定：通过 `call` 或者 `apply` 指定 `this` 绑定，或者使用函数内置的 `bind` 函数执行硬绑定。
+- new 绑定：在函数内部创建空对象作为 `this` 的绑定。
+
+## self | that 约定
+
+`this` 指向带来的问题实际开发中其实更多，开发中常常会使用到显式绑定，除了显式绑定，其实还可以使用闭包来解决 `this` 指向问题。
+
+比如：
+
+```js
+var tips = {
+  text: "100 ms 后的提示",
+  info: function () {
+    setTimeout(function () {
+      alert(this.text);
+    }, 100);
+  },
+};
+
+tips.info();
+
+// 100 ms 后弹框弹出 undefined
+```
+
+常理上来说，我们想弹出 '`100 ms 后的提示`' 这些文本，但是 `setTimeout` 的回调函数中，`this` 是默认绑定，它会访问到全局的 `window.text`，自然会得到一个 `undefined`。
+
+可以通过显式绑定来解决上述问题：
+
+```js
+var tips = {
+  text: "100 ms 后的提示",
+  info: function () {
+    setTimeout(
+      function () {
+        alert(this.text);
+      }.bind(this),
+      100
+    );
+  },
+};
+
+tips.info();
+```
+
+也可以通过闭包：
+
+```js
+var tips = {
+  text: "100 ms 后的提示",
+  info: function () {
+    var self = this;
+    setTimeout(function () {
+      alert(self.text);
+    }, 100);
+  },
+};
+
+tips.info();
+```
+
+`setTimeout` 的回调函数内形成了闭包，丢弃了 `this` 关键字。任何写法都没有问题，但是不要混用，就行。
+
+其中，`self` 或 `that` 是 web 开发中使用闭包代替 `this` 关键字的常用变量名。

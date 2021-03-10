@@ -1,0 +1,261 @@
+---
+title: 错误处理
+---
+
+## 错误
+
+如果程序不能正确的运行，那么就会抛出一个错误，错误可能由语法错误引起，也可能是运行时错误的计算引起。于是错误被分为以下两类：
+
+- 语法错误
+- 运行错误
+
+语法错误如：
+
+```js
+function foo {
+    console.log('any')
+}
+```
+
+上面是一个错误的函数声明，因为没有设置参数部分，程序无法正常编译执行，这属于语法错误。语法错误会在程序编译时就抛出，这类错误很容易处理，根据错误显示的位置，做出修改即可。
+
+运行错误如：
+
+```js
+console.log(a); // Uncaught ReferenceError: a is not defined
+```
+
+当我们直接打印一个未定义的变量时，会抛出一个初五，提示变量未定义，这属于运行错误。这类错误复杂多变，大部分情况下，都是不严谨的开发方式造成。
+
+有一个特别的语法 bug，它会间接变成一个计算错误，就是不写分号时的立即执行表达式：
+
+```
+var foo = 1
+var bar = 2
+var baz = foo + bar
+
+(function () {
+    console.log(baz)
+})()
+```
+
+上面代码并不难，预期的情况下，我们希望打印出 `baz` 的值，但是由于分号和留白产生的编译陷阱，程序把 `foo + bar` 表达式与后面的立即执行表达式被合并了，它会被编译成：
+
+```js
+var foo = 1;
+var bar = 2;
+var baz =
+  foo +
+  bar(function () {
+    console.log(baz);
+  })();
+```
+
+但是使用分号隔开会不会出现这种情况：
+
+```
+var foo = 1
+var bar = 2
+var baz = foo + bar
+
+;(function () {
+    console.log(baz)
+})()
+```
+
+不论什么错误，都会停止当前程序的运行，程序并不会在抛出错误后继续执行后续代码。
+
+## Error
+
+`Error` 是 JS 中创建错误对象的函数，它可以接收一个字符串参数，作为错误的消息。错误对象有三个属性：
+
+| 属性      | 描述                                             |
+| --------- | ------------------------------------------------ |
+| `name`    | 错误的名称，`Error` 函数生成的对象名称为 `Error` |
+| `message` | 错误的消息，就是传入 `Error` 函数的字符串        |
+| `stack`   | 错误生成时，当前程序的调用堆栈                   |
+
+演示：
+
+```js
+var e = new Error("错误消息");
+console.log(e);
+console.log(e.name);
+console.log(e.message);
+console.log(e.stack);
+```
+
+其他错误对象都继承自 `Error`，所以它们都有上述属性。
+
+`stack` 属性记录了当前错误对象创建时的调用堆栈，比如：
+
+```js
+function foo() {
+  var e = new Error("foo 内部的错误");
+  console.log(e);
+}
+
+function bar() {
+  foo();
+}
+
+function baz() {
+  bar();
+}
+
+baz();
+```
+
+上面的代码中，函数的调用顺序是 `baz -> bar -> foo`，这就是程序的调用堆栈，错误在 `foo` 函数中执行，所以会记录整个调用堆栈，控制台中，调用堆栈显示如下：
+
+```
+Error: foo 内部的错误
+    at foo (<anonymous>:2:11)
+    at bar (<anonymous>:7:3)
+    at baz (<anonymous>:11:3)
+    at <anonymous>:14:1
+```
+
+调用堆栈用来查找错误的源头。
+
+## throw 关键字
+
+`throw` 关键字可以让我们在程序中主动抛出一个运行错误，比如：
+
+```js
+throw Error("一个错误");
+// or
+throw new Error("一个错误");
+```
+
+我们可以在任何不正常的运行情况下，抛出错误，以提高测试能力：
+
+```js
+// 计算圆形面积
+function roundArea(r) {
+  if (Object.prototype.toString.call(r) !== "[object Number]") {
+    throw new Error(roundArea.name + " 函数的参数需要是一个数字");
+  } else {
+    console.log(Math.PI * r * r);
+  }
+}
+
+roundArea(10);
+roundArea("100"); // 这里出错后就不会再向下执行
+roundArea([1, 2, 3, 4, 5]);
+```
+
+上面代码中，如果我们传入了不符合类型的数据，程序就会抛出错误并停止执行。
+
+## try catch 语句
+
+`try catch` 语句用来试探性的运行代码，它会把当前代码隔离出来，让其内部出错时，不影响后续代码的执行，同时还能对抛出的错误做处理，比如：
+
+```js
+try {
+  console.log(roundArea("abc"));
+} catch (e) {
+  // 这里会捕获 try 语句内抛出的错误，并使用变量 e 引用
+  console.log(e);
+}
+
+console.log("end"); // 这行代码照样可以运行，错误被 try catch 捕获，不会传递到语句外
+```
+
+如果 `try` 语句内没有抛出错误，那么 `catch` 语句内的代码是不会执行的。例如：
+
+```js
+try {
+  console.log(roundArea(100));
+} catch (e) {
+  // 此时不会报错，这里也不会被执行
+  console.log(e);
+}
+```
+
+## Console
+
+`console` 对象用于程序调试，它实际上不属于 JavaScript，它并没有标准，是早年为了方便前端人员开发调试而提供的对象。
+
+`console` 可以在控制台打印各种数据，`console` 对象还可以打印错误，比如：
+
+```js
+var e = new Error("a error!");
+
+console.log(e);
+console.error(e);
+```
+
+上面代码中，`console.log` 是打印数据，而 `console.error` 是打印错误。
+
+`console.error` 打印一个错误后，虽然在控制台上和抛出错误的样子很类似，但是它不会中断程序运行，也不会被 `try catch` 语句捕获，仅仅是换一种打印方式而已。
+
+此外，`console` 对象还能打印警告，警告类似于正常与错误的中间值，用来提醒开发中当前程序可能存在不规范或者使用了一些已经废弃的功能，就可使用提醒：
+
+```js
+function foo(x) {
+  if (typeof x === "string" && !isNaN(parseFloat(x))) {
+    x = parseFloat(x);
+    console.warn("x 传入一个字符串，函数做了类型转换，未来的版本不再支持内部转换，请慎用。");
+  } else if (typeof x !== "number") {
+    throw new Error("x 需要是一个数字");
+  }
+  return x * x;
+}
+
+foo(8); // 64
+foo("8"); // 64 但是会发出警告
+```
+
+上面代码中，`foo` 是一个二次函数，接受一个数字参数，如果意外的传入字符串数字，函数会产生警告，程序依旧能顺序运行。
+
+`console` 对象虽然不在标准之中，玩法却很多，比如：
+
+```js
+var list = [
+  [1, 2, 3, 4],
+  ["foo", "bar", "baz", "foobar"],
+];
+
+console.table(list);
+console.log("一个大大的%c❤", "font-size:100px;color:red;");
+```
+
+如果你非常感兴趣可以 [看看这里](https://www.runoob.com/w3cnote/javascript-console-object.html)
+
+## 断点调试
+
+在程序执行的时候，我们可以在某个地方暂停程序的执行，改为手动操作程序一步一步的执行。被暂停的地方叫做 **断点**，在 JS 中，可以使用 `debugger` 关键字设置一个断点。比如
+
+```js
+function foo() {
+  console.log("run1");
+  console.log("run2");
+  debugger;
+  console.log("run3");
+  console.log("run4");
+}
+foo();
+```
+
+断点暂停程序仅在控制台打开时触发，保存上面代码，打开控制台，刷新页面。会发现程序运行到 `debugger` 关键字后，程序被暂停，你可以使用控制台的调试组件一步一步执行代码。
+
+【调试组件演示】
+
+调试过程中可以实时查看数据变化，比如：
+
+```js
+function foo() {
+  debugger;
+  var item;
+  for (var i = 0; i < 10; i++) {
+    item = "第" + i + "次循环";
+    console.log(i);
+  }
+}
+foo();
+```
+
+调试上面程序，单步执行每一步，把鼠标移动到变量 `i` 与 `item` 上，可以实时查看他们运行时的值。
+
+每个人都有不同的程序调试方式，比如我比较喜欢使用 `console` 对象调试程序，也有的人喜欢使用断点调试程序，你可以选择适合自己的方式。
