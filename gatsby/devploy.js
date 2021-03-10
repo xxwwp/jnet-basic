@@ -7,14 +7,14 @@ const OPTIONS = [
     name: "github",
     dir: "public",
     options: {
-      repo: "git@github.com:xxwwp/jnet-basic-v2.git",
+      repo: "git@github.com:xxwwp/jnet-basic.git",
     },
   },
   {
     name: "gitee",
     dir: "public",
     options: {
-      repo: "git@gitee.com:xxwwp/jnet-basic-v2.git",
+      repo: "git@gitee.com:xxwwp/jnet-basic.git",
     },
   },
 ];
