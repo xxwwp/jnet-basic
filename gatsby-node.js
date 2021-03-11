@@ -3,7 +3,6 @@ const path = require("path");
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `Mdx`) {
-    console.log(node.name);
     const slug = createFilePath({ node, getNode, basePath: `docs` });
     createNodeField({
       node,

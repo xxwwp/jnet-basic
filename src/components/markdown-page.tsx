@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import Markdown_H1_6 from "./markdown-h1-6";
 import MarkdownTable from "./markdown-table";
+import MarkdownA from "./markdown-a";
 
 const articleStyle = css`
   line-height: 1.5;
@@ -104,7 +105,7 @@ function MarkdownPage({ data }: { data: any }) {
     <article css={articleStyle}>
       <h1>{data.mdx.frontmatter.title}</h1>
       <hr />
-      <MDXProvider components={{ ...Markdown_H1_6, table: MarkdownTable }}>
+      <MDXProvider components={{ ...Markdown_H1_6, table: MarkdownTable, a: MarkdownA }}>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </MDXProvider>
     </article>
